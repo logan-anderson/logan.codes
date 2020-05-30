@@ -1,14 +1,13 @@
 import Link from "next/link";
 
-
 const navBar = () => {
   return (
     <nav className="flex flex-wrap items-center justify-between p-4">
       <div className="lg:order-2 w-auto lg:w-1/5 lg:text-center">
         <Link href="#">
-        <div className="text-xl text-indigo-500 font-semibold">
-          Dunder Mifflin
-        </div>
+          <div className="text-xl text-indigo-500 font-semibold">
+            Dunder Mifflin
+          </div>
         </Link>
       </div>
       <div className="block lg:hidden">
@@ -43,12 +42,13 @@ const navBar = () => {
         </a>
       </div>
       <div className="navbar-menu hidden lg:order-3 lg:block w-full lg:w-2/5 lg:text-right">
-        <a
-          className="block lg:inline-block mt-4 lg:mt-0 mr-10 text-blue-900 hover:text-blue-700"
-          href="#"
-        >
-          Blog
-        </a>
+        <Link href='/blog'>
+          <a
+            className="block lg:inline-block mt-4 lg:mt-0 mr-10 text-blue-900 hover:text-blue-700"
+          >
+            All Blog Posts
+          </a>
+        </Link>
         <a
           className="block lg:inline-block mt-4 lg:mt-0 mr-10 text-blue-900 hover:text-blue-700"
           href="#"

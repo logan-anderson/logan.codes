@@ -10,8 +10,6 @@ import Layout from "../../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
 
 const BlogPage = ({ file }) =>{
-
-	console.log({file})
 	return(
 		<Layout title="blog">
 			<p>{file.data.markdownBody}</p>
@@ -28,7 +26,6 @@ export const getStaticProps: GetStaticProps = async function ({
   params,
 }) {
 	const { slug } = params;
-	console.log({slug})
 	const fileRelativePath = `content/blog/${slug}.md`;
 
 	const content = await import(`../../content/blog/${slug}.md`)
@@ -61,7 +58,6 @@ export const getStaticPaths = async function () {
     const path = file.substring(contentDir.length+1, file.length - 3)
     return { params: { slug: path } }
   });
-  console.log(paths)
   return {
     fallback: false,
     paths,

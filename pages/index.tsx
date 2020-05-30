@@ -45,10 +45,8 @@ export const getStaticProps: GetStaticProps = async function ({
   if (preview) {
     
   }
-  console.log('called from index')
   const content = await import('../content/blog/test.md')
   const data = matter(content.default)
-  console.log(data);
   return {
     props: {
       sourceProvider: null,
