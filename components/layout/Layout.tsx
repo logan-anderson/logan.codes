@@ -1,8 +1,8 @@
 import * as React from "react";
-import Link from "next/link";
 import Head from "next/head";
 
 import Navbar from "./Navbar";
+import AppFooter from './Footer';
 
 type Props = {
   title?: string;
@@ -10,11 +10,11 @@ type Props = {
 
 const Layout: React.FunctionComponent<Props> = ({
   children,
-  title = "This is the default title",
+  title,
 }) => (
   <div>
     <Head>
-      <title>{title}</title>
+      <title>{`${title} | Logan's Blog`}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
@@ -23,10 +23,7 @@ const Layout: React.FunctionComponent<Props> = ({
         <Navbar />
       </header>
       {children}
-      <footer>
-        <hr />
-        <span>I'm here to stay (Footer)</span>
-      </footer>
+      <AppFooter/>
     </div>
   </div>
 );

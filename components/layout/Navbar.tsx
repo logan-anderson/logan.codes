@@ -1,10 +1,15 @@
+import Link from "next/link";
+
+
 const navBar = () => {
   return (
     <nav className="flex flex-wrap items-center justify-between p-4">
       <div className="lg:order-2 w-auto lg:w-1/5 lg:text-center">
-        <a className="text-xl text-indigo-500 font-semibold" href="#">
+        <Link href="#">
+        <div className="text-xl text-indigo-500 font-semibold">
           Dunder Mifflin
-        </a>
+        </div>
+        </Link>
       </div>
       <div className="block lg:hidden">
         <button className="navbar-burger flex items-center py-2 px-3 text-indigo-500 rounded border border-indigo-500">

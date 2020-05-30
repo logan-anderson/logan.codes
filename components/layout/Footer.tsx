@@ -1,4 +1,4 @@
-const navBar = () => {
+const AppFooter = () => {
   return (
     <footer className="flex flex-wrap items-center justify-between p-4">
       <div className="w-full lg:w-auto lg:mr-6 mb-4 lg:mb-0 text-center">
@@ -33,4 +33,4 @@ const navBar = () => {
   );
 };
 
-export default navBar;
+export default AppFooter;
