@@ -1,10 +1,10 @@
-import { getGithubPreviewProps, parseJson } from "next-tinacms-github";
+// import { getGithubPreviewProps, parseJson } from "next-tinacms-github";
 import { GetStaticProps } from "next";
-import matter from 'gray-matter'
-import {
-  useGithubJsonForm,
-  useGithubToolbarPlugins,
-} from "react-tinacms-github";
+// import matter from 'gray-matter'
+// import {
+//   useGithubJsonForm,
+//   useGithubToolbarPlugins,
+// } from "react-tinacms-github";
 
 import Layout from "../components/layout/Layout";
 import BlogCard from '../components/BlogCard';
@@ -26,10 +26,9 @@ const IndexPage = () => (
     <section className="py-12 px-4">
       <h2 className="text-3xl text-center mb-8 font-heading">Latest posts</h2>
       <div className="flex flex-wrap -mx-4">
-      <BlogCard/>
-      <BlogCard/>
-      <BlogCard/>
-      <BlogCard/>
+      <BlogCard title={'test'}/>
+      <BlogCard title={'test'}/>
+      <BlogCard title={'test'}/>
       </div>
     </section>
   </Layout>
@@ -40,13 +39,13 @@ const IndexPage = () => (
  */
 export const getStaticProps: GetStaticProps = async function ({
   preview,
-  previewData,
+  // previewData,
 }) {
   if (preview) {
     
   }
-  const content = await import('../content/blog/test.md')
-  const data = matter(content.default)
+  // const content = await import('../content/blog/test.md')
+  // const data = matter(content.default)
   return {
     props: {
       sourceProvider: null,

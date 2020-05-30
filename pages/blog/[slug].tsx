@@ -1,15 +1,15 @@
-import { getGithubPreviewProps, parseMarkdown } from "next-tinacms-github";
+// import { getGithubPreviewProps, parseMarkdown } from "next-tinacms-github";
 import matter from "gray-matter"
 import { GetStaticProps } from "next";
-import {
-  useGithubJsonForm,
-  useGithubToolbarPlugins,
-} from "react-tinacms-github";
+// import {
+//   useGithubJsonForm,
+//   useGithubToolbarPlugins,
+// } from "react-tinacms-github";
 
 import Layout from "../../components/layout/Layout";
-import BlogCard from "../components/BlogCard";
+// import BlogCard from "../components/BlogCard";
 
-const BlogPage = ({ file }) =>{
+const BlogPage = ({ file }: { file: any}) =>{
 	return(
 		<Layout title="blog">
 			<p>{file.data.markdownBody}</p>
@@ -21,10 +21,10 @@ const BlogPage = ({ file }) =>{
  * Fetch data with getStaticProps based on 'preview' mode
  */
 export const getStaticProps: GetStaticProps = async function ({
-  preview,
-  previewData,
+  // preview,
+  // previewData,
   params,
-}) {
+}:any) {
 	const { slug } = params;
 	const fileRelativePath = `content/blog/${slug}.md`;
 

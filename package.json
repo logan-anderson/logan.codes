@@ -8,6 +8,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.0",
     "dotenv": "^8.2.0",
     "fast-glob": "^3.2.2",
     "gray-matter": "^4.0.2",
