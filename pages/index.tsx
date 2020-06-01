@@ -1,9 +1,7 @@
 import { getGithubPreviewProps, parseJson } from "next-tinacms-github";
 import { GetStaticProps } from "next";
-import matter from 'gray-matter'
 import {
   useGithubJsonForm,
-  useGithubToolbarPlugins,
 } from "react-tinacms-github";
 
 import Layout from "../components/layout/Layout";
@@ -16,16 +14,13 @@ const IndexPage = ({ file }: any) => {
     label: 'Home Page',
     fields: [
       {
-        label: 'Title',
-        name: 'tagline',
+        label: 'Subtitle',
+        name: 'posts_title',
         component: 'text',
       }
     ]
   }
   const [data, form] = useGithubJsonForm(file, formOptions);
-
-  useGithubToolbarPlugins()
-
 
   return (
   <Layout title="Home">
@@ -42,7 +37,7 @@ const IndexPage = ({ file }: any) => {
     </section>
 
     <section className="py-12 px-4">
-      <h2 className="text-3xl text-center mb-8 font-heading">Latest posts</h2>
+      <h2 className="text-3xl text-center mb-8 font-heading">{data.posts_title}</h2>
       <div className="flex flex-wrap -mx-4">
       <BlogCard post={{ fileName: 'test', description:'test', author:"Logan Anderson",content: '', date:"June 1st 2020", title: "test"  }} small={true}/>
       <BlogCard post={{ fileName: 'test', description:'test', author:"Logan Anderson",content: '', date:"June 1st 2020", title: "test"  }} small={true}/>
