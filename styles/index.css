@@ -1,3 +1,38 @@
 @import "tailwindcss/base";
+
+h1 {
+    @apply text-4xl;
+}
+
+h2 {
+    @apply text-3xl;
+}
+
+h3 {
+    @apply text-lg;
+}
+
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+
+
+.color-primary{
+    @apply text-indigo-500
+}
+p {
+    @apply my-1 text-lg;
+}
+
+strong {
+    @apply font-bold color-primary;
+}
+
+.icon {
+    @apply inline;
+}
+.icon-lg {
+    @apply icon;
+    width: 2.1rem;
+    height: 2.1rem;
+}

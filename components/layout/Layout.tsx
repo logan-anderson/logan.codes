@@ -28,7 +28,7 @@ const Layout: React.FunctionComponent<Props> = ({
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <Body className='bg-body text-body font-body container mx-auto px-4'>
+    <Body className='bg-body text-body font-body container mx-auto px-0 sm:px-4'>
     {/* <div className="bg-body text-body font-body container mx-auto px-4"> */}
       <header>
         <Navbar />
