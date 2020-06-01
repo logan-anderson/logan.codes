@@ -26,9 +26,9 @@ const IndexPage = () => (
     <section className="py-12 px-4">
       <h2 className="text-3xl text-center mb-8 font-heading">Latest posts</h2>
       <div className="flex flex-wrap -mx-4">
-      <BlogCard post={{ fileName: 'test', description:'test' }} small={true}/>
-      <BlogCard post={{ fileName: 'test', description:'test' }} small={true}/>
-      <BlogCard post={{ fileName: 'test', description:'test' }} small={true}/>
+      <BlogCard post={{ fileName: 'test', description:'test', author:"Logan Anderson",content: '', date:"June 1st 2020", title: "test"  }} small={true}/>
+      <BlogCard post={{ fileName: 'test', description:'test', author:"Logan Anderson",content: '', date:"June 1st 2020", title: "test"  }} small={true}/>
+      <BlogCard post={{ fileName: 'test', description:'test', author:"Logan Anderson",content: '', date:"June 1st 2020", title: "test"  }} small={true}/>
       </div>
     </section>
   </Layout>
