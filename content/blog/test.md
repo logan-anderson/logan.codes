@@ -10,4 +10,4 @@ While browsing though **github** or gitlab you may have noticed styled README fi
 
 ## Who's using markdown?
 
-## Why it's soo cool? test
+## Why it's soo cool?
