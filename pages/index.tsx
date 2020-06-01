@@ -1,15 +1,33 @@
-// import { getGithubPreviewProps, parseJson } from "next-tinacms-github";
+import { getGithubPreviewProps, parseJson } from "next-tinacms-github";
 import { GetStaticProps } from "next";
-// import matter from 'gray-matter'
-// import {
-//   useGithubJsonForm,
-//   useGithubToolbarPlugins,
-// } from "react-tinacms-github";
+import matter from 'gray-matter'
+import {
+  useGithubJsonForm,
+  useGithubToolbarPlugins,
+} from "react-tinacms-github";
 
 import Layout from "../components/layout/Layout";
 import BlogCard from '../components/BlogCard';
 
-const IndexPage = () => (
+const IndexPage = ({ file }: any) => {
+  console.log('index page')
+
+  const formOptions = {
+    label: 'Home Page',
+    fields: [
+      {
+        label: 'Title',
+        name: 'tagline',
+        component: 'text',
+      }
+    ]
+  }
+  const [data, form] = useGithubJsonForm(file, formOptions);
+
+  useGithubToolbarPlugins()
+
+
+  return (
   <Layout title="Home">
 
     <section className="py-12 px-4 text-center">
@@ -33,27 +51,34 @@ const IndexPage = () => (
     </section>
   </Layout>
 );
+}
 
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
 export const getStaticProps: GetStaticProps = async function ({
   preview,
-  // previewData,
+  previewData,
 }) {
   if (preview) {
-    
+    return getGithubPreviewProps({
+      ...previewData,
+      fileRelativePath: 'content/home.json',
+      parse: parseJson,
+    })
   }
-  // const content = await import('../content/blog/test.md')
-  // const data = matter(content.default)
   return {
     props: {
       sourceProvider: null,
       error: null,
       preview: false,
+      file: {
+        fileRelativePath: 'content/home.json',
+        data: (await import('../content/home.json')).default,
+      },
     },
-  };
-};
+  }
+}
 
 
 export default IndexPage;
