@@ -10,4 +10,6 @@ While browsing though **github** or gitlab you may have noticed styled README fi
 
 ## Who's using markdown?
 
+Many message apps including slack use parts of markdown. It is widely adopted.  
+
 ## Why it's soo cool?
