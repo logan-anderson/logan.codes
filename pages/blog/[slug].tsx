@@ -1,30 +1,16 @@
-import * as React from "react";
-import { InlineForm, useInlineForm } from "react-tinacms-inline";
+import { InlineField, InlineForm } from "react-tinacms-inline";
 import matter from "gray-matter";
 import { GetStaticProps } from "next";
 import { useGithubMarkdownForm } from "react-tinacms-github";
 import { getGithubPreviewProps, parseMarkdown } from "next-tinacms-github";
-import { InlineWysiwyg } from 'react-tinacms-editor'
+import { Wysiwyg } from "react-tinacms-editor";
 import ReactMarkdown from "react-markdown";
-// import { usePlugins } from 'tinacms'
-
-
 
 import Layout from "../../components/layout/Layout";
-import { usePlugin, useCMS } from "tinacms";
-// import BlogCard from "../components/BlogCard";
+import { usePlugin } from "tinacms";
 
-const BlogPage = ({ file }: { file: any }) => {
-  const cms = useCMS()
+const BlogPage = (props: any) => {
 
-  React.useEffect(() => {
-    import('react-tinacms-editor').then(
-      ({ HtmlFieldPlugin, MarkdownFieldPlugin }) => {
-        cms.plugins.add(HtmlFieldPlugin)
-        cms.plugins.add(MarkdownFieldPlugin)
-      }
-    )
-  }, [])
   const formOptions = {
     label: "Edit doc page",
     fields: [
@@ -33,25 +19,23 @@ const BlogPage = ({ file }: { file: any }) => {
         label: "Title",
         component: "text",
       },
-      {
-        name: "markdownBody",
-        label: "Doc Body",
-        component: "markdown",
-      },
     ],
   };
 
-  const [data, form] = useGithubMarkdownForm(file, formOptions);
-  // usePlugin(form)
+  const [data, form] = useGithubMarkdownForm(props.file, formOptions);
+  usePlugin(form);
 
   return (
-    <Layout title={data.frontmatter.title}>
+    <Layout title={data.frontmatter.title} preview={props.preview}>
       <InlineForm form={form}>
-        <InlineWysiwyg name="markdownBody">
-          {/* <div className="text-center"> */}
-          <ReactMarkdown source={data.markdownBody} />
-          {/* </div> */}
-        </InlineWysiwyg>
+        <InlineField name="markdownBody">
+          {({ input }) => {
+            if (props.preview) {
+              return <Wysiwyg input={input} />;
+            }
+            return <ReactMarkdown source={input.value} />;
+          }}
+        </InlineField>
       </InlineForm>
     </Layout>
   );

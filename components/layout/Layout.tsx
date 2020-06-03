@@ -8,6 +8,7 @@ import AppFooter from "./Footer";
 
 type Props = {
   title?: string;
+  preview: boolean;
 };
 
 const Body = styled.body`
@@ -19,7 +20,7 @@ const Main = styled.main`
   flex: 1;
 `;
 
-const Layout: React.FunctionComponent<Props> = ({ children, title }) => {
+const Layout: React.FunctionComponent<Props> = ({ children, title, preview }) => {
   useGithubToolbarPlugins();
 
   return (
@@ -35,7 +36,7 @@ const Layout: React.FunctionComponent<Props> = ({ children, title }) => {
           <Navbar />
         </header>
         <Main>{children}</Main>
-        <AppFooter />
+        <AppFooter preview={preview}/>
         {/* </div> */}
       </Body>
     </>

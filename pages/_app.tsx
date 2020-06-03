@@ -1,7 +1,6 @@
 import App from 'next/app'
 import { TinaCMS, TinaProvider } from 'tinacms'
 import {
-  useGithubEditing,
   GithubClient,
   TinacmsGithubProvider,
 } from 'react-tinacms-github'
@@ -15,7 +14,6 @@ export default class Site extends App {
     /**
      * 1. Create the TinaCMS instance
      */
-    console.log({baseBranch: process.env.BASE_BRANCH})
     this.cms = new TinaCMS({
       apis: {
         /**
@@ -24,9 +22,9 @@ export default class Site extends App {
         github: new GithubClient({
           proxy: "/api/proxy-github",
           authCallbackRoute: "/api/create-github-access-token",
-          clientId: process.env.GITHUB_CLIENT_ID,
-          baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
-          baseBranch: process.env.BASE_BRANCH,
+          clientId: process.env.GITHUB_CLIENT_ID || "",
+          baseRepoFullName: process.env.REPO_FULL_NAME || "", // e.g: tinacms/tinacms.org,
+          baseBranch: process.env.BASE_BRANCH || "",
         }),
       },
       /**
@@ -58,7 +56,6 @@ export default class Site extends App {
           {/**
            * 5. Add a button for entering Preview/Edit Mode
            */}
-          <EditLink editMode={pageProps.preview} />
           <Component {...pageProps} />
         </TinacmsGithubProvider>
       </TinaProvider>
@@ -78,16 +75,4 @@ const exitEditMode = () => {
   })
 }
 
-export interface EditLinkProps {
-  editMode: boolean
-}
 
-export const EditLink = ({ editMode }: EditLinkProps) => {
-  const github = useGithubEditing()
-
-  return (
-    <button onClick={editMode ? github.exitEditMode : github.enterEditMode}>
-      {editMode ? 'Exit Edit Mode' : 'Edit This Site'}
-    </button>
-  )
-}

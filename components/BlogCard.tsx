@@ -15,9 +15,9 @@ const navBar = ({ post, small = false }: Props) => {
           <a>
             <img className="mb-4" src="placeholders/pictures/work.jpg" alt="" />
             <div className="px-6">
-              <small>{`${post.date} | ${post.author}`}</small>
-              <h3 className="text-xl my-3 font-heading">{post.title}</h3>
-              <p className="text-gray-500">{post.description}</p>
+              <small>{`${post.data.frontmatter.date} | ${post.data.frontmatter.author}`}</small>
+              <h3 className="text-xl my-3 font-heading">{post.data.frontmatter.title}</h3>
+              <p className="text-gray-500">{post.data.frontmatter.description}</p>
             </div>
           </a>
         </Link>

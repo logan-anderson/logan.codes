@@ -10,10 +10,15 @@ export type User = {
 }
 
 export type Post = {
-  description: string,
-  title: string,
-  content: string,
   fileName: string,
-  date: string,
-  author: string,
+  fileRelativePath: string,
+  data: {
+    frontmatter: {
+      description: string,
+      title: string,
+      date: string,
+      author: string,
+    }
+    markdownBody: string
+  }
 }

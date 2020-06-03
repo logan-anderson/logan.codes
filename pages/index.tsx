@@ -1,13 +1,20 @@
-import { getGithubPreviewProps, parseJson } from "next-tinacms-github";
-import { GetStaticProps } from "next";
+import { getGithubPreviewProps, parseJson, PreviewData } from "next-tinacms-github";
 import {
   useGithubJsonForm,
 } from "react-tinacms-github";
 
+import { Post } from '../interfaces'
+import getPosts from '../utils/getPosts'
 import Layout from "../components/layout/Layout";
 import BlogCard from '../components/BlogCard';
+import { GitFile } from "react-tinacms-github/dist/form/useGitFileSha";
 
-const IndexPage = ({ file }: any) => {
+interface props {
+  posts: Array<Post>;
+  preview: boolean;
+  file: GitFile
+}
+const IndexPage = ({ file, preview, posts }: props) => {
   console.log('index page')
 
   const formOptions = {
@@ -20,10 +27,10 @@ const IndexPage = ({ file }: any) => {
       }
     ]
   }
-  const [data, form] = useGithubJsonForm(file, formOptions);
+  const [data, ] = useGithubJsonForm(file, formOptions);
 
   return (
-  <Layout title="Home">
+  <Layout title="Home" preview={preview}>
 
     <section className="py-12 px-4 text-center">
       <div className="w-full max-w-2xl mx-auto">
@@ -39,9 +46,9 @@ const IndexPage = ({ file }: any) => {
     <section className="py-12 px-4">
       <h2 className="text-3xl text-center mb-8 font-heading">{data.posts_title}</h2>
       <div className="flex flex-wrap -mx-4">
-      <BlogCard post={{ fileName: 'test', description:'test', author:"Logan Anderson",content: '', date:"June 1st 2020", title: "test"  }} small={true}/>
-      <BlogCard post={{ fileName: 'test', description:'test', author:"Logan Anderson",content: '', date:"June 1st 2020", title: "test"  }} small={true}/>
-      <BlogCard post={{ fileName: 'test', description:'test', author:"Logan Anderson",content: '', date:"June 1st 2020", title: "test"  }} small={true}/>
+      {posts.map((post: Post) => {
+        return <BlogCard post={post} />;
+      })}
       </div>
     </section>
   </Layout>
@@ -51,19 +58,28 @@ const IndexPage = ({ file }: any) => {
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
-export const getStaticProps: GetStaticProps = async function ({
+export const getStaticProps = async function ({
   preview,
   previewData,
-}) {
+}:{preview: boolean, previewData: PreviewData<any>}) {
+  const posts = await getPosts(preview, previewData, 'content/blog');
   if (preview) {
-    return getGithubPreviewProps({
+    const previewProps = await getGithubPreviewProps({
       ...previewData,
       fileRelativePath: 'content/home.json',
       parse: parseJson,
     })
+    previewProps.props.file 
+    return {
+      props: {
+        posts,
+        ...previewProps.props 
+      }
+    }
   }
   return {
     props: {
+      posts,
       sourceProvider: null,
       error: null,
       preview: false,
