@@ -46,4 +46,19 @@ This will look like
 
 ###### Heading 6
 
-Lists are also easy just use a "-" of unordered lists and 
+Lists are also easy just use a "-" of unordered lists and numbers for an ordered list.
+
+    - This
+
+    - is
+
+    - a
+
+    - list
+
+would look like
+
+* this
+* is
+* a
+* list
