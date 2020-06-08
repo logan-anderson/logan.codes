@@ -10,10 +10,6 @@ const AppFooter = ({preview}: any) => {
         <div className="mx-auto lg:mx-0 lg:ml-auto">
          <EditLink editMode={preview}/>
         </div>
-        <div className="flex justify-center mt-4 lg:mt-0 lg:ml-8">
-          <img className="w-6 h-6 mr-6" src="placeholders/icons/message.svg" alt=""/>
-          <img className="w-6 h-6" src="placeholders/icons/share.svg" alt=""/>
-        </div>
       </div>
     </footer>
   );

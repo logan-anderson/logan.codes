@@ -16,21 +16,22 @@ h3 {
 @import "tailwindcss/utilities";
 
 ul li {
-  @apply list-disc;
+  @apply list-disc ml-5;
 }
 ol li {
-  @apply list-decimal;
+  @apply list-decimal ml-5;
 }
-code {
-  @apply text-white bg-black;
-  border: 1px solid #fff;
-  display: block;
-  padding: 20px;
-}
-
 .color-primary {
   @apply text-indigo-500;
 }
+a {
+  @apply color-primary underline;
+}
+.no-label {
+  color: inherit;
+  text-decoration: none;
+}
+
 p {
   @apply my-1 text-lg;
 }

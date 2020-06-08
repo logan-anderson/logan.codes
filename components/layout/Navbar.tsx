@@ -3,12 +3,12 @@ import NavItem from './NavItem'
 
 const navBar = () => {
   return (
-    <nav className="flex flex-wrap items-center justify-between p-4 ">
+    <nav className="flex flex-wrap items-top justify-between py-4">
       <div className="order-2 w-auto lg:w-1/3 lg:text-center">
         <div className="text-xl color-primary font-semibold">
           {/* main nav */}
           <Link href="/">
-            <a>
+            <a className="no-label">
               Home
             </a>
           </Link>
@@ -30,13 +30,13 @@ const navBar = () => {
       <div className="navbar-menu order-1 block w-1/3 text-left">
       <a
         href="https://logan.bio"
-        className="block lg:inline-block mt-0 mr-10 text-blue-900 hover:text-blue-700"
+        className="block inline-block mt-0 text-blue-900 hover:text-blue-700 no-label"
       >
         More about me
          </a>
       </div>
       <div className="navbar-menu order-3 block w-1/3 text-right">
-        <NavItem name="All blogs" link="/blog" />
+        <NavItem name="All posts" link="/blog" />
       </div>
     </nav>
   );

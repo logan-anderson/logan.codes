@@ -11,7 +11,7 @@ type Props = {
   preview: boolean;
 };
 
-const Body = styled.body`
+const StyledBody = styled.div`
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -23,6 +23,7 @@ const Main = styled.main`
 const Layout: React.FunctionComponent<Props> = ({ children, title, preview }) => {
   useGithubToolbarPlugins();
 
+  require('../../styles/prism');
   return (
     <>
       <Head>
@@ -30,7 +31,7 @@ const Layout: React.FunctionComponent<Props> = ({ children, title, preview }) =>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Body className="bg-body text-body font-body container mx-auto px-0 sm:px-4">
+      <StyledBody className="bg-body text-body font-body container mx-auto px-3 sm:px-4">
         {/* <div className="bg-body text-body font-body container mx-auto px-4"> */}
         <header>
           <Navbar />
@@ -38,7 +39,7 @@ const Layout: React.FunctionComponent<Props> = ({ children, title, preview }) =>
         <Main>{children}</Main>
         <AppFooter preview={preview}/>
         {/* </div> */}
-      </Body>
+      </StyledBody>
     </>
   );
 };

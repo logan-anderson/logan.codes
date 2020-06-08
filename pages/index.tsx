@@ -37,9 +37,9 @@ const IndexPage = ({ file, preview, posts }: props) => {
         <h2 className="text-5xl mt-2 mb-6 leading-tight font-heading">
           A simple blog about coding <img className="icon-lg" src="/icons/programmer.svg"/>, coffee<img className="icon-lg" src="/icons/tea-hot.svg"/>, and more
         </h2>
-        <a className="text-blue-700 hover:underline" href="#">
+        {/* <a className="text-blue-700 hover:underline" href="#">
           Learn more &raquo;
-        </a>
+        </a> */}
       </div>
     </section>
 
