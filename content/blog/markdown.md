@@ -10,19 +10,20 @@ While browsing through **GitHub** or **GitLab** you may have noticed styled READ
 
 ## What is markdown?
 
-Markdown is similar to html in that it is a standard for structuring documents. Markdown and html both fall under the umbrella of languages called **markup languages.** A markup language is just a way to structure a document or file and tell a system how to display it. In the case of html it tells the browser how to display the content. Markdown it no different it allows you or I to write things with "_tags_" and tell a markdown transcompiler how to display the text.
+Markdown is similar to HTML in that it is a standard for structuring documents. Markdown and HTML both fall under the umbrella of languages called **markup languages.** A markup language is just a way to structure a document or file and tell a system how to display it. In the case of HTML, it tells the browser how to display the content. Markdown is no different; it allows one to write things with "_tags_" and tell a markdown transcompiler how to display the text.
 
 ## Why bother with markdown?
 
-As mentioned markdown is used when writing documents with GitHub, or GitLab but some of the syntaxes are also supported in, google docs, slack, and many many others. You can even use [Pandoc and markdown together](https://pandoc.org/MANUAL.html#pandocs-markdown "Pandoc and markdown together") to make beautiful documents and even presentations if you use a tool like beamer.  As you can see there are lots of ways to use markdown. I am even writing this blog in markdown.
+As mentioned markdown is used when writing documents with GitHub or GitLab, but some of the syntax is also supported in Google Docs, Slack, and many many other platforms. You can even use [Pandoc and markdown together](https://pandoc.org/MANUAL.html#pandocs-markdown "Pandoc and markdown together") to make beautiful documents, and even presentations if you use a tool like Beamer. I am even writing this blog in markdown.
 
 ## Ok, let's learn some stuff.
 
-> Although there are different flavors/standards of markdown they all of the same basic structure.
+> Although there are different flavors/standards of markdown, they all of the same basic structure.
 
 Headings are simple just a "#" followed by the text you want your heading to me. More #s the smaller the heading
 
 Example
+
 ```markdown
 # heading one
 ## heading two
@@ -30,6 +31,7 @@ Example
 ...
 ###### heading 6
 ```
+
 This will look like
 
 # heading one
@@ -43,24 +45,28 @@ This will look like
 ###### Heading 6
 
 Lists are also easy just use a "-" or "*" of unordered lists and numbers for an ordered list.
+
 ```markdown
 - This
 - is
 - a
 - list
 ```
+
 would look like
 
 * this
 * is
 * a
 * list
-and
+  and
+
 ```markdown
 1. thing one
 2. thing two
 3. thing three
 ```
+
 would look like
 
 1. thing one
@@ -86,7 +92,8 @@ just put
     ```
 ```
 
-So for example 
+So for example
+
 ```markdown
     ```js
     const logan = new Person();
@@ -96,6 +103,7 @@ So for example
     }
     ```
 ```
+
 would look like
 
 ```js
@@ -107,4 +115,3 @@ if( logan.isBirthday() ){
 ```
 
 This is not a complete list you can do so much more with markdown for a full cheat sheet of all the cool stuff you can do [look here](https://www.markdownguide.org/cheat-sheet/).
-
