@@ -1,16 +1,29 @@
-import { InlineField, InlineForm } from "react-tinacms-inline";
+import { InlineForm, useInlineForm } from "react-tinacms-inline";
+import { useMemo } from "react";
 import matter from "gray-matter";
 import { GetStaticProps } from "next";
+import Error from "next/error";
 import { useGithubMarkdownForm } from "react-tinacms-github";
 import { getGithubPreviewProps, parseMarkdown } from "next-tinacms-github";
-import { Wysiwyg } from "react-tinacms-editor";
+import { InlineWysiwyg } from "react-tinacms-editor";
 import ReactMarkdown from "react-markdown";
 
 import Layout from "../../components/layout/Layout";
 import { usePlugin } from "tinacms";
 
-const BlogPage = (props: any) => {
+const InlineWrapper = ({ children, preview }: any) => {
+  const { deactivate, activate } = useInlineForm();
 
+  function handleInlineEdit() {
+    preview ? activate() : deactivate();
+  }
+  useMemo(handleInlineEdit, [preview]);
+  return children;
+};
+const BlogPage = (props: any) => {
+  if (!props.file) {
+    return <Error statusCode={404} />;
+  }
   const formOptions = {
     label: "Edit doc page",
     fields: [
@@ -28,14 +41,11 @@ const BlogPage = (props: any) => {
   return (
     <Layout title={data.frontmatter.title} preview={props.preview}>
       <InlineForm form={form}>
-        <InlineField name="markdownBody">
-          {({ input }) => {
-            if (props.preview) {
-              return <Wysiwyg input={input} />;
-            }
-            return <ReactMarkdown source={input.value} />;
-          }}
-        </InlineField>
+        <InlineWrapper preview={props.preview}>
+          <InlineWysiwyg name="markdownBody">
+            <ReactMarkdown source={data.markdownBody} />
+          </InlineWysiwyg>
+        </InlineWrapper>
       </InlineForm>
     </Layout>
   );
