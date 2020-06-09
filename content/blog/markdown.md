@@ -76,12 +76,12 @@ would look like
 Links are also easy the basic syntax is
 
 ```markdown
-[This is the link to the source code of this page](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/blob/master/content/blog/test.md)
+[This is the link to the source code of this page](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/blob/master/content/blog/markdown.md)
 ```
 
 looks like
 
-[This is the link to the source code of this page](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/blob/master/content/blog/test.md)
+[This is the link to the source code of this page](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/blob/master/content/blog/markdown.md)
 
 But the **Best thing of all** is code syntax highlighting
 just put
