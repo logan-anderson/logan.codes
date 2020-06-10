@@ -1,10 +1,9 @@
-import {
-  PreviewData,
-} from "next-tinacms-github";
+import { PreviewData } from "next-tinacms-github";
 
-import getPosts from '../../utils/getPosts'
+import getPosts from "../../utils/getPosts";
 import Layout from "../../components/layout/Layout";
 import BlogCard from "../../components/BlogCard";
+import useCreateBlogPage from "../../hooks/useCreateBlogPage";
 import { Post } from "../../interfaces";
 
 interface props {
@@ -13,6 +12,7 @@ interface props {
 }
 
 const BlogList = ({ posts, preview }: props) => {
+  useCreateBlogPage(posts);
   return (
     <Layout title="Blog" preview={preview}>
       {posts.map((post: Post) => {
@@ -31,12 +31,14 @@ interface Props {
 }
 export const getStaticProps = async function ({ preview, previewData }: Props) {
   try {
-    const posts = await getPosts(preview, previewData, 'content/blog');
+    const posts = await getPosts(preview, previewData, "content/blog");
+
     return {
-      props:{
+      props: {
         posts,
-      }
-    }
+        preview: preview ?? false,
+      },
+    };
   } catch (e) {
     return {
       props: {

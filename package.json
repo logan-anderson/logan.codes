@@ -8,11 +8,13 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@types/js-yaml": "^3.12.4",
     "@types/styled-components": "^5.1.0",
     "dotenv": "^8.2.0",
     "fast-glob": "^3.2.2",
     "final-form": "^4.20.0",
     "gray-matter": "^4.0.2",
+    "js-yaml": "^3.14.0",
     "next": "latest",
     "next-svgr": "^0.0.2",
     "next-tinacms-github": "^0.1.1",
