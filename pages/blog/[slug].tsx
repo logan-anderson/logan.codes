@@ -42,7 +42,8 @@ const BlogPage = (props: any) => {
     <Layout title={data.frontmatter.title} preview={props.preview}>
       <InlineForm form={form}>
         <InlineWrapper preview={props.preview}>
-          <InlineWysiwyg name="markdownBody">
+          {/* @ts-ignore */}
+          <InlineWysiwyg name="markdownBody" sticky={"65px"}>
             <ReactMarkdown source={data.markdownBody} />
           </InlineWysiwyg>
         </InlineWrapper>
