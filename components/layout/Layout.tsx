@@ -1,5 +1,4 @@
 import * as React from "react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useGithubToolbarPlugins } from "react-tinacms-github";
 import styled from "styled-components";
