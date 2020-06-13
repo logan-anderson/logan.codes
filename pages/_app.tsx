@@ -1,18 +1,15 @@
-import App from 'next/app'
-import { TinaCMS, TinaProvider } from 'tinacms'
-import {
-  GithubClient,
-  TinacmsGithubProvider,
-} from 'react-tinacms-github'
-import Head from 'next/head'
-import '../styles/index.css'
-import '../styles/prism.css'
+import App from "next/app";
+import { TinaCMS, TinaProvider } from "tinacms";
+import { GithubClient, TinacmsGithubProvider } from "react-tinacms-github";
+import Head from "next/head";
+import "../styles/index.css";
+import "../styles/prism.css";
 
 export default class Site extends App {
-  cms: TinaCMS
+  cms: TinaCMS;
 
   constructor(props: any) {
-    super(props)
+    super(props);
     /**
      * 1. Create the TinaCMS instance
      */
@@ -39,11 +36,11 @@ export default class Site extends App {
       toolbar: {
         hidden: !props.pageProps.preview,
       },
-    })
+    });
   }
 
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps } = this.props;
     return (
       /**
        * 4. Wrap the page Component with the Tina and Github providers
@@ -55,27 +52,31 @@ export default class Site extends App {
           exitEditMode={exitEditMode}
           error={pageProps.error}
         >
-           <Head>
+          <Head>
             <link rel="shortcut icon" href="/favicon/favicon.ico" />
-            <meta name="theme-color" content="#E6FAF8" />
+            <meta name="theme-color" content="#667eea" />
+            <link
+              rel="alternate"
+              type="application/rss+xml"
+              title="RSS for blog posts"
+              href="https://logana.dev/feed"
+            />
           </Head>
           <Component {...pageProps} />
         </TinacmsGithubProvider>
       </TinaProvider>
-    )
+    );
   }
 }
 
 const enterEditMode = () => {
   return fetch(`/api/preview`).then(() => {
-    window.location.href = window.location.pathname
-  })
-}
+    window.location.href = window.location.pathname;
+  });
+};
 
 const exitEditMode = () => {
   return fetch(`/api/reset-preview`).then(() => {
-    window.location.reload()
-  })
-}
-
-
+    window.location.reload();
+  });
+};
