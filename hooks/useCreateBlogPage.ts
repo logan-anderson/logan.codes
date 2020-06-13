@@ -51,7 +51,7 @@ const useCreateBlogPage = (allBlogs: Array<Post>) => {
         {
           name: "description",
           label: "Description",
-          component: "text",
+          component: "textarea",
           required: false,
         },
       ],

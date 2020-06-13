@@ -3,13 +3,14 @@ import { useMemo } from "react";
 import matter from "gray-matter";
 import { GetStaticProps } from "next";
 import Error from "next/error";
-import { useGithubMarkdownForm } from "react-tinacms-github";
-import { getGithubPreviewProps, parseMarkdown } from "next-tinacms-github";
+import { useGithubMarkdownForm,} from "react-tinacms-github";
+import { getGithubPreviewProps, parseMarkdown, GithubFile } from "next-tinacms-github";
 import { InlineWysiwyg } from "react-tinacms-editor";
 import ReactMarkdown from "react-markdown";
 
 import Layout from "../../components/layout/Layout";
 import { usePlugin } from "tinacms";
+import { Post } from "../../interfaces";
 
 const InlineWrapper = ({ children, preview }: any) => {
   const { deactivate, activate } = useInlineForm();
@@ -20,7 +21,13 @@ const InlineWrapper = ({ children, preview }: any) => {
   useMemo(handleInlineEdit, [preview]);
   return children;
 };
-const BlogPage = (props: any) => {
+
+interface PageProps {
+  preview: boolean,
+  post: Post,
+  file: GithubFile<any>,
+}
+const BlogPage = (props: PageProps) => {
   if (!props.file) {
     return <Error statusCode={404} />;
   }
@@ -32,6 +39,25 @@ const BlogPage = (props: any) => {
         label: "Title",
         component: "text",
       },
+      {
+        name: "frontmatter.author",
+        label: "Title",
+        component: "text",
+      },
+      {
+        name: "frontmatter.date",
+        label: "Date",
+        component: "date",
+        dateFormat: "MMMM DD YYYY",
+        timeFormat: false,
+        required: true,
+      },
+      {
+        name: "frontmatter.description",
+        label: "Description",
+        component: "textarea",
+        required: false,
+      },
     ],
   };
 
@@ -39,7 +65,7 @@ const BlogPage = (props: any) => {
   usePlugin(form);
 
   return (
-    <Layout title={data.frontmatter.title} preview={props.preview}>
+    <Layout title={data.frontmatter.title} preview={props.preview} description={data.frontmatter.description}>
       <InlineForm form={form}>
         <InlineWrapper preview={props.preview}>
           <InlineWysiwyg name="markdownBody">

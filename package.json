@@ -16,6 +16,7 @@
     "gray-matter": "^4.0.2",
     "js-yaml": "^3.14.0",
     "next": "latest",
+    "next-seo": "^4.5.0",
     "next-svgr": "^0.0.2",
     "next-tinacms-github": "^0.1.1",
     "prismjs": "^1.20.0",

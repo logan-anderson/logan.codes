@@ -1,14 +1,17 @@
 import * as React from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useGithubToolbarPlugins } from "react-tinacms-github";
 import styled from "styled-components";
+import { DefaultSeo } from "next-seo";
 
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
 
 type Props = {
-  title?: string;
   preview: boolean;
+  title?: string;
+  description?: string;
 };
 
 const StyledBody = styled.div`
@@ -20,24 +23,35 @@ const Main = styled.main`
   flex: 1;
 `;
 
-const Layout: React.FunctionComponent<Props> = ({ children, title, preview }) => {
+const Layout: React.FunctionComponent<Props> = ({
+  children,
+  title,
+  preview,
+  description,
+}) => {
   useGithubToolbarPlugins();
+  const router = useRouter();
 
-  require('../../styles/prism');
+  require("../../styles/prism");
   return (
     <>
-      <Head>
-        <title>{`${title} | Logan's Blog`}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
+      <DefaultSeo
+        openGraph={{
+          url: "https://logana.dev" + router.asPath,
+        }}
+        title={`${title} | Logan's Blog`}
+        description={
+          description ||
+          "A simple blog about coding, technology, and coffee by Logan Anderson. Read about the latest in web development, machine learning and other tech topics."
+        }
+      />
       <StyledBody className="bg-body text-body font-body container mx-auto px-3 sm:px-4">
         {/* <div className="bg-body text-body font-body container mx-auto px-4"> */}
         <header>
           <Navbar />
         </header>
         <Main>{children}</Main>
-        <AppFooter preview={preview}/>
+        <AppFooter preview={preview} />
         {/* </div> */}
       </StyledBody>
     </>

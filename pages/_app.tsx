@@ -4,6 +4,7 @@ import {
   GithubClient,
   TinacmsGithubProvider,
 } from 'react-tinacms-github'
+import Head from 'next/head'
 import '../styles/index.css'
 import '../styles/prism.css'
 
@@ -54,9 +55,10 @@ export default class Site extends App {
           exitEditMode={exitEditMode}
           error={pageProps.error}
         >
-          {/**
-           * 5. Add a button for entering Preview/Edit Mode
-           */}
+           <Head>
+            <link rel="shortcut icon" href="/favicon/favicon.ico" />
+            <meta name="theme-color" content="#E6FAF8" />
+          </Head>
           <Component {...pageProps} />
         </TinacmsGithubProvider>
       </TinaProvider>
