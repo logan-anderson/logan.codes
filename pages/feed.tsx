@@ -5,19 +5,22 @@ import getPosts from "../utils/getPosts";
 const shortSiteDescription =
   "A simple blog about coding, technology, and coffee by Logan Anderson. Read about the latest in web development, machine learning and other tech topics.";
 
-export default class Rss extends React.Component {
-  static async getInitialProps({ res }: NextPageContext) {
-    if (!res) {
-      return;
-    }
-    // @ts-ignore
-    const blogPosts = await getPosts(false, null, "content/blog");
-    res.setHeader("Content-Type", "text/xml");
-    res.write(getRssXml(blogPosts));
-    res.end();
-  }
-}
-
+export default (props: any) => {
+  return <div dangerouslySetInnerHTML={props.rssFeed} >
+  </div>
+};
+export const getStaticProps = async () => {
+  // @ts-ignore
+  const blogPosts = await getPosts(false, null, "content/blog");
+  // res.setHeader("Content-Type", "text/xml");
+  // res.write(getRssXml(blogPosts));
+  // res.end();
+  return {
+    props: {
+      rssFeed: getRssXml(blogPosts),
+    },
+  };
+};
 const blogPostsRssXml = (blogPosts: Post[]) => {
   let latestPostDate: string = "";
   let rssItemsXml = "";
