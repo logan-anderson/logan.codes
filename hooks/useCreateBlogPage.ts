@@ -73,7 +73,7 @@ const useCreateBlogPage = (allBlogs: Array<Post>) => {
             "Update from TinaCMS"
           )
           .then(() => {
-            setTimeout(() => router.push(`/blog/${slug}`), 1500);
+            setTimeout(() => router.push(`/blog/new/${slug}`), 1500);
           })
           .catch((e: any) => {
             return { [FORM_ERROR]: e };

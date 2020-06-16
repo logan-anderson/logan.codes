@@ -131,7 +131,7 @@ export const getStaticPaths = async function () {
       return { params: { slug: path } };
     });
   return {
-    fallback: true,
+    fallback: false,
     paths,
   };
 };
