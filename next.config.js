@@ -3,7 +3,22 @@ const withSvgr = require("next-svgr")
 require("dotenv").config()
 
 module.exports = withSvgr({
-  webpack: (config) => {
+  experimental: {
+    modern: true,
+    rewrites() {
+      return [
+        {
+          source: '/feed.xml',
+          destination: '/_next/static/feed.xml'
+        },
+        {
+          source: '/sitemap.xml',
+          destination: '/_next/static/sitemap.xml'
+        },
+      ];
+    },
+  },
+  webpack: (config, { isServer, dev }) => {
     config.node = {
       fs: "empty",
     }
@@ -12,6 +27,16 @@ module.exports = withSvgr({
       use: "raw-loader",
     })
 
+    if (isServer && !dev) {
+      const originalEntry = config.entry;
+      config.entry = async () => {
+        const entries = { ...(await originalEntry()) };
+        // This script imports components from the Next app, so it's transpiled to `.next/server/scripts/build-rss.js`
+        entries['./scripts/generate-rss.js'] = './scripts/generate-rss.js';
+        entries['./scripts/generate-sitemap.js'] = './scripts/generate-sitemap.js';
+        return entries;
+      };
+    }
     // config.resolve.alias = {
     //   ...config.resolve.alias,
     //   "@components": path.resolve(__dirname, "./components"),
