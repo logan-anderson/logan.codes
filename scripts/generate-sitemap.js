@@ -5,7 +5,7 @@ const BUILD_ID = fs.readFileSync("./.next/BUILD_ID").toString();
     await Promise.resolve(sitemap({
         baseUrl: "https://logana.dev",
         ignoredPaths: ['[slug]', 'api', 'github'],
-        pagesDirectory: ".next/server/static/" + BUILD_ID + "/pages",
+        pagesDirectory: ".next/serverless/static/" + BUILD_ID + "/pages",
         targetDirectory: "./.next/static/",
         extraPaths: ['/'],
         pagesConfig: {
