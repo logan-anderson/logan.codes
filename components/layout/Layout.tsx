@@ -31,7 +31,6 @@ const Layout: React.FunctionComponent<Props> = ({
   useGithubToolbarPlugins();
   const router = useRouter();
 
-  require("../../styles/prism");
   return (
     <>
       <DefaultSeo

@@ -4,7 +4,6 @@ import { GithubClient, TinacmsGithubProvider } from "react-tinacms-github";
 import Head from "next/head";
 import "../styles/index.css";
 import "../styles/prism.css";
-
 export default class Site extends App {
   cms: TinaCMS;
 

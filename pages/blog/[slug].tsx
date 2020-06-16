@@ -1,3 +1,6 @@
+// @ts-ignore
+import * as Prism from 'prismjs';
+import { useEffect } from 'react';
 import { InlineForm, useInlineForm } from "react-tinacms-inline";
 import { useMemo } from "react";
 import matter from "gray-matter";
@@ -12,9 +15,11 @@ import Layout from "../../components/layout/Layout";
 import { usePlugin } from "tinacms";
 import { Post } from "../../interfaces";
 
+
 const InlineWrapper = ({ children, preview }: any) => {
   const { deactivate, activate } = useInlineForm();
-
+  useEffect(() => Prism.highlightAll());
+  
   function handleInlineEdit() {
     preview ? activate() : deactivate();
   }
