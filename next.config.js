@@ -1,8 +1,9 @@
-const path = require("path")
+// const path = require("path")
 const withSvgr = require("next-svgr")
 require("dotenv").config()
 
 module.exports = withSvgr({
+  target: 'serverless',
   experimental: {
     modern: true,
     rewrites() {
@@ -10,10 +11,6 @@ module.exports = withSvgr({
         {
           source: '/feed.xml',
           destination: '/_next/static/feed.xml'
-        },
-        {
-          source: '/sitemap.xml',
-          destination: '/_next/static/sitemap.xml'
         },
       ];
     },
@@ -33,7 +30,6 @@ module.exports = withSvgr({
         const entries = { ...(await originalEntry()) };
         // This script imports components from the Next app, so it's transpiled to `.next/server/scripts/build-rss.js`
         entries['./scripts/generate-rss.js'] = './scripts/generate-rss.js';
-        entries['./scripts/generate-sitemap.js'] = './scripts/generate-sitemap.js';
         return entries;
       };
     }

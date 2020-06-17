@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
-    "build": "next build && yarn build:rss && yarn build:sitemap",
+    "build": "next build && yarn build:rss",
     "build:rss": "node ./.next/serverless/scripts/generate-rss.js",
     "build:sitemap": "node ./.next/serverless/scripts/generate-sitemap.js",
     "start": "next start",

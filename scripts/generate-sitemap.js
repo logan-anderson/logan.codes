@@ -1,3 +1,8 @@
+/*
+NOT USED
+this could be used if we wanted to generate a sitemap
+*/
+
 const sitemap = require("nextjs-sitemap-generator");
 const fs = require("fs");
 const BUILD_ID = fs.readFileSync("./.next/BUILD_ID").toString();
