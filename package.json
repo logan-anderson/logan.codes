@@ -5,7 +5,6 @@
     "dev": "next",
     "build": "next build && yarn build:rss",
     "build:rss": "node ./.next/serverless/scripts/generate-rss.js",
-    "build:sitemap": "node ./.next/serverless/scripts/generate-sitemap.js",
     "start": "next start",
     "type-check": "tsc"
   },
