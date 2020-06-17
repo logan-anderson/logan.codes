@@ -2,15 +2,6 @@ import fs from "fs";
 import RSS from "rss";
 import getPostsSync from "../utils/getPostsSync";
 
-
-function importAll(r) {
-  return r.keys().map(r);
-}
-
-// const previewItems = importAll(
-//   require.context('../content/blog', false, /\\.md$/)
-// );
-
 function dateSortDesc(a, b) {
   const date1 = new Date(a.data.frontmatter.date);
   const date2 = new Date(b.data.frontmatter.date);
