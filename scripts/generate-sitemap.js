@@ -1,12 +1,17 @@
+/*
+NOT USED
+this could be used if we wanted to generate a sitemap
+*/
+
 const sitemap = require("nextjs-sitemap-generator");
 const fs = require("fs");
-const BUILD_ID = fs.readFileSync(".next/BUILD_ID").toString();
-(async function() {
+const BUILD_ID = fs.readFileSync("./.next/BUILD_ID").toString();
+(async function () {
     await Promise.resolve(sitemap({
         baseUrl: "https://logana.dev",
         ignoredPaths: ['[slug]', 'api', 'github'],
-        pagesDirectory: __dirname + "/.next/server/static/" + BUILD_ID + "/pages",
-        targetDirectory: "public/",
+        pagesDirectory: ".next/serverless/static/" + BUILD_ID + "/pages",
+        targetDirectory: "./.next/static/",
         extraPaths: ['/'],
         pagesConfig: {
             '/': {
@@ -19,4 +24,4 @@ const BUILD_ID = fs.readFileSync(".next/BUILD_ID").toString();
         },
     }));
     // → 🎉
-  }());
+}());

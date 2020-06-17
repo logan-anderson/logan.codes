@@ -58,7 +58,7 @@ export default class Site extends App {
               rel="alternate"
               type="application/rss+xml"
               title="RSS for blog posts"
-              href="https://logana.dev/feed"
+              href="https://logana.dev/feed.xml"
             />
           </Head>
           <Component {...pageProps} />

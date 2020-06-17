@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && yarn build:rss",
+    "build:rss": "node ./.next/serverless/scripts/generate-rss.js",
     "start": "next start",
     "type-check": "tsc"
   },
@@ -28,6 +29,7 @@
     "react-tinacms-editor": "^0.8.0",
     "react-tinacms-github": "^0.4.2",
     "react-tinacms-inline": "^0.7.0",
+    "rss": "^1.2.2",
     "slugify": "^1.4.0",
     "styled-components": "^5.1.1",
     "tinacms": "^0.21.1"
