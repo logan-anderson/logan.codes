@@ -18,7 +18,14 @@ import { Post } from "../../interfaces";
 
 const InlineWrapper = ({ children, preview }: any) => {
   const { deactivate, activate } = useInlineForm();
-  useEffect(() => Prism.highlightAll());
+  useEffect(() =>{
+    // doesn't work =( 
+    // const loadLanguages = require('prismjs/components/index');
+    // console.log(loadLanguages)
+    // loadLanguages(['ts']);
+    Prism.highlightAll()
+
+  });
   
   function handleInlineEdit() {
     preview ? activate() : deactivate();
@@ -136,7 +143,7 @@ export const getStaticPaths = async function () {
       return { params: { slug: path } };
     });
   return {
-    fallback: false,
+    fallback: true,
     paths,
   };
 };

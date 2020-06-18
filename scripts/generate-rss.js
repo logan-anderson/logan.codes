@@ -26,9 +26,6 @@ function generate() {
       date: post.data.frontmatter.date,
       description: post.data.frontmatter.description,
       author: post.data.frontmatter.author,
-      // custom_elements: [].concat(
-      //   meta.authors.map((author) => ({ author: [{ name: author.name }] }))
-      // ),
     });
   });
 
