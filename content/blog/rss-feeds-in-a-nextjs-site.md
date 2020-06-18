@@ -14,7 +14,7 @@ Recently, I took on the task of adding an **RSS feed to a nextjs site** (this si
 
 If you want to read over the [RSS standards](https://en.wikipedia.org/wiki/RSS) and generate everything your self Feel free! Personally, I used the [RSS npm package](https://www.npmjs.com/package/rss) to help me deal with the details of an RSS feed. You can install this package with `yarn add rss` or `npm i --save rss`. In my case, the function looked like this.
 
-```ts
+```typescript
 import fs from "fs";
 import RSS from "rss";
 import getPostsSync from "../utils/getPostsSync";
@@ -92,7 +92,7 @@ to do this we will use an experimental feature called **rewrite** so that `feed.
 
 We will again add more to our `next.config.json`. This time adding this
 
-```ts
+```js
 module.exports = {
   target: 'serverless',
   experimental: {
