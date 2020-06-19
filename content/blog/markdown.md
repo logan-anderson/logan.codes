@@ -3,6 +3,9 @@ title: What is Markdown
 description: Learn more about Markdown and what it is
 date: 'Sunday, May 31st, 2020'
 author: Logan Anderson
+tags:
+  - markdown
+  - code
 ---
 # .MD?
 
