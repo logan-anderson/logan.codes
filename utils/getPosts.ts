@@ -4,14 +4,20 @@ import {
   PreviewData,
   getGithubPreviewProps,
   parseMarkdown,
+  GithubPreviewProps,
+  MarkdownData,
 } from "next-tinacms-github";
 
+interface returnObj {
+  posts: Post[];
+  tags: string[];
+}
 import { Post } from "../interfaces";
 export default async (
   preview: boolean,
   previewData: PreviewData<any>,
   contentDir: string
-): Promise<Array<Post>> => {
+): Promise<returnObj> => {
   const fs = require("fs");
   const files = preview
     ? await getGithubFiles(
@@ -21,6 +27,7 @@ export default async (
         previewData.github_access_token
       )
     : await getLocalFiles(contentDir);
+  let tags: string[] = [];
   const posts: Array<Post> = await Promise.all(
     files.map(async (file: string) => {
       if (preview) {
@@ -29,6 +36,13 @@ export default async (
           fileRelativePath: file,
           parse: parseMarkdown,
         });
+        // @ts-ignore
+        console.log(previewProps.props.file?.data.frontmatter);
+        // @ts-ignore
+        const currentTags =
+          previewProps.props.file?.data.frontmatter.tags || [];
+        // @ts-ignore
+        tags = [...tags, ...currentTags];
         return {
           fileName: file.substring(contentDir.length + 1, file.length - 3),
           fileRelativePath: file,
@@ -37,6 +51,8 @@ export default async (
       }
       const content = fs.readFileSync(`${file}`, "utf8");
       const data = matter(content);
+      const currentTags = data.data.tags || [];
+      tags = [...tags, ...currentTags];
       return {
         fileName: file.substring(contentDir.length + 1, file.length - 3),
         fileRelativePath: file,
@@ -52,7 +68,11 @@ export default async (
       };
     })
   );
-  return posts;
+  console.log(tags);
+  return {
+    posts,
+    tags,
+  };
 };
 
 const getLocalFiles = async (filePath: string) => {

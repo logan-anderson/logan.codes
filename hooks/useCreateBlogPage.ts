@@ -54,6 +54,12 @@ const useCreateBlogPage = (allBlogs: Array<Post>) => {
           component: "textarea",
           required: false,
         },
+        {
+          name: "frontmatter.tags",
+          component: "tags",
+          label: "Tags",
+          description: "Tags for this post",
+        },
       ],
       onSubmit: async (frontMatter: any) => {
         const github = cms.api.github;

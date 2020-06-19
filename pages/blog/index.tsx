@@ -31,7 +31,7 @@ interface Props {
 }
 export const getStaticProps = async function ({ preview, previewData }: Props) {
   try {
-    const posts = await getPosts(preview, previewData, "content/blog");
+    const { posts } = await getPosts(preview, previewData, "content/blog");
 
     return {
       props: {

@@ -68,7 +68,7 @@ export const getStaticProps = async function ({
   preview: boolean;
   previewData: PreviewData<any>;
 }) {
-  const posts = await getPosts(preview, previewData, "content/blog");
+  const { posts } = await getPosts(preview, previewData, "content/blog");
   if (preview) {
     const previewProps = await getGithubPreviewProps({
       ...previewData,
