@@ -9,8 +9,10 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@types/classnames": "^2.2.10",
     "@types/js-yaml": "^3.12.4",
     "@types/styled-components": "^5.1.0",
+    "class-names": "^1.0.0",
     "dotenv": "^8.2.0",
     "fast-glob": "^3.2.2",
     "final-form": "^4.20.0",

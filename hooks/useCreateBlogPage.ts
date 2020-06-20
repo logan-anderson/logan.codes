@@ -25,7 +25,7 @@ const useCreateBlogPage = (allBlogs: Array<Post>) => {
               return "A title is required";
             }
             if (
-              allBlogs.some(
+              allBlogs.every(
                 (post: Post) =>
                   post.fileName === slugify(value, { lower: true })
               )

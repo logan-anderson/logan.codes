@@ -4,15 +4,12 @@ import {
   PreviewData,
   getGithubPreviewProps,
   parseMarkdown,
-  GithubPreviewProps,
-  MarkdownData,
 } from "next-tinacms-github";
-
+import { Post, Tag } from "../interfaces";
 interface returnObj {
   posts: Post[];
-  tags: string[];
+  tags: Tag[];
 }
-import { Post } from "../interfaces";
 export default async (
   preview: boolean,
   previewData: PreviewData<any>,
@@ -27,7 +24,7 @@ export default async (
         previewData.github_access_token
       )
     : await getLocalFiles(contentDir);
-  let tags: string[] = [];
+  let tags: Tag[] = [];
   const posts: Array<Post> = await Promise.all(
     files.map(async (file: string) => {
       if (preview) {
@@ -37,11 +34,14 @@ export default async (
           parse: parseMarkdown,
         });
         // @ts-ignore
-        console.log(previewProps.props.file?.data.frontmatter);
-        // @ts-ignore
-        const currentTags =
-          previewProps.props.file?.data.frontmatter.tags || [];
-        // @ts-ignore
+        const mt: string[] = previewProps.props.file?.data.frontmatter.tags;
+        const markdownTags = mt || [];
+        const currentTags: Tag[] = markdownTags.map((tag) => {
+          return {
+            name: tag,
+            selected: false,
+          };
+        });
         tags = [...tags, ...currentTags];
         return {
           fileName: file.substring(contentDir.length + 1, file.length - 3),
@@ -51,7 +51,13 @@ export default async (
       }
       const content = fs.readFileSync(`${file}`, "utf8");
       const data = matter(content);
-      const currentTags = data.data.tags || [];
+      const markdownTags = data.data.tags || [];
+      const currentTags: Tag[] = markdownTags.map((tag: string) => {
+        return {
+          name: tag,
+          selected: false,
+        };
+      });
       tags = [...tags, ...currentTags];
       return {
         fileName: file.substring(contentDir.length + 1, file.length - 3),
@@ -68,7 +74,7 @@ export default async (
       };
     })
   );
-  console.log(tags);
+  // console.log(tags);
   return {
     posts,
     tags,
