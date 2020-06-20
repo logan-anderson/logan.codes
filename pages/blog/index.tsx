@@ -67,6 +67,7 @@ interface BlogListProps {
 const BlogList = ({ posts, preview, tags }: BlogListProps) => {
   useCreateBlogPage(posts);
   let [stateTags, setStateTags] = useState(tags);
+  console.log(posts);
 
   return (
     <Layout title="Blog" preview={preview}>

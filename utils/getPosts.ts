@@ -68,6 +68,7 @@ export default async (
             title: data.data.title,
             date: data.data.date || "",
             author: data.data.author || "",
+            tags: data.data.tags || [],
           },
           markdownBody: data.content,
         },

@@ -1,12 +1,17 @@
 ---
 title: RSS Feeds in a nextjs site
 author: Logan Anderson
-description: 'How to add an RSS feed for blog posts into a nextjs site. Simple and easy. '
-date: 'Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)'
+description: "How to add an RSS feed for blog posts into a nextjs site. Simple and easy. "
+date: "Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)"
+tags:
+  - code
+  - react
+  - nextjs
 ---
+
 # Adding an RSS feed to a nextjs Site
 
-Recently, I took on the task of adding an **RSS feed to a nextjs site** (this site). After searching around google for a solution  I quickly realized that all the solutions were outdated or not in dept. Frustrated, I noted that [nextjs.org](https://logana.dev) has an RSS feed so I looked around there code to see how they dogfood nextjs and more importantly how they added an RSS feed.  I am posting my finding here to document them and to save others the Saturday morning I spent doing this.
+Recently, I took on the task of adding an **RSS feed to a nextjs site** (this site). After searching around google for a solution I quickly realized that all the solutions were outdated or not in dept. Frustrated, I noted that [nextjs.org](https://logana.dev) has an RSS feed so I looked around there code to see how they dogfood nextjs and more importantly how they added an RSS feed. I am posting my finding here to document them and to save others the Saturday morning I spent doing this.
 
 ## The process
 
@@ -47,7 +52,7 @@ function generate() {
   });
 
   const rss = feed.xml({ indent: true });
-  fs.writeFileSync('./.next/static/feed.xml', rss);
+  fs.writeFileSync("./.next/static/feed.xml", rss);
 }
 
 generate();
@@ -57,8 +62,8 @@ You will have to make your own function to get the blog posts and all of there m
 
 Notes:
 
-* the function is synchronous (it does not have to be though)
-* Write output to `./.next/static/feed.xml`
+- the function is synchronous (it does not have to be though)
+- Write output to `./.next/static/feed.xml`
 
 ### 2. Tell webpack about this file so it gets compiled
 
@@ -66,22 +71,22 @@ This is pretty simple. We just have to change our `next.config.js` to include th
 
 ```js
 module.exports = {
-//...
-webpack: (config, { isServer, dev }) => {
+  //...
+  webpack: (config, { isServer, dev }) => {
     //...
     if (isServer && !dev) {
       const originalEntry = config.entry;
       config.entry = async () => {
         const entries = { ...(await originalEntry()) };
         // This script imports components from the Next app, so it's transpiled to `.next/server/scripts/build-rss.js`
-        entries['./scripts/generate-rss.js'] = './scripts/generate-rss.js';
+        entries["./scripts/generate-rss.js"] = "./scripts/generate-rss.js";
         return entries;
       };
     }
-    return config
+    return config;
   },
-//...
-}
+  //...
+};
 ```
 
 the main point here is that we are telling webpack to compile our file by writing `entries['./scripts/generate-rss.js'] = './scripts/generate-rss.js';`. Now if we build our project with `yarn build` or `next build` or `npm run build` we will see that this file gets compiled
@@ -94,20 +99,20 @@ We will again add more to our `next.config.json`. This time adding this
 
 ```js
 module.exports = {
-  target: 'serverless',
+  target: "serverless",
   experimental: {
     modern: true,
     rewrites() {
       return [
         {
-          source: '/feed.xml',
-          destination: '/_next/static/feed.xml'
+          source: "/feed.xml",
+          destination: "/_next/static/feed.xml",
         },
       ];
     },
   },
-//...
-}
+  //...
+};
 ```
 
 If you want to see this in action you can look at the [next.config.js for my blog](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/blob/master/next.config.js) to the [one for nextjs.org](https://github.com/vercel/next-site/blob/master/next.config.js)
