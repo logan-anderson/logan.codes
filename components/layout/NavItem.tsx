@@ -10,7 +10,7 @@ const NavItem = ( props : PropTypes) => {
   return (
         <Link href={props.link}>
           <a 
-          className="block inline-block mt-0 text-blue-900 hover:text-blue-700 no-label"
+          className="block inline-block mt-0 ml-3 text-blue-900 hover:text-blue-700 no-label"
           >
           {props.name || props.children}
          </a>

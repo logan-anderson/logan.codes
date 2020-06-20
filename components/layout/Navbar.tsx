@@ -36,6 +36,7 @@ const navBar = () => {
          </a>
       </div>
       <div className="navbar-menu order-3 block w-1/3 text-right">
+        <NavItem name="Resources" link="/resources" />
         <NavItem name="All posts" link="/blog" />
       </div>
     </nav>
