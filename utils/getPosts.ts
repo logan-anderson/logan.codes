@@ -5,13 +5,16 @@ import {
   getGithubPreviewProps,
   parseMarkdown,
 } from "next-tinacms-github";
-
-import { Post } from "../interfaces";
+import { Post, Tag } from "../interfaces";
+interface returnObj {
+  posts: Post[];
+  tags: Tag[];
+}
 export default async (
   preview: boolean,
   previewData: PreviewData<any>,
   contentDir: string
-): Promise<Array<Post>> => {
+): Promise<returnObj> => {
   const fs = require("fs");
   const files = preview
     ? await getGithubFiles(
@@ -21,6 +24,7 @@ export default async (
         previewData.github_access_token
       )
     : await getLocalFiles(contentDir);
+  let tags: Tag[] = [];
   const posts: Array<Post> = await Promise.all(
     files.map(async (file: string) => {
       if (preview) {
@@ -29,6 +33,16 @@ export default async (
           fileRelativePath: file,
           parse: parseMarkdown,
         });
+        // @ts-ignore
+        const mt: string[] = previewProps.props.file?.data.frontmatter.tags;
+        const markdownTags = mt || [];
+        const currentTags: Tag[] = markdownTags.map((tag) => {
+          return {
+            name: tag,
+            selected: false,
+          };
+        });
+        tags = [...tags, ...currentTags];
         return {
           fileName: file.substring(contentDir.length + 1, file.length - 3),
           fileRelativePath: file,
@@ -37,6 +51,14 @@ export default async (
       }
       const content = fs.readFileSync(`${file}`, "utf8");
       const data = matter(content);
+      const markdownTags = data.data.tags || [];
+      const currentTags: Tag[] = markdownTags.map((tag: string) => {
+        return {
+          name: tag,
+          selected: false,
+        };
+      });
+      tags = [...tags, ...currentTags];
       return {
         fileName: file.substring(contentDir.length + 1, file.length - 3),
         fileRelativePath: file,
@@ -52,7 +74,11 @@ export default async (
       };
     })
   );
-  return posts;
+  // console.log(tags);
+  return {
+    posts,
+    tags,
+  };
 };
 
 const getLocalFiles = async (filePath: string) => {

@@ -1,13 +1,17 @@
 // @ts-ignore
-import * as Prism from 'prismjs';
-import { useEffect } from 'react';
+import * as Prism from "prismjs";
+import { useEffect } from "react";
 import { InlineForm, useInlineForm } from "react-tinacms-inline";
 import { useMemo } from "react";
 import matter from "gray-matter";
 import { GetStaticProps } from "next";
 import Error from "next/error";
-import { useGithubMarkdownForm,} from "react-tinacms-github";
-import { getGithubPreviewProps, parseMarkdown, GithubFile } from "next-tinacms-github";
+import { useGithubMarkdownForm } from "react-tinacms-github";
+import {
+  getGithubPreviewProps,
+  parseMarkdown,
+  GithubFile,
+} from "next-tinacms-github";
 import { InlineWysiwyg } from "react-tinacms-editor";
 import ReactMarkdown from "react-markdown";
 
@@ -15,18 +19,16 @@ import Layout from "../../components/layout/Layout";
 import { usePlugin } from "tinacms";
 import { Post } from "../../interfaces";
 
-
 const InlineWrapper = ({ children, preview }: any) => {
   const { deactivate, activate } = useInlineForm();
-  useEffect(() =>{
-    // doesn't work =( 
+  useEffect(() => {
+    // doesn't work =(
     // const loadLanguages = require('prismjs/components/index');
     // console.log(loadLanguages)
     // loadLanguages(['ts']);
-    Prism.highlightAll()
-
+    Prism.highlightAll();
   });
-  
+
   function handleInlineEdit() {
     preview ? activate() : deactivate();
   }
@@ -35,9 +37,9 @@ const InlineWrapper = ({ children, preview }: any) => {
 };
 
 interface PageProps {
-  preview: boolean,
-  post: Post,
-  file: GithubFile<any>,
+  preview: boolean;
+  post: Post;
+  file: GithubFile<any>;
 }
 const BlogPage = (props: PageProps) => {
   if (!props.file) {
@@ -70,6 +72,12 @@ const BlogPage = (props: PageProps) => {
         component: "textarea",
         required: false,
       },
+      {
+        name: "frontmatter.tags",
+        component: "tags",
+        label: "Tags",
+        description: "Tags for this post",
+      },
     ],
   };
 
@@ -77,7 +85,11 @@ const BlogPage = (props: PageProps) => {
   usePlugin(form);
 
   return (
-    <Layout title={data.frontmatter.title} preview={props.preview} description={data.frontmatter.description}>
+    <Layout
+      title={data.frontmatter.title}
+      preview={props.preview}
+      description={data.frontmatter.description}
+    >
       <InlineForm form={form}>
         <InlineWrapper preview={props.preview}>
           <InlineWysiwyg name="markdownBody">

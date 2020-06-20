@@ -25,7 +25,7 @@ const useCreateBlogPage = (allBlogs: Array<Post>) => {
               return "A title is required";
             }
             if (
-              allBlogs.some(
+              allBlogs.every(
                 (post: Post) =>
                   post.fileName === slugify(value, { lower: true })
               )
@@ -53,6 +53,12 @@ const useCreateBlogPage = (allBlogs: Array<Post>) => {
           label: "Description",
           component: "textarea",
           required: false,
+        },
+        {
+          name: "frontmatter.tags",
+          component: "tags",
+          label: "Tags",
+          description: "Tags for this post",
         },
       ],
       onSubmit: async (frontMatter: any) => {
