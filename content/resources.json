@@ -1,0 +1,78 @@
+{
+  "catagories": [
+    {
+      "id": "getting-started",
+      "label": "Learning about what web devolvement is",
+      "entries": [
+        {
+          "id": "road",
+          "label": "A guide / roadmap to learning web devolvement",
+          "link": "https://coder-coder.com/learn-web-development/"
+        },
+        {
+          "id": "terms",
+          "label": "Learning the web dev terms",
+          "link": "https://www.impactbnd.com/blog/42-web-development-terms-everyone-should-know"
+        },
+        {
+          "id": "backend-vs-frontend",
+          "label": "Backend vs frontend",
+          "link": "https://www.youtube.com/watch?v=pkdgVYehiTE"
+        },
+        {
+            "id": "long-course",
+            "label": "Web Development Full Course - 10 Hours | Learn Web Development from Scratch | Edureka",
+            "link": "https://www.youtube.com/watch?v=Q33KBiDriJY"
+        },
+        {
+            "id": "js-basics",
+            "label": "Learn how to code in javascript",
+            "link": "https://www.youtube.com/watch?v=hdI2bqOjy3c"
+        }
+      ]
+    },
+    {
+      "id": "youtube",
+      "label": "Good youtube/video resources",
+      "entries": [
+          {
+              "id": "trav",
+              "label": "Traversy Media | Full stack codding tutorials / code along",
+              "link": "https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA"
+          },
+          {
+            "id": "ac",
+            "label": "Academind | Full stack codding tutorials / code along",
+            "link": "https://www.youtube.com/channel/UCSJbGtTlrDami-tDGPUV9-w"
+        },
+        {
+            "id": "techlead",
+            "label": "TeachLead | Mostly non codeing opinionated videos about tech",
+            "link": "https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA"
+        },
+        {
+            "id": "DesignCourse",
+            "label": "DesignCourse | UI / UX technical / non-technical videos",
+            "link": "https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA"
+        },
+        {
+            "id": "DesignCourse",
+            "label": "DesignCourse | UI / UX technical / non-technical videos",
+            "link": "https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA"
+        }
+
+      ]
+    },
+    {
+      "id": "overall",
+      "label": "Learning resources",
+      "entries": [
+          {
+              "id": "mit",
+              "label": "MIT Open courses",
+              "link": "https://ocw.mit.edu/courses/"
+          }
+      ]
+    }
+  ]
+}
