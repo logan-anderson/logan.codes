@@ -17,7 +17,7 @@ Markdown is similar to HTML in that it is a [standard](https://commonmark.org/) 
 
 ## Why bother with Markdown?
 
-As mentioned Markdown is used when writing documents with GitHub or GitLab, but some of the syntaxes are also supported in Google Docs, Slack, and many many other platforms. You can even use [Pandoc and Markdown together](https://pandoc.org/MANUAL.html#pandocs-markdown "Pandoc and Markdown together") to make beautiful documents, and even presentations if you use a tool like Beamer. I am even writing this blog in arkdown.
+As mentioned Markdown is used when writing documents with GitHub or GitLab, but some of the syntaxes are also supported in Google Docs, Slack, and many many other platforms. You can even use [Pandoc and Markdown together](https://pandoc.org/MANUAL.html#pandocs-markdown "Pandoc and Markdown together") to make beautiful documents, and even presentations if you use a tool like Beamer. I am even writing this blog in Markdown.
 
 ## Ok, let's learn some stuff.
 
