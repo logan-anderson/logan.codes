@@ -69,7 +69,15 @@ export default class Site extends App {
 }
 
 const enterEditMode = () => {
-  return fetch(`/api/preview`).then(() => {
+  const token = localStorage.getItem("tinacms-github-token") || null;
+
+  const headers = new Headers();
+
+  if (token) {
+    headers.append("Authorization", "Bearer " + token);
+  }
+
+  return fetch(`/api/preview`, { headers: headers }).then(() => {
     window.location.href = window.location.pathname;
   });
 };
