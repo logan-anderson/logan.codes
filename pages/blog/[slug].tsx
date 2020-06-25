@@ -1,7 +1,7 @@
 // @ts-ignore
 import * as Prism from "prismjs";
 import { useEffect } from "react";
-import { InlineForm, useInlineForm } from "react-tinacms-inline";
+import { InlineForm, useInlineForm, InlineImage } from "react-tinacms-inline";
 import { useMemo } from "react";
 import matter from "gray-matter";
 import { GetStaticProps } from "next";
@@ -91,6 +91,14 @@ const BlogPage = (props: PageProps) => {
       description={data.frontmatter.description}
     >
       <InlineForm form={form}>
+        <InlineImage
+          name="hero_image"
+          parse={(filename) => `/images/${filename}`}
+          uploadDir={() => "/public/images/"}
+          previewSrc={(formValues) => {
+            return "";
+          }}
+        />
         <InlineWrapper preview={props.preview}>
           <InlineWysiwyg name="markdownBody">
             <ReactMarkdown source={data.markdownBody} />

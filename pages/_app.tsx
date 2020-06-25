@@ -1,6 +1,10 @@
 import App from "next/app";
 import { TinaCMS, TinaProvider } from "tinacms";
-import { GithubClient, TinacmsGithubProvider } from "react-tinacms-github";
+import {
+  GithubClient,
+  TinacmsGithubProvider,
+  GithubMediaStore,
+} from "react-tinacms-github";
 import Head from "next/head";
 import "../styles/index.css";
 import "../styles/prism.css";
@@ -9,26 +13,21 @@ export default class Site extends App {
 
   constructor(props: any) {
     super(props);
-    /**
-     * 1. Create the TinaCMS instance
-     */
+
+    const githubClient = new GithubClient({
+      proxy: "/api/proxy-github",
+      authCallbackRoute: "/api/create-github-access-token",
+      clientId: process.env.GITHUB_CLIENT_ID || "err",
+      baseRepoFullName: process.env.REPO_FULL_NAME || "err", // e.g: tinacms/tinacms.org,
+      baseBranch: process.env.BASE_BRANCH || "err",
+    });
     this.cms = new TinaCMS({
-      apis: {
-        /**
-         * 2. Register the GithubClient
-         */
-        github: new GithubClient({
-          proxy: "/api/proxy-github",
-          authCallbackRoute: "/api/create-github-access-token",
-          clientId: process.env.GITHUB_CLIENT_ID || "err",
-          baseRepoFullName: process.env.REPO_FULL_NAME || "err", // e.g: tinacms/tinacms.org,
-          baseBranch: process.env.BASE_BRANCH || "err",
-        }),
+      media: {
+        store: new GithubMediaStore(githubClient),
       },
-      /**
-       * 3. Hide the Sidebar & Toolbar
-       *    unless we're in Preview/Edit Mode
-       */
+      apis: {
+        github: githubClient,
+      },
       sidebar: {
         hidden: !props.pageProps.preview,
       },
