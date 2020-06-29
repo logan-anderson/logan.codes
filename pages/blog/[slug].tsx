@@ -24,7 +24,6 @@ const InlineWrapper = ({ children, preview }: any) => {
   useEffect(() => {
     // doesn't work =(
     // const loadLanguages = require('prismjs/components/index');
-    // console.log(loadLanguages)
     // loadLanguages(['ts']);
     Prism.highlightAll();
   });

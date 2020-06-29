@@ -1,62 +1,14 @@
 import { PreviewData } from "next-tinacms-github";
+import { useState } from 'react' 
 
 import getPosts from "../../utils/getPosts";
 import Layout from "../../components/layout/Layout";
-import BlogCard from "../../components/BlogCard";
 import useCreateBlogPage from "../../hooks/useCreateBlogPage";
 import { Post, Tag } from "../../interfaces";
-import Button from "../../components/Buttons/ToggleButton";
-import { useState } from "react";
+import PostList from '../../components/PostList'
 
-const Tags = ({
-  tags,
-  setTags,
-}: {
-  tags: Tag[];
-  setTags: React.Dispatch<React.SetStateAction<Tag[]>>;
-}) => {
-  const result = [];
-  const map = new Map();
-  for (const item of tags) {
-    if (!map.has(item.name)) {
-      map.set(item.name, true); // set any value to Map
-      result.push(item);
-    }
-  }
-  // const uniqueTags = tags.filter()
-  return (
-    <>
-      <h4>Filter by tags:</h4>
-      <div className="tags">
-        {result.map((tag: Tag) => {
-          return (
-            <span key={tag.name}>
-              <Button
-                clickAction={(e) => {
-                  const newTags = tags.map((tag) => {
-                    // @ts-ignore
-                    if (tag.name === e.target.innerHTML) {
-                      return {
-                        name: tag.name,
-                        selected: !tag.selected,
-                      };
-                    } else {
-                      return tag;
-                    }
-                  });
-                  setTags(newTags);
-                }}
-                active={tag.selected}
-              >
-                {tag.name}
-              </Button>
-            </span>
-          );
-        })}
-      </div>
-    </>
-  );
-};
+import { TagContext } from "../../components/Context/Tagcontext";
+import Tags from "../../components/Tags";
 
 interface BlogListProps {
   posts: Array<Post>;
@@ -64,30 +16,21 @@ interface BlogListProps {
   preview: boolean;
 }
 
-const BlogList = ({ posts, preview, tags }: BlogListProps) => {
+const BlogList = ({ posts, preview, tags : initalTags }: BlogListProps) => {
   useCreateBlogPage(posts);
-  let [stateTags, setStateTags] = useState(tags);
-  console.log(posts);
+  const [tags, setTags] = useState<Tag[]>(initalTags)
 
   return (
     <Layout title="Blog" preview={preview}>
-      <Tags tags={stateTags} setTags={setStateTags} />
-      {posts
-        .filter((post) => {
-          const selectedTags: string[] = stateTags
-            .filter((t) => t.selected)
-            .map((el) => el.name);
-          // if nothing is selected return everything
-          if (selectedTags.length === 0) {
-            return true;
-          }
-          return selectedTags.every((currentTag: string) => {
-            return post.data.frontmatter.tags?.includes(currentTag);
-          });
-        })
-        .map((post: Post) => {
-          return <BlogCard key={post.fileName} post={post} />;
-        })}
+      <TagContext.Provider value={{
+            tags,
+            setTags
+        }}>
+        <main>
+          <Tags/>
+          <PostList posts={posts} />
+        </main>
+      </TagContext.Provider>
     </Layout>
   );
 };
