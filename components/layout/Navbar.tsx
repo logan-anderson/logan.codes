@@ -1,9 +1,8 @@
 import Link from "next/link";
 import NavItem from './NavItem'
-
 const navBar = () => {
   return (
-    <nav className="flex flex-wrap items-top justify-between py-4">
+    <nav className="flex flex-wrap items-top justify-between py-4 text-xl">
       <div className="order-2 w-auto lg:w-1/3 lg:text-center">
         <div className="text-xl color-primary font-semibold">
           {/* main nav */}
@@ -28,16 +27,38 @@ const navBar = () => {
       </div> */}
       {/* left side */}
       <div className="navbar-menu order-1 block w-1/3 text-left">
-      <a
-        href="https://logan.bio"
-        className="block inline-block mt-0 text-blue-900 hover:text-blue-700 no-label"
-      >
-        More about me
+        <a
+          href="https://logan.bio"
+          className="block inline-block mt-0 text-blue-900 hover:text-blue-700 no-label"
+        >
+          More about me
          </a>
-      </div>
-      <div className="navbar-menu order-3 block w-1/3 text-right">
         <NavItem name="Resources" link="/resources" />
+      </div>
+      <div className="navbar-menu  order-3 block w-1/3 text-right" >
         <NavItem name="All posts" link="/blog" />
+        <a
+          href="https://github.com/logan-anderson"
+          className="block inline-block mt-0 ml-3 text-blue-900 hover:text-blue-700 no-label"
+          target='_blank'
+        >
+          <i className="fab fa-github"></i>
+        </a>
+        <a
+          href="https://twitter.com/logan_anders0n"
+          className="block inline-block mt-0 ml-3 text-blue-900 hover:text-blue-700 no-label"
+          target='_blank'
+        >
+          <i className="fab fa-twitter"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/logan-anderson-tech/"
+          className="block inline-block mt-0 ml-3 text-blue-900 hover:text-blue-700 no-label"
+          target='_blank'
+        >
+          <i className="fab fa-linkedin-in"></i>
+        </a>
+
       </div>
     </nav>
   );

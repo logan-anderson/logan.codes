@@ -3,7 +3,7 @@ import Link from "next/link";
 interface PropTypes {
     name?: string,
     link: string,
-    children?: React.Component,
+    children?: any,
 }
 
 const NavItem = ( props : PropTypes) => { 
