@@ -1,29 +1,29 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add @types/tina
+  /home/logan/.nvm/versions/node/v14.4.0/bin/node /home/logan/.nvm/versions/node/v14.4.0/bin/yarn add @tinacms/webpac-helpers
 
 PATH: 
-  /home/logan/.deno/bin:/home/logan/.deno/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+  /home/logan/.nvm/versions/node/v14.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/logan/.fzf/bin
 
 Yarn version: 
   1.22.4
 
 Node version: 
-  12.16.3
+  14.4.0
 
 Platform: 
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2ftina: Not found
-      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66987:18)
-      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140748:22)
-      at Request.emit (events.js:310:20)
-      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141720:10)
-      at Request.emit (events.js:310:20)
-      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141642:12)
-      at Object.onceWrapper (events.js:416:28)
-      at IncomingMessage.emit (events.js:322:22)
-      at endReadableNT (_stream_readable.js:1187:12)
+  Error: https://registry.yarnpkg.com/@tinacms%2fwebpac-helpers: Not found
+      at Request.params.callback [as _callback] (/home/logan/.nvm/versions/node/v14.4.0/lib/node_modules/yarn/lib/cli.js:66987:18)
+      at Request.self.callback (/home/logan/.nvm/versions/node/v14.4.0/lib/node_modules/yarn/lib/cli.js:140748:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/home/logan/.nvm/versions/node/v14.4.0/lib/node_modules/yarn/lib/cli.js:141720:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/home/logan/.nvm/versions/node/v14.4.0/lib/node_modules/yarn/lib/cli.js:141642:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1224:12)
       at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
@@ -32,30 +32,37 @@ npm manifest:
     "version": "1.0.0",
     "scripts": {
       "dev": "next",
-      "build": "next build",
+      "build": "next build && yarn build:rss",
+      "build:rss": "node ./.next/serverless/scripts/generate-rss.js",
       "start": "next start",
       "type-check": "tsc"
     },
     "dependencies": {
+      "@types/classnames": "^2.2.10",
       "@types/js-yaml": "^3.12.4",
       "@types/styled-components": "^5.1.0",
+      "axios": "^0.19.2",
+      "class-names": "^1.0.0",
       "dotenv": "^8.2.0",
       "fast-glob": "^3.2.2",
       "final-form": "^4.20.0",
       "gray-matter": "^4.0.2",
       "js-yaml": "^3.14.0",
       "next": "latest",
+      "next-seo": "^4.5.0",
       "next-svgr": "^0.0.2",
-      "next-tinacms-github": "^0.1.1",
+      "next-tinacms-github": "^0.2.0",
       "prismjs": "^1.20.0",
       "prop-types": "^15.7.2",
       "raw-loader": "^4.0.1",
       "react": "^16.12.0",
+      "react-collapsible": "^2.8.0",
       "react-dom": "^16.12.0",
       "react-markdown": "^4.3.1",
       "react-tinacms-editor": "^0.8.0",
-      "react-tinacms-github": "^0.4.2",
+      "react-tinacms-github": "^0.5.0",
       "react-tinacms-inline": "^0.7.0",
+      "rss": "^1.2.2",
       "slugify": "^1.4.0",
       "styled-components": "^5.1.1",
       "tinacms": "^0.21.1"
@@ -64,6 +71,7 @@ npm manifest:
       "@types/node": "^14.0.5",
       "@types/react": "^16.9.35",
       "@types/react-dom": "^16.9.8",
+      "nextjs-sitemap-generator": "^1.0.0",
       "postcss-preset-env": "^6.7.0",
       "tailwindcss": "^1.4.6",
       "typescript": "^3.9.3"
@@ -1537,6 +1545,11 @@ Lockfile:
     dependencies:
       webfontloader "^1.6.28"
   
+  "@types/classnames@^2.2.10":
+    version "2.2.10"
+    resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.10.tgz#cc658ca319b6355399efc1f5b9e818f1a24bf999"
+    integrity sha512-1UzDldn9GfYYEsWWnn/P4wkTlkZDH7lDb0wBMGbtIQc9zXEQq7FlKBdZUn6OBqD8sKZZ2RQO2mAjGpXiDGoRmQ==
+  
   "@types/color-name@^1.1.1":
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -2006,7 +2019,7 @@ Lockfile:
       postcss "^7.0.30"
       postcss-value-parser "^4.1.0"
   
-  axios@0.19.2:
+  axios@0.19.2, axios@^0.19.2:
     version "0.19.2"
     resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
     integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
@@ -2479,6 +2492,13 @@ Lockfile:
       inherits "^2.0.1"
       safe-buffer "^5.0.1"
   
+  class-names@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/class-names/-/class-names-1.0.0.tgz#8646070361d87a83f643261047ed22834e646945"
+    integrity sha1-hkYHA2HYeoP2QyYQR+0ig05kaUU=
+    dependencies:
+      classnames "^2.2.5"
+  
   class-utils@^0.3.5:
     version "0.3.6"
     resolved "https://registry.yarnpkg.com/class-utils/-/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
@@ -2489,7 +2509,7 @@ Lockfile:
       isobject "^3.0.0"
       static-extend "^0.1.1"
   
-  classnames@2.2.6:
+  classnames@2.2.6, classnames@^2.2.5:
     version "2.2.6"
     resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
     integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -2779,6 +2799,11 @@ Lockfile:
       randombytes "^2.0.0"
       randomfill "^1.0.3"
   
+  crypto-js@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.0.0.tgz#2904ab2677a9d042856a2ea2ef80de92e4a36dcc"
+    integrity sha512-bzHZN8Pn+gS7DQA6n+iUmBfl0hO5DJq++QP3U6uTucDtk/0iGpXd/Gg7CGR0p8tJhofJyaKoWBuJI4eAO00BBg==
+  
   css-blank-pseudo@^0.1.4:
     version "0.1.4"
     resolved "https://registry.yarnpkg.com/css-blank-pseudo/-/css-blank-pseudo-0.1.4.tgz#dfdefd3254bf8a82027993674ccf35483bfcb3c5"
@@ -3024,6 +3049,11 @@ Lockfile:
     integrity sha512-MJ6mFTZ+nPQO+39ua/ltwNePXrfdF3Ww0wP1Od7EePySXN1cP9XNqRQOG3FxTfipp8jx898LUCgBCEP11Qw/ZQ==
     dependencies:
       buffer-from "^1.1.1"
+  
+  date-fns@^2.9.0:
+    version "2.14.0"
+    resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.14.0.tgz#359a87a265bb34ef2e38f93ecf63ac453f9bc7ba"
+    integrity sha512-1zD+68jhFgDIM0rF05rcwYO8cExdNqxjq4xP1QKM60Q45mnO6zaMWB4tOzrIr4M4GSLntsKeE4c9Bdl2jhL/yw==
   
   debug@=3.1.0:
     version "3.1.0"
@@ -4643,6 +4673,18 @@ Lockfile:
       bn.js "^4.0.0"
       brorand "^1.0.1"
   
+  mime-db@~1.25.0:
+    version "1.25.0"
+    resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.25.0.tgz#c18dbd7c73a5dbf6f44a024dc0d165a1e7b1c392"
+    integrity sha1-wY29fHOl2/b0SgJNwNFloeexw5I=
+  
+  mime-types@2.1.13:
+    version "2.1.13"
+    resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.13.tgz#e07aaa9c6c6b9a7ca3012c69003ad25a39e92a88"
+    integrity sha1-4HqqnGxrmnyjASxpADrSWjnpKog=
+    dependencies:
+      mime-db "~1.25.0"
+  
   mini-css-extract-plugin@0.8.0:
     version "0.8.0"
     resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-0.8.0.tgz#81d41ec4fe58c713a96ad7c723cdb2d0bd4d70e1"
@@ -4810,6 +4852,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
     integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
   
+  next-seo@^4.5.0:
+    version "4.5.0"
+    resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-4.5.0.tgz#d000d4fec1ee02fd7bf458bfc20c334035027939"
+    integrity sha512-PqLKaEOBHieXSxXDt++kG/XyJgi4X9N36PzmEBdJpJGkJdnqmdplFMZtz/kjuJJUg3iaVaUg/TAnRDjOROEX4A==
+  
   next-svgr@^0.0.2:
     version "0.0.2"
     resolved "https://registry.yarnpkg.com/next-svgr/-/next-svgr-0.0.2.tgz#bde3bc75d124a0149e263ec9b8dce67ec76cfcac"
@@ -4822,21 +4869,23 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
     integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
   
-  next-tinacms-github@^0.1.1:
-    version "0.1.1"
-    resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.1.1.tgz#94fbdadb532f0f2f8ecb056a9d6fc61d0f3ba0b2"
-    integrity sha512-qZcNsOsPzPOHPcrUUCIFoPBx57ObK/MUPzekdc/F88950G32/Dxw/Vzoehn50m/cEYZvkSfCQCGEjO7pJOz8KQ==
+  next-tinacms-github@^0.2.0:
+    version "0.2.0"
+    resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.2.0.tgz#2c2a5ff66ac1035df4f17b0f8f097cd81be76e02"
+    integrity sha512-x/4nAXVoNZptC3nVMd0958KPGhQ9h12OhDVjP2HHz9naaYEdE2z3qjaHx/j2PotcZeqLldI3JEoCD35MSf0hnA==
     dependencies:
       atob "2.1.2"
       axios "0.19.2"
       cookie "0.4.0"
+      crypto-js "^4.0.0"
       gray-matter "4.0.2"
       qs "6.9.3"
+      uuid "^8.1.0"
   
-  next-tinacms-markdown@^0.2.19:
-    version "0.2.19"
-    resolved "https://registry.yarnpkg.com/next-tinacms-markdown/-/next-tinacms-markdown-0.2.19.tgz#0a45e0483049a4ab13118c87181dc3a339b2fc72"
-    integrity sha512-2yJ+YMlc+q2RWgMJ5/H2fpzdCHfEeQqKA+in+pNIeXZyX4FCaP4WOqQ1kIyCT9FY/Pg5za8UnbxejUYMK6QAiQ==
+  next-tinacms-markdown@^0.2.21:
+    version "0.2.21"
+    resolved "https://registry.yarnpkg.com/next-tinacms-markdown/-/next-tinacms-markdown-0.2.21.tgz#cd67a583cf1a120a83651325bea8afecb7191fa0"
+    integrity sha512-8ejWRySOTQAa9U/WFBJSrzW5Ms3r0JKOGE1zlXWJ4xC66nczstlRki2KZeu8cUBaZLNkUIPhSb23oJNv6iDgRQ==
     dependencies:
       gray-matter "^4.0.2"
       js-yaml "^3.13.1"
@@ -4897,6 +4946,13 @@ Lockfile:
       web-vitals "0.2.1"
       webpack "4.43.0"
       webpack-sources "1.4.3"
+  
+  nextjs-sitemap-generator@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/nextjs-sitemap-generator/-/nextjs-sitemap-generator-1.0.0.tgz#88227fea24a055f0d9031bfe4ce303bf537b24b1"
+    integrity sha512-4M5nC2FA1Mf1sDDPQ+a1OJB5iFXjRUuhfQ+V9wVEl8ydzV2jQU6j0lABy+4cHm6KPmQr7ikq3JwOxusbB9nK1w==
+    dependencies:
+      date-fns "^2.9.0"
   
   node-emoji@^1.8.1:
     version "1.10.0"
@@ -6274,6 +6330,11 @@ Lockfile:
       tiny-invariant "^1.0.4"
       use-memo-one "^1.1.0"
   
+  react-collapsible@^2.8.0:
+    version "2.8.0"
+    resolved "https://registry.yarnpkg.com/react-collapsible/-/react-collapsible-2.8.0.tgz#dce2ff7703d4456c5bb70cc1b53d3f80acf76526"
+    integrity sha512-QTxGyp4iL8N57FcU1RGt4wD7vqOTRYAHNukxtSeVMkZ+/d1WNWXRIakzhYhC/5TDERihPdp1IvKIJlrLLPyQ/A==
+  
   react-color@^2.17.3:
     version "2.18.1"
     resolved "https://registry.yarnpkg.com/react-color/-/react-color-2.18.1.tgz#2cda8cc8e06a9e2c52ad391a30ddad31972472f4"
@@ -6402,14 +6463,14 @@ Lockfile:
       prosemirror-view "^1.11.3"
       react-dismissible "^1.2.0"
   
-  react-tinacms-github@^0.4.2:
-    version "0.4.2"
-    resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.4.2.tgz#b2b6f8b23df5fd5d01c6e208866adeb70ca0c4d0"
-    integrity sha512-rgykXKr2CHlGl/q8HTRxyJePs4L58hfCQ88hb5NkaRoGFOXgWqCQ3AmXTtV52AA0Ako5UcLKpuOp9sNeBANO7g==
+  react-tinacms-github@^0.5.0:
+    version "0.5.0"
+    resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.5.0.tgz#b481e24eb5db88ba1181d5eafa17c23f234cbc2c"
+    integrity sha512-cALdX4jxUc7PyNufhqYB1d+BfkhHIDp3npF3Xlxt4zLEgtw4V3RgdkhKSfF31nZn7JSCpTNe/V58j2L+1QdQqQ==
     dependencies:
       btoa "^1.2.1"
       js-cookie "^2.2.1"
-      next-tinacms-markdown "^0.2.19"
+      next-tinacms-markdown "^0.2.21"
   
   react-tinacms-inline@^0.7.0:
     version "0.7.0"
@@ -6682,6 +6743,14 @@ Lockfile:
     version "1.3.2"
     resolved "https://registry.yarnpkg.com/rope-sequence/-/rope-sequence-1.3.2.tgz#a19e02d72991ca71feb6b5f8a91154e48e3c098b"
     integrity sha512-ku6MFrwEVSVmXLvy3dYph3LAMNS0890K7fabn+0YIRQ2T96T9F4gkFf0vf0WW0JUraNWwGRtInEpH7yO4tbQZg==
+  
+  rss@^1.2.2:
+    version "1.2.2"
+    resolved "https://registry.yarnpkg.com/rss/-/rss-1.2.2.tgz#50a1698876138133a74f9a05d2bdc8db8d27a921"
+    integrity sha1-UKFpiHYTgTOnT5oF0r3I240nqSE=
+    dependencies:
+      mime-types "2.1.13"
+      xml "1.0.1"
   
   run-parallel@^1.1.9:
     version "1.1.9"
@@ -7689,6 +7758,11 @@ Lockfile:
     dependencies:
       inherits "2.0.3"
   
+  uuid@^8.1.0:
+    version "8.1.0"
+    resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.1.0.tgz#6f1536eb43249f473abc6bd58ff983da1ca30d8d"
+    integrity sha512-CI18flHDznR0lq54xBycOVmphdCYnQLKn8abKn7PXUiKUGdEd+/l9LWNJmugXel4hXq7S+RMNl34ecyC9TntWg==
+  
   vendors@^1.0.0:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/vendors/-/vendors-1.0.4.tgz#e2b800a53e7a29b93506c3cf41100d16c4c4ad8e"
@@ -7841,6 +7915,11 @@ Lockfile:
     version "0.1.0"
     resolved "https://registry.yarnpkg.com/x-is-string/-/x-is-string-0.1.0.tgz#474b50865af3a49a9c4657f05acd145458f77d82"
     integrity sha1-R0tQhlrzpJqcRlfwWs0UVFj3fYI=
+  
+  xml@1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
+    integrity sha1-eLpyAgApxbyHuKgaPPzXS0ovweU=
   
   xtend@^4.0.0, xtend@^4.0.1, xtend@^4.0.2, xtend@~4.0.1:
     version "4.0.2"

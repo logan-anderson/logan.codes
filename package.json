@@ -9,6 +9,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@tinacms/webpack-helpers": "^0.1.0",
     "@types/classnames": "^2.2.10",
     "@types/js-yaml": "^3.12.4",
     "@types/styled-components": "^5.1.0",

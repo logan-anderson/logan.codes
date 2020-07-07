@@ -1,6 +1,8 @@
 // const path = require("path")
 const withSvgr = require("next-svgr")
 require("dotenv").config()
+const tinaWebpackHelpers = require('@tinacms/webpack-helpers')
+
 
 module.exports = withSvgr({
   target: 'serverless',
@@ -15,7 +17,7 @@ module.exports = withSvgr({
       ];
     },
   },
-  webpack: (config, { isServer, dev }) => {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.node = {
       fs: "empty",
     }
@@ -33,6 +35,11 @@ module.exports = withSvgr({
         return entries;
       };
     }
+
+    if (dev) {
+      tinaWebpackHelpers.aliasTinaDev(config, '../../tina-official/tinacms')
+    }
+    return config
     // config.resolve.alias = {
     //   ...config.resolve.alias,
     //   "@components": path.resolve(__dirname, "./components"),
@@ -49,3 +56,5 @@ module.exports = withSvgr({
     BASE_BRANCH: process.env.BASE_BRANCH,
   },
 })
+
+
