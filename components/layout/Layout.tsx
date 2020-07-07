@@ -8,7 +8,6 @@ import Navbar from "./Navbar";
 import AppFooter from "./Footer";
 
 type Props = {
-  preview: boolean;
   title?: string;
   description?: string;
 };
@@ -25,7 +24,6 @@ const Main = styled.main`
 const Layout: React.FunctionComponent<Props> = ({
   children,
   title,
-  preview,
   description,
 }) => {
   useGithubToolbarPlugins();
@@ -49,7 +47,7 @@ const Layout: React.FunctionComponent<Props> = ({
           <Navbar />
         </header>
         <Main>{children}</Main>
-        <AppFooter preview={preview} />
+        <AppFooter />
         {/* </div> */}
       </StyledBody>
     </>

@@ -1,8 +1,7 @@
 // @ts-ignore
 import * as Prism from "prismjs";
 import { useEffect } from "react";
-import { InlineForm, useInlineForm } from "react-tinacms-inline";
-import { useMemo } from "react";
+import { InlineForm } from "react-tinacms-inline";
 import matter from "gray-matter";
 import { GetStaticProps } from "next";
 import Error from "next/error";
@@ -19,8 +18,7 @@ import Layout from "../../components/layout/Layout";
 import { usePlugin } from "tinacms";
 import { Post } from "../../interfaces";
 
-const InlineWrapper = ({ children, preview }: any) => {
-  const { deactivate, activate } = useInlineForm();
+const InlineWrapper = ({ children }: any) => {
   useEffect(() => {
     // doesn't work =(
     // const loadLanguages = require('prismjs/components/index');
@@ -29,10 +27,10 @@ const InlineWrapper = ({ children, preview }: any) => {
     Prism.highlightAll();
   });
 
-  function handleInlineEdit() {
-    preview ? activate() : deactivate();
-  }
-  useMemo(handleInlineEdit, [preview]);
+  // function handleInlineEdit() {
+  //   preview ? activate() : deactivate();
+  // }
+  // useMemo(handleInlineEdit, [preview]);
   return children;
 };
 
@@ -87,7 +85,6 @@ const BlogPage = (props: PageProps) => {
   return (
     <Layout
       title={data.frontmatter.title}
-      preview={props.preview}
       description={data.frontmatter.description}
     >
       <InlineForm form={form}>

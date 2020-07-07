@@ -8,7 +8,7 @@ export default () => {
   // get all the catagories
 
   return (
-    <Layout preview={false} title="Resources">
+    <Layout title="Resources">
       <div className="md:mx-32">
         {catagories.map((cat: any) => {
           return (

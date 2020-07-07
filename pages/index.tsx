@@ -10,13 +10,15 @@ import getPosts from "../utils/getPosts";
 import Layout from "../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
 import { GitFile } from "react-tinacms-github/dist/form/useGitFileSha";
+import Button from "../components/Buttons/Button";
+import { useCMS } from "tinacms";
 
 interface props {
   posts: Array<Post>;
-  preview: boolean;
   file: GitFile;
 }
-const IndexPage = ({ file, preview, posts }: props) => {
+const IndexPage = ({ file, posts }: props) => {
+  const cms = useCMS()
   const formOptions = {
     label: "Home Page",
     fields: [
@@ -30,7 +32,7 @@ const IndexPage = ({ file, preview, posts }: props) => {
   const [data] = useGithubJsonForm(file, formOptions);
 
   return (
-    <Layout title="Home" preview={preview}>
+    <Layout title="Home">
       <section className="py-12 px-4 text-center">
         <div className="w-full max-w-2xl mx-auto">
           <h2 className="text-5xl mt-2 mb-6 leading-tight font-heading">
@@ -54,6 +56,13 @@ const IndexPage = ({ file, preview, posts }: props) => {
           })}
         </div>
       </section>
+      <Button onClick={()=>{
+        try {
+          cms.api.github.delete('content/blog/deleteme.md')
+        } catch (e) {
+          console.error(e)
+        }
+      }}>this is a test</Button>
     </Layout>
   );
 };

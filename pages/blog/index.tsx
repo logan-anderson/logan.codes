@@ -64,13 +64,13 @@ interface BlogListProps {
   preview: boolean;
 }
 
-const BlogList = ({ posts, preview, tags }: BlogListProps) => {
+const BlogList = ({ posts, tags }: BlogListProps) => {
   useCreateBlogPage(posts);
   let [stateTags, setStateTags] = useState(tags);
   console.log(posts);
 
   return (
-    <Layout title="Blog" preview={preview}>
+    <Layout title="Blog">
       <Tags tags={stateTags} setTags={setStateTags} />
       {posts
         .filter((post) => {

@@ -13,6 +13,7 @@ export default class Site extends App {
      * 1. Create the TinaCMS instance
      */
     this.cms = new TinaCMS({
+      enabled: props.pageProps.preview,
       apis: {
         /**
          * 2. Register the GithubClient
@@ -29,12 +30,8 @@ export default class Site extends App {
        * 3. Hide the Sidebar & Toolbar
        *    unless we're in Preview/Edit Mode
        */
-      sidebar: {
-        hidden: !props.pageProps.preview,
-      },
-      toolbar: {
-        hidden: !props.pageProps.preview,
-      },
+      sidebar: props.pageProps.preview,
+      toolbar: props.pageProps.preview,
     });
   }
 
@@ -46,9 +43,8 @@ export default class Site extends App {
        */
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
-          editMode={pageProps.preview}
-          enterEditMode={enterEditMode}
-          exitEditMode={exitEditMode}
+          onLogin={onLogin}
+          onLogout={onLogout}
           error={pageProps.error}
         >
           <Head>
@@ -68,13 +64,12 @@ export default class Site extends App {
   }
 }
 
-const enterEditMode = () => {
-  const token = localStorage.getItem("tinacms-github-token") || null;
-
+const onLogin = () => {
+  const token = localStorage.getItem('tinacms-github-token') || null;
   const headers = new Headers();
 
   if (token) {
-    headers.append("Authorization", "Bearer " + token);
+    headers.append('Authorization', 'Bearer ' + token);
   }
 
   return fetch(`/api/preview`, { headers: headers }).then(() => {
@@ -82,7 +77,7 @@ const enterEditMode = () => {
   });
 };
 
-const exitEditMode = () => {
+const onLogout = () => {
   return fetch(`/api/reset-preview`).then(() => {
     window.location.reload();
   });
