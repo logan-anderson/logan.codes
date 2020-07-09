@@ -12,7 +12,6 @@ import BlogCard from "../components/BlogCard";
 import { GitFile } from "react-tinacms-github/dist/form/useGitFileSha";
 import Button from "../components/Buttons/Button";
 import { useCMS } from "tinacms";
-
 interface props {
   posts: Array<Post>;
   file: GitFile;
@@ -30,6 +29,7 @@ const IndexPage = ({ file, posts }: props) => {
     ],
   };
   const [data] = useGithubJsonForm(file, formOptions);
+
 
   return (
     <Layout title="Home">

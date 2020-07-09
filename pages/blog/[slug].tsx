@@ -14,9 +14,12 @@ import {
 import { InlineWysiwyg } from "react-tinacms-editor";
 import ReactMarkdown from "react-markdown";
 
+
 import Layout from "../../components/layout/Layout";
 import { usePlugin } from "tinacms";
 import { Post } from "../../interfaces";
+import {createMarkdownDeleteAction} from '../../components/DeleteActions'
+// import { createMarkdownDeleteAction } from "react-tinacms-github";
 
 const InlineWrapper = ({ children }: any) => {
   useEffect(() => {
@@ -43,8 +46,12 @@ const BlogPage = (props: PageProps) => {
   if (!props.file) {
     return <Error statusCode={404} />;
   }
+  const deleteAction = createMarkdownDeleteAction({
+    getTitle: (form)=>{return form.values.frontmatter.title},
+  })
   const formOptions = {
     label: "Edit doc page",
+    actions:[deleteAction],
     fields: [
       {
         name: "frontmatter.title",
