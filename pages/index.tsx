@@ -4,7 +4,7 @@ import {
   PreviewData,
 } from "next-tinacms-github";
 import { useGithubJsonForm } from "react-tinacms-github";
-
+import * as React from 'react'
 import { Post } from "../interfaces";
 import getPosts from "../utils/getPosts";
 import Layout from "../components/layout/Layout";
@@ -28,6 +28,17 @@ const IndexPage = ({ file, posts }: props) => {
       },
     ],
   };
+
+  // React.useEffect(() => {
+  //   cms.events.subscribe("git:commit", async function handleCommitAlerts(event) {
+  //     console.log('working ')
+  //     if (!event.response.ok) {
+  //       cms.alerts.error("Something went wrong! Changes weren't saved")
+  //     } else {
+  //       cms.alerts.info("Content saved successfully! yeet")
+  //     }
+  //   })
+  // }, [])
   const [data] = useGithubJsonForm(file, formOptions);
 
 
