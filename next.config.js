@@ -3,6 +3,7 @@ const withSvgr = require("next-svgr")
 require("dotenv").config()
 const tinaWebpackHelpers = require('@tinacms/webpack-helpers')
 
+const USE_TINA = false
 
 module.exports = withSvgr({
   target: 'serverless',
@@ -36,7 +37,7 @@ module.exports = withSvgr({
       };
     }
 
-    if (dev) {
+    if (dev && USE_TINA) {
       tinaWebpackHelpers.aliasTinaDev(config, '../../tina-official/tinacms')
     }
     return config

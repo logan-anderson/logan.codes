@@ -29,16 +29,16 @@ const IndexPage = ({ file, posts }: props) => {
     ],
   };
 
-  // React.useEffect(() => {
-  //   cms.events.subscribe("git:commit", async function handleCommitAlerts(event) {
-  //     console.log('working ')
-  //     if (!event.response.ok) {
-  //       cms.alerts.error("Something went wrong! Changes weren't saved")
-  //     } else {
-  //       cms.alerts.info("Content saved successfully! yeet")
-  //     }
-  //   })
-  // }, [])
+  React.useEffect(() => {
+    cms.events.subscribe("git:commit", async function handleCommitAlerts(event) {
+      console.log('working ')
+      if (!event.response.ok) {
+        cms.alerts.error("Something went wrong! Changes weren't saved")
+      } else {
+        cms.alerts.info("Content saved successfully! yeet")
+      }
+    })
+  }, [])
   const [data] = useGithubJsonForm(file, formOptions);
 
 

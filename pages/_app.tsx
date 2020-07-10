@@ -6,9 +6,6 @@ import "../styles/index.css";
 import "../styles/prism.css";
 export default class Site extends App {
   cms: TinaCMS;
-
-
-
   constructor(props: any) {
     super(props);
     /**
