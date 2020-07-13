@@ -1,19 +1,19 @@
 // const path = require("path")
-const withSvgr = require("next-svgr")
-require("dotenv").config()
-const tinaWebpackHelpers = require('@tinacms/webpack-helpers')
+const withSvgr = require("next-svgr");
+require("dotenv").config();
+const tinaWebpackHelpers = require("@tinacms/webpack-helpers");
 
-const USE_TINA = false
+const USE_TINA = true;
 
 module.exports = withSvgr({
-  target: 'serverless',
+  target: "serverless",
   experimental: {
     modern: true,
     rewrites() {
       return [
         {
-          source: '/feed.xml',
-          destination: '/_next/static/feed.xml'
+          source: "/feed.xml",
+          destination: "/_next/static/feed.xml",
         },
       ];
     },
@@ -21,26 +21,33 @@ module.exports = withSvgr({
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.node = {
       fs: "empty",
-    }
+    };
     config.module.rules.push({
       test: /\.md$/,
       use: "raw-loader",
-    })
+    });
 
     if (isServer && !dev) {
       const originalEntry = config.entry;
       config.entry = async () => {
         const entries = { ...(await originalEntry()) };
         // This script imports components from the Next app, so it's transpiled to `.next/server/scripts/build-rss.js`
-        entries['./scripts/generate-rss.js'] = './scripts/generate-rss.js';
+        entries["./scripts/generate-rss.js"] = "./scripts/generate-rss.js";
         return entries;
       };
     }
 
     if (dev && USE_TINA) {
-      tinaWebpackHelpers.aliasTinaDev(config, '../../tina-official/tinacms')
+      tinaWebpackHelpers.aliasTinaDev(config, "../../tina-official/tinacms");
     }
-    return config
+    config.devtool = dev ? "source-map" : "hidden-source-map";
+    for (const options of config.plugins) {
+      if (options["constructor"]["name"] === "UglifyJsPlugin") {
+        options.options.sourceMap = true;
+        break;
+      }
+    }
+    return config;
     // config.resolve.alias = {
     //   ...config.resolve.alias,
     //   "@components": path.resolve(__dirname, "./components"),
@@ -49,13 +56,11 @@ module.exports = withSvgr({
     //   "@hooks": path.resolve(__dirname, "./hooks"),
     // }
 
-    return config
+    return config;
   },
   env: {
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
     REPO_FULL_NAME: process.env.REPO_FULL_NAME,
     BASE_BRANCH: process.env.BASE_BRANCH,
   },
-})
-
-
+});

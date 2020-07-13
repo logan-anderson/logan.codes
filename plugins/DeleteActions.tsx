@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 import {
   ActionButton,
   useCMS,
@@ -8,16 +8,26 @@ import {
   ModalHeader,
   ModalBody,
   ModalActions,
-} from 'tinacms'
-import { Button } from '@tinacms/styles'
+} from "tinacms";
+import { Button } from "@tinacms/styles";
+
+// import {
+//   Modal,
+//   ModalPopup,
+//   ModalHeader,
+//   ModalBody,
+//   ModalActions,
+// } from "@tinacms/modals";
+// import { Form, ActionButton } from "@tinacms/react-forms";
+// import { useCMS } from "@tinacms/react-core";
 
 const getTitleDefault = (form: Form) => {
-  return form.name
-}
+  return form.name;
+};
 
 interface options {
-  getTitle?: (form: Form) => string
-  getFilePath?: (form: Form) => string
+  getTitle?: (form: Form) => string;
+  getFilePath?: (form: Form) => string;
 }
 
 export const createMarkdownDeleteAction = (
@@ -27,15 +37,16 @@ export const createMarkdownDeleteAction = (
   }
 ) => {
   const DeleteAction = ({ form }: { form: Form }) => {
-    const cms = useCMS()
-    const [active, setActive] = React.useState(false)
-    const open = () => setActive(true)
-    const close = () => setActive(false)
-    const title = getTitle!(form)
-    const filePath = getFilePath!(form)
+    const cms = useCMS();
+    const [active, setActive] = React.useState(false);
+    const open = () => setActive(true);
+    const close = () => setActive(false);
+    const title = getTitle!(form);
+    // const title = form.label;
+    const filePath = getFilePath!(form);
 
     return (
-      <div>
+      <React.Fragment>
         <ActionButton onClick={open}>{`Delete ${title}`}</ActionButton>
         {active && (
           <Modal>
@@ -48,15 +59,15 @@ export const createMarkdownDeleteAction = (
                 <Button
                   onClick={async () => {
                     try {
-                      close()
-                      await cms.api.github.delete!(filePath)
-                      await cms.alerts.info(`${filePath} was deleted`)
+                      close();
+                      await cms.api.github.delete!(filePath);
+                      await cms.alerts.info(`${filePath} was deleted`);
                     } catch (error) {
-                      close()
-                      cms.alerts.error(`Error in deleting ${filePath}`)
-                      console.error(error)
+                      close();
+                      cms.alerts.error(`Error in deleting ${filePath}`);
+                      console.error(error);
                     } finally {
-                      window.history.back()
+                      window.history.back();
                     }
                   }}
                 >
@@ -67,9 +78,9 @@ export const createMarkdownDeleteAction = (
             </ModalPopup>
           </Modal>
         )}
-      </div>
-    )
-  }
+      </React.Fragment>
+    );
+  };
 
-  return DeleteAction
-}
+  return DeleteAction;
+};

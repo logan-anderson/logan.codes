@@ -4,21 +4,23 @@ import {
   PreviewData,
 } from "next-tinacms-github";
 import { useGithubJsonForm } from "react-tinacms-github";
-import * as React from 'react'
+import * as React from "react";
 import { Post } from "../interfaces";
 import getPosts from "../utils/getPosts";
 import Layout from "../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
 import { GitFile } from "react-tinacms-github/dist/form/useGitFileSha";
 import Button from "../components/Buttons/Button";
-import { useCMS } from "tinacms";
+import { useCMS, usePlugin } from "tinacms";
+import lamaAction from "../plugins/lamba-plugin";
 interface props {
   posts: Array<Post>;
   file: GitFile;
 }
 const IndexPage = ({ file, posts }: props) => {
-  const cms = useCMS()
+  const cms = useCMS();
   const formOptions = {
+    // actions: [lamaAction],
     label: "Home Page",
     fields: [
       {
@@ -29,18 +31,7 @@ const IndexPage = ({ file, posts }: props) => {
     ],
   };
 
-  React.useEffect(() => {
-    cms.events.subscribe("git:commit", async function handleCommitAlerts(event) {
-      console.log('working ')
-      if (!event.response.ok) {
-        cms.alerts.error("Something went wrong! Changes weren't saved")
-      } else {
-        cms.alerts.info("Content saved successfully! yeet")
-      }
-    })
-  }, [])
-  const [data] = useGithubJsonForm(file, formOptions);
-
+  const [data, form] = useGithubJsonForm(file, formOptions);
 
   return (
     <Layout title="Home">
@@ -67,13 +58,17 @@ const IndexPage = ({ file, posts }: props) => {
           })}
         </div>
       </section>
-      <Button onClick={()=>{
-        try {
-          cms.api.github.delete('content/blog/deleteme.md')
-        } catch (e) {
-          console.error(e)
-        }
-      }}>this is a test</Button>
+      <Button
+        onClick={() => {
+          try {
+            cms.api.github.delete("content/blog/deleteme.md");
+          } catch (e) {
+            console.error(e);
+          }
+        }}
+      >
+        this is a test
+      </Button>
     </Layout>
   );
 };

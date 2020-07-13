@@ -16,8 +16,9 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "sourceMap": true
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "pages/blog/[slug].tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "pages/blog/[slug].tsx"],
 }

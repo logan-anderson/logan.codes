@@ -64,11 +64,11 @@ export default class Site extends App {
 }
 
 const onLogin = () => {
-  const token = localStorage.getItem('tinacms-github-token') || null;
+  const token = localStorage.getItem("tinacms-github-token") || null;
   const headers = new Headers();
 
   if (token) {
-    headers.append('Authorization', 'Bearer ' + token);
+    headers.append("Authorization", "Bearer " + token);
   }
 
   return fetch(`/api/preview`, { headers: headers }).then(() => {
