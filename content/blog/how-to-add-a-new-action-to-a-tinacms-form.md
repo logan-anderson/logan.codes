@@ -15,7 +15,7 @@ date: 'Mon Jul 13 2020 09:42:46 GMT-0300 (Atlantic Daylight Time)'
 
 In this post, I will be going over how to make a form of action in tinaCMS. In my case, I wanted to make an action so that I could delete blog posts from my website.
 
-A form action in TinaCMS is just a react component that loads with in the alt menu of the form.  See below.
+A form action in TinaCMS is just a react component that loads within the alt menu of the form.  See below.
 
 In my example I an using [open authoring with nextjs](asdf) and a GitHub backend. This blog is hosted on vercel and takes advantage of there [api serverless functions](asdf).
 
