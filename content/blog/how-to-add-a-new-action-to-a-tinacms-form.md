@@ -25,7 +25,7 @@ In my example I an using [open authoring with nextjs](asdf) and a GitHub backend
 
 Let's say we wanted a picture of a lama to show up in our actions (because who doesn't like lamas). This would be pretty simple let's just create a react component that contains an image of lamas.
 
-```ts
+```js
 import { Form } from  "tinacms";
 import  *  as  React  from  "react";
 
@@ -43,7 +43,7 @@ return (
 
 and then on our page we can do
 
-```ts
+```js
  const formOptions = {
     actions: [lamaAction],
     label: "Home Page",
@@ -70,7 +70,7 @@ Ok, let's get to make the `delete action`.
 
 First, we are going to use the tinaCMS buttons and modal to the skelton of our delete action.
 
-```ts
+```js
 import * as React from "react";
 import {
   ActionButton,
@@ -130,7 +130,7 @@ export default DeleteAction;
 
 in our blog post file, we can add this
 
-```ts
+```js
 import  DeleteAction  from  "../../plugins/delete-test";
 //...
  const formOptions = {
@@ -155,7 +155,7 @@ usePlugin(form);
 
 Next, we are going to get access to our tinaCMS client and call delete on it when the `yes` button is clicked.  To do this we are going to use a factory function to allow us to change the way we access the form title and path.
 
-```ts
+```js
 import * as React from "react";
 import {
   ActionButton,
@@ -233,7 +233,7 @@ export const createMarkdownDeleteAction = (
 };
 ```
 
-Since we are using a factory function our blog file will look slighty differnt.
+Since we are using a factory function our blog file will look slightly different.
 
 ```diff
 - import  DeleteAction  from  "../../plugins/delete-test";
