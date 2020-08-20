@@ -41,7 +41,7 @@ return (
 }
 ```
 
-and then on our page we can do
+and then on our page, we can do
 
 ```js
  const formOptions = {
@@ -59,7 +59,7 @@ const [data, form] = useGithubJsonForm(file, formOptions);
 usePlugin(form);
 ```
 
-:smile: look at that :fireworks:
+&#128512; look at that &#127881;
 ![](https://i.imgur.com/XFDv4vs.png)
 
 Note for other frameworks we may have to switch `useGithubJsonForm` to `useForm` or some else.
