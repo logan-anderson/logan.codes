@@ -11,7 +11,7 @@ frontmatter:
     - code
 date: 'Mon Jul 13 2020 09:42:46 GMT-0300 (Atlantic Daylight Time)'
 ---
-# how to make a form action
+# How to make a form action
 
 In this post, I will be going over how to make a form of action in tinaCMS. In my case, I wanted to make an action so that I could delete blog posts from my website.
 
@@ -60,7 +60,7 @@ usePlugin(form);
 ```
 
 :smile: look at that :fireworks:
-![](https://imgur.com/XFDv4vs)
+![](https://i.imgur.com/XFDv4vs.png)
 
 Note for other frameworks we may have to switch `useGithubJsonForm` to `useForm` or some else.
 
@@ -255,10 +255,12 @@ const [data, form] = useGithubMarkdownForm(props.file, formOptions);
 usePlugin(form);
 //...
 ```
-!()[https://imgur.com/CE7Q8me]
 
-Look at that! we just made a pretty cool action and it was pretty simple to do so! 
+![](https://i.imgur.com/CE7Q8me.png)
+
+Look at that! we just made a pretty cool action and it was pretty simple to do so!
 
 If this is interesting you should
-- [Checkout out tinacms](https://tinacms.org/)
-- [Checkout my other blog posts](https://logana.dev)
+
+* [Checkout out tinacms](https://tinacms.org/)
+* [Checkout my other blog posts](https://logana.dev)
