@@ -17,11 +17,11 @@ In this post, I will be going over how to make a form of action in tinaCMS. In m
 
 A form action in TinaCMS is just a react component that loads within the alt menu of the form.  See below.
 
-In my example I an using [open authoring with nextjs](asdf) and a GitHub backend. This blog is hosted on vercel and takes advantage of there [api serverless functions](asdf).
+In my example I an using [open authoring with nextjs](https://tinacms.org/guides/nextjs/github/initial-setup/) and a GitHub backend. This blog is hosted on vercel and takes advantage of there [api serverless functions](https://nextjs.org/docs/api-routes/introduction).
 
 ## A simple action
 
-> Notte: for my examples I will be using typescript. But everything should also work in javascript (just take out the types)
+> Note: for my examples, I will be using typescript. But everything should also work in javascript (just take out the types)
 
 Let's say we wanted a picture of a lama to show up in our actions (because who doesn't like lamas). This would be pretty simple let's just create a react component that contains an image of lamas.
 
@@ -60,7 +60,7 @@ usePlugin(form);
 ```
 
 :smile: look at that :fireworks:
-<link to img>
+![](https://imgur.com/XFDv4vs)
 
 Note for other frameworks we may have to switch `useGithubJsonForm` to `useForm` or some else.
 
@@ -128,7 +128,7 @@ const DeleteAction = ({ form }: { form: Form }) => {
 export default DeleteAction;
 ```
 
-in our blog post file, we can add this
+In our blog post file, we can add this
 
 ```js
 import  DeleteAction  from  "../../plugins/delete-test";
@@ -255,3 +255,10 @@ const [data, form] = useGithubMarkdownForm(props.file, formOptions);
 usePlugin(form);
 //...
 ```
+!()[https://imgur.com/CE7Q8me]
+
+Look at that! we just made a pretty cool action and it was pretty simple to do so! 
+
+If this is interesting you should
+- [Checkout out tinacms](https://tinacms.org/)
+- [Checkout my other blog posts](https://logana.dev)
