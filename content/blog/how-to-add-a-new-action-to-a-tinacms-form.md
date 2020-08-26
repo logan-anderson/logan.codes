@@ -13,7 +13,7 @@ date: 'Mon Jul 13 2020 09:42:46 GMT-0300 (Atlantic Daylight Time)'
 ---
 # How to make a form action
 
-In this post, I will be going over how to make a form of action in tinaCMS. In my case, I wanted to make an action so that I could delete blog posts from my website.
+In this post, I will be going over how to make a [form action](https://tinacms.org/docs/plugins/forms/#form-configuration) in tinaCMS. In my case, I want to make an action so that I could delete blog posts from my website.
 
 A form action in TinaCMS is just a react component that loads within the alt menu of the form.  See below.
 
@@ -23,7 +23,7 @@ In my example I an using [open authoring with nextjs](https://tinacms.org/guides
 
 > Note: for my examples, I will be using typescript. But everything should also work in javascript (just take out the types)
 
-Let's say we wanted a picture of a lama to show up in our actions (because who doesn't like lamas). This would be pretty simple let's just create a react component that contains an image of lamas.
+Let's say we wanted a picture of a lama to show up in our actions (because who doesn't like lamas). This would be pretty simple let's just create a react component that contains an image of a lama.
 
 ```js
 import { Form } from  "tinacms";
@@ -62,7 +62,7 @@ usePlugin(form);
 😀 look at that 🎉
 ![](https://i.imgur.com/XFDv4vs.png)
 
-Note for other frameworks we may have to switch `useGithubJsonForm` to `useForm` or some else.
+Note for other frameworks we may have to switch `useGithubJsonForm` to `useForm`. (`useGithubJsonForm` calls `useForm` internaly)
 
 ## Getting started
 
@@ -151,7 +151,7 @@ usePlugin(form);
 
 Now we have a popup and button, lets make it do something.
 
-Next, we are going to get access to our tinaCMS client and call delete on it when the `"yes" `button is clicked.  To do this we are going to use a factory function to allow us to change the way we access the form title and path.
+Next, we are going to get access to our tinaCMS client and call delete on it when the `"yes"`button is clicked.  To do this we are going to use a factory function to allow us to change the way we access the form title and path.
 
 ```js
 import * as React from "react";
