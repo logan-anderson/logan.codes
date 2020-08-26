@@ -59,7 +59,7 @@ const [data, form] = useGithubJsonForm(file, formOptions);
 usePlugin(form);
 ```
 
-&#128512; look at that &#127881;
+😀 look at that 🎉
 ![](https://i.imgur.com/XFDv4vs.png)
 
 Note for other frameworks we may have to switch `useGithubJsonForm` to `useForm` or some else.
@@ -149,11 +149,9 @@ usePlugin(form);
 //..
 ```
 
-(screenshot here)
+Now we have a popup and button, lets make it do something.
 
-:smile: now we have a popup and button next let make it do something.
-
-Next, we are going to get access to our tinaCMS client and call delete on it when the `yes` button is clicked.  To do this we are going to use a factory function to allow us to change the way we access the form title and path.
+Next, we are going to get access to our tinaCMS client and call delete on it when the `"yes" `button is clicked.  To do this we are going to use a factory function to allow us to change the way we access the form title and path.
 
 ```js
 import * as React from "react";
