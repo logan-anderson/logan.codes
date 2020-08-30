@@ -38,6 +38,7 @@ const IndexPage = ({ file, preview, posts }: props) => {
   const [data] = useGithubJsonForm(file, formOptions);
 
   useEffect(() => {
+    gsap.killTweensOf({});
     gsap.registerPlugin(TextPlugin);
     gsap.to(cursor, 0.7, {
       opacity: 0,
@@ -50,7 +51,12 @@ const IndexPage = ({ file, preview, posts }: props) => {
     words.forEach((word) => {
       const animationLen = word.length * 0.2;
       let tl = gsap.timeline();
-      tl.to(container, animationLen, { text: word, repeat: 1, yoyo: true });
+      tl.to(container, animationLen, {
+        text: word,
+        repeat: 1,
+        yoyo: true,
+        repeatDelay: 1.2,
+      });
       masterTL.add(tl);
     });
   }, []);
