@@ -2,6 +2,7 @@ import Link from "next/link";
 import NavItem from './NavItem'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+
 const navBar = () => {
   return (
     <nav className="flex flex-wrap items-top justify-between py-4 text-xl">
@@ -31,10 +32,12 @@ const navBar = () => {
       <div className="navbar-menu order-1 block w-1/3 text-left">
         <a
           href="https://logan.bio"
-          className="block inline-block mt-0 text-blue-900 hover:text-blue-700 no-label"
+          className="inline-block mt-0 text-blue-900 hover:text-blue-700 no-label"
         >
           More about me
-         </a>
+        </a>
+      </div>
+      <div className="navbar-menu order-3 block w-1/3 text-right">
         <NavItem name="Resources" link="/resources" />
       </div>
       <div className="navbar-menu  order-3 block w-1/3 text-right" >

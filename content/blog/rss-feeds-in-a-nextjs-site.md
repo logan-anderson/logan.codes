@@ -1,17 +1,16 @@
 ---
 title: RSS Feeds in a nextjs site
 author: Logan Anderson
-description: "How to add an RSS feed for blog posts into a nextjs site. Simple and easy. "
-date: "Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)"
+description: 'How to add an RSS feed for blog posts into a nextjs site. Simple and easy. '
+date: 'Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)'
 tags:
   - code
   - react
   - nextjs
 ---
-
 # Adding an RSS feed to a nextjs Site
 
-Recently, I took on the task of adding an **RSS feed to a nextjs site** (this site). After searching around google for a solution I quickly realized that all the solutions were outdated or not in dept. Frustrated, I noted that [nextjs.org](https://logana.dev) has an RSS feed so I looked around there code to see how they dogfood nextjs and more importantly how they added an RSS feed. I am posting my finding here to document them and to save others the Saturday morning I spent doing this.
+Recently, I took on the task of adding an **RSS feed to a nextjs site** (this site). After searching around Google for a solution I quickly realized that all the solutions were outdated or not in dept. Frustrated, I noted that [nextjs.org](https://logana.dev) has an RSS feed so I looked around there code to see how they dogfood nextjs and more importantly how they added an RSS feed. I am posting my finding here to document them and to save others the Saturday morning I spent doing this.
 
 ## The process
 
@@ -62,8 +61,8 @@ You will have to make your own function to get the blog posts and all of there m
 
 Notes:
 
-- the function is synchronous (it does not have to be though)
-- Write output to `./.next/static/feed.xml`
+* the function is synchronous (it does not have to be though)
+* Write output to `./.next/static/feed.xml`
 
 ### 2. Tell webpack about this file so it gets compiled
 
@@ -133,7 +132,7 @@ Finally, you need to update the build scripts so all of the goodness we just wro
 
 This will build the site and then run the generate the RSS feed.
 
-Now just run `yarn build` or `npm run build` and you should see the feed.xml. IF you run `yarn start` and go you localhost:3000/feed.xml you should see your RSS feed.
+Now just run `yarn build` or `npm run build` and you should see the feed.xml. If you run `yarn start` and go you localhost:3000/feed.xml you should see your RSS feed.
 
 If you prefer to just see the code you [**can see the PR for all of this code here**](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/pull/3). Feel free to leave a comment there if you run into an issue or [open a GitHub issue](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/issues/new).
 
