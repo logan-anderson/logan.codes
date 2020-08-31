@@ -1,10 +1,11 @@
 // @ts-ignore
 import * as Prism from "prismjs";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { InlineForm, useInlineForm } from "react-tinacms-inline";
 import { useMemo } from "react";
 import matter from "gray-matter";
 import { GetStaticProps } from "next";
+import Router from "next/router";
 import Error from "next/error";
 import { useGithubMarkdownForm } from "react-tinacms-github";
 import {
@@ -27,6 +28,15 @@ const InlineWrapper = ({ children, preview }: any) => {
     // console.log(loadLanguages)
     // loadLanguages(['ts']);
     Prism.highlightAll();
+  });
+  useLayoutEffect(() => {
+    Router.events.on("routeChangeComplete", () => {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    });
   });
 
   function handleInlineEdit() {
