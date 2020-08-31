@@ -1,20 +1,18 @@
 import Link from "next/link";
 
 interface PropTypes {
-    name?: string,
-    link: string,
-    children?: any,
+  name?: string;
+  link: string;
+  children?: any;
 }
 
-const NavItem = ( props : PropTypes) => { 
+const NavItem = (props: PropTypes) => {
   return (
-        <Link href={props.link}>
-          <a 
-          className="block inline-block mt-0 ml-3 text-blue-900 hover:text-blue-700 no-label"
-          >
-          {props.name || props.children}
-         </a>
-        </Link>
+    <Link href={props.link}>
+      <a className="inline-block ml-3 text-blue-900 hover:text-blue-700 no-label my-auto">
+        {props.name || props.children}
+      </a>
+    </Link>
   );
 };
 
