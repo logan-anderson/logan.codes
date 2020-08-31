@@ -1,5 +1,7 @@
 import Link from "next/link";
 import NavItem from './NavItem'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 const navBar = () => {
   return (
     <nav className="flex flex-wrap items-top justify-between py-4 text-xl">
@@ -42,21 +44,21 @@ const navBar = () => {
           className="block inline-block mt-0 ml-3 text-blue-900 hover:text-blue-700 no-label"
           target='_blank'
         >
-          <i className="fab fa-github"></i>
+          <FontAwesomeIcon icon={faGithub} />
         </a>
         <a
           href="https://twitter.com/logan_anders0n"
           className="block inline-block mt-0 ml-3 text-blue-900 hover:text-blue-700 no-label"
           target='_blank'
         >
-          <i className="fab fa-twitter"></i>
+         <FontAwesomeIcon icon={faTwitter} />
         </a>
         <a
           href="https://www.linkedin.com/in/logan-anderson-tech/"
           className="block inline-block mt-0 ml-3 text-blue-900 hover:text-blue-700 no-label"
           target='_blank'
         >
-          <i className="fab fa-linkedin-in"></i>
+         <FontAwesomeIcon icon={faLinkedin} />
         </a>
 
       </div>

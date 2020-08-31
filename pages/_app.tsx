@@ -60,7 +60,6 @@ export default class Site extends App {
               title="RSS for blog posts"
               href="https://logana.dev/feed.xml"
             />
-           <script src="https://kit.fontawesome.com/25d5ec8ed9.js" crossorigin="anonymous"></script>
           </Head>
           <Component {...pageProps} />
         </TinacmsGithubProvider>
