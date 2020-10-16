@@ -1,4 +1,4 @@
-import { useEffect, createRef, useState } from "react";
+import { useEffect, createRef } from "react";
 import { TextPlugin } from "gsap/dist/TextPlugin";
 import { gsap } from "gsap";
 import NavBar from "./layout/Navbar";
@@ -84,7 +84,7 @@ export const Hero: React.FC = () => {
             className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
             // src="/img/IMG_1106.jpeg"
             src="/img/IMG_0882_E.jpg"
-            alt
+            alt="A picture of logan anderson"
           />
         </div>
       </div>

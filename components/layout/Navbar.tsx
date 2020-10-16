@@ -1,5 +1,4 @@
 import Link from "next/link";
-import NavItem from "./NavItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
