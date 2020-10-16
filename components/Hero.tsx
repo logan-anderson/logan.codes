@@ -71,9 +71,13 @@ export const Hero: React.FC = () => {
                   </span>
                 </h2>
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure
-                  qui lorem cupidatat commodo. Elit sunt amet fugiat veniam
-                  occaecat fugiat aliqua.
+                  Logan Anderson is a part-time web developer and full-time
+                  student completing a double major in Computer Science and
+                  Math. He's passionate about computer science and learning. His
+                  main interests include full-stack development, machine
+                  learning, Linux, and competitive programming. He loves to
+                  learn and is always trying to expand his knowledge base by
+                  reading and completing courses online and at school
                 </p>
               </div>
             </main>
