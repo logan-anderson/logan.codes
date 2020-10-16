@@ -11,6 +11,7 @@ type Props = {
   preview: boolean;
   title?: string;
   description?: string;
+  navDisable?: boolean;
 };
 
 const StyledBody = styled.div`
@@ -20,6 +21,7 @@ const StyledBody = styled.div`
 `;
 const Main = styled.main`
   flex: 1;
+  margin-top: 20px;
 `;
 
 const Layout: React.FunctionComponent<Props> = ({
@@ -27,12 +29,13 @@ const Layout: React.FunctionComponent<Props> = ({
   title,
   preview,
   description,
+  navDisable,
 }) => {
   useGithubToolbarPlugins();
   const router = useRouter();
 
   return (
-    <>
+    <html className="bg-white">
       <DefaultSeo
         openGraph={{
           url: "https://logana.dev" + router.asPath,
@@ -44,15 +47,15 @@ const Layout: React.FunctionComponent<Props> = ({
         }
       />
       <StyledBody className="bg-body text-body font-body container mx-auto px-3 sm:px-4">
-        {/* <div className="bg-body text-body font-body container mx-auto px-4"> */}
-        <header>
-          <Navbar />
-        </header>
+        {!navDisable && (
+          <header>
+            <Navbar />
+          </header>
+        )}
         <Main>{children}</Main>
         <AppFooter preview={preview} />
-        {/* </div> */}
       </StyledBody>
-    </>
+    </html>
   );
 };
 
