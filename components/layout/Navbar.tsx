@@ -89,11 +89,7 @@ const NavBar = () => {
                 Resources
               </a>
             </Link>
-            <AppIcon
-              disableMargin={true}
-              icon={faGithub}
-              link="https://github.com/logan-anderson"
-            />
+            <AppIcon icon={faGithub} link="https://github.com/logan-anderson" />
             <AppIcon
               icon={faTwitter}
               link="https://twitter.com/logan_anders0n"
@@ -193,10 +189,11 @@ export const MobileNav: React.FC<NavProps> = ({
                 </a>
                 <MobileMenuItem title="All Posts" href="/blog" />
                 <MobileMenuItem title="Resources" href="/resources" />
-                <div>
+                <div className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
                   <AppIcon
                     icon={faGithub}
                     link="https://github.com/logan-anderson"
+                    disableMargin
                   />
                   <AppIcon
                     icon={faTwitter}
