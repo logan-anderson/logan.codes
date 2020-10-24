@@ -20,7 +20,7 @@ I am currently in my fourth year of completing a double major in math and comput
 
 ## What a math degree offers
 
-In a math degree, you will start off by learning calculus, linear algebra, and other algorithmic-based learning. As you progress most of the math becomes [proof-based](https://en.wikipedia.org/wiki/Mathematical_proof). Generally, you are given a set of axioms (true statements) and using those you have to make a proof to show someone proposition to be true. This forces you to think outside the box as no two problems are the same you can't just apply an algorithm to solve your problem. Some of these courses are [real analysis](https://en.wikipedia.org/wiki/Real_analysis), [group theory](https://en.wikipedia.org/wiki/Group_theory) and [measure theory](https://en.wikipedia.org/wiki/Measure_(mathematics)).
+In a math degree, you will start off by learning calculus, linear algebra, and other algorithmic-based learning. As you progress most of the math becomes [proof-based](https://en.wikipedia.org/wiki/Mathematical_proof). Generally, you are given a set of axioms (true statements) and using those you have to make some proof some proposition to be true. This forces you to think outside the box as no to problems are you can't just apply an algorithm to solve your problem. Some of these courses are [real analysis](https://en.wikipedia.org/wiki/Real_analysis), [group theory](https://en.wikipedia.org/wiki/Group_theory) and [measure theory](https://en.wikipedia.org/wiki/Measure_(mathematics)).
 
 ## Will you use what you have learned
 
