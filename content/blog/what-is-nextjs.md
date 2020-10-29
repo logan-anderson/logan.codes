@@ -10,3 +10,12 @@ tags:
   - nextjs
   - code
 ---
+# What is Next.js?
+
+## Static site generation
+
+## Server side rendering
+
+## API routes
+
+## Final thoughts
