@@ -1,8 +1,17 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: ['./components/**/*.ts*', './pages/**/*.ts*'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
+
   variants: {},
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/ui'),
+  ]
 }
