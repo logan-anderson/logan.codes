@@ -75,7 +75,6 @@ export default async (
       };
     })
   );
-  // console.log(tags);
   return {
     posts,
     tags,

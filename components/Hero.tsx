@@ -48,25 +48,27 @@ export const Hero: React.FC = () => {
             <main className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
               <div className="sm:text-center lg:text-left">
                 <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-                  A simple blog about{"     "}
+                  Hi 👋 Im Logan! {"     "}
                   <br />
-                  <span className="text-blue-600">
-                    <span
-                      className={
-                        "text-5xl mt-2 mb-6 leading-tight font-heading"
-                      }
-                      ref={(div) => {
-                        // @ts-ignore
-                        if (div) container = div;
-                      }}
-                    />
-                    <span
-                      ref={(span) => {
-                        // @ts-ignore
-                        if (span) cursor = span;
-                      }}
-                    >
-                      _
+                  <span
+                    className={"text-5xl mt-2 mb-6 leading-tight font-heading"}
+                  >
+                    I enjoy {"  "}
+                    <span className="text-blue-600">
+                      <span
+                        ref={(div) => {
+                          // @ts-ignore
+                          if (div) container = div;
+                        }}
+                      />
+                      <span
+                        ref={(span) => {
+                          // @ts-ignore
+                          if (span) cursor = span;
+                        }}
+                      >
+                        _
+                      </span>
                     </span>
                   </span>
                 </h2>
