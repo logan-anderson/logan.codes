@@ -7,6 +7,7 @@ import useCreateBlogPage from "../../hooks/useCreateBlogPage";
 import { Post, Tag } from "../../interfaces";
 import Button from "../../components/Buttons/ToggleButton";
 import { useState } from "react";
+import { BreadCrumb } from "../../components/BreadCrumb";
 
 const Tags = ({
   tags,
@@ -67,10 +68,10 @@ interface BlogListProps {
 const BlogList = ({ posts, preview, tags }: BlogListProps) => {
   useCreateBlogPage(posts);
   let [stateTags, setStateTags] = useState(tags);
-  console.log(posts);
 
   return (
     <Layout title="Blog" preview={preview}>
+      <BreadCrumb links={[{ label: "Blog", href: "/blog" }]} />
       <Tags tags={stateTags} setTags={setStateTags} />
       {posts
         .filter((post) => {

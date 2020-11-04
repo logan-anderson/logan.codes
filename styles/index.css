@@ -15,15 +15,18 @@ h3 {
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-ul li {
+/* ul li {
   @apply list-disc ml-5;
 }
+
 ol li {
   @apply list-decimal ml-5;
-}
+} */
+
 .color-primary {
   @apply text-indigo-500;
 }
+
 /* a {
   @apply color-primary underline;
 } */
@@ -40,9 +43,11 @@ strong {
   @apply font-bold color-primary;
 }
 
+
 .icon {
   @apply inline;
 }
+
 .icon-lg {
   @apply icon;
   width: 2.1rem;

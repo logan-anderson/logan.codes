@@ -1,6 +1,7 @@
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // @ts-ignore
-import * as Prism from "prismjs";
-import { useEffect } from "react";
+import { okaidia as Theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
 import { InlineForm, useInlineForm } from "react-tinacms-inline";
 import { useMemo } from "react";
 import matter from "gray-matter";
@@ -18,17 +19,10 @@ import ReactMarkdown from "react-markdown";
 import Layout from "../../components/layout/Layout";
 import { usePlugin } from "tinacms";
 import { Post } from "../../interfaces";
+import { BreadCrumb } from "../../components/BreadCrumb";
 
 const InlineWrapper = ({ children, preview }: any) => {
   const { deactivate, activate } = useInlineForm();
-  useEffect(() => {
-    // doesn't work =(
-    // const loadLanguages = require('prismjs/components/index');
-    // console.log(loadLanguages)
-    // loadLanguages(['ts']);
-    Prism.highlightAll();
-  });
-
   function handleInlineEdit() {
     preview ? activate() : deactivate();
   }
@@ -90,13 +84,160 @@ const BlogPage = (props: PageProps) => {
       preview={props.preview}
       description={data.frontmatter.description}
     >
-      <InlineForm form={form}>
-        <InlineWrapper preview={props.preview}>
-          <InlineWysiwyg name="markdownBody">
-            <ReactMarkdown source={data.markdownBody} />
-          </InlineWysiwyg>
-        </InlineWrapper>
-      </InlineForm>
+      <BreadCrumb
+        links={[
+          { label: "Blog", href: "/blog" },
+          {
+            label: data.frontmatter.title,
+          },
+        ]}
+      />
+      <div className="relative py-16 bg-white overflow-hidden">
+        <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
+          <div className="relative h-full text-lg max-w-prose mx-auto">
+            <svg
+              className="absolute top-12 left-full transform translate-x-32"
+              width={404}
+              height={384}
+              fill="none"
+              viewBox="0 0 404 384"
+            >
+              <defs>
+                <pattern
+                  id="74b3fd99-0a6f-4271-bef2-e80eeafdf357"
+                  x={0}
+                  y={0}
+                  width={20}
+                  height={20}
+                  patternUnits="userSpaceOnUse"
+                >
+                  <rect
+                    x={0}
+                    y={0}
+                    width={4}
+                    height={4}
+                    className="text-gray-200"
+                    fill="currentColor"
+                  />
+                </pattern>
+              </defs>
+              <rect
+                width={404}
+                height={384}
+                fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)"
+              />
+            </svg>
+            <svg
+              className="absolute top-1/2 right-full transform -translate-y-1/2 -translate-x-32"
+              width={404}
+              height={384}
+              fill="none"
+              viewBox="0 0 404 384"
+            >
+              <defs>
+                <pattern
+                  id="f210dbf6-a58d-4871-961e-36d5016a0f49"
+                  x={0}
+                  y={0}
+                  width={20}
+                  height={20}
+                  patternUnits="userSpaceOnUse"
+                >
+                  <rect
+                    x={0}
+                    y={0}
+                    width={4}
+                    height={4}
+                    className="text-gray-200"
+                    fill="currentColor"
+                  />
+                </pattern>
+              </defs>
+              <rect
+                width={404}
+                height={384}
+                fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)"
+              />
+            </svg>
+            <svg
+              className="absolute bottom-12 left-full transform translate-x-32"
+              width={404}
+              height={384}
+              fill="none"
+              viewBox="0 0 404 384"
+            >
+              <defs>
+                <pattern
+                  id="d3eb07ae-5182-43e6-857d-35c643af9034"
+                  x={0}
+                  y={0}
+                  width={20}
+                  height={20}
+                  patternUnits="userSpaceOnUse"
+                >
+                  <rect
+                    x={0}
+                    y={0}
+                    width={4}
+                    height={4}
+                    className="text-gray-200"
+                    fill="currentColor"
+                  />
+                </pattern>
+              </defs>
+              <rect
+                width={404}
+                height={384}
+                fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)"
+              />
+            </svg>
+          </div>
+        </div>
+        <div className="relative px-4 sm:px-6 lg:px-8">
+          <div className="prose prose-lg text-lg max-w-prose mx-auto mb-6">
+            <InlineForm form={form}>
+              <InlineWrapper preview={props.preview}>
+                <InlineWysiwyg name="markdownBody">
+                  <ReactMarkdown
+                    renderers={{
+                      heading: ({ children, level }) => {
+                        if (level === 1) {
+                          return (
+                            <h1 className="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 ">
+                              {children}
+                            </h1>
+                          );
+                        } else {
+                          return (
+                            <h2 className="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 ">
+                              {children}
+                            </h2>
+                          );
+                        }
+                      },
+                      paragraph: ({ children }) => {
+                        return (
+                          <p className="text-gray-500 mx-auto">{children}</p>
+                        );
+                      },
+                      code: ({ language, value }) => {
+                        return (
+                          <SyntaxHighlighter
+                            style={Theme}
+                            language={language}
+                            children={value}
+                          />
+                        );
+                      },
+                    }}
+                    source={data.markdownBody}
+                  />
+                </InlineWysiwyg>
+              </InlineWrapper>
+            </InlineForm>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };

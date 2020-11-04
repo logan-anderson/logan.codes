@@ -3,19 +3,20 @@ title: How to add a new action to a tinaCMS form
 author: Logan Anderson
 description: >-
   How to add a new action to a tinaCMS form. This brief tutorial will show you
-  how to make a new action specifically,  a delete action. 
+  how to make a new action specifically,  a delete action.
 frontmatter:
   tags:
     - nextjs
     - tinaCMS
     - code
-date: 'Mon Jul 13 2020 09:42:46 GMT-0300 (Atlantic Daylight Time)'
+date: "Mon Jul 13 2020 09:42:46 GMT-0300 (Atlantic Daylight Time)"
 ---
+
 # How to make a form action
 
 In this post, I will be going over how to make a [form action](https://tinacms.org/docs/plugins/forms/#form-configuration) in tinaCMS. In my case, I want to make an action so that I could delete blog posts from my website.
 
-A form action in TinaCMS is just a react component that loads within the alt menu of the form.  See below.
+A form action in TinaCMS is just a react component that loads within the alt menu of the form. See below.
 
 In my example I an using [open authoring with nextjs](https://tinacms.org/guides/nextjs/github/initial-setup/) and a GitHub backend. This blog is hosted on vercel and takes advantage of there [api serverless functions](https://nextjs.org/docs/api-routes/introduction).
 
@@ -25,36 +26,37 @@ In my example I an using [open authoring with nextjs](https://tinacms.org/guides
 
 Let's say we wanted a picture of a lama to show up in our actions (because who doesn't like lamas). This would be pretty simple let's just create a react component that contains an image of a lama.
 
-```js
-import { Form } from  "tinacms";
-import  *  as  React  from  "react";
+```tsx
+import { Form } from "tinacms";
+import * as React from "react";
 
-export  default  function  Lama({ form }: { form: Form }) {
-return (
-	<img
-		crossOrigin="anonymous"
-		src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Llama_lying_down.jp	g/1024px-Llama_lying_down.jpg"
-		alt="Llama lying down.jpg"
-		width="836"
-		height="559"
-	/>);
+export default function Lama({ form }: { form: Form }) {
+  return (
+    <img
+      crossOrigin="anonymous"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Llama_lying_down.jp	g/1024px-Llama_lying_down.jpg"
+      alt="Llama lying down.jpg"
+      width="836"
+      height="559"
+    />
+  );
 }
 ```
 
 and then on our page, we can do
 
 ```js
- const formOptions = {
-    actions: [lamaAction],
-    label: "Home Page",
-    fields: [
-      {
-        label: "Subtitle",
-        name: "posts_title",
-        component: "text",
-      },
-    ],
-  };
+const formOptions = {
+  actions: [lamaAction],
+  label: "Home Page",
+  fields: [
+    {
+      label: "Subtitle",
+      name: "posts_title",
+      component: "text",
+    },
+  ],
+};
 const [data, form] = useGithubJsonForm(file, formOptions);
 usePlugin(form);
 ```
@@ -70,7 +72,7 @@ Ok, let's get to make the `delete action`.
 
 First, we are going to use the tinaCMS buttons and modal to the skelton of our delete action.
 
-```js
+```tsx
 import * as React from "react";
 import {
   ActionButton,
@@ -151,9 +153,9 @@ usePlugin(form);
 
 Now we have a popup and button, lets make it do something.
 
-Next, we are going to get access to our tinaCMS client and call delete on it when the `"yes"`button is clicked.  To do this we are going to use a factory function to allow us to change the way we access the form title and path.
+Next, we are going to get access to our tinaCMS client and call delete on it when the `"yes"`button is clicked. To do this we are going to use a factory function to allow us to change the way we access the form title and path.
 
-```js
+```tsx
 import * as React from "react";
 import {
   ActionButton,
@@ -260,5 +262,5 @@ Look at that! we just made a pretty cool action and it was pretty simple to do s
 
 If this is interesting you should
 
-* [Checkout out tinacms](https://tinacms.org/)
-* [Checkout my other blog posts](https://logana.dev)
+- [Checkout out tinacms](https://tinacms.org/)
+- [Checkout my other blog posts](https://logana.dev)
