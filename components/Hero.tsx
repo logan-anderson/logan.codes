@@ -2,6 +2,7 @@ import { useEffect, createRef } from "react";
 import { TextPlugin } from "gsap/dist/TextPlugin";
 import { gsap } from "gsap";
 import NavBar from "./layout/Navbar";
+import Image from "next/image";
 
 export const Hero: React.FC = () => {
   const words = ["Coding", "Coffee", "Math", "Frontend dev", "Backend dev"];
@@ -86,11 +87,12 @@ export const Hero: React.FC = () => {
           </div>
         </div>
         <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <img
+          <Image
             className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
             // src="/img/IMG_1106.jpeg"
             src="/img/IMG_0882_E.jpg"
             alt="A picture of logan anderson"
+            layout="fill"
           />
         </div>
       </div>
