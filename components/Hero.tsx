@@ -92,9 +92,7 @@ export const Hero: React.FC = () => {
             // src="/img/IMG_1106.jpeg"
             src="/img/IMG_0882_E.jpg"
             alt="A picture of logan anderson"
-            layout="responsive"
-            width={500}
-            height={500}
+            layout="fill"
           />
         </div>
       </div>
