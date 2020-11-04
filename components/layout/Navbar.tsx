@@ -26,7 +26,7 @@ const AppIcon: React.FC<{
       } text-blue-900 hover:text-blue-700 no-label transition duration-150 ease-in-out`}
       target="_blank"
     >
-      <FontAwesomeIcon width="25px" icon={props.icon} />
+      <FontAwesomeIcon size="lg" icon={props.icon} />
     </a>
   );
 };
