@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-export default (props: {
+const ToggleButton = (props: {
   active: Boolean;
   children: any;
   clickAction(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
@@ -13,10 +13,10 @@ export default (props: {
       }}
       onClick={props.clickAction}
       className={classNames(
-        "py-2 px-4 m-2 border border-indigo-500 rounded-full",
+        "py-2 px-4 m-2 border border-blue-500 rounded-full",
         {
-          "bg-transparent text-indigo-700": !props.active,
-          "bg-indigo-500 text-white": props.active,
+          "bg-transparent text-blue-700": !props.active,
+          "bg-blue-500 text-white": props.active,
         }
       )}
     >
@@ -24,3 +24,5 @@ export default (props: {
     </button>
   );
 };
+
+export default ToggleButton;

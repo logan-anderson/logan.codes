@@ -29,7 +29,7 @@ const Tags = ({
     <>
       <h4>Filter by tags:</h4>
       <div className="tags">
-        {result.map((tag: Tag) => {
+        {result?.map((tag: Tag) => {
           return (
             <span key={tag.name}>
               <Button

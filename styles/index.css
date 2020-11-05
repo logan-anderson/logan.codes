@@ -24,7 +24,7 @@ ol li {
 } */
 
 .color-primary {
-  @apply text-indigo-500;
+  @apply text-blue-500;
 }
 
 /* a {

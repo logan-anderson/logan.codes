@@ -13,10 +13,10 @@ export default class Button extends React.Component<
       <button
         {...this.props}
         className={classNames(
-          "hover:bg-indigo-500 hover:text-white py-2 px-4 m-2 border border-indigo-500 hover:border-transparent rounded-full",
+          "hover:bg-blue-500 hover:text-white py-2 px-4 m-2 border border-blue-500 hover:border-transparent rounded-full",
           {
-            "bg-transparent text-indigo-700": !Boolean(this.props.selected),
-            "bg-indigo-500 text-white": Boolean(this.props.selected),
+            "bg-transparent text-blue-700": !Boolean(this.props.selected),
+            "bg-blue-500 text-white": Boolean(this.props.selected),
           }
         )}
       >

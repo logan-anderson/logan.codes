@@ -26,7 +26,7 @@ export default async (
     : await getLocalFiles(contentDir);
   let tags: Tag[] = [];
   const posts: Array<Post> = await Promise.all(
-    files.map(async (file: string) => {
+    files?.map(async (file: string) => {
       if (preview) {
         const previewProps = await getGithubPreviewProps({
           ...previewData,
