@@ -12,9 +12,15 @@ tags:
 ---
 # What is Next.js?
 
+Next.js (or next or nextjs however you choose to say it) is a popular react meta-framework In the past few months, nextjs has sky-rocketed in popularity. Don't believe me just check out the npm downloads.  👇
+
+![nextjs npm downloads](https://i.imgur.com/YkIYzgy.png "Next cpm downloads")
+
+It has received overwhelming growth since 2020.  Now let's get into some of the features and why someone might use this over running tradition client-side react in the browser. 
+
 ## Static site generation
 
-## Server side rendering
+## Server-side rendering
 
 ## API routes
 
