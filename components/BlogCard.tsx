@@ -59,7 +59,7 @@ const BlogCardNew = ({ post }: Props) => {
               </p>
               <div className="flex text-sm leading-5 text-gray-500">
                 <time dateTime={post.data.frontmatter.date}>
-                  {post.data.frontmatter.date}
+                  {new Date(post.data.frontmatter.date).toDateString()}
                 </time>
                 <span className="mx-1">·</span>
                 <span>6 min read</span>

@@ -75,6 +75,11 @@ export default async (
       };
     })
   );
+  posts.sort((a, b) => {
+    const data1 = new Date(a.data.frontmatter.date);
+    const data2 = new Date(b.data.frontmatter.date);
+    return data2.getTime() - data1.getTime();
+  });
   return {
     posts,
     tags,
