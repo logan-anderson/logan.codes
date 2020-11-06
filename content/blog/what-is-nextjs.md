@@ -18,7 +18,7 @@ Next.js (or next or nextjs however you choose to say it) is a popular meta-frame
 
 It has received overwhelming growth since 2020.  Now let's get into some of the features and why someone might use this over running traditional client-side react in the browser.
 
-_**Note: This blog post is meant for folks who are already familiar with react and javascript. If you are not I would suggest you read up on those before tacking nextjs.**_
+_**Note: This blog post is meant for folks who are already familiar with react and javascript. If you are not I would suggest you read up on those before tacking nextjs. Further, the goal of this article is not to teach you nextjs but to give one an understanding of what it is.**_
 
 ## Static site generation
 
@@ -54,8 +54,7 @@ const BlogPage = ({posts})=>{
 }
 ```
 
-**Note:** this happens server-side at build time. Nextjs also code splits all of this code out so it will never be sent to the client. Because of this, we can use secrets (API keys, database passwords, etc) in `getStaticProps` or `getSevereSideProps` and it will remain secret and safe. 
-
+**Note:** this happens server-side at build time. Nextjs also code splits all of this code out so it will never be sent to the client. Because of this, we can use secrets (API keys, database passwords, etc) in `getStaticProps` or `getSevereSideProps` and it will remain secret and safe.
 
 ## API routes
 
