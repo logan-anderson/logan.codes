@@ -1,7 +1,7 @@
 ---
 title: What is Markdown
 description: Learn more about Markdown and what it is
-date: 'Sunday, May 31st, 2020'
+date: '2020-05-31T00:00:00Z'
 author: Logan Anderson
 tags:
   - markdown
