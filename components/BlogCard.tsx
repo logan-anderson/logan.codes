@@ -45,7 +45,7 @@ const BlogCardNew = ({ post }: Props) => {
                   className="h-10 w-10 rounded-full"
                   // src="/img/IMG_1106.jpeg"
                   // src="/img/IMG_0882_E.jpg"
-                  src="/img/IMG_0882_E (croped).jpg"
+                  src="/img/smaller_img_logan.jpg"
                   alt="A picture of logan anderson"
                 />
               </a>
