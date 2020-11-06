@@ -35,6 +35,28 @@ Nexjs will render all of your pages and generate the HTML for them. (It does so 
 
 ## Server-side rendering
 
+Server-side rendering is the same thing as static site generation but instead of happing at build time it happening at request time. Nextjs provides a hybrid approach and allows one to choose if they want server-side rendering or static site generation. This is done by the use of `getStaticProps` and `getServerSideProps`. Let's say you have a blog and you want to statically render all your blog pages. Ito would it look something like this.
+
+```js
+export async function getStaticProps(context) {
+  const posts = await getPosts()
+  return {
+    props: {posts: posts}, // will be passed to the page component as props
+  }
+}
+```
+
+Now in our page react components we can use the posts.
+
+```js
+const BlogPage = ({posts})=>{
+// use posts
+}
+```
+
+**Note:** this happens server-side at build time. Nextjs also code splits all of this code out so it will never be sent to the client. Because of this, we can use secrets (API keys, database passwords, etc) in `getStaticProps` or `getSevereSideProps` and it will remain secret and safe. 
+
+
 ## API routes
 
 ## Final thoughts
