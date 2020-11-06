@@ -1,6 +1,9 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // @ts-ignore
-import { okaidia as Theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import {
+  okaidia as Theme,
+  prism,
+} from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 import { InlineForm, useInlineForm } from "react-tinacms-inline";
 import { useMemo } from "react";

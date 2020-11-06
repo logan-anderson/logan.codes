@@ -90,7 +90,8 @@ export const Hero: React.FC = () => {
           <Image
             className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
             // src="/img/IMG_1106.jpeg"
-            src="/img/IMG_0882_E.jpg"
+            // src="/img/IMG_0882_E.jpg"
+            src="/img/smaller_img_logan.jpg"
             alt="A picture of logan anderson"
             layout="fill"
           />
