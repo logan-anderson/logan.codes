@@ -58,4 +58,18 @@ const BlogPage = ({posts})=>{
 
 ## API routes
 
+API routes allow one to make an API in their nextjs applications. The API route is generated from the filesystem so for example if we made a new file called `pages/api/new-route` that looks like.
+
+```js
+export default function handler(req, res) {
+  res.statusCode = 200
+  res.setHeader('Content-Type', 'application/json')
+  res.json({food: ['pizza', 'rice', 'salad']})
+}
+```
+
+Now we can make requests to `/api/new-route`. The cool thing is these can be deployed as a standalone server or as serverless functions.
+
 ## Final thoughts
+
+We have seen some of the basic features of nextjs but there are many more like typescript support or Incremental Static Regeneration. Overall I nextjs is a greater choice for a static site renderer for React.
