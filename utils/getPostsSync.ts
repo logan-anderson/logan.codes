@@ -1,8 +1,8 @@
 import { Post } from "../interfaces";
-import matter from "gray-matter";
+const matter = require("gray-matter");
 const fs = require("fs");
 
-export default (): Post[] => {
+module.exports = (): Post[] => {
   const contentDir = "content/blog";
   const files = getLocalFiles(contentDir);
   const posts: Array<Post> = files.map((file: string) => {
