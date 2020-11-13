@@ -16,14 +16,16 @@ Recently, I took on the task of adding an **RSS feed to a nextjs site** (this si
 
 ### 1. Make a function to generate the RSS feed
 
-If you want to read over the [RSS standards](https://en.wikipedia.org/wiki/RSS) and generate everything your self Feel free! Personally, I used the [RSS npm package](https://www.npmjs.com/package/rss) to help me deal with the details of an RSS feed. You can install this package with `yarn add rss` or `npm i --save rss`. In my case, the function looked like this.
+If you want to read over the [RSS standards](https://en.wikipedia.org/wiki/RSS) and generate everything your self Feel free! Personally, I used the [RSS npm package](https://www.npmjs.com/package/rss) to help me deal with the details of an RSS feed. You can install this package with `yarn add rss` or `npm i --save rss`. In my case, the function looked like this. We are also going to use ts-node to run this script (you could also just use node and ignore the types). So in my case I will add this packaged by running `yarn add --dev ts-node`
 
 ```typescript
-import fs from "fs";
-import RSS from "rss";
-import getPostsSync from "../utils/getPostsSync";
+import { Post } from "../interfaces";
 
-function dateSortDesc(a, b) {
+const fs = require("fs");
+const RSS = require("rss");
+const getPostsSync = require("../utils/getPostsSync");
+
+function dateSortDesc(a: any, b: any) {
   const date1 = new Date(a.data.frontmatter.date);
   const date2 = new Date(b.data.frontmatter.date);
   if (date1 > date2) return -1;
@@ -32,14 +34,14 @@ function dateSortDesc(a, b) {
 }
 
 function generate() {
-  const previewItems = getPostsSync(false, null, "content/blog");
+  const previewItems = getPostsSync();
   const feed = new RSS({
     title: "Logan's blog",
     site_url: "https://logana.dev",
     feed_url: "https://logana.dev/feed.xml",
   });
 
-  previewItems.sort(dateSortDesc).map((post) => {
+  previewItems.sort(dateSortDesc).map((post: Post) => {
     feed.item({
       title: post.data.frontmatter.title,
       guid: post.fileName,
@@ -51,89 +53,41 @@ function generate() {
   });
 
   const rss = feed.xml({ indent: true });
-  fs.writeFileSync("./.next/static/feed.xml", rss);
+  fs.writeFileSync("./public/feed.xml", rss);
 }
 
 generate();
 ```
 
-You will have to make your own function to get the blog posts and all of there metadata. (It will be different or every use case) You can take a look at the one I [used for this blog](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/blob/master/utils/getPostsSync.ts) as an example.
+You will have to make your own function to get the blog posts and all of their metadata. (It will be different or every use case) You can take a look at the one I [used for this blog](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/blob/master/utils/getPostsSync.ts) as an example.
 
 Notes:
 
 * the function is synchronous (it does not have to be though)
-* Write output to `./.next/static/feed.xml`
+* Write output to `./public/feed.xml` 
 
-### 2. Tell webpack about this file so it gets compiled
+### 
 
-This is pretty simple. We just have to change our `next.config.js` to include this.
-
-```js
-module.exports = {
-  //...
-  webpack: (config, { isServer, dev }) => {
-    //...
-    if (isServer && !dev) {
-      const originalEntry = config.entry;
-      config.entry = async () => {
-        const entries = { ...(await originalEntry()) };
-        // This script imports components from the Next app, so it's transpiled to `.next/server/scripts/build-rss.js`
-        entries["./scripts/generate-rss.js"] = "./scripts/generate-rss.js";
-        return entries;
-      };
-    }
-    return config;
-  },
-  //...
-};
-```
-
-the main point here is that we are telling webpack to compile our file by writing `entries['./scripts/generate-rss.js'] = './scripts/generate-rss.js';`. Now if we build our project with `yarn build` or `next build` or `npm run build` we will see that this file gets compiled
-
-### 3. rewrite ./.next/static/feed.xml to the root of our site
-
-to do this we will use an experimental feature called **rewrite** so that `feed.xml` is rewritten to the root of the project and served under <yourdomain>/feed.xml
-
-We will again add more to our `next.config.json`. This time adding this
-
-```js
-module.exports = {
-  target: "serverless",
-  experimental: {
-    modern: true,
-    rewrites() {
-      return [
-        {
-          source: "/feed.xml",
-          destination: "/_next/static/feed.xml",
-        },
-      ];
-    },
-  },
-  //...
-};
-```
-
-If you want to see this in action you can look at the [next.config.js for my blog](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/blob/master/next.config.js) to the [one for nextjs.org](https://github.com/vercel/next-site/blob/master/next.config.js)
-
-### 4. update build scripts
+### 2. update build scripts
 
 Finally, you need to update the build scripts so all of the goodness we just wrote will actually happen. In my case I updated the `package.json` to look something like this
 
 ```json
 //...
 "scripts": {
-    "build": "next build && yarn build:rss",
-    "build:rss": "node ./.next/serverless/scripts/generate-rss.js",
+    "build": "yarn build:rss && next build,
+    "build:rss": "ts-node ./scripts/generate-rss.ts",
     //...
   },
 //...
 ```
 
-This will build the site and then run the generate the RSS feed.
+This will generate the RSS feed, write it to the public folder and then build the site.
 
 Now just run `yarn build` or `npm run build` and you should see the feed.xml. If you run `yarn start` and go you localhost:3000/feed.xml you should see your RSS feed.
 
 If you prefer to just see the code you [**can see the PR for all of this code here**](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/pull/3). Feel free to leave a comment there if you run into an issue or [open a GitHub issue](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/issues/new).
+
+**Note: This blogpost was recently updated as nextjs 10 broke some of the behaviour. Here is the PR went from the old code to the new code**
 
 Thanks for reading. As always if you see anything wrong with this post feel free to edit this site (button below) and make a PR!
