@@ -88,6 +88,6 @@ Now just run `yarn build` or `npm run build` and you should see the feed.xml. If
 
 If you prefer to just see the code you [**can see the PR for all of this code here**](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/pull/3). Feel free to leave a comment there if you run into an issue or [open a GitHub issue](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/issues/new).
 
-**Note: This blogpost was recently updated as nextjs 10 broke some of the behaviour. Here is the PR went from the old code to the new code**
+**Note: This blogpost was recently updated as nextjs 10 broke some of the behaviour. [Here is the PR went from the old code to the new code](https://github.com/logan-anderson/blog-nextjs-tina-tailwind/pull/46)**
 
 Thanks for reading. As always if you see anything wrong with this post feel free to edit this site (button below) and make a PR!
