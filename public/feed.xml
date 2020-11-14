@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Logan's blog]]></title>
+        <description><![CDATA[Logan's blog]]></description>
+        <link>https://logana.dev</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Fri, 13 Nov 2020 23:25:42 GMT</lastBuildDate>
+        <atom:link href="https://logana.dev/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Does a Math Degree Help in Software Engineering]]></title>
+            <description><![CDATA[As someone who is in their fourth year of a double major in math and computer science I want to answer the question Does a math degree help one in the field of software engineering?]]></description>
+            <link>https://logana.dev/blog/does-a-math-degree-help-in-software-engineering</link>
+            <guid isPermaLink="false">does-a-math-degree-help-in-software-engineering</guid>
+            <dc:creator><![CDATA[Logan Anderson]]></dc:creator>
+            <pubDate>Sat, 24 Oct 2020 01:22:20 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[How to add a new action to a tinaCMS form]]></title>
+            <description><![CDATA[How to add a new action to a tinaCMS form. This brief tutorial will show you how to make a new action specifically,  a delete action.]]></description>
+            <link>https://logana.dev/blog/how-to-add-a-new-action-to-a-tinacms-form</link>
+            <guid isPermaLink="false">how-to-add-a-new-action-to-a-tinacms-form</guid>
+            <dc:creator><![CDATA[Logan Anderson]]></dc:creator>
+            <pubDate>Mon, 13 Jul 2020 12:42:46 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[RSS Feeds in a nextjs site]]></title>
+            <description><![CDATA[How to add an RSS feed for blog posts into a nextjs site. Simple and easy. ]]></description>
+            <link>https://logana.dev/blog/rss-feeds-in-a-nextjs-site</link>
+            <guid isPermaLink="false">rss-feeds-in-a-nextjs-site</guid>
+            <dc:creator><![CDATA[Logan Anderson]]></dc:creator>
+            <pubDate>Sat, 13 Jun 2020 16:51:25 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[What is Markdown]]></title>
+            <description><![CDATA[Learn more about Markdown and what it is]]></description>
+            <link>https://logana.dev/blog/markdown</link>
+            <guid isPermaLink="false">markdown</guid>
+            <dc:creator><![CDATA[Logan Anderson]]></dc:creator>
+            <pubDate>Sun, 31 May 2020 00:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

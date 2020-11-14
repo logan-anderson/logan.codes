@@ -1,8 +1,14 @@
-import fs from "fs";
-import RSS from "rss";
-import getPostsSync from "../utils/getPostsSync";
+// import fs from "fs";
+// import RSS from "rss";
+// import getPostsSync from "../utils/getPostsSync";
 
-function dateSortDesc(a, b) {
+import { Post } from "../interfaces";
+
+const fs = require("fs");
+const RSS = require("rss");
+const getPostsSync = require("../utils/getPostsSync");
+
+function dateSortDesc(a: any, b: any) {
   const date1 = new Date(a.data.frontmatter.date);
   const date2 = new Date(b.data.frontmatter.date);
   if (date1 > date2) return -1;
@@ -11,14 +17,14 @@ function dateSortDesc(a, b) {
 }
 
 function generate() {
-  const previewItems = getPostsSync(false, null, "content/blog");
+  const previewItems = getPostsSync();
   const feed = new RSS({
     title: "Logan's blog",
     site_url: "https://logana.dev",
     feed_url: "https://logana.dev/feed.xml",
   });
 
-  previewItems.sort(dateSortDesc).map((post) => {
+  previewItems.sort(dateSortDesc).map((post: Post) => {
     feed.item({
       title: post.data.frontmatter.title,
       guid: post.fileName,
@@ -30,7 +36,7 @@ function generate() {
   });
 
   const rss = feed.xml({ indent: true });
-  fs.writeFileSync('./.next/static/feed.xml', rss);
+  fs.writeFileSync("./public/feed.xml", rss);
 }
 
 generate();
