@@ -42,11 +42,11 @@ const NavBar = () => {
               <Link href="/">
                 <a aria-label="Home" className="no-underline">
                   <strong className="text-blue-600 h-8 w-auto sm:h-10 no-underline text-3xl">
-                    {"</>"}
+                    {"<Home/>"}
                   </strong>
                 </a>
               </Link>
-              <div className="-mr-2 flex items-center md:hidden">
+              <div className="mr-2 flex items-center md:hidden">
                 <button
                   type="button"
                   className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
@@ -72,7 +72,7 @@ const NavBar = () => {
               </div>
             </div>
           </div>
-          <div className="hidden md:block md:ml-10 md:pr-4">
+          <div className="whitespace-nowrap hidden md:block md:ml-10 md:pr-4">
             <a
               href="https://logan.bio"
               className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
@@ -151,7 +151,7 @@ export const MobileNav: React.FC<NavProps> = ({
                   <Link href="/">
                     <a aria-label="Home" className="no-underline">
                       <strong className="text-blue-600 h-8 w-auto sm:h-10 no-underline text-3xl">
-                        {"</>"}
+                        {"<Home/>"}
                       </strong>
                     </a>
                   </Link>
@@ -189,7 +189,7 @@ export const MobileNav: React.FC<NavProps> = ({
                 </a>
                 <MobileMenuItem title="All Posts" href="/blog" />
                 <MobileMenuItem title="Resources" href="/resources" />
-                <div className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
+                <div className="block nowrap px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
                   <AppIcon
                     icon={faGithub}
                     link="https://github.com/logan-anderson"

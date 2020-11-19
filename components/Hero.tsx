@@ -47,12 +47,14 @@ export const Hero: React.FC = () => {
             <NavBar />
 
             <main className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div className="sm:text-center lg:text-left">
+              <div className="text-center lg:text-left">
                 <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
                   Hi 👋 Im Logan! {"     "}
                   <br />
                   <span
-                    className={"text-5xl mt-2 mb-6 leading-tight font-heading"}
+                    className={
+                      "text-3xl sm:text-4xl md:text-5xl mt-2 mb-6 leading-tight font-heading"
+                    }
                   >
                     I enjoy {"  "}
                     <span className="text-blue-600">
