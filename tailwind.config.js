@@ -10,7 +10,11 @@ module.exports = {
     },
   },
 
-  variants: {},
+  variants: {
+    extend: {
+      fontWeight: ['hover'],
+    }
+  },
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),

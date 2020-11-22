@@ -84,6 +84,13 @@ export const Hero: React.FC = () => {
                   learn and is always trying to expand his knowledge base by
                   reading and completing courses online and at school
                 </p>
+                <div className="flex">
+                  <button className="transition-all duration-100 ease-in-out text-xl mx-auto lg:mx-0 m-3 border border-blue-500 p-1 px-2 rounded-2xl bg-blue-500 hover:font-bold text-blue-50 ">
+                    <a href="https://buymeacoffee.com/logana" target="_blank">
+                      Buy me a Coffee
+                    </a>
+                  </button>
+                </div>
               </div>
             </main>
           </div>
