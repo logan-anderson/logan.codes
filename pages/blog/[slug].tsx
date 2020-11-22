@@ -1,8 +1,6 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // @ts-ignore
-import {
-  okaidia as Theme,
-} from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { okaidia as Theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 import { InlineForm, useInlineForm } from "react-tinacms-inline";
 import { useMemo } from "react";
@@ -196,7 +194,7 @@ const BlogPage = (props: PageProps) => {
           </div>
         </div>
         <div className="relative px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg text-lg max-w-prose mx-auto mb-6">
+          <div className="prose prose-blue prose-lg text-lg max-w-prose mx-auto mb-6">
             <InlineForm form={form}>
               <InlineWrapper preview={props.preview}>
                 <InlineWysiwyg name="markdownBody">

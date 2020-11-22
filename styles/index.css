@@ -43,7 +43,6 @@ strong {
   @apply font-bold color-primary;
 }
 
-
 .icon {
   @apply inline;
 }
