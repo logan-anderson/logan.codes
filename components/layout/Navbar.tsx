@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
+import { FlyoutMenu } from "../FlyoutMenu";
 
 export interface NavProps {
   showMobile: boolean;
@@ -72,32 +73,42 @@ const NavBar = () => {
               </div>
             </div>
           </div>
-          <div className="whitespace-nowrap hidden md:block md:ml-10 md:pr-4">
-            <a
+          <div className="grid grid-cols-4 gap-1 hidden md:ml-10 md:grid pr-4">
+            {/* <a
               href="https://logan.bio"
               className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
             >
               More About me
-            </a>
-            <Link href="/blog">
-              <a className="ml-8 font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">
-                All Posts
-              </a>
-            </Link>
-            <Link href="/resources">
-              <a className="ml-8 font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">
-                Resources
-              </a>
-            </Link>
-            <AppIcon icon={faGithub} link="https://github.com/logan-anderson" />
-            <AppIcon
-              icon={faTwitter}
-              link="https://twitter.com/logan_anders0n"
-            />
-            <AppIcon
-              icon={faLinkedin}
-              link="https://www.linkedin.com/in/logan-anderson-tech/"
-            />
+            </a> */}
+            <FlyoutMenu className="text-center" />
+            <div className="text-center">
+              <Link href="/blog">
+                <a className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">
+                  Blog Posts
+                </a>
+              </Link>
+            </div>
+            <div className="text-center">
+              <Link href="/resources">
+                <a className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">
+                  Resources
+                </a>
+              </Link>
+            </div>
+            <div className="grid grid-cols-3 gap-3 text-center">
+              <AppIcon
+                icon={faGithub}
+                link="https://github.com/logan-anderson"
+              />
+              <AppIcon
+                icon={faTwitter}
+                link="https://twitter.com/logan_anders0n"
+              />
+              <AppIcon
+                icon={faLinkedin}
+                link="https://www.linkedin.com/in/logan-anderson-tech/"
+              />
+            </div>
           </div>
         </nav>
       </div>
@@ -180,20 +191,16 @@ export const MobileNav: React.FC<NavProps> = ({
                 </div>
               </div>
               <div className="px-2 pt-2 pb-3">
-                <a
-                  href="https://logan.bio"
+                <FlyoutMenu
+                  absolute={false}
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                  role="menuitem"
-                >
-                  More about me
-                </a>
-                <MobileMenuItem title="All Posts" href="/blog" />
+                />
+                <MobileMenuItem title="Blog Posts" href="/blog" />
                 <MobileMenuItem title="Resources" href="/resources" />
                 <div className="block nowrap px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
                   <AppIcon
                     icon={faGithub}
                     link="https://github.com/logan-anderson"
-                    disableMargin
                   />
                   <AppIcon
                     icon={faTwitter}

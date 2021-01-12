@@ -76,13 +76,13 @@ export const Hero: React.FC = () => {
                   </span>
                 </h2>
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Logan Anderson is a part-time web developer and full-time
-                  student completing a double major in Computer Science and
-                  Math. He's passionate about computer science and learning. His
-                  main interests include full-stack development, machine
-                  learning, Linux, and competitive programming. He loves to
-                  learn and is always trying to expand his knowledge base by
-                  reading and completing courses online and at school
+                  Hello! My name is Logan. I am a web developer and student
+                  completing a double major in Computer Science and Math. Im
+                  passionate about computer science and learning. My main
+                  interests include full-stack development, machine learning,
+                  Linux, and competitive programming. I loves to learn and is
+                  always trying to expand his knowledge base by reading and
+                  completing courses online and at school
                 </p>
                 <div className="flex">
                   <button className="transition-all duration-100 ease-in-out text-xl mx-auto lg:mx-0 m-3 border border-blue-500 p-1 px-2 rounded-2xl bg-blue-500 hover:font-bold text-blue-50 ">

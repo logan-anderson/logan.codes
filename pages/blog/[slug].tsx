@@ -1,7 +1,3 @@
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-// @ts-ignore
-import { okaidia as Theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
-
 import { InlineForm, useInlineForm } from "react-tinacms-inline";
 import { useMemo } from "react";
 import matter from "gray-matter";
@@ -14,12 +10,11 @@ import {
   GithubFile,
 } from "next-tinacms-github";
 import { InlineWysiwyg } from "react-tinacms-editor";
-import ReactMarkdown from "react-markdown";
-
 import Layout from "../../components/layout/Layout";
 import { usePlugin } from "tinacms";
 import { Post } from "../../interfaces";
 import { BreadCrumb } from "../../components/BreadCrumb";
+import { MarkdownBody } from "../../components/Markdown";
 
 const InlineWrapper = ({ children, preview }: any) => {
   const { deactivate, activate } = useInlineForm();
@@ -198,40 +193,7 @@ const BlogPage = (props: PageProps) => {
             <InlineForm form={form}>
               <InlineWrapper preview={props.preview}>
                 <InlineWysiwyg name="markdownBody">
-                  <ReactMarkdown
-                    renderers={{
-                      heading: ({ children, level }) => {
-                        if (level === 1) {
-                          return (
-                            <h1 className="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 ">
-                              {children}
-                            </h1>
-                          );
-                        } else {
-                          return (
-                            <h2 className="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 ">
-                              {children}
-                            </h2>
-                          );
-                        }
-                      },
-                      paragraph: ({ children }) => {
-                        return (
-                          <p className="text-gray-500 mx-auto">{children}</p>
-                        );
-                      },
-                      code: ({ language, value }) => {
-                        return (
-                          <SyntaxHighlighter
-                            style={Theme}
-                            language={language}
-                            children={value}
-                          />
-                        );
-                      },
-                    }}
-                    source={data.markdownBody}
-                  />
+                  <MarkdownBody source={data.markdownBody} />
                 </InlineWysiwyg>
               </InlineWrapper>
             </InlineForm>
