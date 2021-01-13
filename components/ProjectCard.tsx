@@ -6,7 +6,7 @@ export const ProjectCard: React.FC<{ project: Projects }> = ({ project }) => {
   const hasImg = Boolean(project.imgUrl);
   return (
     <Link href={`/projects/${project.slug}`}>
-      <div className="transition duration-500 ease-in-out transform hover:-translate-y-1/2 hover:scale-103 hover:underline cursor-pointer color-blue">
+      <div className="transition duration-500 ease-in-out transform  hover:scale-105 hover:underline cursor-pointer color-blue my-6">
         <div className={`grid ${hasImg && "grid-cols-2"} gap-5`}>
           <div>
             <h2>{project.label}</h2>

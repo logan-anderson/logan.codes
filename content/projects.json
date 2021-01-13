@@ -6,6 +6,13 @@
       "excerpt": "Web app that lets users view, edit and delete notes. It also uses passport to allow users to login, logout and make an account",
       "slug": "list-app",
       "imgUrl": "https://i.imgur.com/UF0K8ZX.png"
+    },
+    {
+      "label": "This Blog",
+      "url": "https://raw.githubusercontent.com/logan-anderson/blog-nextjs-tina-tailwind/master/README.md",
+      "excerpt": "This blog was made with React, Nextjs and TinaCMS. It pulls static data from github and local json files at build time.",
+      "slug": "list-app",
+      "imgUrl": ""
     }
   ]
 }
