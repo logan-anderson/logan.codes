@@ -14,7 +14,7 @@ import Layout from "../../components/layout/Layout";
 import { usePlugin } from "tinacms";
 import { Post } from "../../interfaces";
 import { BreadCrumb } from "../../components/BreadCrumb";
-import { MarkdownBody } from "../../components/Markdown";
+import { MarkdownBody, STYLES } from "../../components/Markdown";
 
 const InlineWrapper = ({ children, preview }: any) => {
   const { deactivate, activate } = useInlineForm();
@@ -189,15 +189,13 @@ const BlogPage = (props: PageProps) => {
           </div>
         </div>
         <div className="relative px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-blue prose-lg text-lg max-w-prose mx-auto mb-6">
-            <InlineForm form={form}>
+          <InlineForm form={form}>
+            <InlineWysiwyg name="markdownBody" className={STYLES}>
               <InlineWrapper preview={props.preview}>
-                <InlineWysiwyg name="markdownBody">
-                  <MarkdownBody source={data.markdownBody} />
-                </InlineWysiwyg>
+                <MarkdownBody source={data.markdownBody} />
               </InlineWrapper>
-            </InlineForm>
-          </div>
+            </InlineWysiwyg>
+          </InlineForm>
         </div>
       </div>
     </Layout>

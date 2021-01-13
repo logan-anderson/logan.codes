@@ -89,9 +89,9 @@ const NavBar = () => {
               </Link>
             </div>
             <div className="text-center">
-              <Link href="/resources">
+              <Link href="/projects">
                 <a className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">
-                  Resources
+                  My Projects
                 </a>
               </Link>
             </div>
@@ -196,7 +196,7 @@ export const MobileNav: React.FC<NavProps> = ({
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
                 />
                 <MobileMenuItem title="Blog Posts" href="/blog" />
-                <MobileMenuItem title="Resources" href="/resources" />
+                <MobileMenuItem title="My Projects" href="/projects" />
                 <div className="block nowrap px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
                   <AppIcon
                     icon={faGithub}

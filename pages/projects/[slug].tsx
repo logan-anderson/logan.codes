@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Layout from "../../components/layout/Layout";
+import { MarkdownBody } from "../../components/Markdown";
 import { Projects } from "./index";
 const data = require("../../content/projects.json");
 const projects: Projects[] = data.projects;
@@ -10,7 +11,7 @@ const ProjectPage: React.FC<{ markdown: string; project: Projects }> = ({
 }) => {
   return (
     <Layout preview={false} title="Projects" description={project.excerpt}>
-      {markdown}
+      <MarkdownBody source={markdown} escapeHtml={false} skipHtml={false} />
     </Layout>
   );
 };
