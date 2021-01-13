@@ -1,62 +1,44 @@
-# TypeScript Next.js example
+# My Blog
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+This is my personal blog, you can check out the live [version here](https://logana.dev). I write about web development, math and anything I find interesting. You can also check out my personal projects and see that I am currently working on.
 
-## Deploy your own
+## Tech Stack
 
-Deploy the example using [Vercel](https://vercel.com):
+- [React](https://reactjs.org/)
+- [NextJS](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Markdown](https://logana.dev/blog/markdown)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
+## Features
 
-## How to use it?
+### Build time
 
-### Using `create-next-app`
+This website is build with [nextjs](https://nextjs.org/) (v10) and is compiled to static html. At build time my blog posts (written in markdown) are fetched from the file system and the projects readme files are fetched from github (markdown). This information is then rendered into html using [react-markdown](https://www.npmjs.com/package/react-markdown)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+### RSS feed
 
-```bash
-npm init next-app --example with-typescript with-typescript-app
-# or
-yarn create next-app --example with-typescript with-typescript-app
-```
+When build this sets generates an RSS feed by looking at the markdown files it has in its content folder
 
-### Download manually
+### TinaCMS
 
-Download the example:
+If you [are on the site](https://logana.dev) you will notice a button at the bottom of the page that says "See spelling errors? Click here to edit the site". When clicked this button allows one to login with there github, make new branch, and edit the sites content in github (pretty cool). Everything is editable on the site its self so no need to look at a backend CMS. Just simply edit the page inline.
 
-```bash
-curl https://codeload.github.com/vercel/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/with-typescript
-cd with-typescript
-```
+## Running locally
 
-Install it and run:
+Dev Mode
 
 ```bash
-npm install
-npm run dev
-# or
-yarn
 yarn dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Build the site
 
-## Notes
-
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
-
-```
-npm install --save-dev typescript
+```bash
+yarn build
 ```
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+Server the sie
 
 ```
-npm install --save-dev @types/react @types/react-dom @types/node
+yarn start
 ```
-
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
-
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
-
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
