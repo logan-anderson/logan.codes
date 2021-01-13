@@ -1,7 +1,6 @@
-import { FlyoutMenu } from "../components/FlyoutMenu";
 import Layout from "../components/layout/Layout";
 
-const AboutPage: React.FC = (props) => {
+const AboutPage: React.FC = () => {
   return <Layout title="about" preview={false}></Layout>;
 };
 

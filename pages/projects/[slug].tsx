@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async (ctx) => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = projects.map((item) => {
     return {
       params: {
