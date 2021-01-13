@@ -1,3 +1,5 @@
+import React from "react";
+import { TransitionGroup } from "react-transition-group";
 import Layout from "../components/layout/Layout";
 
 const AboutPage: React.FC = () => {
@@ -74,6 +76,21 @@ const AboutPage: React.FC = () => {
                       </a>
                     </li>
                   </ul>
+                </div>
+                <h3>I Like to code! Here are some of github stats</h3>
+                <div>
+                  <img
+                    src="https://github-readme-stats.vercel.app/api?username=logan-anderson&count_private=true&show_icons=true&hide=stars"
+                    alt="Github stats"
+                    className="w-full"
+                  />
+                </div>
+                <div>
+                  <img
+                    src="https://github-readme-stats.vercel.app/api/top-langs/?username=logan-anderson&layout=compact"
+                    alt="Github language stats"
+                    className="w-full"
+                  />
                 </div>
               </div>
             </div>

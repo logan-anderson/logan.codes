@@ -8,6 +8,7 @@ import { Post, Tag } from "../../interfaces";
 import Button from "../../components/Buttons/ToggleButton";
 import { useState } from "react";
 import { BreadCrumb } from "../../components/BreadCrumb";
+import { Slide } from "react-awesome-reveal";
 
 const Tags = ({
   tags,
@@ -74,22 +75,24 @@ const BlogList = ({ posts, preview, tags }: BlogListProps) => {
       <div className="max-w-prose mx-auto">
         <BreadCrumb links={[{ label: "Blog", href: "/blog" }]} />
         <Tags tags={stateTags} setTags={setStateTags} />
-        {posts
-          .filter((post) => {
-            const selectedTags: string[] = stateTags
-              .filter((t) => t.selected)
-              .map((el) => el.name);
-            // if nothing is selected return everything
-            if (selectedTags.length === 0) {
-              return true;
-            }
-            return selectedTags.every((currentTag: string) => {
-              return post.data.frontmatter.tags?.includes(currentTag);
-            });
-          })
-          .map((post: Post) => {
-            return <BlogCard key={post.fileName} post={post} />;
-          })}
+        <Slide direction="up" cascade duration={700} damping={0.1} triggerOnce>
+          {posts
+            .filter((post) => {
+              const selectedTags: string[] = stateTags
+                .filter((t) => t.selected)
+                .map((el) => el.name);
+              // if nothing is selected return everything
+              if (selectedTags.length === 0) {
+                return true;
+              }
+              return selectedTags.every((currentTag: string) => {
+                return post.data.frontmatter.tags?.includes(currentTag);
+              });
+            })
+            .map((post: Post) => {
+              return <BlogCard key={post.fileName} post={post} />;
+            })}
+        </Slide>
       </div>
     </Layout>
   );
