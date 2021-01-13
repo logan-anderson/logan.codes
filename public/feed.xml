@@ -4,8 +4,16 @@
         <description><![CDATA[Logan's blog]]></description>
         <link>https://logana.dev</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 13 Nov 2020 23:25:42 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 13 Jan 2021 02:17:24 GMT</lastBuildDate>
         <atom:link href="https://logana.dev/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[What is nextjs?]]></title>
+            <description><![CDATA[Nextjs is a meta framework for react. Nextjs  includes static site generation, sever site rendering (ssr), api routes, and many other features. We will explore all these ideas and more tin this blog.  ]]></description>
+            <link>https://logana.dev/blog/what-is-nextjs</link>
+            <guid isPermaLink="false">what-is-nextjs</guid>
+            <dc:creator><![CDATA[Logan Anderson]]></dc:creator>
+            <pubDate>Sat, 07 Nov 2020 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Does a Math Degree Help in Software Engineering]]></title>
             <description><![CDATA[As someone who is in their fourth year of a double major in math and computer science I want to answer the question Does a math degree help one in the field of software engineering?]]></description>

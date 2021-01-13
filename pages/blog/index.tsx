@@ -71,24 +71,26 @@ const BlogList = ({ posts, preview, tags }: BlogListProps) => {
 
   return (
     <Layout title="Blog" preview={preview}>
-      <BreadCrumb links={[{ label: "Blog", href: "/blog" }]} />
-      <Tags tags={stateTags} setTags={setStateTags} />
-      {posts
-        .filter((post) => {
-          const selectedTags: string[] = stateTags
-            .filter((t) => t.selected)
-            .map((el) => el.name);
-          // if nothing is selected return everything
-          if (selectedTags.length === 0) {
-            return true;
-          }
-          return selectedTags.every((currentTag: string) => {
-            return post.data.frontmatter.tags?.includes(currentTag);
-          });
-        })
-        .map((post: Post) => {
-          return <BlogCard key={post.fileName} post={post} />;
-        })}
+      <div className="max-w-prose mx-auto">
+        <BreadCrumb links={[{ label: "Blog", href: "/blog" }]} />
+        <Tags tags={stateTags} setTags={setStateTags} />
+        {posts
+          .filter((post) => {
+            const selectedTags: string[] = stateTags
+              .filter((t) => t.selected)
+              .map((el) => el.name);
+            // if nothing is selected return everything
+            if (selectedTags.length === 0) {
+              return true;
+            }
+            return selectedTags.every((currentTag: string) => {
+              return post.data.frontmatter.tags?.includes(currentTag);
+            });
+          })
+          .map((post: Post) => {
+            return <BlogCard key={post.fileName} post={post} />;
+          })}
+      </div>
     </Layout>
   );
 };

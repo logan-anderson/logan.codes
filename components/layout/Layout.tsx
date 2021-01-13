@@ -40,7 +40,7 @@ const Layout: React.FunctionComponent<Props> = ({
         openGraph={{
           url: "https://logana.dev" + router.asPath,
         }}
-        title={`${title} | Logan's Blog`}
+        title={`${title} | Logan`}
         description={
           description ||
           "A simple blog about coding, technology, and coffee by Logan Anderson. Read about the latest in web development, machine learning and other tech topics."
