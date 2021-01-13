@@ -7,7 +7,7 @@ export const ProjectCard: React.FC<{ project: Projects }> = ({ project }) => {
   return (
     <Link href={`/projects/${project.slug}`}>
       <div className="transition duration-500 ease-in-out transform  hover:scale-105 hover:underline cursor-pointer color-blue my-6">
-        <div className={`grid ${hasImg && "grid-cols-2"} gap-5`}>
+        <div className={`grid ${hasImg && "md:grid-cols-2"} gap-5`}>
           <div>
             <h2>{project.label}</h2>
             <div>{project.excerpt}</div>
