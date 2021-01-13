@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import { BreadCrumb } from "../../components/BreadCrumb";
 import Layout from "../../components/layout/Layout";
 import { MarkdownBody } from "../../components/Markdown";
 import { Projects } from "./index";
@@ -11,7 +12,15 @@ const ProjectPage: React.FC<{ markdown: string; project: Projects }> = ({
 }) => {
   return (
     <Layout preview={false} title="Projects" description={project.excerpt}>
-      <MarkdownBody source={markdown} escapeHtml={false} skipHtml={false} />
+      <BreadCrumb
+        links={[
+          { label: "Projects", href: "/projects" },
+          { label: project.label, href: `/projects/${project.slug}` },
+        ]}
+      />
+      <div className="relative py-16">
+        <MarkdownBody source={markdown} escapeHtml={false} skipHtml={false} />
+      </div>
     </Layout>
   );
 };

@@ -1,10 +1,11 @@
 {
   "projects": [
     {
-      "label": "test",
-      "url": "https://raw.githubusercontent.com/logan-anderson/logan-anderson/master/README.md",
-      "excerpt": "Irure ea do veniam exercitation labore elit.",
-      "slug": "test"
+      "label": "List Management Web App",
+      "url": "https://raw.githubusercontent.com/logan-anderson/note-app/develop/README.md",
+      "excerpt": "Web app that lets users view, edit and delete notes. It also uses passport to allow users to login, logout and make an account",
+      "slug": "list-app",
+      "imgUrl": "https://i.imgur.com/UF0K8ZX.png"
     }
   ]
 }

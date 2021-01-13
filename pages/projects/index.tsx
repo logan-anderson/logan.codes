@@ -1,25 +1,27 @@
 import { GetStaticProps } from "next";
-import Link from "next/link";
+import React from "react";
+import { BreadCrumb } from "../../components/BreadCrumb";
 import Layout from "../../components/layout/Layout";
+import { ProjectCard } from "../../components/ProjectCard";
 
 export interface Projects {
   url: string;
   label: string;
   excerpt: string;
   slug: string;
+  imgUrl?: string;
 }
 const ProjectPage: React.FC<{ projects: Projects[]; preview: boolean }> = (
   props
 ) => {
   return (
     <Layout preview={props.preview} title="Projects">
-      <ul>
+      <BreadCrumb links={[{ label: "Projects", href: "/projects" }]} />
+      <div className="prose prose-blue prose-lg text-lg max-w-prose mx-auto">
         {props.projects?.map((item) => (
-          <li key={item.label}>
-            <Link href={`/projects/${item.slug}`}>{item.label}</Link>
-          </li>
+          <ProjectCard project={item} />
         ))}
-      </ul>
+      </div>
     </Layout>
   );
 };
