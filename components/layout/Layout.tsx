@@ -6,6 +6,7 @@ import { DefaultSeo } from "next-seo";
 
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
+import { Fade } from "react-awesome-reveal";
 
 type Props = {
   preview: boolean;
@@ -52,7 +53,11 @@ const Layout: React.FunctionComponent<Props> = ({
             <Navbar />
           </header>
         )}
-        <Main>{children}</Main>
+        <Main>
+          <Fade cascade duration={700} damping={0.1} triggerOnce>
+            {children}
+          </Fade>
+        </Main>
         <AppFooter preview={preview} />
       </StyledBody>
     </html>

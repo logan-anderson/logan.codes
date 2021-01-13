@@ -10,7 +10,7 @@ interface Props {
 const BlogCardNew = ({ post }: Props) => {
   return (
     <Link href="blog/[slug]" as={`blog/${post.fileName}`}>
-      <div className="flex flex-col rounded-lg shadow-lg overflow-hidden mb-3">
+      <div className="flex flex-col rounded-lg shadow-lg overflow-hidden mb-3 transition duration-500 ease-in-out transform  hover:scale-105 cursor-pointer">
         {/* <div className="flex-shrink-0">
         <img
         className="h-48 w-full object-cover"
