@@ -1,18 +1,31 @@
 {
   "projects": [
     {
-      "label": "List Management Web App",
+      "label": "This Blog",
+      "url": "https://raw.githubusercontent.com/logan-anderson/blog-nextjs-tina-tailwind/master/README.md",
+      "excerpt": "This blog was made with React, Nextjs and TinaCMS. It pulls static data from github and local json files at build time.",
+      "slug": "blog",
+      "imgUrl": "https://i.imgur.com/x7eUp15.png"
+    },
+    {
+      "label": "Full Stack List Management Web App",
       "url": "https://raw.githubusercontent.com/logan-anderson/note-app/develop/README.md",
       "excerpt": "Web app that lets users view, edit and delete notes. It also uses passport to allow users to login, logout and make an account",
       "slug": "list-app",
       "imgUrl": "https://i.imgur.com/UF0K8ZX.png"
     },
     {
-      "label": "This Blog",
-      "url": "https://raw.githubusercontent.com/logan-anderson/blog-nextjs-tina-tailwind/master/README.md",
-      "excerpt": "This blog was made with React, Nextjs and TinaCMS. It pulls static data from github and local json files at build time.",
-      "slug": "blog",
-      "imgUrl": "https://i.imgur.com/x7eUp15.png"
+      "label": "Blog for Loretta Anderson",
+      "excerpt": "A statically generated blog that uses Sanity, Next.js, React and SSR.",
+      "slug": "loretta-blog",
+      "imgUrl": "/img/loretta-blog.png",
+      "url": "https://raw.githubusercontent.com/logan-anderson/loretta-blog/main/README.md"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/logan-anderson/competitive-programming/master/README.md",
+      "excerpt": "A collection of my solutions of competitive programming problems on kattis",
+      "label": "Competitive Programming",
+      "slug": "competitive-programming"
     }
   ]
 }
