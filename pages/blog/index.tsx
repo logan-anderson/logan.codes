@@ -90,7 +90,7 @@ const BlogList = ({ posts, preview, tags }: BlogListProps) => {
               });
             })
             .map((post: Post) => {
-              return <BlogCard key={post.fileName} post={post} />;
+              return <BlogCard key={post.data.frontmatter.title} post={post} />;
             })}
         </Slide>
       </div>
