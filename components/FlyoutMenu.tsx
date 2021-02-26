@@ -25,6 +25,11 @@ const FlyoutMenuItems: FlyoutMenuProps[] = [
     text: "Learn more about my skills, passions and interests",
   },
   {
+    href: "/contact",
+    label: "Contact Me",
+    text: "Ask me about anything",
+  },
+  {
     href: "/resources",
     label: "Resources",
     text:
