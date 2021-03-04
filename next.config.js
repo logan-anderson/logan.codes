@@ -1,8 +1,14 @@
 // const path = require("path")
 const withSvgr = require("next-svgr")
 require("dotenv").config()
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 
-module.exports = withSvgr({
+module.exports = withPWA(withSvgr({
+  pwa: {
+    dest: 'public'
+  },
+  runtimeCaching,
   webpack: (config) => {
     config.node = {
       fs: "empty",
@@ -26,4 +32,4 @@ module.exports = withSvgr({
     REPO_FULL_NAME: process.env.REPO_FULL_NAME,
     BASE_BRANCH: process.env.BASE_BRANCH,
   },
-})
+}))
