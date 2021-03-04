@@ -80,9 +80,9 @@ export const Hero: React.FC = () => {
                   completing a double major in Computer Science and Math. Im
                   passionate about computer science and learning. My main
                   interests include full-stack development, machine learning,
-                  Linux, and competitive programming. I loves to learn and is
-                  always trying to expand his knowledge base by reading and
-                  completing courses online and at school
+                  Linux, and competitive programming. I love to learn and am
+                  always trying to expand my knowledge base though reading,
+                  developing, and coursework.
                 </p>
                 <div className="flex">
                   <button className="transition-all duration-100 ease-in-out text-xl mx-auto lg:mx-0 m-3 border border-blue-500 p-1 px-2 rounded-2xl bg-blue-500 hover:font-bold text-blue-50 ">
