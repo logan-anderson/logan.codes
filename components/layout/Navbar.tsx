@@ -24,7 +24,7 @@ const AppIcon: React.FC<{
       href={props.link}
       className={`inline-block mt-0 ${
         props.disableMargin ? "" : "ml-8"
-      } text-blue-900 hover:text-blue-700 no-label transition duration-150 ease-in-out`}
+      } text-blue-900 dark:text-blue-100 hover:text-blue-700 no-label transition duration-150 ease-in-out`}
       target="_blank"
     >
       <FontAwesomeIcon size="lg" icon={props.icon} />

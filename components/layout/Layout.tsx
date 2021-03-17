@@ -36,7 +36,7 @@ const Layout: React.FunctionComponent<Props> = ({
   const router = useRouter();
 
   return (
-    <html className="bg-white">
+    <html className="dark">
       <DefaultSeo
         openGraph={{
           url: "https://logana.dev" + router.asPath,
@@ -47,18 +47,20 @@ const Layout: React.FunctionComponent<Props> = ({
           "A simple blog about coding, technology, and coffee by Logan Anderson. Read about the latest in web development, machine learning and other tech topics."
         }
       />
-      <StyledBody className="bg-body text-body font-body container mx-auto px-3 sm:px-4">
-        {!navDisable && (
-          <header>
-            <Navbar />
-          </header>
-        )}
-        <Main>
-          <Fade cascade duration={700} damping={0.1} triggerOnce>
-            {children}
-          </Fade>
-        </Main>
-        <AppFooter preview={preview} />
+      <StyledBody className="bg-white dark:bg-gray-900 ">
+        <div className="bg-body text-body font-body container mx-auto px-3 sm:px-4">
+          {!navDisable && (
+            <header>
+              <Navbar />
+            </header>
+          )}
+          <Main>
+            <Fade cascade duration={700} damping={0.1} triggerOnce>
+              {children}
+            </Fade>
+          </Main>
+          <AppFooter preview={preview} />
+        </div>
       </StyledBody>
     </html>
   );

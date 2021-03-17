@@ -18,10 +18,10 @@ const BlogCardNew = ({ post }: Props) => {
         alt=""
         />
       </div> */}
-        <div className="flex-1 bg-white p-6 flex flex-col justify-between">
+        <div className="flex-1 bg-white dark:bg-gray-700 p-6 flex flex-col justify-between">
           <div className="flex-1">
             <a href="#" className="block">
-              <h3 className="mt-2 text-xl leading-7 font-semibold text-gray-900">
+              <h3 className="mt-2 text-xl leading-7 font-semibold text-gray-900 dark:text-gray-200">
                 {post.data.frontmatter.title}
               </h3>
               <p className="text-sm leading-5 font-medium text-blue-600">
@@ -33,7 +33,7 @@ const BlogCardNew = ({ post }: Props) => {
                   </a>
                 ))}
               </p>
-              <p className="mt-3 text-base leading-6 text-gray-500">
+              <p className="mt-3 text-base leading-6 text-gray-500 dark:text-gray-300 ">
                 {post.data.frontmatter.description}
               </p>
             </a>
@@ -51,13 +51,13 @@ const BlogCardNew = ({ post }: Props) => {
               </a>
             </div>
             <div className="ml-3">
-              <p className="text-sm leading-5 font-medium text-gray-900">
+              <p className="text-sm leading-5 font-medium text-gray-900 dark:text-gray-300">
                 <a href="#" className="hover:underline">
                   {/* TODO: about about me page and have this link to it */}
                   Logan Anderson
                 </a>
               </p>
-              <div className="flex text-sm leading-5 text-gray-500">
+              <div className="flex text-sm leading-5 text-gray-500 dark:text-gray-400">
                 <time dateTime={post.data.frontmatter.date}>
                   {new Date(post.data.frontmatter.date).toDateString()}
                 </time>
