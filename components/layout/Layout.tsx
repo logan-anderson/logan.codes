@@ -1,12 +1,13 @@
 import * as React from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useGithubToolbarPlugins } from "react-tinacms-github";
 import styled from "styled-components";
 import { DefaultSeo } from "next-seo";
+import { Fade } from "react-awesome-reveal";
 
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
-import { Fade } from "react-awesome-reveal";
 
 type Props = {
   preview: boolean;
@@ -34,9 +35,33 @@ const Layout: React.FunctionComponent<Props> = ({
 }) => {
   useGithubToolbarPlugins();
   const router = useRouter();
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Whenever the user explicitly chooses light mode
+    // localStorage.theme = "light";
+
+    // Whenever the user explicitly chooses dark mode
+    // localStorage.theme = "dark";
+
+    // Whenever the user explicitly chooses to respect the OS preference
+    // localStorage.removeItem("theme");
+  });
 
   return (
-    <html className="dark">
+    <html>
       <DefaultSeo
         openGraph={{
           url: "https://logana.dev" + router.asPath,
