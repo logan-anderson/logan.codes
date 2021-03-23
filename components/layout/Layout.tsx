@@ -8,6 +8,7 @@ import { Fade } from "react-awesome-reveal";
 
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
+import { DarkModeToggleButton } from "../Buttons/DarkModeToggle";
 
 type Props = {
   preview: boolean;
@@ -35,6 +36,7 @@ const Layout: React.FunctionComponent<Props> = ({
 }) => {
   useGithubToolbarPlugins();
   const router = useRouter();
+  const [theme, setTheme] = React.useState<"dark" | "light">("light");
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
@@ -46,8 +48,10 @@ const Layout: React.FunctionComponent<Props> = ({
         window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       document.documentElement.classList.add("dark");
+      setTheme("dark");
     } else {
       document.documentElement.classList.remove("dark");
+      setTheme("light");
     }
 
     // Whenever the user explicitly chooses light mode
@@ -86,6 +90,19 @@ const Layout: React.FunctionComponent<Props> = ({
           </Main>
           <AppFooter preview={preview} />
         </div>
+        <DarkModeToggleButton
+          onClick={() => {
+            console.log("clicked");
+            if (theme === "dark") {
+              setTheme("light");
+              localStorage.theme = "light";
+            } else {
+              setTheme("dark");
+              localStorage.theme = "dark";
+            }
+          }}
+          checked={theme === "dark"}
+        />
       </StyledBody>
     </html>
   );

@@ -8,7 +8,6 @@ import {
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
 import { FlyoutMenu } from "../FlyoutMenu";
-import { DarkModeToggleButton } from "../Buttons/DarkModeToggle";
 
 export interface NavProps {
   showMobile: boolean;
@@ -48,7 +47,6 @@ const NavBar = () => {
                   </strong>
                 </a>
               </Link>
-              <DarkModeToggleButton />
               <div className="mr-2 flex items-center md:hidden">
                 <button
                   type="button"
