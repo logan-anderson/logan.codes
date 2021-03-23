@@ -36,7 +36,9 @@ const Layout: React.FunctionComponent<Props> = ({
 }) => {
   useGithubToolbarPlugins();
   const router = useRouter();
-  const [theme, setTheme] = React.useState<"dark" | "light">("light");
+  const [theme, setTheme] = React.useState<"dark" | "light">(
+    typeof localStorage === "undefined" ? "light" : localStorage?.theme
+  );
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
@@ -62,7 +64,7 @@ const Layout: React.FunctionComponent<Props> = ({
 
     // Whenever the user explicitly chooses to respect the OS preference
     // localStorage.removeItem("theme");
-  });
+  }, []);
 
   return (
     <html>
@@ -90,20 +92,20 @@ const Layout: React.FunctionComponent<Props> = ({
           </Main>
           <AppFooter preview={preview} />
         </div>
-        <DarkModeToggleButton
-          onClick={() => {
-            console.log("clicked");
-            if (theme === "dark") {
-              setTheme("light");
-              localStorage.theme = "light";
-            } else {
-              setTheme("dark");
-              localStorage.theme = "dark";
-            }
-          }}
-          checked={theme === "dark"}
-        />
       </StyledBody>
+      <DarkModeToggleButton
+        onClick={() => {
+          console.log("clicked");
+          if (theme === "dark") {
+            setTheme("light");
+            localStorage.theme = "light";
+          } else {
+            setTheme("dark");
+            localStorage.theme = "dark";
+          }
+        }}
+        checked={theme === "dark"}
+      />
     </html>
   );
 };
