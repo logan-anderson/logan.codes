@@ -39,6 +39,15 @@ const Layout: React.FunctionComponent<Props> = ({
   const [theme, setTheme] = React.useState<"dark" | "light">(
     typeof localStorage === "undefined" ? "light" : localStorage?.theme
   );
+  const onClick = () => {
+    if (theme === "dark") {
+      setTheme("light");
+      localStorage.theme = "light";
+    } else {
+      setTheme("dark");
+      localStorage.theme = "dark";
+    }
+  };
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
@@ -50,10 +59,8 @@ const Layout: React.FunctionComponent<Props> = ({
         window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
       document.documentElement.classList.add("dark");
-      setTheme("dark");
     } else {
       document.documentElement.classList.remove("dark");
-      setTheme("light");
     }
 
     // Whenever the user explicitly chooses light mode
@@ -64,7 +71,7 @@ const Layout: React.FunctionComponent<Props> = ({
 
     // Whenever the user explicitly chooses to respect the OS preference
     // localStorage.removeItem("theme");
-  }, []);
+  }, [theme]);
 
   return (
     <html>
@@ -93,19 +100,7 @@ const Layout: React.FunctionComponent<Props> = ({
           <AppFooter preview={preview} />
         </div>
       </StyledBody>
-      <DarkModeToggleButton
-        onClick={() => {
-          console.log("clicked");
-          if (theme === "dark") {
-            setTheme("light");
-            localStorage.theme = "light";
-          } else {
-            setTheme("dark");
-            localStorage.theme = "dark";
-          }
-        }}
-        checked={theme === "dark"}
-      />
+      <DarkModeToggleButton onClick={onClick} checked={theme === "dark"} />
     </html>
   );
 };
