@@ -10,9 +10,13 @@ export interface FlyoutMenuProps {
 const FlyoutMenuItem: React.FC<FlyoutMenuProps> = (props) => {
   return (
     <Link href={props.href}>
-      <a className="-m-3 p-3 block rounded-md hover:bg-gray-50 transition ease-in-out duration-150">
-        <p className="text-base font-medium text-gray-900">{props.label}</p>
-        <p className="mt-1 text-sm text-gray-500">{props.text}</p>
+      <a className="-m-3 p-3 block rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition ease-in-out duration-150">
+        <p className="text-base font-medium text-gray-900 dark:text-gray-100">
+          {props.label}
+        </p>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
+          {props.text}
+        </p>
       </a>
     </Link>
   );
@@ -72,8 +76,8 @@ export const FlyoutMenu: React.FC<{
           setShow(!show);
         }}
         type="button"
-        className={`group bg-white rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-          show ? "text-gray-900" : "text-gray-500"
+        className={`group bg-white dark:bg-gray-900 rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
+          show ? "text-gray-900 dark:text-gray-300 " : "text-gray-500"
         }`}
       >
         <span>About Me</span>
@@ -82,8 +86,8 @@ export const FlyoutMenu: React.FC<{
   Item active: "text-gray-600", Item inactive: "text-gray-400"
       */}
         <svg
-          className={`ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500 ${
-            show ? "text-gray-600" : "text-gray-400"
+          className={`ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500 dark:hover:text-gray-300${
+            show ? "text-gray-600 dark:text-gray-300" : "text-gray-400"
           }`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -113,7 +117,7 @@ export const FlyoutMenu: React.FC<{
           } z-10 transform mt-3 px-2 w-screen max-w-xs sm:px-0 text-left`}
         >
           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-            <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+            <div className="relative grid gap-6 bg-white dark:bg-gray-900 px-5 py-6 sm:gap-8 sm:p-8">
               {FlyoutMenuItems.map((item, i) => (
                 <FlyoutMenuItem key={i} {...item} />
               ))}

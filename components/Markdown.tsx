@@ -4,7 +4,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // @ts-ignore
 import { okaidia as Theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
 export const STYLES =
-  "prose prose-blue prose-lg text-lg max-w-prose mx-auto mb-6";
+  "prose prose-blue prose-lg text-lg max-w-prose mx-auto mb-6 dark:prose-dark";
 export const MarkdownBody: React.FC<ReactMarkdown.ReactMarkdownProps> = (
   props
 ) => {

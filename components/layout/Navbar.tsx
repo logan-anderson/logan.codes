@@ -83,14 +83,14 @@ const NavBar = () => {
             <FlyoutMenu className="text-center" />
             <div className="text-center">
               <Link href="/blog">
-                <a className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">
+                <a className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out">
                   Blog Posts
                 </a>
               </Link>
             </div>
             <div className="text-center">
               <Link href="/projects">
-                <a className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">
+                <a className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out">
                   My Projects
                 </a>
               </Link>
