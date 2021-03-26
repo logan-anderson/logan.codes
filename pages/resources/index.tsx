@@ -16,7 +16,7 @@ const ResourcesPage = () => {
               trigger={cat.label}
               className="p-3"
               openedClassName="p-3"
-              triggerClassName="hover:underline hover:cursor-pointer hover:bg-blue-500 hover:text-white py-2 px-4 m-2 border border-blue-500 hover:border-transparent rounded-full bg-transparent text-blue-700"
+              triggerClassName="hover:underline hover:cursor-pointer hover:bg-blue-500 hover:text-white py-2 px-4 m-2 border border-blue-500 hover:border-transparent rounded-full bg-transparent text-blue-700 dark:text-gray-50"
               triggerOpenedClassName="hover:underline hover:cursor-pointer hover:bg-blue-500 hover:text-white py-2 px-4 m-2 border border-blue-500 hover:border-transparent rounded-full bg-blue-500 text-white"
               transitionTime={200}
             >
@@ -28,7 +28,7 @@ const ResourcesPage = () => {
                         <a
                           href={ent.link}
                           target="_blank"
-                          className="hover:underline hover:text-blue"
+                          className="hover:underline hover:text-blue dark:text-gray-50"
                         >
                           {ent.label}
                         </a>

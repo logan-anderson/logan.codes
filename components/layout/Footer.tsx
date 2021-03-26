@@ -3,7 +3,7 @@ import { useGithubEditing } from "react-tinacms-github";
 const AppFooter = ({ preview }: any) => {
   return (
     <footer className="flex flex-wrap items-center justify-between p-4">
-      <div className="w-full lg:w-auto lg:mr-6 mb-4 lg:mb-0 text-center">
+      <div className="w-full lg:w-auto lg:mr-6 mb-4 lg:mb-0 text-center dark:text-gray-50">
         &copy; Logan
       </div>
       <div className="flex flex-col lg:flex-row items-center w-full lg:w-auto">

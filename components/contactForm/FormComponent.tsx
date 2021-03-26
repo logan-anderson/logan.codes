@@ -4,7 +4,7 @@ export const FormComponent: React.FC<{
   submitForm: FormEventHandler<any>;
 }> = ({ submitForm }) => {
   return (
-    <div className="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+    <div className="py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
       <div className="relative max-w-xl mx-auto">
         <svg
           className="absolute left-full transform translate-x-1/2"
@@ -28,7 +28,7 @@ export const FormComponent: React.FC<{
                 y={0}
                 width={4}
                 height={4}
-                className="text-gray-200"
+                className="text-gray-200 dark:text-gray-800"
                 fill="currentColor"
               />
             </pattern>
@@ -73,10 +73,10 @@ export const FormComponent: React.FC<{
           />
         </svg>
         <div className="text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
             Contact Logan
           </h2>
-          <p className="mt-4 text-lg leading-6 text-gray-500">
+          <p className="mt-4 text-lg leading-6 text-gray-500 dark:text-gray-200">
             Ask me about my blog posts, projects, opportunities, or just tell me
             a joke.
           </p>
@@ -91,7 +91,7 @@ export const FormComponent: React.FC<{
             <div>
               <label
                 htmlFor="first_name"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 First name
               </label>
@@ -101,14 +101,14 @@ export const FormComponent: React.FC<{
                   name="first_name"
                   id="first_name"
                   autoComplete="given-name"
-                  className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+                  className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md  dark:border-blue-400 dark:bg-gray-900 dark:text-gray-50"
                 />
               </div>
             </div>
             <div>
               <label
                 htmlFor="last_name"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Last name
               </label>
@@ -118,14 +118,14 @@ export const FormComponent: React.FC<{
                   name="last_name"
                   id="last_name"
                   autoComplete="family-name"
-                  className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+                  className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md dark:border-blue-400 dark:bg-gray-900 dark:text-gray-50"
                 />
               </div>
             </div>
             <div className="sm:col-span-2">
               <label
                 htmlFor="company"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Company
               </label>
@@ -135,14 +135,14 @@ export const FormComponent: React.FC<{
                   name="company"
                   id="company"
                   autoComplete="organization"
-                  className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+                  className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md dark:border-blue-400 dark:bg-gray-900 dark:text-gray-50"
                 />
               </div>
             </div>
             <div className="sm:col-span-2">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Email
               </label>
@@ -152,7 +152,7 @@ export const FormComponent: React.FC<{
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+                  className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md dark:border-blue-400 dark:bg-gray-900 dark:text-gray-50"
                 />
               </div>
             </div>
@@ -191,7 +191,7 @@ export const FormComponent: React.FC<{
             <div className="sm:col-span-2">
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Message
               </label>
@@ -200,7 +200,7 @@ export const FormComponent: React.FC<{
                   id="message"
                   name="message"
                   rows={4}
-                  className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
+                  className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md dark:border-blue-400 dark:bg-gray-900 dark:text-gray-50"
                   defaultValue={""}
                 />
               </div>
