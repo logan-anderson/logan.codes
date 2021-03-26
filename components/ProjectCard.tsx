@@ -6,7 +6,7 @@ export const ProjectCard: React.FC<{ project: Projects }> = ({ project }) => {
   const hasImg = Boolean(project.imgUrl);
   return (
     <Link href={`/projects/${project.slug}`}>
-      <div className="px-6 pb-10 transition duration-500 ease-in-out transform  hover:scale-105 hover:underline cursor-pointer color-blue">
+      <div className="dark:text-gray-300 px-6 pb-10 transition duration-500 ease-in-out transform  hover:scale-105 hover:underline cursor-pointer color-blue">
         <div className={`grid ${hasImg && "md:grid-cols-2"} gap-5`}>
           <div>
             <h2
@@ -14,6 +14,7 @@ export const ProjectCard: React.FC<{ project: Projects }> = ({ project }) => {
                 marginTop: "1rem",
                 marginBottom: "1rem",
               }}
+              className="dark:text-gray-50"
             >
               {project.label}
             </h2>
@@ -33,7 +34,7 @@ export const ProjectCard: React.FC<{ project: Projects }> = ({ project }) => {
             <div className="w-full border-t border-gray-300"></div>
           </div>
           <div className="relative flex justify-center">
-            <span className="px-3 border  bg-white text-sm text-gray-500 my-auto hover:bg-blue-800 hover:text-white">
+            <span className="px-3 border  bg-white dark:bg-gray-900 text-sm text-gray-500 dark:text-gray-300 my-auto hover:bg-blue-800 dark:hover:bg-gray-50  hover:text-white dark:hover:text-black ">
               See more{" "}
               <span
                 className="text-2xl"

@@ -10,7 +10,7 @@ export interface FlyoutMenuProps {
 const FlyoutMenuItem: React.FC<FlyoutMenuProps> = (props) => {
   return (
     <Link href={props.href}>
-      <a className="-m-3 p-3 block rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition ease-in-out duration-150">
+      <a className="-m-3 p-3 block rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition ease-in-out duration-150">
         <p className="text-base font-medium text-gray-900 dark:text-gray-100">
           {props.label}
         </p>
@@ -69,7 +69,6 @@ export const FlyoutMenu: React.FC<{
   }, []);
   return (
     <div className={`relative ${className || ""}`}>
-      {/* Item active: "text-gray-900", Item inactive: "text-gray-500" */}
       <button
         ref={buttonRef}
         onClick={() => {
@@ -117,7 +116,7 @@ export const FlyoutMenu: React.FC<{
           } z-10 transform mt-3 px-2 w-screen max-w-xs sm:px-0 text-left`}
         >
           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-            <div className="relative grid gap-6 bg-white dark:bg-gray-900 px-5 py-6 sm:gap-8 sm:p-8">
+            <div className="relative grid gap-6 bg-white dark:bg-gray-800 px-5 py-6 sm:gap-8 sm:p-8">
               {FlyoutMenuItems.map((item, i) => (
                 <FlyoutMenuItem key={i} {...item} />
               ))}
