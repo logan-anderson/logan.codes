@@ -4,7 +4,7 @@ import Layout from "../components/layout/Layout";
 const AboutPage: React.FC = () => {
   return (
     <Layout title="About" preview={false}>
-      <div className="relative bg-white">
+      <div className="relative">
         <div className="lg:absolute lg:inset-0">
           <div className="lg:absolute lg:inset-y-0 lg:left-0 lg:w-1/2">
             <img
@@ -31,7 +31,7 @@ const AboutPage: React.FC = () => {
                 Dictum urna sed consectetur neque tristique pellentesque.
                 Blandit amet, sed aenean erat arcu morbi.
               </p> */}
-              <div className="mt-5 prose prose-blue text-gray-500">
+              <div className="mt-5 prose prose-blue dark:prose-dark text-gray-500">
                 <h3>Programming Languages and Technologies</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <ul>

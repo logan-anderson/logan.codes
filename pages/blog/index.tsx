@@ -28,7 +28,7 @@ const Tags = ({
   // const uniqueTags = tags.filter()
   return (
     <>
-      <h4>Filter by tags:</h4>
+      <h4 className="dark:text-gray-50">Filter by tags:</h4>
       <div className="tags">
         {result?.map((tag: Tag) => {
           return (

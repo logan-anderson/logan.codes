@@ -24,7 +24,7 @@ const AppIcon: React.FC<{
       href={props.link}
       className={`inline-block mt-0 ${
         props.disableMargin ? "" : "ml-8"
-      } text-blue-900 hover:text-blue-700 no-label transition duration-150 ease-in-out`}
+      } text-blue-900 dark:text-blue-100 hover:text-blue-700 no-label transition duration-150 ease-in-out`}
       target="_blank"
     >
       <FontAwesomeIcon size="lg" icon={props.icon} />
@@ -73,24 +73,18 @@ const NavBar = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-1 hidden md:ml-10 md:grid pr-4">
-            {/* <a
-              href="https://logan.bio"
-              className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
-            >
-              More About me
-            </a> */}
+          <div className="grid-cols-4 gap-1 hidden md:ml-10 md:grid pr-4">
             <FlyoutMenu className="text-center" />
             <div className="text-center">
               <Link href="/blog">
-                <a className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">
+                <a className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out">
                   Blog Posts
                 </a>
               </Link>
             </div>
             <div className="text-center">
               <Link href="/projects">
-                <a className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">
+                <a className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out">
                   My Projects
                 </a>
               </Link>
@@ -122,7 +116,7 @@ const MobileMenuItem = (props: { href: string; title: string }) => {
     <Link href={props.href}>
       <a
         href="#"
-        className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+        className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-50 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-700  focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
         role="menuitem"
       >
         {props.title}
@@ -152,7 +146,7 @@ export const MobileNav: React.FC<NavProps> = ({
         >
           <div className="rounded-lg shadow-md">
             <div
-              className="rounded-lg bg-white shadow-xs overflow-hidden"
+              className="rounded-lg bg-white shadow-xs overflow-hidden dark:bg-gray-800"
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="main-menu"
@@ -193,11 +187,11 @@ export const MobileNav: React.FC<NavProps> = ({
               <div className="px-2 pt-2 pb-3">
                 <FlyoutMenu
                   absolute={false}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
                 />
                 <MobileMenuItem title="Blog Posts" href="/blog" />
                 <MobileMenuItem title="My Projects" href="/projects" />
-                <div className="block nowrap px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
+                <div className="block nowrap px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50  dark:hover:bg-gray-600 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
                   <AppIcon
                     icon={faGithub}
                     link="https://github.com/logan-anderson"
