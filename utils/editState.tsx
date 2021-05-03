@@ -15,15 +15,13 @@ export const isEditing = (): boolean => {
 
 export const setEditing = (isEditing: boolean) => {
   if (!isSSR) {
-    console.log("setting edit local storage");
-    console.log(isEditing ? "true" : "false");
     window.localStorage.setItem(LOCALSTORAGEKEY, isEditing ? "true" : "false");
   }
 };
 
 const EditContext = React.createContext({
   edit: isEditing(),
-  setEdit: (editing: boolean) => {},
+  setEdit: (_editing: boolean) => {},
 });
 
 /* 

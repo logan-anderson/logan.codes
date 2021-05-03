@@ -10,8 +10,7 @@ interface PageProps {
   post: getPostQueryRes;
 }
 const BlogPage = ({ post }: PageProps) => {
-  console.log({ post });
-  const { data, sys, id } = post.getPostsDocument;
+  const { data } = post.getPostsDocument;
   return (
     <Layout
       title={data?.title || ""}
@@ -65,7 +64,7 @@ export const getStaticPaths = async function () {
       return { params: { slug: path } };
     });
   return {
-    fallback: true,
+    fallback: false,
     paths,
   };
 };

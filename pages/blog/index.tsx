@@ -1,10 +1,6 @@
-import { PreviewData } from "next-tinacms-github";
-
-import getPosts from "../../utils/getPosts";
 import Layout from "../../components/layout/Layout";
 import BlogCard from "../../components/BlogCard";
-import useCreateBlogPage from "../../hooks/useCreateBlogPage";
-import { Post, Tag } from "../../interfaces";
+import { Tag } from "../../interfaces";
 import Button from "../../components/Buttons/ToggleButton";
 import { useState } from "react";
 import { BreadCrumb } from "../../components/BreadCrumb";

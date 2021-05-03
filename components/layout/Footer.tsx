@@ -1,5 +1,4 @@
 // import Link from 'next/link';
-import { useGithubEditing } from "react-tinacms-github";
 const AppFooter = ({ preview }: any) => {
   return (
     <footer className="flex flex-wrap items-center justify-between p-4">

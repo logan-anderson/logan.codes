@@ -1,25 +1,17 @@
-import {
-  getGithubPreviewProps,
-  parseJson,
-  PreviewData,
-} from "next-tinacms-github";
-import { useGithubJsonForm } from "react-tinacms-github";
-// import { TimelineLite, gsap } from "gsap";
-
+import { PreviewData } from "next-tinacms-github";
 import { Post } from "../interfaces";
 import getPosts from "../utils/getPosts";
 import Layout from "../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
 import { GitFile } from "react-tinacms-github/dist/form/useGitFileSha";
 import { Hero } from "../components/Hero";
-import { GetStaticProps } from "next";
 
 interface props {
   posts: Array<Post>;
   preview: boolean;
   file: GitFile;
 }
-const IndexPage = ({ file, preview, posts }: props) => {
+const IndexPage = ({ preview, posts }: props) => {
   return (
     <>
       <Layout title="Home" preview={preview} navDisable={true}>

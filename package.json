@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "yarn tina-gql server:start -c \"next dev\"",
-    "build": "yarn tina-gql server:start -c \"yarn build:rss && next build\"",
+    "build": "yarn tina-gql server:start -c \"yarn build:app\"",
+    "build:app": "yarn build:rss && next build",
     "analyze": "cross-env ANALYZE=true next build",
     "build:rss": "ts-node scripts/generate-rss.ts",
     "start": "next start",

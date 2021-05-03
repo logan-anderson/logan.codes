@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useGithubToolbarPlugins } from "react-tinacms-github";
 import styled from "styled-components";
 import { DefaultSeo } from "next-seo";
 import { Fade } from "react-awesome-reveal";
