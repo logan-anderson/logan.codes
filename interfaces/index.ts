@@ -4,26 +4,26 @@
 //
 // import User from 'path/to/interfaces';
 
-export type User = {
-  id: number;
-  name: string;
-};
+// export type User = {
+//   id: number;
+//   name: string;
+// };
 
-export type Post = {
-  fileName: string;
-  fileRelativePath: string;
-  data: {
-    frontmatter: {
-      description: string;
-      title: string;
-      date: string;
-      author: string;
-      tags: string[];
-    };
-    markdownBody: string;
-  };
-};
-export type Tag = {
-  name: string;
-  selected: Boolean;
-};
+// export type Post = {
+//   fileName: string;
+//   fileRelativePath: string;
+//   data: {
+//     frontmatter: {
+//       description: string;
+//       title: string;
+//       date: string;
+//       author: string;
+//       tags: string[];
+//     };
+//     markdownBody: string;
+//   };
+// };
+// export type Tag = {
+//   name: string;
+//   selected: Boolean;
+// };

@@ -12,6 +12,7 @@ import Layout from "../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
 import { GitFile } from "react-tinacms-github/dist/form/useGitFileSha";
 import { Hero } from "../components/Hero";
+import { GetStaticProps } from "next";
 
 interface props {
   posts: Array<Post>;
@@ -65,40 +66,49 @@ const IndexPage = ({ file, preview, posts }: props) => {
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
-export const getStaticProps = async function ({
-  preview,
-  previewData,
-}: {
-  preview: boolean;
-  previewData: PreviewData<any>;
-}) {
-  const { posts } = await getPosts(preview, previewData, "content/blog");
-  if (preview) {
-    const previewProps = await getGithubPreviewProps({
-      ...previewData,
-      fileRelativePath: "content/home.json",
-      parse: parseJson,
-    });
-    previewProps.props.file;
-    return {
-      props: {
-        posts,
-        ...previewProps.props,
-      },
-    };
-  }
+
+export const getStaticProps: GetStaticProps = async function () {
   return {
     props: {
-      posts,
-      sourceProvider: null,
-      error: null,
-      preview: false,
-      file: {
-        fileRelativePath: "content/home.json",
-        data: (await import("../content/home.json")).default,
-      },
+      logan: "asdf",
     },
   };
 };
+
+// export const getStaticProps = async function ({
+//   preview,
+//   previewData,
+// }: {
+//   preview: boolean;
+//   previewData: PreviewData<any>;
+// }) {
+//   const { posts } = await getPosts(preview, previewData, "content/blog");
+//   if (preview) {
+//     const previewProps = await getGithubPreviewProps({
+//       ...previewData,
+//       fileRelativePath: "content/home.json",
+//       parse: parseJson,
+//     });
+//     previewProps.props.file;
+//     return {
+//       props: {
+//         posts,
+//         ...previewProps.props,
+//       },
+//     };
+//   }
+//   return {
+//     props: {
+//       posts,
+//       sourceProvider: null,
+//       error: null,
+//       preview: false,
+//       file: {
+//         fileRelativePath: "content/home.json",
+//         data: (await import("../content/home.json")).default,
+//       },
+//     },
+//   };
+// };
 
 export default IndexPage;
