@@ -9,6 +9,9 @@ import Button from "../../components/Buttons/ToggleButton";
 import { useState } from "react";
 import { BreadCrumb } from "../../components/BreadCrumb";
 import { Slide } from "react-awesome-reveal";
+import { GetStaticProps } from "next";
+import { createLocalClient } from "../../utils";
+import { AllPostsQuery, AllPostsQueryRes } from "../../graphql-queries";
 
 const Tags = ({
   tags,
@@ -61,22 +64,33 @@ const Tags = ({
 };
 
 interface BlogListProps {
-  posts: Array<Post>;
-  tags: Tag[];
-  preview: boolean;
+  posts: AllPostsQueryRes;
 }
 
-const BlogList = ({ posts, preview, tags }: BlogListProps) => {
-  useCreateBlogPage(posts);
-  let [stateTags, setStateTags] = useState(tags);
+const BlogList = ({ posts }: BlogListProps) => {
+  // useCreateBlogPage(posts);
+  let alltags: Tag[] = [];
+  let tagMap = new Map();
+  posts.getPostsList.forEach((doc) => {
+    doc.data?.tags?.forEach((tag) => {
+      if (tag && !tagMap.has(tag)) {
+        alltags.push({
+          name: tag,
+          selected: false,
+        });
+      }
+      tagMap.set(tag, true);
+    });
+  });
+  let [stateTags, setStateTags] = useState<Tag[]>(alltags);
 
   return (
-    <Layout title="Blog" preview={preview}>
+    <Layout title="Blog" preview={false}>
       <div className="max-w-prose mx-auto">
         <BreadCrumb links={[{ label: "Blog", href: "/blog" }]} />
         <Tags tags={stateTags} setTags={setStateTags} />
         <Slide direction="up" cascade duration={700} damping={0.1} triggerOnce>
-          {posts
+          {posts.getPostsList
             .filter((post) => {
               const selectedTags: string[] = stateTags
                 .filter((t) => t.selected)
@@ -86,11 +100,29 @@ const BlogList = ({ posts, preview, tags }: BlogListProps) => {
                 return true;
               }
               return selectedTags.every((currentTag: string) => {
-                return post.data.frontmatter.tags?.includes(currentTag);
+                return post.data?.tags?.includes(currentTag);
               });
             })
-            .map((post: Post) => {
-              return <BlogCard key={post.data.frontmatter.title} post={post} />;
+            .map((post) => {
+              return (
+                <BlogCard
+                  key={post.id}
+                  post={{
+                    fileName: post.sys?.filename || "",
+                    fileRelativePath: post.sys?.filename || "",
+                    data: {
+                      markdownBody: post.data?._body || "",
+                      frontmatter: {
+                        author: post.data?.author || "",
+                        date: post.data?.date || "",
+                        description: post.data?.description || "",
+                        tags: post.data?.tags as string[],
+                        title: post.data?.title || "",
+                      },
+                    },
+                  }}
+                />
+              );
             })}
         </Slide>
       </div>
@@ -101,32 +133,43 @@ const BlogList = ({ posts, preview, tags }: BlogListProps) => {
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
-interface Props {
-  previewData: PreviewData<any>;
-  preview: boolean;
-}
-export const getStaticProps = async function ({ preview, previewData }: Props) {
-  try {
-    const { posts, tags } = await getPosts(
-      preview,
-      previewData,
-      "content/blog"
-    );
+// interface Props {
+//   previewData: PreviewData<any>;
+//   preview: boolean;
+// }
+// export const getStaticProps = async function ({ preview, previewData }: Props) {
+//   try {
+//     const { posts, tags } = await getPosts(
+//       preview,
+//       previewData,
+//       "content/blog"
+//     );
 
-    return {
-      props: {
-        posts,
-        tags,
-        preview: preview ?? false,
-      },
-    };
-  } catch (e) {
-    return {
-      props: {
-        previewError: { ...e }, //workaround since we cant return error as JSON
-      },
-    };
-  }
+//     return {
+//       props: {
+//         posts,
+//         tags,
+//         preview: preview ?? false,
+//       },
+//     };
+//   } catch (e) {
+//     return {
+//       props: {
+//         previewError: { ...e }, //workaround since we cant return error as JSON
+//       },
+//     };
+//   }
+// };
+const client = createLocalClient();
+export const getStaticProps: GetStaticProps = async () => {
+  const blogPosts = await client.request<AllPostsQueryRes>(AllPostsQuery, {
+    variables: {},
+  });
+
+  return {
+    props: {
+      posts: blogPosts,
+    },
+  };
 };
-
 export default BlogList;

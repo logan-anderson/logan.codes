@@ -20,18 +20,6 @@ interface props {
   file: GitFile;
 }
 const IndexPage = ({ file, preview, posts }: props) => {
-  const formOptions = {
-    label: "Home Page",
-    fields: [
-      {
-        label: "Subtitle",
-        name: "posts_title",
-        component: "text",
-      },
-    ],
-  };
-  const [data] = useGithubJsonForm(file, formOptions);
-
   return (
     <>
       <Layout title="Home" preview={preview} navDisable={true}>
@@ -44,7 +32,7 @@ const IndexPage = ({ file, preview, posts }: props) => {
             <div className="relative max-w-7xl mx-auto">
               <div className="text-center">
                 <h2 className="text-3xl leading-9 tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-4xl sm:leading-10">
-                  {data.posts_title}
+                  Latest Blog Posts
                 </h2>
                 <p className="mt-3 max-w-2xl mx-auto text-xl leading-7 text-gray-500 sm:mt-4">
                   {/* {sub title here} */}
@@ -67,48 +55,26 @@ const IndexPage = ({ file, preview, posts }: props) => {
  * Fetch data with getStaticProps based on 'preview' mode
  */
 
-export const getStaticProps: GetStaticProps = async function () {
+export const getStaticProps = async function ({
+  preview,
+  previewData,
+}: {
+  preview: boolean;
+  previewData: PreviewData<any>;
+}) {
+  const { posts } = await getPosts(preview, previewData, "content/blog");
   return {
     props: {
-      logan: "asdf",
+      posts,
+      sourceProvider: null,
+      error: null,
+      preview: false,
+      file: {
+        fileRelativePath: "content/home.json",
+        data: (await import("../content/home.json")).default,
+      },
     },
   };
 };
-
-// export const getStaticProps = async function ({
-//   preview,
-//   previewData,
-// }: {
-//   preview: boolean;
-//   previewData: PreviewData<any>;
-// }) {
-//   const { posts } = await getPosts(preview, previewData, "content/blog");
-//   if (preview) {
-//     const previewProps = await getGithubPreviewProps({
-//       ...previewData,
-//       fileRelativePath: "content/home.json",
-//       parse: parseJson,
-//     });
-//     previewProps.props.file;
-//     return {
-//       props: {
-//         posts,
-//         ...previewProps.props,
-//       },
-//     };
-//   }
-//   return {
-//     props: {
-//       posts,
-//       sourceProvider: null,
-//       error: null,
-//       preview: false,
-//       file: {
-//         fileRelativePath: "content/home.json",
-//         data: (await import("../content/home.json")).default,
-//       },
-//     },
-//   };
-// };
 
 export default IndexPage;

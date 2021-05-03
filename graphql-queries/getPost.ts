@@ -2,7 +2,11 @@ import { Posts_Document } from "../.tina/__generated__/types";
 
 export const getPostQuery = (gql) => gql`
   query getBlogPostQuery($relativePath: String!) {
-    getPostsDocument(relativePath: $relativePat) {
+    getPostsDocument(relativePath: $relativePath) {
+      id
+      sys {
+        filename
+      }
       data {
         __typename
         ... on Basic_Doc_Data {
@@ -18,5 +22,5 @@ export const getPostQuery = (gql) => gql`
 `;
 
 export type getPostQueryRes = {
-  getPostsList: Posts_Document;
+  getPostsDocument: Posts_Document;
 };

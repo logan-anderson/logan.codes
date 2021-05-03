@@ -15,6 +15,8 @@ import { usePlugin } from "tinacms";
 import { Post } from "../../interfaces";
 import { BreadCrumb } from "../../components/BreadCrumb";
 import { MarkdownBody, STYLES } from "../../components/Markdown";
+import { createLocalClient } from "../../utils";
+import { getPostQuery, getPostQueryRes } from "../../graphql-queries";
 
 const InlineWrapper = ({ children, preview }: any) => {
   const { deactivate, activate } = useInlineForm();
@@ -26,64 +28,22 @@ const InlineWrapper = ({ children, preview }: any) => {
 };
 
 interface PageProps {
-  preview: boolean;
-  post: Post;
-  file: GithubFile<any>;
+  post: getPostQueryRes;
 }
-const BlogPage = (props: PageProps) => {
-  if (!props.file) {
-    return <Error statusCode={404} />;
-  }
-  const formOptions = {
-    label: "Edit doc page",
-    fields: [
-      {
-        name: "frontmatter.title",
-        label: "Title",
-        component: "text",
-      },
-      {
-        name: "frontmatter.author",
-        label: "Title",
-        component: "text",
-      },
-      {
-        name: "frontmatter.date",
-        label: "Date",
-        component: "date",
-        dateFormat: "MMMM DD YYYY",
-        timeFormat: false,
-        required: true,
-      },
-      {
-        name: "frontmatter.description",
-        label: "Description",
-        component: "textarea",
-        required: false,
-      },
-      {
-        name: "frontmatter.tags",
-        component: "tags",
-        label: "Tags",
-        description: "Tags for this post",
-      },
-    ],
-  };
-
-  const [data, form] = useGithubMarkdownForm(props.file, formOptions);
-  usePlugin(form);
-
+const BlogPage = ({ post }: PageProps) => {
+  console.log({ post });
+  const { data, sys, id } = post.getPostsDocument;
   return (
     <Layout
-      title={data.frontmatter.title}
-      preview={props.preview}
-      description={data.frontmatter.description}
+      title={data?.title || ""}
+      preview={false}
+      description={data?.description || ""}
     >
       <BreadCrumb
         links={[
           { label: "Blog", href: "/blog" },
           {
-            label: data.frontmatter.title,
+            label: data?.title || "",
           },
         ]}
       />
@@ -189,61 +149,75 @@ const BlogPage = (props: PageProps) => {
           </div>
         </div>
         <div className="relative px-4 sm:px-6 lg:px-8">
-          <InlineForm form={form}>
-            <InlineWysiwyg name="markdownBody" className={STYLES}>
-              <InlineWrapper preview={props.preview}>
-                <MarkdownBody source={data.markdownBody} />
-              </InlineWrapper>
+          {/* <InlineForm form={form}>
+            <InlineWysiwyg name="markdownBody" className={STYLES}> */}
+          {/* <InlineWrapper preview={props.preview}> */}
+          <MarkdownBody source={data?._body || ""} />
+          {/* </InlineWrapper>
             </InlineWysiwyg>
-          </InlineForm>
+          </InlineForm> */}
         </div>
       </div>
     </Layout>
   );
 };
 
+const client = createLocalClient();
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
-export const getStaticProps: GetStaticProps = async function ({
-  preview,
-  previewData,
-  params,
-}: any) {
-  const { slug } = params;
-  const fileRelativePath = `content/blog/${slug}.md`;
-
-  if (preview) {
-    const previewProps = await getGithubPreviewProps({
-      ...previewData,
-      fileRelativePath,
-      parse: parseMarkdown,
-    });
-    return {
-      props: {
-        ...previewProps.props,
-      },
-    };
-  }
-
-  const content = await import(`../../content/blog/${slug}.md`);
-  const data = matter(content.default);
+export const getStaticProps: GetStaticProps = async function ({ params }) {
+  const relativePath = (params?.slug as string) + ".md";
+  const post = await client.request<getPostQueryRes>(getPostQuery, {
+    variables: {
+      relativePath,
+    },
+  });
   return {
     props: {
-      sourceProvider: null,
-      error: null,
-      preview: false,
-      // the markdown file
-      file: {
-        fileRelativePath,
-        data: {
-          frontmatter: data.data,
-          markdownBody: data.content,
-        },
-      },
+      post,
     },
   };
 };
+// export const getStaticProps: GetStaticProps = async function ({
+//   preview,
+//   previewData,
+//   params,
+// }: any) {
+//   const { slug } = params;
+//   const fileRelativePath = `content/blog/${slug}.md`;
+
+//   if (preview) {
+//     const previewProps = await getGithubPreviewProps({
+//       ...previewData,
+//       fileRelativePath,
+//       parse: parseMarkdown,
+//     });
+//     return {
+//       props: {
+//         ...previewProps.props,
+//       },
+//     };
+//   }
+
+//   const content = await import(`../../content/blog/${slug}.md`);
+//   const data = matter(content.default);
+//   return {
+//     props: {
+//       sourceProvider: null,
+//       error: null,
+//       preview: false,
+//       // the markdown file
+//       file: {
+//         fileRelativePath,
+//         data: {
+//           frontmatter: data.data,
+//           markdownBody: data.content,
+//         },
+//       },
+//     },
+//   };
+// };
 
 export const getStaticPaths = async function () {
   const fg = require("fast-glob");

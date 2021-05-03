@@ -34,7 +34,7 @@ const Layout: React.FunctionComponent<Props> = ({
   description,
   navDisable,
 }) => {
-  useGithubToolbarPlugins();
+  // useGithubToolbarPlugins();
   const router = useRouter();
   const [theme, setTheme] = React.useState<"dark" | "light">(
     typeof localStorage === "undefined" ? "light" : localStorage?.theme

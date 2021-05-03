@@ -4,6 +4,9 @@ import { Posts_Document } from "../.tina/__generated__/types";
 export const AllPostsQuery = (gql: any) => gql`
   query BlogPostQuery {
     getPostsList {
+      sys {
+        filename
+      }
       id
       data {
         __typename

@@ -18,11 +18,11 @@ export interface EditLinkProps {
   editMode: boolean;
 }
 export const EditLink = ({ editMode }: EditLinkProps) => {
-  const github = useGithubEditing();
+  // const github = useGithubEditing();
 
   return (
     <button
-      onClick={editMode ? github.exitEditMode : github.enterEditMode}
+      // onClick={editMode ? github.exitEditMode : github.enterEditMode}
       className="bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"
     >
       {editMode
