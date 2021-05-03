@@ -6,6 +6,7 @@ author: Logan Anderson
 tags:
   - markdown
   - code
+_template: basic
 ---
 # .MD?
 

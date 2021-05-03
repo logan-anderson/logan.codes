@@ -2,9 +2,9 @@
   "name": "with-typescript",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "yarn tina-gql server:start -c \"next dev\"",
+    "build": "yarn tina-gql server:start -c \"yarn build:rss && next build\"",
     "analyze": "cross-env ANALYZE=true next build",
-    "build": "yarn build:rss && next build",
     "build:rss": "ts-node scripts/generate-rss.ts",
     "start": "next start",
     "type-check": "tsc"
@@ -52,6 +52,8 @@
     "rss": "1.2.2",
     "slugify": "1.4.0",
     "styled-components": "5.1.1",
+    "tina-graphql-gateway": "^0.2.8",
+    "tina-graphql-gateway-cli": "^0.2.40",
     "tinacms": "0.21.1"
   },
   "devDependencies": {

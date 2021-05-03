@@ -1,8 +1,4 @@
 ---
-frontmatter:
-  tags:
-    - math
-    - code
 title: Does a Math Degree Help in Software Engineering
 author: Logan Anderson
 description: >-
@@ -13,6 +9,7 @@ date: 'Fri Oct 23 2020 22:22:20 GMT-0300 (Atlantic Daylight Time)'
 tags:
   - code
   - math
+_template: basic
 ---
 # Does a Math Degree Help in Software Engineering
 

@@ -7,6 +7,7 @@ tags:
   - code
   - react
   - nextjs
+_template: basic
 ---
 # Adding an RSS feed to a nextjs Site
 

@@ -1,0 +1,19 @@
+---
+label: Basic
+name: basic
+fields:
+  - name: date
+    type: datetime
+    label: Date
+  - name: title
+    type: text
+    label: Title
+  - name: author
+    type: text
+    label: Author
+  - name: description
+    type: textarea
+    label: Description
+  - name: tags
+    type: tag_list
+    label: Tags
