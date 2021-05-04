@@ -10,6 +10,10 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 module.exports = withBundleAnalyzer(
   withPWA(
     withSvgr({
+      images: {
+        loader: "cloudinary",
+        domains: ["res.cloudinary.com"],
+      },
       pwa: {
         dest: "public",
       },

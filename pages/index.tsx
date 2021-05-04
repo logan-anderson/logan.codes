@@ -65,7 +65,6 @@ const client = createLocalClient();
 
 export const getStaticProps = async function () {
   const data = await client.request(AllPostsQuery, { variables: {} });
-  console.log(data);
   return {
     props: {
       data,

@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { GithubClient } from "react-tinacms-github";
 import {
   TinaCloudAuthWall,
   useGraphqlForms,
@@ -11,20 +10,13 @@ import { createClient } from "../utils";
 import { useExitTina, useSetupPlugins } from "../utils/tinacms";
 
 export const TinaWrapper: React.FC<any> = (props) => {
-  console.log({ props });
+  console.log("Tina Wrapper being rendered");
   const cms = React.useMemo(
     () =>
       new TinaCMS({
         toolbar: true,
         apis: {
           tina: createClient(),
-          github: new GithubClient({
-            proxy: "/api/proxy-github",
-            authCallbackRoute: "/api/create-github-access-token",
-            clientId: process.env.GITHUB_CLIENT_ID || "err",
-            baseRepoFullName: process.env.REPO_FULL_NAME || "err", // e.g: tinacms/tinacms.org,
-            baseBranch: process.env.BASE_BRANCH || "err",
-          }),
         },
         sidebar: {
           buttons: {
@@ -66,8 +58,6 @@ const Inner = (props: any) => {
   useExitTina();
   // creates documents
   useDocumentCreatorPlugin((args) => {
-    console.log({ args });
-
     switch (args.collection.slug) {
       case "posts":
         router.push(`/blog/${args.relativePath.replace(".md", "")}`);
