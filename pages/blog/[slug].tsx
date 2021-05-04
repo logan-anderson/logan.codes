@@ -5,6 +5,8 @@ import { MarkdownBody } from "../../components/Markdown";
 import { createLocalClient } from "../../utils";
 import { getPostQuery, getPostQueryRes } from "../../graphql-queries";
 import { BlogHeader } from "../../components/blog";
+import { Author } from "../../components/AuthorDetail";
+import { Author_Document } from "../../.tina/__generated__/types";
 
 interface PageProps {
   data: getPostQueryRes;
@@ -25,7 +27,11 @@ const BlogPage = ({ data: postData }: PageProps) => {
           },
         ]}
       />
-      <div className="relative py-16 overflow-hidden">
+      <Author
+        author={data?.author || ({} as Author_Document)}
+        post={postData.getPostsDocument}
+      />
+      <div className="relative pb-16 overflow-hidden">
         <BlogHeader />
         <div className="relative px-4 sm:px-6 lg:px-8">
           <MarkdownBody source={data?._body || ""} />
