@@ -1,6 +1,6 @@
 ---
 minRead: '2'
-title: What is Markdown
+title: What is Markdown?
 author: content/authors/logan_anderson.md
 description: Learn more about Markdown and what it is
 tags:
