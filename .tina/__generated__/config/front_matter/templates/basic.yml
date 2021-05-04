@@ -3,7 +3,7 @@ label: Basic
 name: basic
 fields:
   - name: date
-    type: datetime
+    type: text
     label: Date
   - name: minRead
     type: text

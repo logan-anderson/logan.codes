@@ -184,15 +184,6 @@ export type Basic_Doc_Values = {
   _template?: Maybe<Scalars['String']>;
 };
 
-export type DatetimeField = FormField & {
-  __typename?: 'DatetimeField';
-  name?: Maybe<Scalars['String']>;
-  label?: Maybe<Scalars['String']>;
-  component?: Maybe<Scalars['String']>;
-  dateFormat?: Maybe<Scalars['String']>;
-  timeFormat?: Maybe<Scalars['String']>;
-};
-
 export type TextField = FormField & {
   __typename?: 'TextField';
   name?: Maybe<Scalars['String']>;
@@ -222,7 +213,7 @@ export type TagListField = FormField & {
   component?: Maybe<Scalars['String']>;
 };
 
-export type Basic_Doc_FormFieldsUnion = DatetimeField | TextField | SelectField | TextareaField | TagListField;
+export type Basic_Doc_FormFieldsUnion = TextField | SelectField | TextareaField | TagListField;
 
 export type Basic_Doc_Form = {
   __typename?: 'Basic_Doc_Form';

@@ -1,4 +1,5 @@
 ---
+minRead: '3'
 title: How to add a new action to a tinaCMS form
 author: content/authors/logan_anderson.md
 description: >-

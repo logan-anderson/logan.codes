@@ -13,7 +13,7 @@ export default defineSchema({
           fields: [
             {
               name: "date",
-              type: "datetime",
+              type: "text",
               label: "Date",
             },
             {

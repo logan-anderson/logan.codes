@@ -109,6 +109,7 @@ const BlogList = ({ data }: BlogListProps) => {
                     data: {
                       markdownBody: post.data?._body || "",
                       frontmatter: {
+                        minRead: post.data?.minRead || "",
                         avatar: post.data?.author?.data?.avatar || "",
                         author: post.data?.author?.data?.name || "",
                         date: post.data?.date || "",

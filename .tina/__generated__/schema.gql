@@ -110,14 +110,6 @@ type Basic_Doc_Values {
   _template: String
 }
 
-type DatetimeField implements FormField {
-  name: String
-  label: String
-  component: String
-  dateFormat: String
-  timeFormat: String
-}
-
 type TextField implements FormField {
   name: String
   label: String
@@ -143,7 +135,7 @@ type TagListField implements FormField {
   component: String
 }
 
-union Basic_Doc_FormFieldsUnion = DatetimeField | TextField | SelectField | TextareaField | TagListField
+union Basic_Doc_FormFieldsUnion = TextField | SelectField | TextareaField | TagListField
 
 type Basic_Doc_Form {
   label: String

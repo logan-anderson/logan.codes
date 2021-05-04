@@ -62,7 +62,7 @@ const BlogCardNew = ({ post }: Props) => {
                   {new Date(post.data.frontmatter.date).toDateString()}
                 </time>
                 <span className="mx-1">·</span>
-                <span>6 min read</span>
+                <span>{post.data.frontmatter.minRead} min read</span>
               </div>
             </div>
           </div>

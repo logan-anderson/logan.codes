@@ -11,6 +11,7 @@ export const AllPostsQuery = `#graphql
     data {
       __typename
       ... on Basic_Doc_Data {
+        minRead
         title
         date
         description
@@ -26,7 +27,7 @@ export const AllPostsQuery = `#graphql
       }
     }
   }
-  }
+}
 `;
 
 export type AllPostsQueryRes = {

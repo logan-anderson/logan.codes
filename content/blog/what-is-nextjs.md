@@ -1,5 +1,6 @@
 ---
 date: 'Nov 07, 2020'
+minRead: '4'
 title: What is nextjs?
 author: content/authors/logan_anderson.md
 description: >-

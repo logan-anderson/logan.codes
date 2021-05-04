@@ -1,4 +1,6 @@
 ---
+date: 'Fri Oct 23 2020 22:22:20 GMT-0300 (Atlantic Daylight Time)'
+minRead: '4'
 title: Does a Math Degree Help in Software Engineering
 author: content/authors/logan_anderson.md
 description: >-
@@ -6,10 +8,8 @@ description: >-
   science I want to answer the question Does a math degree help one in the field
   of software engineering?
 tags:
-  - code
   - math
 _template: basic
-date: 'Fri Oct 23 2020 22:22:20 GMT-0300 (Atlantic Daylight Time)'
 ---
 
 # Does a Math Degree Help in Software Engineering

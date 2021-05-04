@@ -10,6 +10,7 @@ export const getPostQuery = `#graphql
       data {
         __typename
         ... on Basic_Doc_Data {
+          minRead
           date
           title
           tags
@@ -25,6 +26,7 @@ export const getPostQuery = `#graphql
       }
     }
   }
+}
 `;
 
 export type getPostQueryRes = {
