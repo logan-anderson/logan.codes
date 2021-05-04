@@ -3,8 +3,9 @@ label: Basic
 name: basic
 fields:
   - name: date
-    type: text
+    type: datetime
     label: Date
+    dateFormat: yyyy-MM-DD
   - name: minRead
     type: text
     label: Min Read

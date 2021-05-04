@@ -13,8 +13,9 @@ export default defineSchema({
           fields: [
             {
               name: "date",
-              type: "text",
+              type: "datetime",
               label: "Date",
+              dateFormat: "yyyy-MM-DD",
             },
             {
               name: "minRead",
