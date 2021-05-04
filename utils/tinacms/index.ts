@@ -10,7 +10,7 @@ export const useSetupPlugins = () => {
 export const useExitTina = () => {
   const cms = useCMS();
   const { setEdit } = useEditState();
-  cms.events.subscribe("cms:disable", (args) => {
+  cms.events.subscribe("cms:disable", () => {
     setEdit(false);
   });
 };
