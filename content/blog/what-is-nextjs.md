@@ -1,16 +1,18 @@
 ---
+date: 'Nov 07, 2020'
+minRead: '4'
 title: What is nextjs?
-author: Logan Anderson
+author: content/authors/logan_anderson.md
 description: >-
   Nextjs is a meta framework for React. Nextjs includes static site generation,
   sever site rendering (ssr), api routes, and many other features. We will
   explore all these ideas and more in this blog.  
-date: '2020-11-07T00:00:00Z'
 tags:
   - nextjs
   - code
 _template: basic
 ---
+
 # What is Next.js?
 
 Next.js (or next or nextjs however you choose to say it) is a popular meta-framework for [React](https://reactjs.org/ "React "). In the past few months, nextjs has sky-rocketed in popularity. Don't believe me just check out the npm downloads.  👇

@@ -10,15 +10,23 @@ export const getPostQuery = `#graphql
       data {
         __typename
         ... on Basic_Doc_Data {
+          minRead
           date
-          author
           title
           tags
           _body
+          author {
+          data {
+            ...on Author_Doc_Data {
+              name
+              avatar
+            }
+          }
         }
       }
     }
   }
+}
 `;
 
 export type getPostQueryRes = {

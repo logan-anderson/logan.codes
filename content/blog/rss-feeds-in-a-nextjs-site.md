@@ -1,14 +1,16 @@
 ---
+minRead: '4'
 title: RSS Feeds in a nextjs site
-author: Logan Anderson
+author: content/authors/logan_anderson.md
 description: 'How to add an RSS feed for blog posts into a nextjs site. Simple and easy. '
-date: 'Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)'
 tags:
   - code
   - react
   - nextjs
 _template: basic
+date: 'Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)'
 ---
+
 # Adding an RSS feed to a nextjs Site
 
 Recently, I took on the task of adding an **RSS feed to a nextjs site** (this site). After searching around Google for a solution I quickly realized that all the solutions were outdated or not in dept. Frustrated, I noted that [nextjs.org](https://logana.dev) has an RSS feed so I looked around there code to see how they dogfood nextjs and more importantly how they added an RSS feed. I am posting my finding here to document them and to save others the Saturday morning I spent doing this.

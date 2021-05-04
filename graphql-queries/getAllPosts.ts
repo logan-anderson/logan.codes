@@ -4,22 +4,30 @@ import { Posts_Document } from "../.tina/__generated__/types";
 export const AllPostsQuery = `#graphql
   query BlogPostQuery {
     getPostsList {
-      sys {
-        filename
-      }
-      id
-      data {
-        __typename
-        ... on Basic_Doc_Data {
-          title
-          date
-          author
-          description
-          tags
+    sys {
+      filename
+    }
+    id
+    data {
+      __typename
+      ... on Basic_Doc_Data {
+        minRead
+        title
+        date
+        description
+        tags
+        author {
+          data {
+            ...on Author_Doc_Data {
+              name
+              avatar
+            }
+          }
         }
       }
     }
   }
+}
 `;
 
 export type AllPostsQueryRes = {

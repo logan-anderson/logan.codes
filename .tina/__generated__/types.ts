@@ -64,11 +64,11 @@ export type Section = {
   documents?: Maybe<Array<Maybe<Document>>>;
 };
 
-export type SectionDocumentUnion = Posts_Document | Authors_Document;
+export type SectionDocumentUnion = Posts_Document | Author_Document;
 
 export type SectionParams = {
   posts?: Maybe<Posts_Input>;
-  authors?: Maybe<Authors_Input>;
+  author?: Maybe<Author_Input>;
 };
 
 export type Mutation = {
@@ -76,7 +76,7 @@ export type Mutation = {
   addPendingDocument?: Maybe<Document>;
   updateDocument?: Maybe<SectionDocumentUnion>;
   updatePostsDocument?: Maybe<Posts_Document>;
-  updateAuthorsDocument?: Maybe<Authors_Document>;
+  updateAuthorDocument?: Maybe<Author_Document>;
 };
 
 
@@ -99,9 +99,9 @@ export type MutationUpdatePostsDocumentArgs = {
 };
 
 
-export type MutationUpdateAuthorsDocumentArgs = {
+export type MutationUpdateAuthorDocumentArgs = {
   relativePath?: Maybe<Scalars['String']>;
-  params?: Maybe<Authors_Input>;
+  params?: Maybe<Author_Input>;
 };
 
 export type Query = {
@@ -112,8 +112,8 @@ export type Query = {
   getCollection?: Maybe<Section>;
   getPostsDocument?: Maybe<Posts_Document>;
   getPostsList?: Maybe<Array<Maybe<Posts_Document>>>;
-  getAuthorsDocument?: Maybe<Authors_Document>;
-  getAuthorsList?: Maybe<Array<Maybe<Authors_Document>>>;
+  getAuthorDocument?: Maybe<Author_Document>;
+  getAuthorList?: Maybe<Array<Maybe<Author_Document>>>;
 };
 
 
@@ -138,7 +138,7 @@ export type QueryGetPostsDocumentArgs = {
 };
 
 
-export type QueryGetAuthorsDocumentArgs = {
+export type QueryGetAuthorDocumentArgs = {
   relativePath?: Maybe<Scalars['String']>;
 };
 
@@ -164,8 +164,9 @@ export type Posts_Document = Node & Document & {
 export type Basic_Doc_Data = {
   __typename?: 'Basic_Doc_Data';
   date?: Maybe<Scalars['String']>;
+  minRead?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  author?: Maybe<Scalars['String']>;
+  author?: Maybe<Author_Document>;
   description?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
   _body?: Maybe<Scalars['String']>;
@@ -174,8 +175,9 @@ export type Basic_Doc_Data = {
 export type Basic_Doc_Values = {
   __typename?: 'Basic_Doc_Values';
   date?: Maybe<Scalars['String']>;
+  minRead?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  author?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['Reference']>;
   description?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
   _body?: Maybe<Scalars['String']>;
@@ -198,6 +200,14 @@ export type TextField = FormField & {
   component?: Maybe<Scalars['String']>;
 };
 
+export type SelectField = FormField & {
+  __typename?: 'SelectField';
+  name?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+  component?: Maybe<Scalars['String']>;
+  options?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
 export type TextareaField = FormField & {
   __typename?: 'TextareaField';
   name?: Maybe<Scalars['String']>;
@@ -212,7 +222,7 @@ export type TagListField = FormField & {
   component?: Maybe<Scalars['String']>;
 };
 
-export type Basic_Doc_FormFieldsUnion = DatetimeField | TextField | TextareaField | TagListField;
+export type Basic_Doc_FormFieldsUnion = DatetimeField | TextField | SelectField | TextareaField | TagListField;
 
 export type Basic_Doc_Form = {
   __typename?: 'Basic_Doc_Form';
@@ -223,6 +233,7 @@ export type Basic_Doc_Form = {
 
 export type Basic_Doc_Input = {
   date?: Maybe<Scalars['String']>;
+  minRead?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   author?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
@@ -230,23 +241,23 @@ export type Basic_Doc_Input = {
   _body?: Maybe<Scalars['String']>;
 };
 
-export type Authors_Data = Author_Doc_Data;
+export type Author_Data = Author_Doc_Data;
 
-export type Authors_Input = {
+export type Author_Input = {
   author?: Maybe<Author_Doc_Input>;
 };
 
-export type Authors_Values = Author_Doc_Values;
+export type Author_Values = Author_Doc_Values;
 
-export type Authors_Form = Author_Doc_Form;
+export type Author_Form = Author_Doc_Form;
 
-export type Authors_Document = Node & Document & {
-  __typename?: 'Authors_Document';
+export type Author_Document = Node & Document & {
+  __typename?: 'Author_Document';
   id: Scalars['ID'];
   sys?: Maybe<SystemInfo>;
-  data?: Maybe<Authors_Data>;
-  values?: Maybe<Authors_Values>;
-  form?: Maybe<Authors_Form>;
+  data?: Maybe<Author_Data>;
+  values?: Maybe<Author_Values>;
+  form?: Maybe<Author_Form>;
 };
 
 export type Author_Doc_Data = {
