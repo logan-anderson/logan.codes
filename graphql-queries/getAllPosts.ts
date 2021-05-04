@@ -1,7 +1,7 @@
 import { Posts_Document } from "../.tina/__generated__/types";
 
 // Query for getting all of the blog posts
-export const AllPostsQuery = (gql: any) => gql`
+export const AllPostsQuery = `#graphql
   query BlogPostQuery {
     getPostsList {
       sys {

@@ -7,10 +7,10 @@ import { getPostQuery, getPostQueryRes } from "../../graphql-queries";
 import { BlogHeader } from "../../components/blog";
 
 interface PageProps {
-  post: getPostQueryRes;
+  data: getPostQueryRes;
 }
-const BlogPage = ({ post }: PageProps) => {
-  const { data } = post.getPostsDocument;
+const BlogPage = ({ data: postData }: PageProps) => {
+  const { data } = postData.getPostsDocument;
   return (
     <Layout
       title={data?.title || ""}
@@ -48,7 +48,11 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
   });
   return {
     props: {
-      post,
+      data: post,
+      variables: {
+        relativePath,
+      },
+      query: getPostQuery,
     },
   };
 };

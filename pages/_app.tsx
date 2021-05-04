@@ -13,22 +13,15 @@ function InnerApp({ Component, pageProps }: AppProps) {
       () => import("../components/TinaWrapper")
     ) as unknown) as React.FC;
     return (
-      <>
-        <TinaWrapper {...pageProps}>
-          {(props: any) => <Component {...props} />}
-        </TinaWrapper>
-      </>
+      <TinaWrapper {...pageProps}>
+        {(props: any) => <Component {...props} />}
+      </TinaWrapper>
     );
   }
-  return (
-    <>
-      <Component {...pageProps} />
-    </>
-  );
+  return <Component {...pageProps} />;
 }
 const App = (props: AppProps) => {
   useGoogleTagManager();
-
   return (
     <>
       <Head>

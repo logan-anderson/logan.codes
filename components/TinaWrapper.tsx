@@ -1,10 +1,16 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { GithubClient } from "react-tinacms-github";
-import { TinaCloudAuthWall } from "tina-graphql-gateway";
+import {
+  TinaCloudAuthWall,
+  useGraphqlForms,
+  useDocumentCreatorPlugin,
+} from "tina-graphql-gateway";
 import { TinaCMS } from "tinacms";
 import { createClient } from "../utils";
 
-export const TinaWrapper: React.FC = ({ children }) => {
+export const TinaWrapper: React.FC<any> = (props) => {
+  console.log({ props });
   const cms = React.useMemo(
     () =>
       new TinaCMS({
@@ -29,7 +35,44 @@ export const TinaWrapper: React.FC = ({ children }) => {
     []
   );
 
-  return <TinaCloudAuthWall cms={cms}>{children}</TinaCloudAuthWall>;
+  return (
+    <TinaCloudAuthWall cms={cms}>
+      {/* this is to prevent from trying to query non editable pages */}
+      {props.query ? <Inner {...props} /> : props.children(props)}
+    </TinaCloudAuthWall>
+  );
 };
 
+const Inner = (props: any) => {
+  const router = useRouter();
+  const [payload, isLoading] = useGraphqlForms({
+    query: (gql) => gql(props.query || ""),
+    variables: props.variables || {},
+  });
+  useDocumentCreatorPlugin((args) => {
+    console.log({ args });
+
+    switch (args.collection.slug) {
+      case "posts":
+        router.push(`/blog/${args.relativePath.replace(".md", "")}`);
+    }
+  });
+  return (
+    <>
+      {isLoading ? (
+        <div
+          style={{
+            opacity: 0.2,
+            pointerEvents: "none",
+          }}
+        >
+          {props.children(props)}
+        </div>
+      ) : (
+        // pass the new edit state data to the child
+        props.children({ ...props, data: payload })
+      )}
+    </>
+  );
+};
 export default TinaWrapper;

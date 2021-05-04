@@ -60,14 +60,14 @@ const Tags = ({
 };
 
 interface BlogListProps {
-  posts: AllPostsQueryRes;
+  data: AllPostsQueryRes;
 }
 
-const BlogList = ({ posts }: BlogListProps) => {
+const BlogList = ({ data }: BlogListProps) => {
   // useCreateBlogPage(posts);
   let alltags: Tag[] = [];
   let tagMap = new Map();
-  posts.getPostsList.forEach((doc) => {
+  data.getPostsList.forEach((doc) => {
     doc.data?.tags?.forEach((tag) => {
       if (tag && !tagMap.has(tag)) {
         alltags.push({
@@ -86,7 +86,7 @@ const BlogList = ({ posts }: BlogListProps) => {
         <BreadCrumb links={[{ label: "Blog", href: "/blog" }]} />
         <Tags tags={stateTags} setTags={setStateTags} />
         <Slide direction="up" cascade duration={700} damping={0.1} triggerOnce>
-          {posts.getPostsList
+          {data.getPostsList
             .filter((post) => {
               const selectedTags: string[] = stateTags
                 .filter((t) => t.selected)
@@ -126,36 +126,6 @@ const BlogList = ({ posts }: BlogListProps) => {
   );
 };
 
-/**
- * Fetch data with getStaticProps based on 'preview' mode
- */
-// interface Props {
-//   previewData: PreviewData<any>;
-//   preview: boolean;
-// }
-// export const getStaticProps = async function ({ preview, previewData }: Props) {
-//   try {
-//     const { posts, tags } = await getPosts(
-//       preview,
-//       previewData,
-//       "content/blog"
-//     );
-
-//     return {
-//       props: {
-//         posts,
-//         tags,
-//         preview: preview ?? false,
-//       },
-//     };
-//   } catch (e) {
-//     return {
-//       props: {
-//         previewError: { ...e }, //workaround since we cant return error as JSON
-//       },
-//     };
-//   }
-// };
 const client = createLocalClient();
 export const getStaticProps: GetStaticProps = async () => {
   const blogPosts = await client.request<AllPostsQueryRes>(AllPostsQuery, {
@@ -164,7 +134,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      posts: blogPosts,
+      data: blogPosts,
+      query: AllPostsQuery,
     },
   };
 };
