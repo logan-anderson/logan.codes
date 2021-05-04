@@ -1,12 +1,8 @@
-import { PreviewData } from "next-tinacms-github";
-import { Post } from "../interfaces";
-import getPosts from "../utils/getPosts";
 import Layout from "../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
-import { GitFile } from "react-tinacms-github/dist/form/useGitFileSha";
 import { Hero } from "../components/Hero";
 import { AllPostsQuery, AllPostsQueryRes } from "../graphql-queries";
-import { createClient, createLocalClient } from "../utils";
+import { createLocalClient } from "../utils";
 
 interface props {
   data: AllPostsQueryRes;
