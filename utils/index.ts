@@ -23,7 +23,7 @@ export const createCloudClient = () => {
   return new Client({
     organizationId: organization || ``,
     clientId: clientId || ``,
-    branch: `main`,
+    branch: `tina-cloud`,
     tokenStorage: `LOCAL_STORAGE`,
   });
 };

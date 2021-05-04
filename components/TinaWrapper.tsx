@@ -8,12 +8,14 @@ import {
 } from "tina-graphql-gateway";
 import { TinaCMS } from "tinacms";
 import { createClient } from "../utils";
+import { useExitTina, useSetupPlugins } from "../utils/tinacms";
 
 export const TinaWrapper: React.FC<any> = (props) => {
   console.log({ props });
   const cms = React.useMemo(
     () =>
       new TinaCMS({
+        toolbar: true,
         apis: {
           tina: createClient(),
           github: new GithubClient({
@@ -48,7 +50,20 @@ const Inner = (props: any) => {
   const [payload, isLoading] = useGraphqlForms({
     query: (gql) => gql(props.query || ""),
     variables: props.variables || {},
+    formify: ({ createForm, formConfig }) => {
+      formConfig.fields?.forEach((field) => {
+        if (field.name === "_body") {
+          field.component = "markdown";
+        }
+      });
+      return createForm(formConfig);
+    },
   });
+  // sets up date and markdown plugin
+  useSetupPlugins();
+  // sets up a event listener that exits tina the way with using global state
+  useExitTina();
+  // creates documents
   useDocumentCreatorPlugin((args) => {
     console.log({ args });
 
