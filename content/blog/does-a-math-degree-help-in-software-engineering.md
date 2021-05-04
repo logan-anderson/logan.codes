@@ -1,7 +1,6 @@
 ---
-date: 'Fri Oct 23 2020 22:22:20 GMT-0300 (Atlantic Daylight Time)'
 minRead: '4'
-title: Does a Math Degree Help in Software Engineering
+title: Does a Math Degree Help in Software Engineering?
 author: content/authors/logan_anderson.md
 description: >-
   As someone who is in their fourth year of a double major in math and computer
