@@ -23,11 +23,11 @@ const AppIcon: React.FC<{
     <a
       href={props.link}
       className={`inline-block mt-0 ${
-        props.disableMargin ? "" : "ml-8"
+        props.disableMargin ? "" : "ml-1"
       } text-blue-900 dark:text-blue-100 hover:text-blue-700 no-label transition duration-150 ease-in-out`}
       target="_blank"
     >
-      <FontAwesomeIcon size="lg" icon={props.icon} />
+      <FontAwesomeIcon size="lg" icon={props.icon} className="inline-block" />
     </a>
   );
 };

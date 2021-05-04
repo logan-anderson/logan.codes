@@ -5,16 +5,16 @@ import Layout from "../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
 import { GitFile } from "react-tinacms-github/dist/form/useGitFileSha";
 import { Hero } from "../components/Hero";
+import { AllPostsQuery, AllPostsQueryRes } from "../graphql-queries";
+import { createClient, createLocalClient } from "../utils";
 
 interface props {
-  posts: Array<Post>;
-  preview: boolean;
-  file: GitFile;
+  data: AllPostsQueryRes;
 }
-const IndexPage = ({ preview, posts }: props) => {
+const IndexPage = ({ data }: props) => {
   return (
     <>
-      <Layout title="Home" preview={preview} navDisable={true}>
+      <Layout title="Home" preview={false} navDisable={true}>
         <Hero />
         <section className="py-12 px-4">
           <div className="relative bg-gray-50 dark:bg-gray-800 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
@@ -31,8 +31,27 @@ const IndexPage = ({ preview, posts }: props) => {
                 </p>
               </div>
               <div className="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
-                {posts.slice(0, 3).map((post: Post) => {
-                  return <BlogCard post={post} />;
+                {data?.getPostsList?.slice(0, 3).map((post) => {
+                  return (
+                    <BlogCard
+                      post={{
+                        fileName: post.sys?.filename || "",
+                        fileRelativePath: post.sys?.filename || "",
+                        data: {
+                          markdownBody: post.data?._body || "",
+                          frontmatter: {
+                            author: post.data?.author?.data?.name || "",
+                            avatar: post.data?.author?.data?.avatar || "",
+                            date: post.data?.date || "",
+                            description: post.data?.description || "",
+                            minRead: post.data?.minRead || "",
+                            tags: post.data?.tags as string[],
+                            title: post.data?.title || "",
+                          },
+                        },
+                      }}
+                    />
+                  );
                 })}
               </div>
             </div>
@@ -43,28 +62,17 @@ const IndexPage = ({ preview, posts }: props) => {
   );
 };
 
+const client = createLocalClient();
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
 
-export const getStaticProps = async function ({
-  preview,
-  previewData,
-}: {
-  preview: boolean;
-  previewData: PreviewData<any>;
-}) {
-  const { posts } = await getPosts(preview, previewData, "content/blog");
+export const getStaticProps = async function () {
+  const data = await client.request(AllPostsQuery, { variables: {} });
+  console.log(data);
   return {
     props: {
-      posts,
-      sourceProvider: null,
-      error: null,
-      preview: false,
-      file: {
-        fileRelativePath: "content/home.json",
-        data: (await import("../content/home.json")).default,
-      },
+      data,
     },
   };
 };
