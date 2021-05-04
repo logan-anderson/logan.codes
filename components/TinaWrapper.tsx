@@ -51,6 +51,7 @@ const Inner = (props: any) => {
     query: (gql) => gql(props.query || ""),
     variables: props.variables || {},
     formify: ({ createForm, formConfig }) => {
+      // this doesnt feel right
       formConfig.fields?.forEach((field) => {
         if (field.name === "_body") {
           field.component = "markdown";
