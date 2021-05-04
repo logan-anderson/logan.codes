@@ -29,7 +29,6 @@ const Main = styled.main`
 const Layout: React.FunctionComponent<Props> = ({
   children,
   title,
-  preview,
   description,
   navDisable,
 }) => {
@@ -87,7 +86,7 @@ const Layout: React.FunctionComponent<Props> = ({
               {children}
             </Fade>
           </Main>
-          <AppFooter preview={preview} />
+          <AppFooter />
         </div>
       </StyledBody>
       <DarkModeToggleButton onClick={onClick} checked={theme === "dark"} />
