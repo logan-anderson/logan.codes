@@ -1,6 +1,5 @@
 ---
 minRead: '2'
-date: 'May 31, 2020'
 title: What is Markdown
 author: content/authors/logan_anderson.md
 description: Learn more about Markdown and what it is
@@ -10,7 +9,7 @@ tags:
 _template: basic
 ---
 
-# .MD?
+# What is Markdown?
 
 While browsing through **GitHub** or **GitLab** you may have noticed styled README files with a strange `.md` file extension. The MD stands for Markdown. If that is strange or new to you you’re in the right spot! Keep reading and you will learn more about what Markdown is and how to use it!
 
