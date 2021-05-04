@@ -2,7 +2,6 @@ import { useEffect, createRef } from "react";
 import { TextPlugin } from "gsap/dist/TextPlugin";
 import { gsap } from "gsap";
 import NavBar from "./layout/Navbar";
-import Image from "next/image";
 
 export const Hero: React.FC = () => {
   const words = ["Coding", "Coffee", "Math", "Frontend dev", "Backend dev"];
