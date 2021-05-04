@@ -5,12 +5,19 @@ fields:
   - name: date
     type: datetime
     label: Date
+  - name: minRead
+    type: text
+    label: Min Read
   - name: title
     type: text
     label: Title
   - name: author
-    type: text
     label: Author
+    type: select
+    config:
+      source:
+        type: pages
+        section: author
   - name: description
     type: textarea
     label: Description

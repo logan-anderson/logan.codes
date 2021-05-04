@@ -1,6 +1,6 @@
 ---
 title: How to add a new action to a tinaCMS form
-author: Logan Anderson
+author: content/authors/logan_anderson.md
 description: >-
   How to add a new action to a tinaCMS form. This brief tutorial will show you
   how to make a new action specifically,  a delete action.

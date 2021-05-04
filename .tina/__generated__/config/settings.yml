@@ -10,7 +10,7 @@ sections:
     match: '**/*.md'
     new_doc_ext: md
   - label: Authors
-    name: authors
+    name: author
     path: content/authors
     templates:
       - author

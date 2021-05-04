@@ -17,14 +17,20 @@ export default defineSchema({
               label: "Date",
             },
             {
+              name: "minRead",
+              type: "text",
+              label: "Min Read",
+            },
+            {
               name: "title",
               type: "text",
               label: "Title",
             },
             {
               name: "author",
-              type: "text",
+              type: "reference",
               label: "Author",
+              collection: "author",
             },
             {
               name: "description",
@@ -42,7 +48,7 @@ export default defineSchema({
     },
     {
       label: "Authors",
-      name: "authors",
+      name: "author",
       path: "content/authors",
       templates: [
         {

@@ -11,10 +11,16 @@ export const getPostQuery = `#graphql
         __typename
         ... on Basic_Doc_Data {
           date
-          author
           title
           tags
           _body
+          author {
+          data {
+            ...on Author_Doc_Data {
+              name
+              avatar
+            }
+          }
         }
       }
     }

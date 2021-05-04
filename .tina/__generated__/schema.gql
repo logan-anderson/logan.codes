@@ -46,18 +46,18 @@ type Section {
   documents: [Document]
 }
 
-union SectionDocumentUnion = Posts_Document | Authors_Document
+union SectionDocumentUnion = Posts_Document | Author_Document
 
 input SectionParams {
   posts: Posts_Input
-  authors: Authors_Input
+  author: Author_Input
 }
 
 type Mutation {
   addPendingDocument(relativePath: String, collection: String, template: String): Document
   updateDocument(relativePath: String, params: SectionParams): SectionDocumentUnion
   updatePostsDocument(relativePath: String, params: Posts_Input): Posts_Document
-  updateAuthorsDocument(relativePath: String, params: Authors_Input): Authors_Document
+  updateAuthorDocument(relativePath: String, params: Author_Input): Author_Document
 }
 
 type Query {
@@ -67,8 +67,8 @@ type Query {
   getCollection(collection: String): Section
   getPostsDocument(relativePath: String): Posts_Document
   getPostsList: [Posts_Document]
-  getAuthorsDocument(relativePath: String): Authors_Document
-  getAuthorsList: [Authors_Document]
+  getAuthorDocument(relativePath: String): Author_Document
+  getAuthorList: [Author_Document]
 }
 
 union Posts_Data = Basic_Doc_Data
@@ -91,8 +91,9 @@ type Posts_Document implements Node & Document {
 
 type Basic_Doc_Data {
   date: String
+  minRead: String
   title: String
-  author: String
+  author: Author_Document
   description: String
   tags: [String]
   _body: String
@@ -100,8 +101,9 @@ type Basic_Doc_Data {
 
 type Basic_Doc_Values {
   date: String
+  minRead: String
   title: String
-  author: String
+  author: Reference
   description: String
   tags: [String]
   _body: String
@@ -122,6 +124,13 @@ type TextField implements FormField {
   component: String
 }
 
+type SelectField implements FormField {
+  name: String
+  label: String
+  component: String
+  options: [String]
+}
+
 type TextareaField implements FormField {
   name: String
   label: String
@@ -134,7 +143,7 @@ type TagListField implements FormField {
   component: String
 }
 
-union Basic_Doc_FormFieldsUnion = DatetimeField | TextField | TextareaField | TagListField
+union Basic_Doc_FormFieldsUnion = DatetimeField | TextField | SelectField | TextareaField | TagListField
 
 type Basic_Doc_Form {
   label: String
@@ -144,6 +153,7 @@ type Basic_Doc_Form {
 
 input Basic_Doc_Input {
   date: String
+  minRead: String
   title: String
   author: String
   description: String
@@ -151,22 +161,22 @@ input Basic_Doc_Input {
   _body: String
 }
 
-union Authors_Data = Author_Doc_Data
+union Author_Data = Author_Doc_Data
 
-input Authors_Input {
+input Author_Input {
   author: Author_Doc_Input
 }
 
-union Authors_Values = Author_Doc_Values
+union Author_Values = Author_Doc_Values
 
-union Authors_Form = Author_Doc_Form
+union Author_Form = Author_Doc_Form
 
-type Authors_Document implements Node & Document {
+type Author_Document implements Node & Document {
   id: ID!
   sys: SystemInfo
-  data: Authors_Data
-  values: Authors_Values
-  form: Authors_Form
+  data: Author_Data
+  values: Author_Values
+  form: Author_Form
 }
 
 type Author_Doc_Data {

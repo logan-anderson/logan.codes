@@ -14,6 +14,7 @@ export type Post = {
   fileRelativePath: string;
   data: {
     frontmatter: {
+      avatar: string;
       description: string;
       title: string;
       date: string;
