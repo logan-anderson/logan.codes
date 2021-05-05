@@ -1,10 +1,10 @@
-import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState, FC } from "react";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 import { DefaultSeo } from "next-seo";
-import { Fade } from "react-awesome-reveal";
+import dynamic from "next/dynamic";
+const Fade = dynamic(() => import("../Fade"));
 
+// const { Fade } = dynamic(() => import("react-awesome-reveal"));
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
 import { DarkModeToggleButton } from "../Buttons/DarkModeToggle";
@@ -16,16 +16,6 @@ type Props = {
   navDisable?: boolean;
 };
 
-const StyledBody = styled.div`
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-`;
-const Main = styled.main`
-  flex: 1;
-  margin-top: 20px;
-`;
-
 const Layout: React.FunctionComponent<Props> = ({
   children,
   title,
@@ -34,7 +24,7 @@ const Layout: React.FunctionComponent<Props> = ({
 }) => {
   // useGithubToolbarPlugins();
   const router = useRouter();
-  const [theme, setTheme] = React.useState<"dark" | "light">(
+  const [theme, setTheme] = useState<"dark" | "light">(
     typeof localStorage === "undefined" ? "light" : localStorage?.theme
   );
   const onClick = () => {
@@ -74,24 +64,52 @@ const Layout: React.FunctionComponent<Props> = ({
           "A simple blog about coding, technology, and coffee by Logan Anderson. Read about the latest in web development, machine learning and other tech topics."
         }
       />
-      <StyledBody className="bg-white dark:bg-gray-900 ">
+      <body
+        style={{
+          display: "flex",
+          minHeight: "100vh",
+          flexDirection: "column",
+        }}
+        className="bg-white dark:bg-gray-900 "
+      >
         <div className="bg-body text-body font-body container mx-auto px-3 sm:px-4">
           {!navDisable && (
             <header>
               <Navbar />
             </header>
           )}
-          <Main>
-            <Fade cascade duration={700} damping={0.1} triggerOnce>
-              {children}
-            </Fade>
-          </Main>
+          <main
+            style={{
+              flex: 1,
+              marginTop: "20px",
+            }}
+          >
+            {/* <Fade cascade duration={700} damping={0.1} triggerOnce> */}
+            <Inner>{children}</Inner>
+            {/* </Fade> */}
+          </main>
           <AppFooter />
         </div>
-      </StyledBody>
+      </body>
       <DarkModeToggleButton onClick={onClick} checked={theme === "dark"} />
     </html>
   );
+};
+
+const Inner: FC = ({ children }) => {
+  const [firstLoad, setFirstLoad] = useState(true);
+
+  const router = useRouter();
+  useEffect(() => {
+    router.events.on("routeChangeStart", () => {
+      setFirstLoad(false);
+    });
+  }, []);
+
+  if (firstLoad) {
+    return <>{children}</>;
+  }
+  return <Fade>{children}</Fade>;
 };
 
 export default Layout;
