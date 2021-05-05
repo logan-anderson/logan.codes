@@ -1,4 +1,5 @@
 ---
+date: '2020-10-24'
 minRead: '4'
 title: Does a Math Degree Help in Software Engineering?
 author: content/authors/logan_anderson.md
