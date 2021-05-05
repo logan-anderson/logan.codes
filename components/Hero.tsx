@@ -97,9 +97,9 @@ export const Hero: React.FC = () => {
         <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
           <img
             className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-            // src="/img/IMG_1106.jpeg"
-            // src="/img/IMG_0882_E.jpg"
             src="https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jpg"
+            width="754px"
+            height="704px"
             alt="A picture of logan anderson"
           />
         </div>
