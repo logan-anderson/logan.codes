@@ -1,4 +1,5 @@
 ---
+date: '2020-05-31'
 minRead: '2'
 title: What is Markdown?
 author: content/authors/logan_anderson.md
