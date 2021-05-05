@@ -5,7 +5,7 @@ import { GA_TRACKING_ID } from "../utils/gtag";
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {process.env.NODE_ENV === "production" && (

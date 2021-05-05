@@ -26,6 +26,7 @@ const AppIcon: React.FC<{
         props.disableMargin ? "" : "ml-1"
       } text-blue-900 dark:text-blue-100 hover:text-blue-700 no-label transition duration-150 ease-in-out`}
       target="_blank"
+      rel="noreferrer"
     >
       <FontAwesomeIcon icon={props.icon} className="inline-block h-6" />
     </a>
