@@ -1,13 +1,11 @@
-import { useEffect, useState, FC } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { DefaultSeo } from "next-seo";
-import dynamic from "next/dynamic";
-const Fade = dynamic(() => import("../Fade"));
 
-// const { Fade } = dynamic(() => import("react-awesome-reveal"));
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
 import { DarkModeToggleButton } from "../Buttons/DarkModeToggle";
+import { Fade } from "react-awesome-reveal";
 
 type Props = {
   preview: boolean;
@@ -84,9 +82,9 @@ const Layout: React.FunctionComponent<Props> = ({
               marginTop: "20px",
             }}
           >
-            {/* <Fade cascade duration={700} damping={0.1} triggerOnce> */}
-            <Inner>{children}</Inner>
-            {/* </Fade> */}
+            <Fade cascade duration={700} damping={0.1} triggerOnce>
+              {children}
+            </Fade>
           </main>
           <AppFooter />
         </div>
@@ -94,22 +92,6 @@ const Layout: React.FunctionComponent<Props> = ({
       <DarkModeToggleButton onClick={onClick} checked={theme === "dark"} />
     </html>
   );
-};
-
-const Inner: FC = ({ children }) => {
-  const [firstLoad, setFirstLoad] = useState(true);
-
-  const router = useRouter();
-  useEffect(() => {
-    router.events.on("routeChangeStart", () => {
-      setFirstLoad(false);
-    });
-  }, []);
-
-  if (firstLoad) {
-    return <>{children}</>;
-  }
-  return <Fade>{children}</Fade>;
 };
 
 export default Layout;
