@@ -1,4 +1,3 @@
-// const path = require("path")
 const withSvgr = require("next-svgr");
 require("dotenv").config();
 const withPWA = require("next-pwa");
@@ -26,13 +25,6 @@ module.exports = withBundleAnalyzer(
           test: /\.md$/,
           use: "raw-loader",
         });
-        // config.resolve.alias = {
-        //   ...config.resolve.alias,
-        //   "@components": path.resolve(__dirname, "./components"),
-        //   "@utils": path.resolve(__dirname, "./utils"),
-        //   "@docs": path.resolve(__dirname, "./docs"),
-        //   "@hooks": path.resolve(__dirname, "./hooks"),
-        // }
 
         return config;
       },

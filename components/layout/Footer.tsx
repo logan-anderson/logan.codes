@@ -3,23 +3,26 @@ import { useEditState } from "../../utils/editState";
 // import Link from 'next/link';
 const AppFooter = () => {
   const { edit, setEdit } = useEditState();
+  const canEdit = process.env.NEXT_PUBLIC_EDIT;
+
   return (
     <footer className="flex flex-wrap items-center justify-between p-4">
       <div className="w-full lg:w-auto lg:mr-6 mb-4 lg:mb-0 text-center dark:text-gray-50">
         &copy; Logan
       </div>
-      <div className="flex flex-col lg:flex-row items-center w-full lg:w-auto">
-        <div className="mx-auto lg:mx-0 lg:ml-auto">
-          <button
-            onClick={() => {
-              setEdit(!edit);
-            }}
-          >
-            {edit ? "Exit edit mode" : "Edit as Admin"}
-          </button>
-          {/* <EditLink editMode={preview} /> */}
+      {canEdit && (
+        <div className="flex flex-col lg:flex-row items-center w-full lg:w-auto">
+          <div className="mx-auto lg:mx-0 lg:ml-auto text-black dark:text-white">
+            <button
+              onClick={() => {
+                setEdit(!edit);
+              }}
+            >
+              {edit ? "Exit edit mode" : "Edit as Admin"}
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </footer>
   );
 };

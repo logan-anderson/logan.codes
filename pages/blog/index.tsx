@@ -133,7 +133,12 @@ export const getStaticProps: GetStaticProps = async () => {
   const blogPosts = await client.request<AllPostsQueryRes>(AllPostsQuery, {
     variables: {},
   });
-
+  // sort based on date added
+  blogPosts.getPostsList.sort(
+    (x, y) =>
+      new Date(y.data?.date || "").getTime() -
+      new Date(x.data?.date || "").getTime()
+  );
   return {
     props: {
       data: blogPosts,

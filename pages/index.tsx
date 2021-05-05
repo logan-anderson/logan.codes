@@ -64,10 +64,19 @@ const client = createLocalClient();
  */
 
 export const getStaticProps = async function () {
-  const data = await client.request(AllPostsQuery, { variables: {} });
+  const data = await client.request<AllPostsQueryRes>(AllPostsQuery, {
+    variables: {},
+  });
+  // sort based on date added
+  data.getPostsList.sort(
+    (x, y) =>
+      new Date(y.data?.date || "").getTime() -
+      new Date(x.data?.date || "").getTime()
+  );
+  data.getPostsList = data.getPostsList.slice(0, 3);
   return {
     props: {
-      data,
+      data: data,
     },
   };
 };
