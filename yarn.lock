@@ -3112,6 +3112,11 @@
   resolved "https://registry.yarnpkg.com/@tinacms/alerts/-/alerts-0.1.4.tgz#a21c1d34019921df7faac4c58b0af0f3f87ae655"
   integrity sha512-njZQW8eYQ20WNulJHRZLBuLggYaXz4bXgK0CCRkw3OAfH30ECfVLGAGqnKN81k8LEEqt9I+5ElnfIG6LvuVIwQ==
 
+"@tinacms/core@^0.39.0":
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/@tinacms/core/-/core-0.39.0.tgz#5aa7acbc913fae0302d2ee40d0eb4aa3d1580be5"
+  integrity sha512-vC0cdh/Rt2eZdNf9SB9m9ZY4FdM/p58DOd6j+xk17AeZ//YACc+QugLNifIK5btkeaWu/7zbX8MPL8wIW/0hYw==
+
 "@tinacms/core@^0.9.0":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@tinacms/core/-/core-0.9.0.tgz#8d83a3104b0188fb511f2172c10fad563551bde8"
@@ -3882,6 +3887,13 @@ axios@0.19.2:
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   dependencies:
     follow-redirects "1.5.10"
+
+axios@0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 babel-loader@^8.2.2:
   version "8.2.2"
@@ -5716,6 +5728,11 @@ follow-redirects@1.5.10:
   dependencies:
     debug "=3.1.0"
 
+follow-redirects@^1.10.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.0.tgz#f5d260f95c5f8c105894491feee5dc8993b402fe"
+  integrity sha512-0vRwd7RKQBTt+mgu87mtYeofLFZpTas2S9zY+jIeuLJMNvudIgF52nr19q40HOwH5RrhWIPuj9puybzSJiRrVg==
+
 for-in@^0.1.3:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
@@ -7226,23 +7243,33 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-next-tinacms-github@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.2.0.tgz#2c2a5ff66ac1035df4f17b0f8f097cd81be76e02"
-  integrity sha512-x/4nAXVoNZptC3nVMd0958KPGhQ9h12OhDVjP2HHz9naaYEdE2z3qjaHx/j2PotcZeqLldI3JEoCD35MSf0hnA==
+next-tinacms-github@0.40.1:
+  version "0.40.1"
+  resolved "https://registry.yarnpkg.com/next-tinacms-github/-/next-tinacms-github-0.40.1.tgz#225b0f7ef10d337dfc7f623c8c3a516d653aeeeb"
+  integrity sha512-NNalT3XJ2GMucRQdxuGQIl9UGN1szw30g0y9T62RVzDrkAQJjD+MqmLJs+0mwzp81y0NgGEBuKiZ4nGc5yuvPA==
   dependencies:
+    "@tinacms/core" "^0.39.0"
     atob "2.1.2"
-    axios "0.19.2"
+    axios "0.21.1"
     cookie "0.4.0"
     crypto-js "^4.0.0"
     gray-matter "4.0.2"
     qs "6.9.3"
+    react-tinacms-github "^0.40.1"
     uuid "^8.1.0"
 
 next-tinacms-markdown@^0.2.21:
   version "0.2.21"
   resolved "https://registry.yarnpkg.com/next-tinacms-markdown/-/next-tinacms-markdown-0.2.21.tgz#cd67a583cf1a120a83651325bea8afecb7191fa0"
   integrity sha512-8ejWRySOTQAa9U/WFBJSrzW5Ms3r0JKOGE1zlXWJ4xC66nczstlRki2KZeu8cUBaZLNkUIPhSb23oJNv6iDgRQ==
+  dependencies:
+    gray-matter "^4.0.2"
+    js-yaml "^3.13.1"
+
+next-tinacms-markdown@^0.40.1:
+  version "0.40.1"
+  resolved "https://registry.yarnpkg.com/next-tinacms-markdown/-/next-tinacms-markdown-0.40.1.tgz#afda5c74d598080302e164d9dc9191b21911075a"
+  integrity sha512-TsLRMF/gtC4LC9e/G3J+fSe2356vyaO+8AsaV2I0rCKO9OlDGyU+hntZmvIYD9gUazJgXE/CPwUq2N02SJpe0Q==
   dependencies:
     gray-matter "^4.0.2"
     js-yaml "^3.13.1"
@@ -8754,6 +8781,15 @@ react-tinacms-github@0.5.0:
     btoa "^1.2.1"
     js-cookie "^2.2.1"
     next-tinacms-markdown "^0.2.21"
+
+react-tinacms-github@^0.40.1:
+  version "0.40.1"
+  resolved "https://registry.yarnpkg.com/react-tinacms-github/-/react-tinacms-github-0.40.1.tgz#079854e25780e88156440e3981d2679728d6ff70"
+  integrity sha512-fCxSwTup/EEUli6jhrSuoY5LIEpjoyy+EQKuvNkaVldyckWJXwSVk196KdiY7cOCj0GthLBeccW0Mr0AWMDkDA==
+  dependencies:
+    btoa "^1.2.1"
+    js-cookie "^2.2.1"
+    next-tinacms-markdown "^0.40.1"
 
 react-tinacms-inline@0.7.0:
   version "0.7.0"

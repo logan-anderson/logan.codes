@@ -36,7 +36,7 @@
     "next-pwa": "^5.0.5",
     "next-seo": "4.5.0",
     "next-svgr": "0.0.2",
-    "next-tinacms-github": "0.2.0",
+    "next-tinacms-github": "0.40.1",
     "postcss": "^8.1.7",
     "prop-types": "15.7.2",
     "raw-loader": "4.0.1",
