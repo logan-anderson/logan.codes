@@ -6,6 +6,7 @@ import { Client, LocalClient } from "tina-graphql-gateway";
 export const createCloudClient = () => {
   const organization = process.env.NEXT_PUBLIC_ORGANIZATION_NAME;
   const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
+  const branch = process.env.NEXT_PUBLIC_EDIT_BRACH;
 
   const missingEnv: string[] = [];
   if (!organization) {
@@ -13,6 +14,9 @@ export const createCloudClient = () => {
   }
   if (!clientId) {
     missingEnv.push(`NEXT_PUBLIC_TINA_CLIENT_ID`);
+  }
+  if (branch) {
+    missingEnv.push(`NEXT_PUBLIC_EDIT_BRACH`);
   }
 
   if (missingEnv.length) {
@@ -23,7 +27,7 @@ export const createCloudClient = () => {
   return new Client({
     organizationId: organization || ``,
     clientId: clientId || ``,
-    branch: `tina-cloud`,
+    branch: branch || "",
     tokenStorage: `LOCAL_STORAGE`,
   });
 };
