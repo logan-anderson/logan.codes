@@ -9,6 +9,7 @@ import { EditProvider, useEditState } from "../utils/editState";
 function InnerApp({ Component, pageProps }: AppProps) {
   const { edit } = useEditState();
   if (edit) {
+    // lazy load Tina on the client (this never happens on the server)
     const TinaWrapper = (dynamic(
       () => import("../components/TinaWrapper")
     ) as unknown) as React.FC;

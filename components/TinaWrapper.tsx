@@ -8,6 +8,7 @@ import {
 import { TinaCMS } from "tinacms";
 import { createClient } from "../utils";
 import { useExitTina, useSetupPlugins } from "../utils/tinacms";
+import { Spinner } from "./spinner";
 
 export const TinaWrapper: React.FC<any> = (props) => {
   console.log("Tina Wrapper being rendered");
@@ -66,14 +67,29 @@ const Inner = (props: any) => {
   return (
     <>
       {isLoading ? (
-        <div
-          style={{
-            opacity: 0.2,
-            pointerEvents: "none",
-          }}
-        >
-          {props.children(props)}
-        </div>
+        <>
+          <div
+            className="fixed w-full h-full z-40"
+            style={{
+              pointerEvents: "none",
+              background: "rgba(255,255, 255, .3)",
+            }}
+          >
+            <div className="fixed top-1/2 bottom-1/2  text-center w-full h-full font-bold z-50 text-black dark:text-white">
+              Wait a bit, Tina is loading data from GitHub
+              <div className="mx-auto">
+                <Spinner />
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              pointerEvents: "none",
+            }}
+          >
+            {props.children(props)}
+          </div>
+        </>
       ) : (
         // pass the new edit state data to the child
         props.children({ ...props, data: payload })
