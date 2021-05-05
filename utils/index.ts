@@ -15,7 +15,7 @@ export const createCloudClient = () => {
   if (!clientId) {
     missingEnv.push(`NEXT_PUBLIC_TINA_CLIENT_ID`);
   }
-  if (branch) {
+  if (!branch) {
     missingEnv.push(`NEXT_PUBLIC_EDIT_BRACH`);
   }
 
