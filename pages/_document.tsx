@@ -12,6 +12,7 @@ export default class MyDocument extends Document {
             <>
               <script
                 async
+                defer
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
               />
               <script
