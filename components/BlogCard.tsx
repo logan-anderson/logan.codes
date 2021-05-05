@@ -43,8 +43,8 @@ const BlogCardNew = ({ post }: Props) => {
               <a href="/">
                 <img
                   className="h-10 w-10 rounded-full"
-                  // src="/img/IMG_1106.jpeg"
-                  // src="/img/IMG_0882_E.jpg"
+                  width="40px"
+                  height="40px"
                   src={post.data.frontmatter.avatar}
                   alt="A picture of logan anderson"
                 />
