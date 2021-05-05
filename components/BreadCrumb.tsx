@@ -46,7 +46,7 @@ export const BreadCrumb = ({
   links?: { href?: string; label: string }[];
 }) => {
   return (
-    <nav className="flex mt-6" aria-label="Breadcrumb">
+    <nav className="flex my-6 " aria-label="Breadcrumb">
       <ol className="flex items-center space-x-4 mx-auto">
         <Link href={"/"}>
           <li>

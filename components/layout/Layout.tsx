@@ -1,14 +1,11 @@
-import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useGithubToolbarPlugins } from "react-tinacms-github";
-import styled from "styled-components";
 import { DefaultSeo } from "next-seo";
-import { Fade } from "react-awesome-reveal";
 
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
 import { DarkModeToggleButton } from "../Buttons/DarkModeToggle";
+import { Fade } from "react-awesome-reveal";
 
 type Props = {
   preview: boolean;
@@ -17,26 +14,15 @@ type Props = {
   navDisable?: boolean;
 };
 
-const StyledBody = styled.div`
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-`;
-const Main = styled.main`
-  flex: 1;
-  margin-top: 20px;
-`;
-
 const Layout: React.FunctionComponent<Props> = ({
   children,
   title,
-  preview,
   description,
   navDisable,
 }) => {
-  useGithubToolbarPlugins();
+  // useGithubToolbarPlugins();
   const router = useRouter();
-  const [theme, setTheme] = React.useState<"dark" | "light">(
+  const [theme, setTheme] = useState<"dark" | "light">(
     typeof localStorage === "undefined" ? "light" : localStorage?.theme
   );
   const onClick = () => {
@@ -65,7 +51,7 @@ const Layout: React.FunctionComponent<Props> = ({
   }, [theme]);
 
   return (
-    <html>
+    <>
       <DefaultSeo
         openGraph={{
           url: "https://logana.dev" + router.asPath,
@@ -76,23 +62,35 @@ const Layout: React.FunctionComponent<Props> = ({
           "A simple blog about coding, technology, and coffee by Logan Anderson. Read about the latest in web development, machine learning and other tech topics."
         }
       />
-      <StyledBody className="bg-white dark:bg-gray-900 ">
+      <div
+        style={{
+          display: "flex",
+          minHeight: "100vh",
+          flexDirection: "column",
+        }}
+        className="bg-white dark:bg-gray-900 "
+      >
         <div className="bg-body text-body font-body container mx-auto px-3 sm:px-4">
           {!navDisable && (
             <header>
               <Navbar />
             </header>
           )}
-          <Main>
+          <main
+            style={{
+              flex: 1,
+              marginTop: "20px",
+            }}
+          >
             <Fade cascade duration={700} damping={0.1} triggerOnce>
               {children}
             </Fade>
-          </Main>
-          <AppFooter preview={preview} />
+          </main>
+          <AppFooter />
         </div>
-      </StyledBody>
+      </div>
       <DarkModeToggleButton onClick={onClick} checked={theme === "dark"} />
-    </html>
+    </>
   );
 };
 

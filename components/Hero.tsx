@@ -2,7 +2,6 @@ import { useEffect, createRef } from "react";
 import { TextPlugin } from "gsap/dist/TextPlugin";
 import { gsap } from "gsap";
 import NavBar from "./layout/Navbar";
-import Image from "next/image";
 
 export const Hero: React.FC = () => {
   const words = ["Coding", "Coffee", "Math", "Frontend dev", "Backend dev"];
@@ -75,7 +74,7 @@ export const Hero: React.FC = () => {
                     </span>
                   </span>
                 </h2>
-                <p className="mt-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                <p className="my-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                   Hello! My name is Logan. I am a web developer and student
                   completing a double major in Computer Science and Math. Im
                   passionate about computer science and learning. My main
@@ -84,9 +83,16 @@ export const Hero: React.FC = () => {
                   always trying to expand my knowledge base though reading,
                   developing, and coursework.
                 </p>
-                <div className="flex">
-                  <button className="transition-all duration-100 ease-in-out text-xl mx-auto lg:mx-0 m-3 border border-blue-500 p-1 px-2 rounded-2xl bg-blue-500 hover:font-bold text-blue-50 ">
-                    <a href="https://buymeacoffee.com/logana" target="_blank">
+                <div className="flex justify-center lg:justify-start">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-2xl shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  >
+                    <a
+                      href="https://buymeacoffee.com/logana"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       Buy me a Coffee
                     </a>
                   </button>
@@ -96,13 +102,12 @@ export const Hero: React.FC = () => {
           </div>
         </div>
         <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <Image
+          <img
             className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-            // src="/img/IMG_1106.jpeg"
-            // src="/img/IMG_0882_E.jpg"
-            src="/img/smaller_img_logan.jpg"
+            src="https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jpg"
+            width="754px"
+            height="704px"
             alt="A picture of logan anderson"
-            layout="fill"
           />
         </div>
       </div>

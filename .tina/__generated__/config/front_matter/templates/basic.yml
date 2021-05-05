@@ -1,0 +1,27 @@
+---
+label: Basic
+name: basic
+fields:
+  - name: date
+    type: datetime
+    label: Date
+    dateFormat: yyyy-MM-DD
+  - name: minRead
+    type: text
+    label: Min Read
+  - name: title
+    type: text
+    label: Title
+  - name: author
+    label: Author
+    type: select
+    config:
+      source:
+        type: pages
+        section: author
+  - name: description
+    type: textarea
+    label: Description
+  - name: tags
+    type: tag_list
+    label: Tags

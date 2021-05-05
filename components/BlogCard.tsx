@@ -43,9 +43,9 @@ const BlogCardNew = ({ post }: Props) => {
               <a href="/">
                 <img
                   className="h-10 w-10 rounded-full"
-                  // src="/img/IMG_1106.jpeg"
-                  // src="/img/IMG_0882_E.jpg"
-                  src="/img/smaller_img_logan.jpg"
+                  width="40px"
+                  height="40px"
+                  src={post.data.frontmatter.avatar}
                   alt="A picture of logan anderson"
                 />
               </a>
@@ -54,7 +54,7 @@ const BlogCardNew = ({ post }: Props) => {
               <p className="text-sm leading-5 font-medium text-gray-900 dark:text-gray-300">
                 <a href="#" className="hover:underline">
                   {/* TODO: about about me page and have this link to it */}
-                  Logan Anderson
+                  {post.data.frontmatter.author}
                 </a>
               </p>
               <div className="flex text-sm leading-5 text-gray-500 dark:text-gray-400">
@@ -62,7 +62,7 @@ const BlogCardNew = ({ post }: Props) => {
                   {new Date(post.data.frontmatter.date).toDateString()}
                 </time>
                 <span className="mx-1">·</span>
-                <span>6 min read</span>
+                <span>{post.data.frontmatter.minRead} min read</span>
               </div>
             </div>
           </div>

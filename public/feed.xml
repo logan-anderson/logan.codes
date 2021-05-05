@@ -4,47 +4,45 @@
         <description><![CDATA[Logan's blog]]></description>
         <link>https://logana.dev</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 04 Mar 2021 23:29:45 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 05 May 2021 12:07:00 GMT</lastBuildDate>
         <atom:link href="https://logana.dev/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[What is nextjs?]]></title>
-            <description><![CDATA[Nextjs is a meta framework for React. Nextjs includes static site generation, sever site rendering (ssr), api routes, and many other features. We will explore all these ideas and more in this blog.  ]]></description>
-            <link>https://logana.dev/blog/what-is-nextjs</link>
-            <guid isPermaLink="false">what-is-nextjs</guid>
-            <dc:creator><![CDATA[Logan Anderson]]></dc:creator>
-            <pubDate>Sat, 07 Nov 2020 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Does a Math Degree Help in Software Engineering]]></title>
+            <title><![CDATA[Does a Math Degree Help in Software Engineering?]]></title>
             <description><![CDATA[As someone who is in their fourth year of a double major in math and computer science I want to answer the question Does a math degree help one in the field of software engineering?]]></description>
             <link>https://logana.dev/blog/does-a-math-degree-help-in-software-engineering</link>
             <guid isPermaLink="false">does-a-math-degree-help-in-software-engineering</guid>
-            <dc:creator><![CDATA[Logan Anderson]]></dc:creator>
-            <pubDate>Sat, 24 Oct 2020 01:22:20 GMT</pubDate>
+            <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
         </item>
         <item>
             <title><![CDATA[How to add a new action to a tinaCMS form]]></title>
             <description><![CDATA[How to add a new action to a tinaCMS form. This brief tutorial will show you how to make a new action specifically,  a delete action.]]></description>
             <link>https://logana.dev/blog/how-to-add-a-new-action-to-a-tinacms-form</link>
             <guid isPermaLink="false">how-to-add-a-new-action-to-a-tinacms-form</guid>
-            <dc:creator><![CDATA[Logan Anderson]]></dc:creator>
+            <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
             <pubDate>Mon, 13 Jul 2020 12:42:46 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[What is Markdown?]]></title>
+            <description><![CDATA[Learn more about Markdown and what it is]]></description>
+            <link>https://logana.dev/blog/markdown</link>
+            <guid isPermaLink="false">markdown</guid>
+            <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
+        </item>
+        <item>
+            <title><![CDATA[What is nextjs?]]></title>
+            <description><![CDATA[Nextjs is a meta framework for React. Nextjs includes static site generation, sever site rendering (ssr), api routes, and many other features. We will explore all these ideas and more in this blog.  ]]></description>
+            <link>https://logana.dev/blog/what-is-nextjs</link>
+            <guid isPermaLink="false">what-is-nextjs</guid>
+            <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
+            <pubDate>Sat, 07 Nov 2020 04:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[RSS Feeds in a nextjs site]]></title>
             <description><![CDATA[How to add an RSS feed for blog posts into a nextjs site. Simple and easy. ]]></description>
             <link>https://logana.dev/blog/rss-feeds-in-a-nextjs-site</link>
             <guid isPermaLink="false">rss-feeds-in-a-nextjs-site</guid>
-            <dc:creator><![CDATA[Logan Anderson]]></dc:creator>
+            <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
             <pubDate>Sat, 13 Jun 2020 16:51:25 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[What is Markdown]]></title>
-            <description><![CDATA[Learn more about Markdown and what it is]]></description>
-            <link>https://logana.dev/blog/markdown</link>
-            <guid isPermaLink="false">markdown</guid>
-            <dc:creator><![CDATA[Logan Anderson]]></dc:creator>
-            <pubDate>Sun, 31 May 2020 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>

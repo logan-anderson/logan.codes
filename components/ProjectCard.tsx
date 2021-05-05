@@ -34,7 +34,7 @@ export const ProjectCard: React.FC<{ project: Projects }> = ({ project }) => {
             <div className="w-full border-t border-gray-300"></div>
           </div>
           <div className="relative flex justify-center">
-            <span className="px-3 border  bg-white dark:bg-gray-900 text-sm text-gray-500 dark:text-gray-300 my-auto hover:bg-blue-800 dark:hover:bg-gray-50  hover:text-white dark:hover:text-black ">
+            <span className="px-3 border bg-white dark:bg-gray-900 text-sm text-gray-500 dark:text-gray-300 my-auto">
               See more{" "}
               <span
                 className="text-2xl"
