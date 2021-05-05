@@ -51,7 +51,7 @@ const Layout: React.FunctionComponent<Props> = ({
   }, [theme]);
 
   return (
-    <html>
+    <>
       <DefaultSeo
         openGraph={{
           url: "https://logana.dev" + router.asPath,
@@ -62,7 +62,7 @@ const Layout: React.FunctionComponent<Props> = ({
           "A simple blog about coding, technology, and coffee by Logan Anderson. Read about the latest in web development, machine learning and other tech topics."
         }
       />
-      <body
+      <div
         style={{
           display: "flex",
           minHeight: "100vh",
@@ -88,9 +88,9 @@ const Layout: React.FunctionComponent<Props> = ({
           </main>
           <AppFooter />
         </div>
-      </body>
+      </div>
       <DarkModeToggleButton onClick={onClick} checked={theme === "dark"} />
-    </html>
+    </>
   );
 };
 
