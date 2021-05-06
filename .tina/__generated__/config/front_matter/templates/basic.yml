@@ -2,6 +2,12 @@
 label: Basic
 name: basic
 fields:
+  - name: blocks
+    label: Content Sections
+    type: blocks
+    template_types:
+      - longFormText
+      - iframe
   - name: date
     type: datetime
     label: Date

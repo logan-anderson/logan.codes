@@ -9,10 +9,10 @@ export const DarkModeToggleButton = (props: {
       <div className={styles.toggle} title="toggle dark mode">
         <label>
           <input
-            onClick={props.onClick}
             type="checkbox"
             name=""
             checked={props.checked}
+            onChange={props.onClick}
           />
           <span></span>
         </label>

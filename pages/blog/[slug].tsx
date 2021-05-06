@@ -34,6 +34,14 @@ const BlogPage = ({ data: postData }: PageProps) => {
       <div className="relative pb-16 overflow-hidden">
         <BlogHeader />
         <div className="relative px-4 sm:px-6 lg:px-8">
+          {data?.blocks?.map((block) => {
+            if (block?.__typename === "Iframe_Data") {
+              return <iframe width="100%" src={block.url || ""} />;
+            }
+            if (block?.__typename === "LongFormText_Data") {
+              return <MarkdownBody source={block.content || ""} />;
+            }
+          })}
           <MarkdownBody source={data?._body || ""} />
         </div>
       </div>

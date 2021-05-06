@@ -1,0 +1,7 @@
+---
+label: Long form Text
+name: longFormText
+fields:
+  - name: content
+    label: Content
+    type: textarea
