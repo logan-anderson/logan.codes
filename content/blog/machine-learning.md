@@ -27,4 +27,6 @@ At its core machine learning is algorithm (or a set of instructions) for updatin
     def housePriceModel(x0,x1):
     	return x0 + squareFootage*x1
 
-This function takes an **x0** and **x1** and returns and returns the price of the house with the given square footage. Without machine learning we would pick an **x0** and **x1** by trail and error go ahead and try it for yourself and try to see how small you can make the error below. 
+This function takes an **x0** and **x1** and returns and returns the price of the house with the given square footage. Without machine learning we would pick an **x0** and **x1** by trail and error go ahead and try it for yourself and try to see how small you can make the error below.
+
+this is a test
