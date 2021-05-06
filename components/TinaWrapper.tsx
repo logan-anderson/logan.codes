@@ -46,9 +46,9 @@ const Inner = (props: any) => {
     formify: ({ createForm, formConfig }) => {
       // this doesnt feel right
       formConfig.fields?.forEach((field) => {
-        if (field.name === "blocks") {
-          field.templates.longFormText.fields[0].component = "markdown";
-        }
+        // if (field.name === "blocks") {
+        //   field.templates.longFormText.fields[0].component = "markdown";
+        // }
         if (field.name === "_body" || field.name === "longFormText") {
           field.component = "markdown";
         }
