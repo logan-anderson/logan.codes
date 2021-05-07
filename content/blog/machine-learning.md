@@ -10,11 +10,15 @@ title: Learn what Machine Learning is
 author: content/authors/logan_anderson.md
 description: >-
   From the very basics, lean what machine learning is in a way that is easy to
-  understand and assessable for all backgrounds. 
+  understand and accessible for all backgrounds. 
 tags:
   - code
   - ML
 _template: basic
 ---
 
-If your anything like me you may have played around with x1 or x0 and looked at how the error was changing. If it was going down one might keep changing the parameter and if it was going up we might change it in the other direction. What we just did was not machine learning but it was very close. Instead of you updating the parameters based on your intuition an algorithm updates the parameters based on mathematical principles. 
+If your anything like me you may have played around with **x1** or **x0** and looked at how the error was changing while you changed **x0** and **x1**. If it was going down one might keep changing the parameter and if it was going up we might change it in the other direction. What we just did was not machine learning but it was very close. Instead of you updating the parameters based on your intuition an algorithm updates the parameters based on mathematical principles.
+
+## 
+
+## 
