@@ -19,6 +19,8 @@ _template: basic
 
 If your anything like me you may have played around with **x1** or **x0** and looked at how the error was changing while you changed **x0** and **x1**. If it was going down one might keep changing the parameter and if it was going up we might change it in the other direction. What we just did was not machine learning but it was very close. Instead of you updating the parameters based on your intuition an algorithm updates the parameters based on mathematical principles.
 
+test
+
 ## 
 
 ## 
