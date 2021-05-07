@@ -30,6 +30,7 @@ import { Dismissible } from "react-dismissible";
 import styled, { css } from "styled-components";
 // import { GithubClient, Branch } from '../github-client'
 import { LoadingDots } from "@tinacms/react-forms";
+import { useRouter } from "next/router";
 // import { CREATE_BRANCH, ERROR } from '../events'
 
 interface BranchSwitcherProps {
@@ -51,6 +52,7 @@ const BranchSwitcher = ({ onBranchChange }: BranchSwitcherProps) => {
   const [branches, setBranches] = React.useState<string[]>([
     "tina-cloud",
     "staging",
+    "test-branch",
   ]);
   const [selected, setSelected] = React.useState(cms.api.branch.branch);
 

@@ -12,7 +12,7 @@ import { Spinner } from "./spinner";
 
 export const TinaWrapper: React.FC<any> = (props) => {
   console.log("Tina Wrapper being rendered");
-  const [branch, setBranch] = useState("staging");
+  const [branch, setBranch] = useState("test-branch");
   console.log(`re-render with ${branch}`);
   const cms = React.useMemo(
     () =>
@@ -33,21 +33,27 @@ export const TinaWrapper: React.FC<any> = (props) => {
         },
         enabled: true,
       }),
-    []
+    [branch]
   );
 
   return (
     <TinaCloudAuthWall cms={cms}>
       {/* this is to prevent from trying to query non editable pages */}
-      {props.query ? <Inner {...props} /> : props.children(props)}
+      {props.query ? (
+        <Inner {...props} branch={branch} />
+      ) : (
+        props.children(props)
+      )}
     </TinaCloudAuthWall>
   );
 };
 
 const Inner = (props: any) => {
+  console.log("inner");
+  console.log(props.branch);
   const router = useRouter();
   const [payload, isLoading] = useGraphqlForms({
-    query: (gql) => gql(props.query || ""),
+    query: (gql) => gql(`#${props.branch} ${props.query}` || ""),
     variables: props.variables || {},
     formify: ({ createForm, formConfig }) => {
       // this doesnt feel right
@@ -55,7 +61,7 @@ const Inner = (props: any) => {
         // if (field.name === "blocks") {
         //   field.templates.longFormText.fields[0].component = "markdown";
         // }
-        if (field.name === "_body" || field.name === "longFormText") {
+        if (field.name === "_body") {
           field.component = "markdown";
         }
       });
