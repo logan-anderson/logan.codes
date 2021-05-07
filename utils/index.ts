@@ -3,10 +3,10 @@ THIS WAS COPIED FROM https://github.com/tinacms/tina-cloud-starter
 */
 import { Client, LocalClient } from "tina-graphql-gateway";
 
-export const createCloudClient = () => {
+export const createCloudClient = (currentBranch: string) => {
   const organization = process.env.NEXT_PUBLIC_ORGANIZATION_NAME;
   const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
-  const branch = process.env.NEXT_PUBLIC_EDIT_BRACH;
+  const branch = currentBranch || process.env.NEXT_PUBLIC_EDIT_BRACH;
 
   const missingEnv: string[] = [];
   if (!organization) {
@@ -41,10 +41,10 @@ export const createCloudClient = () => {
  */
 export const createLocalClient = () => new LocalClient();
 
-export const createClient = () =>
+export const createClient = (branch: string) =>
   process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT === `1`
     ? createLocalClient()
-    : createCloudClient();
+    : createCloudClient(branch);
 /**
  *
  * Takes a path (ex. /posts/my-page) and uses the first item

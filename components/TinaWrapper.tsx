@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import {
   TinaCloudAuthWall,
   useGraphqlForms,
@@ -12,12 +12,18 @@ import { Spinner } from "./spinner";
 
 export const TinaWrapper: React.FC<any> = (props) => {
   console.log("Tina Wrapper being rendered");
+  const [branch, setBranch] = useState("staging");
+  console.log(`re-render with ${branch}`);
   const cms = React.useMemo(
     () =>
       new TinaCMS({
         toolbar: true,
         apis: {
-          tina: createClient(),
+          tina: createClient(branch),
+          branch: {
+            branch,
+            setBranch,
+          },
         },
         sidebar: {
           buttons: {
