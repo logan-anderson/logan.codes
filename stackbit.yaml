@@ -1,0 +1,117 @@
+stackbitVersion: ~0.3.0
+ssgName: nextjs
+nodeVersion: '12'
+publishDir: out
+dataDir: content
+pagesDir: content
+models:
+  author:
+    type: page
+    label: Author
+    folder: authors
+    match: '*'
+    fields:
+      - type: string
+        name: _template
+        label: Template
+      - type: string
+        name: name
+        label: Name
+      - type: image
+        name: avatar
+        label: Avatar
+  blog:
+    type: page
+    label: Blog
+    folder: blog
+    match: '*'
+    fields:
+      - type: string
+        name: date
+        label: Date
+      - type: string
+        name: minRead
+        label: Min Read
+      - type: string
+        name: title
+        label: Title
+      - type: string
+        name: author
+        label: Author
+      - type: string
+        name: description
+        label: Description
+      - type: list
+        name: tags
+        label: Tags
+        items:
+          type: string
+      - type: string
+        name: _template
+        label: Template
+  home:
+    type: data
+    label: Home
+    file: home.json
+    fields:
+      - type: string
+        name: posts_title
+        label: Posts Title
+  projects:
+    type: data
+    label: Projects
+    file: projects.json
+    fields:
+      - type: list
+        name: projects
+        label: Projects
+        items:
+          type: object
+          fields:
+            - type: string
+              name: label
+              label: Label
+            - type: string
+              name: url
+              label: Url
+            - type: string
+              name: excerpt
+              label: Excerpt
+            - type: string
+              name: slug
+              label: Slug
+            - type: image
+              name: imgUrl
+              label: Img Url
+  resources:
+    type: data
+    label: Resources
+    file: resources.json
+    fields:
+      - type: list
+        name: catagories
+        label: Catagories
+        items:
+          type: object
+          fields:
+            - type: string
+              name: id
+              label: Id
+            - type: string
+              name: label
+              label: Label
+            - type: list
+              name: entries
+              label: Entries
+              items:
+                type: object
+                fields:
+                  - type: string
+                    name: id
+                    label: Id
+                  - type: string
+                    name: label
+                    label: Label
+                  - type: string
+                    name: link
+                    label: Link
