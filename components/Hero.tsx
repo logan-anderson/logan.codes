@@ -58,16 +58,16 @@ export const Hero: React.FC = () => {
                     I enjoy {"  "}
                     <span className="text-blue-600">
                       <span
-                        ref={(div) => {
-                          // @ts-ignore
-                          if (div) container = div;
-                        }}
+                      // ref={(div) => {
+                      // @ts-ignore
+                      // if (div) container = div;
+                      // }}
                       />
                       <span
-                        ref={(span) => {
-                          // @ts-ignore
-                          if (span) cursor = span;
-                        }}
+                      // ref={(span) => {
+                      // @ts-ignore
+                      // if (span) cursor = span;
+                      // }}
                       >
                         _
                       </span>
