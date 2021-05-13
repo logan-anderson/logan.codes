@@ -1,35 +1,35 @@
-// import { createRef } from "react";
-// import { TextPlugin } from "gsap/dist/TextPlugin";
-// import { gsap } from "gsap";
+import { useEffect, createRef } from "react";
+import { TextPlugin } from "gsap/dist/TextPlugin";
+import { gsap } from "gsap";
 import NavBar from "./layout/Navbar";
 
 export const Hero: React.FC = () => {
-  // const words = ["Coding", "Coffee", "Math", "Frontend dev", "Backend dev"];
-  // let container = createRef<HTMLSpanElement>();
-  // let cursor = createRef<HTMLSpanElement>();
-  // useEffect(() => {
-  //   gsap.killTweensOf({});
-  //   gsap.registerPlugin(TextPlugin);
-  //   gsap.to(cursor, 0.7, {
-  //     opacity: 0,
-  //     ease: "power2.inOut",
-  //     repeat: -1,
-  //   });
+  const words = ["Coding", "Coffee", "Math", "Frontend dev", "Backend dev"];
+  let container = createRef<HTMLSpanElement>();
+  let cursor = createRef<HTMLSpanElement>();
+  useEffect(() => {
+    gsap.killTweensOf({});
+    gsap.registerPlugin(TextPlugin);
+    gsap.to(cursor, 0.7, {
+      opacity: 0,
+      ease: "power2.inOut",
+      repeat: -1,
+    });
 
-  //   // worlds
-  //   const masterTL = gsap.timeline({ repeat: -1 });
-  //   words.forEach((word) => {
-  //     const animationLen = word.length * 0.2;
-  //     let tl = gsap.timeline();
-  //     tl.to(container, animationLen, {
-  //       text: word,
-  //       repeat: 1,
-  //       yoyo: true,
-  //       repeatDelay: 1.2,
-  //     });
-  //     masterTL.add(tl);
-  //   });
-  // }, []);
+    // worlds
+    const masterTL = gsap.timeline({ repeat: -1 });
+    words.forEach((word) => {
+      const animationLen = word.length * 0.2;
+      let tl = gsap.timeline();
+      tl.to(container, animationLen, {
+        text: word,
+        repeat: 1,
+        yoyo: true,
+        repeatDelay: 1.2,
+      });
+      masterTL.add(tl);
+    });
+  }, []);
   return (
     <>
       <div className="relative bg-white dark:bg-gray-900 overflow-hidden">
@@ -58,16 +58,16 @@ export const Hero: React.FC = () => {
                     I enjoy {"  "}
                     <span className="text-blue-600">
                       <span
-                      // ref={(div) => {
-                      // @ts-ignore
-                      // if (div) container = div;
-                      // }}
+                        ref={(div) => {
+                          // @ts-ignore
+                          if (div) container = div;
+                        }}
                       />
                       <span
-                      // ref={(span) => {
-                      // @ts-ignore
-                      // if (span) cursor = span;
-                      // }}
+                        ref={(span) => {
+                          // @ts-ignore
+                          if (span) cursor = span;
+                        }}
                       >
                         _
                       </span>
