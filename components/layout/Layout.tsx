@@ -53,6 +53,14 @@ const Layout: React.FunctionComponent<Props> = ({
       <DefaultSeo
         openGraph={{
           url: "https://logana.dev" + router.asPath,
+          images: [
+            {
+              width: 754,
+              alt: "A simple blog",
+              url:
+                "https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jp",
+            },
+          ],
         }}
         title={`${title} | Logan`}
         description={
