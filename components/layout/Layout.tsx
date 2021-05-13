@@ -5,7 +5,6 @@ import { DefaultSeo } from "next-seo";
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
 import { DarkModeToggleButton } from "../Buttons/DarkModeToggle";
-import { Fade } from "react-awesome-reveal";
 
 type Props = {
   preview: boolean;
@@ -20,7 +19,6 @@ const Layout: React.FunctionComponent<Props> = ({
   description,
   navDisable,
 }) => {
-  // useGithubToolbarPlugins();
   const router = useRouter();
   const [theme, setTheme] = useState<"dark" | "light">(
     typeof localStorage === "undefined" ? "light" : localStorage?.theme
@@ -82,9 +80,7 @@ const Layout: React.FunctionComponent<Props> = ({
               marginTop: "20px",
             }}
           >
-            <Fade cascade duration={700} damping={0.1} triggerOnce>
-              {children}
-            </Fade>
+            {children}
           </main>
           <AppFooter />
         </div>
