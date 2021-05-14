@@ -19,8 +19,12 @@ _template: basic
 
 If your anything like me you may have played around with **x1** or **x0** and looked at how the error was changing while you changed **x0** and **x1**. If it was going down one might keep changing the parameter and if it was going up we might change it in the other direction. What we just did was not machine learning but it was very close. Instead of you updating the parameters based on your intuition an algorithm updates the parameters based on mathematical principles.
 
-this is a test!
+Although important these mathematical principles often trip people up and can be a barrier to entry to learning machine learning. Let's go over some of them to gain further insight into how machine learning works. 
 
-## 
+### Machine learning model
 
-## 
+The function that is _learned_ in the machine learning process. In the example we just looked at it was the \`housePriceModel\` 
+
+### Cost Function
+
+A cost function is a function that lets provide a measure for how will that machine learning model is performing on a set of examples. If out model is 
