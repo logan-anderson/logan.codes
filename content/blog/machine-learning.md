@@ -6,11 +6,13 @@ blocks:
     url: 'https://logan-ml-demo.netlify.app/'
 date: '2021-05-15'
 minRead: '6'
-title: Learn what Machine Learning is
+title: An accessible intro to Machine Learning
 author: content/authors/logan_anderson.md
 description: >-
-  From the very basics, lean what machine learning is in a way that is easy to
-  understand and accessible for all backgrounds. 
+  From the very basics, learn what machine learning is in a way that is easy to
+  understand, intuitive, and accessible for all backgrounds. Even if you are a
+  beginner, learn about what is a Machine Learning model, cost function, and
+  gain an intuitive understanding of how a model learns.
 tags:
   - code
   - ML
