@@ -64,6 +64,12 @@ interface BlogListProps {
 }
 
 const BlogList = ({ data }: BlogListProps) => {
+  // sort based on date added
+  data.getPostsList.sort(
+    (x, y) =>
+      new Date(y.data?.date || "").getTime() -
+      new Date(x.data?.date || "").getTime()
+  );
   // useCreateBlogPage(posts);
   let alltags: Tag[] = [];
   let tagMap = new Map();
@@ -133,12 +139,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const blogPosts = await client.request<AllPostsQueryRes>(AllPostsQuery, {
     variables: {},
   });
-  // sort based on date added
-  blogPosts.getPostsList.sort(
-    (x, y) =>
-      new Date(y.data?.date || "").getTime() -
-      new Date(x.data?.date || "").getTime()
-  );
+
   return {
     props: {
       data: blogPosts,

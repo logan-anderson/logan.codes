@@ -89,7 +89,18 @@ type Posts_Document implements Node & Document {
   form: Posts_Form
 }
 
+type LongFormText_Data {
+  content: String
+}
+
+type Iframe_Data {
+  url: String
+}
+
+union Basic_Blocks_Data = LongFormText_Data | Iframe_Data
+
 type Basic_Doc_Data {
+  blocks: [Basic_Blocks_Data]
   date: String
   minRead: String
   title: String
@@ -99,7 +110,20 @@ type Basic_Doc_Data {
   _body: String
 }
 
+type LongFormText_Values {
+  content: String
+  _template: String
+}
+
+type Iframe_Values {
+  url: String
+  _template: String
+}
+
+union Basic_Blocks_Values = LongFormText_Values | Iframe_Values
+
 type Basic_Doc_Values {
+  blocks: [Basic_Blocks_Values]
   date: String
   minRead: String
   title: String
@@ -110,18 +134,52 @@ type Basic_Doc_Values {
   _template: String
 }
 
-type DatetimeField implements FormField {
+type TextareaField implements FormField {
   name: String
   label: String
   component: String
-  dateFormat: String
-  timeFormat: String
+}
+
+union LongFormText_FormFieldsUnion = TextareaField
+
+type LongFormText_Form {
+  label: String
+  name: String
+  fields: [LongFormText_FormFieldsUnion]
 }
 
 type TextField implements FormField {
   name: String
   label: String
   component: String
+}
+
+union Iframe_FormFieldsUnion = TextField
+
+type Iframe_Form {
+  label: String
+  name: String
+  fields: [Iframe_FormFieldsUnion]
+}
+
+type Basic_Blocks_BlocksFieldTemplates {
+  longFormText: LongFormText_Form
+  iframe: Iframe_Form
+}
+
+type Basic_Blocks_BlocksField implements FormField {
+  name: String
+  label: String
+  component: String
+  templates: Basic_Blocks_BlocksFieldTemplates
+}
+
+type DatetimeField implements FormField {
+  name: String
+  label: String
+  component: String
+  dateFormat: String
+  timeFormat: String
 }
 
 type SelectField implements FormField {
@@ -131,19 +189,13 @@ type SelectField implements FormField {
   options: [String]
 }
 
-type TextareaField implements FormField {
-  name: String
-  label: String
-  component: String
-}
-
 type TagListField implements FormField {
   name: String
   label: String
   component: String
 }
 
-union Basic_Doc_FormFieldsUnion = DatetimeField | TextField | SelectField | TextareaField | TagListField
+union Basic_Doc_FormFieldsUnion = Basic_Blocks_BlocksField | DatetimeField | TextField | SelectField | TextareaField | TagListField
 
 type Basic_Doc_Form {
   label: String
@@ -151,7 +203,21 @@ type Basic_Doc_Form {
   fields: [Basic_Doc_FormFieldsUnion]
 }
 
+input LongFormText_Input {
+  content: String
+}
+
+input Iframe_Input {
+  url: String
+}
+
+input Blocks_Input {
+  longFormText: LongFormText_Input
+  iframe: Iframe_Input
+}
+
 input Basic_Doc_Input {
+  blocks: [Blocks_Input]
   date: String
   minRead: String
   title: String

@@ -11,7 +11,6 @@ export default class MyDocument extends Document {
           {process.env.NODE_ENV === "production" && (
             <>
               <script
-                async
                 defer
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
               />

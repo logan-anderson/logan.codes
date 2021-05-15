@@ -12,6 +12,35 @@ export default defineSchema({
           name: "basic",
           fields: [
             {
+              name: "blocks",
+              label: "Content Sections",
+              type: "blocks",
+              templates: [
+                {
+                  label: "Long form Text",
+                  name: "longFormText",
+                  fields: [
+                    {
+                      name: "content",
+                      label: "Content",
+                      type: "textarea",
+                    },
+                  ],
+                },
+                {
+                  label: "Iframe",
+                  name: "iframe",
+                  fields: [
+                    {
+                      name: "url",
+                      type: "text",
+                      label: "url",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
               name: "date",
               type: "datetime",
               label: "Date",

@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import Layout from "../../components/layout/Layout";
 import { BreadCrumb } from "../../components/BreadCrumb";
-import { MarkdownBody } from "../../components/Markdown";
+import { MarkdownBody, STYLES } from "../../components/Markdown";
 import { createLocalClient } from "../../utils";
 import { getPostQuery, getPostQueryRes } from "../../graphql-queries";
 import { BlogHeader } from "../../components/blog";
@@ -34,7 +34,17 @@ const BlogPage = ({ data: postData }: PageProps) => {
       <div className="relative pb-16 overflow-hidden">
         <BlogHeader />
         <div className="relative px-4 sm:px-6 lg:px-8">
-          <MarkdownBody source={data?._body || ""} />
+          <div className={STYLES}>
+            {data?.blocks?.map((block) => {
+              if (block?.__typename === "Iframe_Data") {
+                return <iframe width="100%" src={block.url || ""} />;
+              }
+              if (block?.__typename === "LongFormText_Data") {
+                return <MarkdownBody source={block.content || ""} />;
+              }
+            })}
+            <MarkdownBody source={data?._body || ""} />
+          </div>
         </div>
       </div>
     </Layout>
