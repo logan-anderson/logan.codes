@@ -9,7 +9,8 @@
     "analyze": "cross-env ANALYZE=true next build",
     "build:rss": "ts-node scripts/generate-rss.ts",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "gen:lighthouse": "docker run --rm -v $PWD/test_results:/home/chrome/reports emazzotta/lighthouse-badges /bin/sh -c \"lighthouse-badges --urls https:logana.dev\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.30",
