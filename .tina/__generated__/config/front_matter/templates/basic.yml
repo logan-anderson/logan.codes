@@ -31,5 +31,3 @@ fields:
   - name: tags
     type: tag_list
     label: Tags
-pages:
-  - content/blog/testing_1_2_3.md
