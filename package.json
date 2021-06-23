@@ -7,7 +7,8 @@
     "export": "yarn build && next export",
     "build:app": "yarn build:rss && next build",
     "analyze": "cross-env ANALYZE=true next build",
-    "build:rss": "ts-node scripts/generate-rss.ts",
+    "build:rss": "tsc --project tsconfig.rss.json && node scripts/generate-rss.js",
+    "build:rss-2": "ts-node scripts/generate-rss.ts",
     "start": "next start",
     "type-check": "tsc",
     "lint": "next lint",
@@ -71,7 +72,6 @@
     "nextjs-sitemap-generator": "1.0.0",
     "postcss-preset-env": "6.7.0",
     "tailwindcss": "^2.0.1",
-    "ts-node": "^9.0.0",
     "typescript": "^4.3.4"
   },
   "license": "ISC"
