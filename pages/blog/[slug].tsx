@@ -42,6 +42,9 @@ const BlogPage = ({ data: postData }: PageProps) => {
               if (block?.__typename === "LongFormText_Data") {
                 return <MarkdownBody source={block.content || ""} />;
               }
+              if (block?.__typename === "Img_Data") {
+                return <img src={block.img || ""} />;
+              }
             })}
             <MarkdownBody source={data?._body || ""} />
           </div>

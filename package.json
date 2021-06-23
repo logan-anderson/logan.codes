@@ -39,6 +39,7 @@
     "next": "^11.0.0",
     "next-pwa": "^5.2.21",
     "next-seo": "4.5.0",
+    "next-tinacms-cloudinary": "^0.1.2",
     "postcss": "^8.1.7",
     "prop-types": "15.7.2",
     "raw-loader": "4.0.1",
@@ -54,8 +55,9 @@
     "rss": "1.2.2",
     "slugify": "1.4.0",
     "styled-components": "5.1.1",
-    "tina-graphql-gateway": "^0.2.8",
-    "tina-graphql-gateway-cli": "^0.2.40",
+    "tina-cloud-next": "^0.0.3",
+    "tina-graphql-gateway": "^0.2.18",
+    "tina-graphql-gateway-cli": "^0.2.51",
     "tinacms": "0.41.1"
   },
   "devDependencies": {

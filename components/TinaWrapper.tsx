@@ -1,3 +1,4 @@
+import { TinaCloudCloudinaryMediaStore } from "next-tinacms-cloudinary";
 import { useRouter } from "next/router";
 import React from "react";
 import {
@@ -11,13 +12,14 @@ import { useExitTina, useSetupPlugins } from "../utils/tinacms";
 import { Spinner } from "./spinner";
 
 export const TinaWrapper: React.FC<any> = (props) => {
-  console.log("Tina Wrapper being rendered");
+  const client = createClient();
+
   const cms = React.useMemo(
     () =>
       new TinaCMS({
         toolbar: true,
         apis: {
-          tina: createClient(),
+          tina: client,
         },
         sidebar: {
           buttons: {
@@ -26,6 +28,7 @@ export const TinaWrapper: React.FC<any> = (props) => {
           },
         },
         enabled: true,
+        media: new TinaCloudCloudinaryMediaStore(client),
       }),
     []
   );

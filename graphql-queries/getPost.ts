@@ -17,6 +17,9 @@ export const getPostQuery = `#graphql
           __typename ...on Iframe_Data {
             url
           }
+          __typename ... on Img_Data {
+            img
+          }
         }
         minRead
         date

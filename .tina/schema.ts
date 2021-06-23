@@ -28,6 +28,17 @@ export default defineSchema({
                   ],
                 },
                 {
+                  label: "Image",
+                  name: "img",
+                  fields: [
+                    {
+                      name: "img",
+                      label: "Image",
+                      type: "image",
+                    },
+                  ],
+                },
+                {
                   label: "Iframe",
                   name: "iframe",
                   fields: [
