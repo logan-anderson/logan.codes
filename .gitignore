@@ -5,3 +5,6 @@ out
 public/sw.js
 public/sw.js.map
 public/workbox-*
+scripts/generate-rss.js
+interfaces/index.js
+yarn-error.log

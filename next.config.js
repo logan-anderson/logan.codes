@@ -1,4 +1,3 @@
-const withSvgr = require("next-svgr");
 require("dotenv").config();
 const withPWA = require("next-pwa");
 const runtimeCaching = require("next-pwa/cache");
@@ -7,33 +6,10 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 module.exports = withBundleAnalyzer(
-  withPWA(
-    withSvgr({
-      images: {
-        loader: "cloudinary",
-        domains: ["res.cloudinary.com"],
-      },
-      pwa: {
-        dest: "public",
-      },
-      runtimeCaching,
-      webpack: (config) => {
-        config.node = {
-          fs: "empty",
-        };
-        config.module.rules.push({
-          test: /\.md$/,
-          use: "raw-loader",
-        });
-
-        return config;
-      },
-      env: {
-        GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
-        REPO_FULL_NAME: process.env.REPO_FULL_NAME,
-        BASE_BRANCH: process.env.BASE_BRANCH,
-        G_MEASUREMENT_ID: process.env.G_MEASUREMENT_ID,
-      },
-    })
-  )
+  withPWA({
+    pwa: {
+      dest: "public",
+    },
+    runtimeCaching,
+  })
 );

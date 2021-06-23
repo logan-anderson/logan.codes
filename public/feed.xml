@@ -4,15 +4,15 @@
         <description><![CDATA[Logan's blog]]></description>
         <link>https://logana.dev</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 06 May 2021 22:52:59 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 23 Jun 2021 00:35:11 GMT</lastBuildDate>
         <atom:link href="https://logana.dev/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[Learn what Machine Learning is]]></title>
-            <description><![CDATA[From the very basics, lean what machine learning is in a way that is easy to understand and assessable for all backgrounds. ]]></description>
+            <title><![CDATA[An accessible intro to Machine Learning]]></title>
+            <description><![CDATA[From the very basics, learn what machine learning is in a way that is easy to understand, intuitive, and accessible for all backgrounds. Even if you are a beginner, learn about what is a Machine Learning model, cost function, and gain an intuitive understanding of how a model learns.]]></description>
             <link>https://logana.dev/blog/machine-learning</link>
             <guid isPermaLink="false">machine-learning</guid>
             <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
-            <pubDate>Wed, 05 May 2021 00:00:00 GMT</pubDate>
+            <pubDate>Sat, 15 May 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[What is nextjs?]]></title>
@@ -20,7 +20,7 @@
             <link>https://logana.dev/blog/what-is-nextjs</link>
             <guid isPermaLink="false">what-is-nextjs</guid>
             <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
-            <pubDate>Sat, 07 Nov 2020 04:00:00 GMT</pubDate>
+            <pubDate>Sat, 07 Nov 2020 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Does a Math Degree Help in Software Engineering?]]></title>

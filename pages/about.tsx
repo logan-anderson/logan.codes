@@ -1,20 +1,25 @@
 import React from "react";
+import Image from "next/image";
 import Layout from "../components/layout/Layout";
-
+import logan_katie_pic from "../public/logan_katie.jpg";
 const AboutPage: React.FC = () => {
   return (
     <Layout title="About" preview={false}>
       <div className="relative">
         <div className="lg:absolute lg:inset-0">
           <div className="lg:absolute lg:inset-y-0 lg:left-0 lg:w-1/2">
-            <img
-              className="h-56 w-full object-cover lg:absolute lg:h-full"
-              src="/logan_katie.jpg"
-              alt=""
+            <div
               style={{
                 objectPosition: "50% 20%",
               }}
-            />
+            >
+              <Image
+                className="h-56 w-full object-cover lg:absolute lg:h-full"
+                src={logan_katie_pic}
+                alt="Logan and his girlfriend katie"
+                placeholder="blur"
+              />
+            </div>
           </div>
         </div>
         <div className="relative pt-12 pb-16 px-4 sm:pt-16 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-2">
