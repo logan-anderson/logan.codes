@@ -2,11 +2,11 @@ import { GetStaticProps } from "next";
 import Layout from "../../components/layout/Layout";
 import { BreadCrumb } from "../../components/BreadCrumb";
 import { MarkdownBody, STYLES } from "../../components/Markdown";
-import { createLocalClient } from "../../utils";
 import { getPostQuery, getPostQueryRes } from "../../graphql-queries";
 import { BlogHeader } from "../../components/blog";
 import { Author } from "../../components/AuthorDetail";
 import { Author_Document } from "../../.tina/__generated__/types";
+import { LocalClient } from "tina-graphql-gateway";
 
 interface PageProps {
   data: getPostQueryRes;
@@ -54,7 +54,7 @@ const BlogPage = ({ data: postData }: PageProps) => {
   );
 };
 
-const client = createLocalClient();
+const client = new LocalClient();
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */

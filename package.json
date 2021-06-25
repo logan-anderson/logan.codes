@@ -56,7 +56,7 @@
     "slugify": "1.4.0",
     "styled-components": "5.1.1",
     "tina-cloud-next": "^0.0.3",
-    "tina-graphql-gateway": "^0.2.18",
+    "tina-graphql-gateway": "^0.2.20",
     "tina-graphql-gateway-cli": "^0.2.51",
     "tinacms": "0.41.1"
   },

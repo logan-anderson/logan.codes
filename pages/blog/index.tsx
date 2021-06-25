@@ -6,8 +6,8 @@ import { useState } from "react";
 import { BreadCrumb } from "../../components/BreadCrumb";
 import { Slide } from "react-awesome-reveal";
 import { GetStaticProps } from "next";
-import { createLocalClient } from "../../utils";
 import { AllPostsQuery, AllPostsQueryRes } from "../../graphql-queries";
+import { LocalClient } from "tina-graphql-gateway";
 
 const Tags = ({
   tags,
@@ -134,7 +134,7 @@ const BlogList = ({ data }: BlogListProps) => {
   );
 };
 
-const client = createLocalClient();
+const client = new LocalClient();
 export const getStaticProps: GetStaticProps = async () => {
   const blogPosts = await client.request<AllPostsQueryRes>(AllPostsQuery, {
     variables: {},

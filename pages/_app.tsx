@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import "../styles/index.css";
 import { useGoogleTagManager } from "../hooks/useGoogleTagManager";
-import { EditProvider, useEditState } from "../utils/editState";
+import { EditProvider, useEditState } from "tina-graphql-gateway";
 
 function InnerApp({ Component, pageProps }: AppProps) {
   const { edit } = useEditState();

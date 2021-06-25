@@ -1,7 +1,7 @@
 import { MarkdownFieldPlugin } from "react-tinacms-editor";
 import { DateFieldPlugin } from "react-tinacms-date";
 import { useCMS, usePlugins } from "tinacms";
-import { useEditState } from "../editState";
+import { useEditState } from "tina-graphql-gateway";
 
 export const useSetupPlugins = () => {
   usePlugins([MarkdownFieldPlugin, DateFieldPlugin]);
