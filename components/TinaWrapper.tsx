@@ -1,40 +1,26 @@
+import { TinaCloudCloudinaryMediaStore } from "next-tinacms-cloudinary";
 import { useRouter } from "next/router";
 import React from "react";
 import {
-  TinaCloudAuthWall,
+  TinaCloudProvider,
   useGraphqlForms,
   useDocumentCreatorPlugin,
 } from "tina-graphql-gateway";
-import { TinaCMS } from "tinacms";
-import { createClient } from "../utils";
 import { useExitTina, useSetupPlugins } from "../utils/tinacms";
 import { Spinner } from "./spinner";
 
 export const TinaWrapper: React.FC<any> = (props) => {
-  console.log("Tina Wrapper being rendered");
-  const cms = React.useMemo(
-    () =>
-      new TinaCMS({
-        toolbar: true,
-        apis: {
-          tina: createClient(),
-        },
-        sidebar: {
-          buttons: {
-            save: `Publish`,
-            reset: `Reset`,
-          },
-        },
-        enabled: true,
-      }),
-    []
-  );
-
   return (
-    <TinaCloudAuthWall cms={cms}>
+    <TinaCloudProvider
+      clientId={process.env.NEXT_PUBLIC_TINA_CLIENT_ID}
+      branch={process.env.NEXT_PUBLIC_EDIT_BRACH}
+      organization={process.env.NEXT_PUBLIC_ORGANIZATION_NAME}
+      isLocalClient={Boolean(Number(process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT))}
+      mediaStore={TinaCloudCloudinaryMediaStore}
+    >
       {/* this is to prevent from trying to query non editable pages */}
       {props.query ? <Inner {...props} /> : props.children(props)}
-    </TinaCloudAuthWall>
+    </TinaCloudProvider>
   );
 };
 
