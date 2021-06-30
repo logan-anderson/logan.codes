@@ -110,13 +110,14 @@ type Iframe_Data {
 union Basic_Blocks_Data = LongFormText_Data | Img_Data | Iframe_Data
 
 type Basic_Doc_Data {
-  blocks: [Basic_Blocks_Data]
   date: String
   minRead: String
   title: String
   author: Author_Document
   description: String
   tags: [String]
+  featurePosts: [Posts_Document]
+  blocks: [Basic_Blocks_Data]
   _body: String
 }
 
@@ -138,15 +139,40 @@ type Iframe_Values {
 union Basic_Blocks_Values = LongFormText_Values | Img_Values | Iframe_Values
 
 type Basic_Doc_Values {
-  blocks: [Basic_Blocks_Values]
   date: String
   minRead: String
   title: String
   author: Reference
   description: String
   tags: [String]
+  featurePosts: [String]
+  blocks: [Basic_Blocks_Values]
   _body: String
   _template: String
+}
+
+type DatetimeField implements FormField {
+  name: String
+  label: String
+  component: String
+  description: String
+  dateFormat: String
+  timeFormat: String
+}
+
+type TextField implements FormField {
+  name: String
+  label: String
+  component: String
+  description: String
+}
+
+type SelectField implements FormField {
+  name: String
+  label: String
+  component: String
+  description: String
+  options: [SelectOption]
 }
 
 type TextareaField implements FormField {
@@ -154,6 +180,24 @@ type TextareaField implements FormField {
   label: String
   component: String
   description: String
+}
+
+type TagListField implements FormField {
+  name: String
+  label: String
+  component: String
+  description: String
+}
+
+union List_FormFieldsUnion = TextField | SelectField
+
+type ListField implements FormField {
+  name: String
+  label: String
+  component: String
+  description: String
+  defaultItem: String
+  field: List_FormFieldsUnion
 }
 
 union LongFormText_FormFieldsUnion = TextareaField
@@ -179,13 +223,6 @@ type Img_Form {
   fields: [Img_FormFieldsUnion]
 }
 
-type TextField implements FormField {
-  name: String
-  label: String
-  component: String
-  description: String
-}
-
 union Iframe_FormFieldsUnion = TextField
 
 type Iframe_Form {
@@ -208,31 +245,7 @@ type Basic_Blocks_BlocksField implements FormField {
   templates: Basic_Blocks_BlocksFieldTemplates
 }
 
-type DatetimeField implements FormField {
-  name: String
-  label: String
-  component: String
-  description: String
-  dateFormat: String
-  timeFormat: String
-}
-
-type SelectField implements FormField {
-  name: String
-  label: String
-  component: String
-  description: String
-  options: [SelectOption]
-}
-
-type TagListField implements FormField {
-  name: String
-  label: String
-  component: String
-  description: String
-}
-
-union Basic_Doc_FormFieldsUnion = Basic_Blocks_BlocksField | DatetimeField | TextField | SelectField | TextareaField | TagListField
+union Basic_Doc_FormFieldsUnion = DatetimeField | TextField | SelectField | TextareaField | TagListField | ListField | Basic_Blocks_BlocksField
 
 type Basic_Doc_Form {
   label: String
@@ -259,13 +272,14 @@ input Blocks_Input {
 }
 
 input Basic_Doc_Input {
-  blocks: [Blocks_Input]
   date: String
   minRead: String
   title: String
   author: String
   description: String
   tags: [String]
+  featurePosts: [String]
+  blocks: [Blocks_Input]
   _body: String
 }
 

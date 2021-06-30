@@ -1,4 +1,6 @@
 import { GetStaticProps } from "next";
+import { LocalClient } from "tina-graphql-gateway";
+
 import Layout from "../../components/layout/Layout";
 import { BreadCrumb } from "../../components/BreadCrumb";
 import { MarkdownBody, STYLES } from "../../components/Markdown";
@@ -6,7 +8,7 @@ import { getPostQuery, getPostQueryRes } from "../../graphql-queries";
 import { BlogHeader } from "../../components/blog";
 import { Author } from "../../components/AuthorDetail";
 import { Author_Document } from "../../.tina/__generated__/types";
-import { LocalClient } from "tina-graphql-gateway";
+import BlogCard from "../../components/BlogCard";
 
 interface PageProps {
   data: getPostQueryRes;
@@ -47,6 +49,36 @@ const BlogPage = ({ data: postData }: PageProps) => {
               }
             })}
             <MarkdownBody source={data?._body || ""} />
+          </div>
+          <div>
+            <h2 className="text-center text-3xl leading-9 tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-4xl sm:leading-10">
+              Read more
+            </h2>
+            <div className="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
+              {data?.featurePosts?.map((post) => {
+                return (
+                  <BlogCard
+                    key={post?.id}
+                    post={{
+                      fileName: post?.sys?.filename || "",
+                      fileRelativePath: post?.sys?.filename || "",
+                      data: {
+                        markdownBody: post?.data?._body || "",
+                        frontmatter: {
+                          minRead: post?.data?.minRead || "",
+                          avatar: post?.data?.author?.data?.avatar || "",
+                          author: post?.data?.author?.data?.name || "",
+                          date: post?.data?.date || "",
+                          description: post?.data?.description || "",
+                          tags: post?.data?.tags as string[],
+                          title: post?.data?.title || "",
+                        },
+                      },
+                    }}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

@@ -10,6 +10,10 @@ description: >-
 tags:
   - nextjs
   - code
+featurePosts:
+  - content/blog/markdown.md
+  - content/blog/does-a-math-degree-help-in-software-engineering.md
+  - content/blog/rss-feeds-in-a-nextjs-site.md
 _template: basic
 ---
 

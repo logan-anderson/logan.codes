@@ -2,13 +2,6 @@
 label: Basic
 name: basic
 fields:
-  - name: blocks
-    label: Content Sections
-    type: blocks
-    template_types:
-      - longFormText
-      - img
-      - iframe
   - name: date
     type: datetime
     label: Date
@@ -32,3 +25,17 @@ fields:
   - name: tags
     type: tag_list
     label: Tags
+  - name: featurePosts
+    label: Featured Posts
+    type: list
+    config:
+      source:
+        type: pages
+        section: posts
+  - name: blocks
+    label: Content Sections
+    type: blocks
+    template_types:
+      - longFormText
+      - img
+      - iframe

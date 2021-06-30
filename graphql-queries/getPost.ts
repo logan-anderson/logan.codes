@@ -25,6 +25,29 @@ export const getPostQuery = `#graphql
         date
         title
         tags
+        featurePosts {
+          id
+          sys {
+            filename
+          }
+          data {
+            __typename ... on Basic_Doc_Data {
+              minRead 
+              title
+              date
+              description
+              tags
+              author {
+                data {
+                  __typename ... on Author_Doc_Data {
+                    name
+                    avatar
+                  }
+                }
+              }
+            }
+          }
+        }
         _body
         author {
           data {

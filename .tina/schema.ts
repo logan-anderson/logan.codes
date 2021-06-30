@@ -12,6 +12,46 @@ export default defineSchema({
           name: "basic",
           fields: [
             {
+              name: "date",
+              type: "datetime",
+              label: "Date",
+              dateFormat: "yyyy-MM-DD",
+            },
+            {
+              name: "minRead",
+              type: "text",
+              label: "Min Read",
+            },
+            {
+              name: "title",
+              type: "text",
+              label: "Title",
+            },
+            {
+              name: "author",
+              type: "reference",
+              label: "Author",
+              collection: "author",
+            },
+            {
+              name: "description",
+              type: "textarea",
+              label: "Description",
+            },
+            {
+              name: "tags",
+              type: "tags",
+              label: "Tags",
+            },
+            {
+              name: "featurePosts",
+              label: "Featured Posts",
+              type: "reference-list",
+              collection: "posts",
+              description:
+                "A list of posts that are featured at the end of the article",
+            },
+            {
               name: "blocks",
               label: "Content Sections",
               type: "blocks",
@@ -50,38 +90,6 @@ export default defineSchema({
                   ],
                 },
               ],
-            },
-            {
-              name: "date",
-              type: "datetime",
-              label: "Date",
-              dateFormat: "yyyy-MM-DD",
-            },
-            {
-              name: "minRead",
-              type: "text",
-              label: "Min Read",
-            },
-            {
-              name: "title",
-              type: "text",
-              label: "Title",
-            },
-            {
-              name: "author",
-              type: "reference",
-              label: "Author",
-              collection: "author",
-            },
-            {
-              name: "description",
-              type: "textarea",
-              label: "Description",
-            },
-            {
-              name: "tags",
-              type: "tags",
-              label: "Tags",
             },
           ],
         },
