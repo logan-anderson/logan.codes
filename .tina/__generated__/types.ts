@@ -34,6 +34,12 @@ export type FormField = {
 
 
 
+export type SelectOption = {
+  __typename?: 'SelectOption';
+  label?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
 export type SystemInfo = {
   __typename?: 'SystemInfo';
   filename?: Maybe<Scalars['String']>;
@@ -55,6 +61,7 @@ export type Section = {
   __typename?: 'Section';
   type?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
+  format?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
   create?: Maybe<Scalars['String']>;
   match?: Maybe<Scalars['String']>;
@@ -166,12 +173,17 @@ export type LongFormText_Data = {
   content?: Maybe<Scalars['String']>;
 };
 
+export type Img_Data = {
+  __typename?: 'Img_Data';
+  img?: Maybe<Scalars['String']>;
+};
+
 export type Iframe_Data = {
   __typename?: 'Iframe_Data';
   url?: Maybe<Scalars['String']>;
 };
 
-export type Basic_Blocks_Data = LongFormText_Data | Iframe_Data;
+export type Basic_Blocks_Data = LongFormText_Data | Img_Data | Iframe_Data;
 
 export type Basic_Doc_Data = {
   __typename?: 'Basic_Doc_Data';
@@ -191,13 +203,19 @@ export type LongFormText_Values = {
   _template?: Maybe<Scalars['String']>;
 };
 
+export type Img_Values = {
+  __typename?: 'Img_Values';
+  img?: Maybe<Scalars['String']>;
+  _template?: Maybe<Scalars['String']>;
+};
+
 export type Iframe_Values = {
   __typename?: 'Iframe_Values';
   url?: Maybe<Scalars['String']>;
   _template?: Maybe<Scalars['String']>;
 };
 
-export type Basic_Blocks_Values = LongFormText_Values | Iframe_Values;
+export type Basic_Blocks_Values = LongFormText_Values | Img_Values | Iframe_Values;
 
 export type Basic_Doc_Values = {
   __typename?: 'Basic_Doc_Values';
@@ -217,6 +235,7 @@ export type TextareaField = FormField & {
   name?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 export type LongFormText_FormFieldsUnion = TextareaField;
@@ -228,11 +247,29 @@ export type LongFormText_Form = {
   fields?: Maybe<Array<Maybe<LongFormText_FormFieldsUnion>>>;
 };
 
+export type FileField = FormField & {
+  __typename?: 'FileField';
+  name?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+  component?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+export type Img_FormFieldsUnion = FileField;
+
+export type Img_Form = {
+  __typename?: 'Img_Form';
+  label?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Img_FormFieldsUnion>>>;
+};
+
 export type TextField = FormField & {
   __typename?: 'TextField';
   name?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 export type Iframe_FormFieldsUnion = TextField;
@@ -247,6 +284,7 @@ export type Iframe_Form = {
 export type Basic_Blocks_BlocksFieldTemplates = {
   __typename?: 'Basic_Blocks_BlocksFieldTemplates';
   longFormText?: Maybe<LongFormText_Form>;
+  img?: Maybe<Img_Form>;
   iframe?: Maybe<Iframe_Form>;
 };
 
@@ -255,6 +293,7 @@ export type Basic_Blocks_BlocksField = FormField & {
   name?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   templates?: Maybe<Basic_Blocks_BlocksFieldTemplates>;
 };
 
@@ -263,6 +302,7 @@ export type DatetimeField = FormField & {
   name?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   dateFormat?: Maybe<Scalars['String']>;
   timeFormat?: Maybe<Scalars['String']>;
 };
@@ -272,7 +312,8 @@ export type SelectField = FormField & {
   name?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
-  options?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description?: Maybe<Scalars['String']>;
+  options?: Maybe<Array<Maybe<SelectOption>>>;
 };
 
 export type TagListField = FormField & {
@@ -280,6 +321,7 @@ export type TagListField = FormField & {
   name?: Maybe<Scalars['String']>;
   label?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 export type Basic_Doc_FormFieldsUnion = Basic_Blocks_BlocksField | DatetimeField | TextField | SelectField | TextareaField | TagListField;
@@ -295,12 +337,17 @@ export type LongFormText_Input = {
   content?: Maybe<Scalars['String']>;
 };
 
+export type Img_Input = {
+  img?: Maybe<Scalars['String']>;
+};
+
 export type Iframe_Input = {
   url?: Maybe<Scalars['String']>;
 };
 
 export type Blocks_Input = {
   longFormText?: Maybe<LongFormText_Input>;
+  img?: Maybe<Img_Input>;
   iframe?: Maybe<Iframe_Input>;
 };
 

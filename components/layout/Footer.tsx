@@ -1,4 +1,4 @@
-import { useEditState } from "../../utils/editState";
+import { useEditState } from "tina-graphql-gateway";
 
 // import Link from 'next/link';
 const AppFooter = () => {

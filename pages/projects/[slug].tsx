@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { BreadCrumb } from "../../components/BreadCrumb";
 import Layout from "../../components/layout/Layout";
-import { MarkdownBody } from "../../components/Markdown";
+import { MarkdownBody, STYLES } from "../../components/Markdown";
 import { Projects } from "./index";
 const data = require("../../content/projects.json");
 const projects: Projects[] = data.projects;
@@ -18,8 +18,22 @@ const ProjectPage: React.FC<{ markdown: string; project: Projects }> = ({
           { label: project.label, href: `/projects/${project.slug}` },
         ]}
       />
-      <div className="relative py-16">
-        <MarkdownBody source={markdown} escapeHtml={false} skipHtml={false} />
+      <div className={`relative py-16 ${STYLES}`}>
+        <MarkdownBody
+          source={markdown}
+          escapeHtml={false}
+          skipHtml={false}
+          transformImageUri={(src) => {
+            console.log({ src });
+            const url = project.url
+              .replace("README.md", "")
+              .replace("readme.md", "");
+            console.log({ url });
+            const test = `${url}${src.slice(2)}`;
+            console.log({ test });
+            return test;
+          }}
+        />
       </div>
     </Layout>
   );

@@ -23,6 +23,11 @@ scalar JSON
 """"""
 scalar JSONObject
 
+type SelectOption {
+  label: String
+  value: String
+}
+
 type SystemInfo {
   filename: String
   basename: String
@@ -37,6 +42,7 @@ type SystemInfo {
 type Section {
   type: String
   path: String
+  format: String
   label: String
   create: String
   match: String
@@ -93,11 +99,15 @@ type LongFormText_Data {
   content: String
 }
 
+type Img_Data {
+  img: String
+}
+
 type Iframe_Data {
   url: String
 }
 
-union Basic_Blocks_Data = LongFormText_Data | Iframe_Data
+union Basic_Blocks_Data = LongFormText_Data | Img_Data | Iframe_Data
 
 type Basic_Doc_Data {
   blocks: [Basic_Blocks_Data]
@@ -115,12 +125,17 @@ type LongFormText_Values {
   _template: String
 }
 
+type Img_Values {
+  img: String
+  _template: String
+}
+
 type Iframe_Values {
   url: String
   _template: String
 }
 
-union Basic_Blocks_Values = LongFormText_Values | Iframe_Values
+union Basic_Blocks_Values = LongFormText_Values | Img_Values | Iframe_Values
 
 type Basic_Doc_Values {
   blocks: [Basic_Blocks_Values]
@@ -138,6 +153,7 @@ type TextareaField implements FormField {
   name: String
   label: String
   component: String
+  description: String
 }
 
 union LongFormText_FormFieldsUnion = TextareaField
@@ -148,10 +164,26 @@ type LongFormText_Form {
   fields: [LongFormText_FormFieldsUnion]
 }
 
+type FileField implements FormField {
+  name: String
+  label: String
+  component: String
+  description: String
+}
+
+union Img_FormFieldsUnion = FileField
+
+type Img_Form {
+  label: String
+  name: String
+  fields: [Img_FormFieldsUnion]
+}
+
 type TextField implements FormField {
   name: String
   label: String
   component: String
+  description: String
 }
 
 union Iframe_FormFieldsUnion = TextField
@@ -164,6 +196,7 @@ type Iframe_Form {
 
 type Basic_Blocks_BlocksFieldTemplates {
   longFormText: LongFormText_Form
+  img: Img_Form
   iframe: Iframe_Form
 }
 
@@ -171,6 +204,7 @@ type Basic_Blocks_BlocksField implements FormField {
   name: String
   label: String
   component: String
+  description: String
   templates: Basic_Blocks_BlocksFieldTemplates
 }
 
@@ -178,6 +212,7 @@ type DatetimeField implements FormField {
   name: String
   label: String
   component: String
+  description: String
   dateFormat: String
   timeFormat: String
 }
@@ -186,13 +221,15 @@ type SelectField implements FormField {
   name: String
   label: String
   component: String
-  options: [String]
+  description: String
+  options: [SelectOption]
 }
 
 type TagListField implements FormField {
   name: String
   label: String
   component: String
+  description: String
 }
 
 union Basic_Doc_FormFieldsUnion = Basic_Blocks_BlocksField | DatetimeField | TextField | SelectField | TextareaField | TagListField
@@ -207,12 +244,17 @@ input LongFormText_Input {
   content: String
 }
 
+input Img_Input {
+  img: String
+}
+
 input Iframe_Input {
   url: String
 }
 
 input Blocks_Input {
   longFormText: LongFormText_Input
+  img: Img_Input
   iframe: Iframe_Input
 }
 

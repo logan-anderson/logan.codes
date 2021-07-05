@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "skipLibCheck": true
+  },
+  //   "exclude": ["node_modules"],
+  //   "files": ["scripts/generate-rss.ts"],
+  "include": ["scripts/generate-rss.ts"]
+}

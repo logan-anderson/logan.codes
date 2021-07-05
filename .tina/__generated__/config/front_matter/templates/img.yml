@@ -1,0 +1,7 @@
+---
+label: Image
+name: img
+fields:
+  - name: img
+    label: Image
+    type: file

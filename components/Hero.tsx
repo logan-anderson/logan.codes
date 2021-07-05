@@ -1,7 +1,9 @@
 import { useEffect, createRef } from "react";
 import { TextPlugin } from "gsap/dist/TextPlugin";
 import { gsap } from "gsap";
+import profilePic from "../public/img/me.jpeg";
 import NavBar from "./layout/Navbar";
+import Image from "next/image";
 
 export const Hero: React.FC = () => {
   const words = ["Coding", "Coffee", "Math", "Frontend dev", "Backend dev"];
@@ -16,7 +18,7 @@ export const Hero: React.FC = () => {
       repeat: -1,
     });
 
-    // worlds
+    // words
     const masterTL = gsap.timeline({ repeat: -1 });
     words.forEach((word) => {
       const animationLen = word.length * 0.2;
@@ -102,13 +104,13 @@ export const Hero: React.FC = () => {
           </div>
         </div>
         <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <img
-            className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src="https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jpg"
-            width="754px"
-            height="704px"
-            alt="A picture of logan anderson"
-          />
+          <div className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full z-40">
+            <Image
+              src={profilePic}
+              alt="A picture of logan anderson"
+              placeholder="blur"
+            />
+          </div>
         </div>
       </div>
     </>

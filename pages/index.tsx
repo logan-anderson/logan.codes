@@ -2,7 +2,7 @@ import Layout from "../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
 import { Hero } from "../components/Hero";
 import { AllPostsQuery, AllPostsQueryRes } from "../graphql-queries";
-import { createLocalClient } from "../utils";
+import { LocalClient } from "tina-graphql-gateway";
 
 interface props {
   data: AllPostsQueryRes;
@@ -64,7 +64,7 @@ const IndexPage = ({ data }: props) => {
   );
 };
 
-const client = createLocalClient();
+const client = new LocalClient();
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */

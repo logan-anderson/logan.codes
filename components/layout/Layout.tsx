@@ -5,7 +5,6 @@ import { DefaultSeo } from "next-seo";
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
 import { DarkModeToggleButton } from "../Buttons/DarkModeToggle";
-import { Fade } from "react-awesome-reveal";
 
 type Props = {
   preview: boolean;
@@ -20,7 +19,6 @@ const Layout: React.FunctionComponent<Props> = ({
   description,
   navDisable,
 }) => {
-  // useGithubToolbarPlugins();
   const router = useRouter();
   const [theme, setTheme] = useState<"dark" | "light">(
     typeof localStorage === "undefined" ? "light" : localStorage?.theme
@@ -55,6 +53,14 @@ const Layout: React.FunctionComponent<Props> = ({
       <DefaultSeo
         openGraph={{
           url: "https://logana.dev" + router.asPath,
+          images: [
+            {
+              width: 754,
+              alt: "Logan Anderson",
+              url:
+                "https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jpg",
+            },
+          ],
         }}
         title={`${title} | Logan`}
         description={
@@ -82,9 +88,7 @@ const Layout: React.FunctionComponent<Props> = ({
               marginTop: "20px",
             }}
           >
-            <Fade cascade duration={700} damping={0.1} triggerOnce>
-              {children}
-            </Fade>
+            {children}
           </main>
           <AppFooter />
         </div>
