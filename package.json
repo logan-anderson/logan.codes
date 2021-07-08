@@ -31,7 +31,7 @@
     "axios": "0.19.2",
     "class-names": "1.0.0",
     "dotenv": "8.2.0",
-    "fast-glob": "3.2.2",
+    "fast-glob": "3.2.7",
     "final-form": "4.20.0",
     "gray-matter": "4.0.2",
     "gsap": "3.6.0",
