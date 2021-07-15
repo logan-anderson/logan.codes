@@ -53,7 +53,7 @@
     "react-tinacms-editor": "0.41.1",
     "react-tinacms-inline": "0.41.1",
     "rss": "1.2.2",
-    "slugify": "1.4.0",
+    "slugify": "1.6.0",
     "styled-components": "5.1.1",
     "tina-cloud-next": "^0.0.3",
     "tina-graphql-gateway": "^0.2.20",
