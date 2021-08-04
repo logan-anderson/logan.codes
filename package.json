@@ -15,10 +15,10 @@
     "gen:lighthouse": "docker run --rm -v $PWD/test_results:/home/chrome/reports emazzotta/lighthouse-badges /bin/sh -c \"lighthouse-badges --urls https:logana.dev\""
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "1.2.30",
-    "@fortawesome/free-brands-svg-icons": "5.14.0",
-    "@fortawesome/free-solid-svg-icons": "5.14.0",
-    "@fortawesome/react-fontawesome": "0.1.11",
+    "@fortawesome/fontawesome-svg-core": "1.2.36",
+    "@fortawesome/free-brands-svg-icons": "5.15.4",
+    "@fortawesome/free-solid-svg-icons": "5.15.4",
+    "@fortawesome/react-fontawesome": "0.1.15",
     "@headlessui/react": "0.2.0",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.2.1",
