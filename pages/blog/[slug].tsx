@@ -5,8 +5,8 @@ import { MarkdownBody, STYLES } from "../../components/Markdown";
 import { getPostQuery, getPostQueryRes } from "../../graphql-queries";
 import { BlogHeader } from "../../components/blog";
 import { Author } from "../../components/AuthorDetail";
-import { Author_Document } from "../../.tina/__generated__/types";
-import { LocalClient } from "tina-graphql-gateway";
+import { Author as AuthorType } from "../../.tina/__generated__/types";
+import { LocalClient } from "tinacms";
 import { Comments } from "../../components/Cmments";
 
 interface PageProps {
@@ -29,7 +29,7 @@ const BlogPage = ({ data: postData }: PageProps) => {
         ]}
       />
       <Author
-        author={data?.author || ({} as Author_Document)}
+        author={data?.author || ({} as AuthorType)}
         post={postData.getPostsDocument}
       />
       <div className="relative pb-16 overflow-hidden">

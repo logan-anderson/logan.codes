@@ -1,0 +1,186 @@
+{
+  "collections": [
+    {
+      "label": "Blog Posts",
+      "name": "posts",
+      "path": "content/blog",
+      "fields": [
+        {
+          "name": "blocks",
+          "label": "Content Sections",
+          "type": "object",
+          "list": true,
+          "templates": [
+            {
+              "label": "Long form Text",
+              "name": "longFormText",
+              "fields": [
+                {
+                  "name": "content",
+                  "label": "Content",
+                  "type": "string",
+                  "namespace": [
+                    "posts",
+                    "blocks",
+                    "longFormText",
+                    "content"
+                  ]
+                }
+              ],
+              "namespace": [
+                "posts",
+                "blocks",
+                "longFormText"
+              ]
+            },
+            {
+              "label": "Image",
+              "name": "img",
+              "fields": [
+                {
+                  "name": "img",
+                  "label": "Image",
+                  "type": "image",
+                  "namespace": [
+                    "posts",
+                    "blocks",
+                    "img",
+                    "img"
+                  ]
+                }
+              ],
+              "namespace": [
+                "posts",
+                "blocks",
+                "img"
+              ]
+            },
+            {
+              "label": "Iframe",
+              "name": "iframe",
+              "fields": [
+                {
+                  "name": "url",
+                  "type": "string",
+                  "label": "url",
+                  "namespace": [
+                    "posts",
+                    "blocks",
+                    "iframe",
+                    "url"
+                  ]
+                }
+              ],
+              "namespace": [
+                "posts",
+                "blocks",
+                "iframe"
+              ]
+            }
+          ],
+          "namespace": [
+            "posts",
+            "blocks"
+          ]
+        },
+        {
+          "name": "date",
+          "type": "datetime",
+          "label": "Date",
+          "dateFormat": "yyyy-MM-DD",
+          "namespace": [
+            "posts",
+            "date"
+          ]
+        },
+        {
+          "name": "minRead",
+          "type": "number",
+          "label": "Min Read",
+          "namespace": [
+            "posts",
+            "minRead"
+          ]
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "label": "Title",
+          "namespace": [
+            "posts",
+            "title"
+          ]
+        },
+        {
+          "name": "author",
+          "type": "reference",
+          "label": "Author",
+          "collections": [
+            "author"
+          ],
+          "namespace": [
+            "posts",
+            "author"
+          ]
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "label": "Description",
+          "ui": {
+            "component": "textarea"
+          },
+          "namespace": [
+            "posts",
+            "description"
+          ]
+        },
+        {
+          "name": "tags",
+          "type": "string",
+          "list": true,
+          "label": "Tags",
+          "ui": {
+            "component": "tags"
+          },
+          "namespace": [
+            "posts",
+            "tags"
+          ]
+        }
+      ],
+      "namespace": [
+        "posts"
+      ]
+    },
+    {
+      "label": "Authors",
+      "name": "author",
+      "path": "content/authors",
+      "fields": [
+        {
+          "type": "string",
+          "label": "Name",
+          "name": "name",
+          "namespace": [
+            "author",
+            "name"
+          ]
+        },
+        {
+          "type": "string",
+          "label": "Avatar",
+          "name": "avatar",
+          "namespace": [
+            "author",
+            "avatar"
+          ]
+        }
+      ],
+      "namespace": [
+        "author"
+      ]
+    }
+  ],
+  "namespace": []
+}

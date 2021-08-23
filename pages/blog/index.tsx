@@ -7,7 +7,7 @@ import { BreadCrumb } from "../../components/BreadCrumb";
 import { Slide } from "react-awesome-reveal";
 import { GetStaticProps } from "next";
 import { AllPostsQuery, AllPostsQueryRes } from "../../graphql-queries";
-import { LocalClient } from "tina-graphql-gateway";
+import { LocalClient } from "tinacms";
 
 const Tags = ({
   tags,

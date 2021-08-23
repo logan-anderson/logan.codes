@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Author_Document, Posts_Document } from "../.tina/__generated__/types";
+import { Author as AuthorType, Posts } from "../.tina/__generated__/types";
 
 const social: { name: string; href: string; icon: React.FC<any> }[] = [
   //   {
@@ -53,8 +53,8 @@ const social: { name: string; href: string; icon: React.FC<any> }[] = [
   },
 ];
 export const Author: React.FC<{
-  author: Author_Document;
-  post: Posts_Document;
+  author: AuthorType;
+  post: Posts;
 }> = ({ author, post }) => {
   return (
     <div className="flex justify-center">

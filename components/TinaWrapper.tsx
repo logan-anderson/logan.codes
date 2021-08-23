@@ -5,7 +5,7 @@ import {
   TinaCloudProvider,
   useGraphqlForms,
   useDocumentCreatorPlugin,
-} from "tina-graphql-gateway";
+} from "tinacms";
 import { useExitTina, useSetupPlugins } from "../utils/tinacms";
 import { Spinner } from "./spinner";
 
@@ -14,7 +14,6 @@ export const TinaWrapper: React.FC<any> = (props) => {
     <TinaCloudProvider
       clientId={process.env.NEXT_PUBLIC_TINA_CLIENT_ID}
       branch={process.env.NEXT_PUBLIC_EDIT_BRACH}
-      organization={process.env.NEXT_PUBLIC_ORGANIZATION_NAME}
       isLocalClient={Boolean(Number(process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT))}
       mediaStore={TinaCloudCloudinaryMediaStore}
     >
@@ -29,18 +28,6 @@ const Inner = (props: any) => {
   const [payload, isLoading] = useGraphqlForms({
     query: (gql) => gql(props.query || ""),
     variables: props.variables || {},
-    formify: ({ createForm, formConfig }) => {
-      // this doesnt feel right
-      formConfig.fields?.forEach((field) => {
-        // if (field.name === "blocks") {
-        //   field.templates.longFormText.fields[0].component = "markdown";
-        // }
-        if (field.name === "_body" || field.name === "longFormText") {
-          field.component = "markdown";
-        }
-      });
-      return createForm(formConfig);
-    },
   });
   // sets up date and markdown plugin
   useSetupPlugins();

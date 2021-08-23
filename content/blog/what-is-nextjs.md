@@ -10,7 +10,6 @@ description: >-
 tags:
   - nextjs
   - code
-_template: basic
 ---
 
 # What is Next.js?
