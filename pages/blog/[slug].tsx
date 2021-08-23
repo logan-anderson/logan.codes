@@ -7,6 +7,7 @@ import { BlogHeader } from "../../components/blog";
 import { Author } from "../../components/AuthorDetail";
 import { Author_Document } from "../../.tina/__generated__/types";
 import { LocalClient } from "tina-graphql-gateway";
+import { Comments } from "../../components/Cmments";
 
 interface PageProps {
   data: getPostQueryRes;
@@ -47,6 +48,7 @@ const BlogPage = ({ data: postData }: PageProps) => {
               }
             })}
             <MarkdownBody source={data?._body || ""} />
+            <Comments />
           </div>
         </div>
       </div>
