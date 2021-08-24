@@ -31,6 +31,7 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
 const NEXT_PUBLIC_TINA_CLIENT_ID = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
 const NEXT_PUBLIC_USE_LOCAL_CLIENT =
   process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT || 0;
+const NEXT_PUBLIC_EDIT_BRACH = process.env.NEXT_PUBLIC_EDIT_BRACH;
 
 const App = (props: AppProps) => {
   return (
@@ -39,7 +40,7 @@ const App = (props: AppProps) => {
         showEditButton={false}
         editMode={
           <TinaCMS
-            branch="main"
+            branch={NEXT_PUBLIC_EDIT_BRACH}
             clientId={NEXT_PUBLIC_TINA_CLIENT_ID}
             isLocalClient={Boolean(Number(NEXT_PUBLIC_USE_LOCAL_CLIENT))}
             cmsCallback={(cms) => {
