@@ -2,17 +2,18 @@ import Layout from "../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
 import { Hero } from "../components/Hero";
 import { AllPostsQuery, AllPostsQueryRes } from "../graphql-queries";
-import { LocalClient } from "tina-graphql-gateway";
+import { LocalClient } from "tinacms/";
+import { PostsConnectionEdges } from "../.tina/__generated__/types";
 
 interface props {
-  data: AllPostsQueryRes;
+  featuredPosts: PostsConnectionEdges[];
 }
-const IndexPage = ({ data }: props) => {
+const IndexPage = ({ featuredPosts }: props) => {
   // sort based on date added
-  data.getPostsList.sort(
+  featuredPosts.sort(
     (x, y) =>
-      new Date(y.data?.date || "").getTime() -
-      new Date(x.data?.date || "").getTime()
+      new Date(y.node?.data?.date || "").getTime() -
+      new Date(x.node?.data?.date || "").getTime()
   );
   return (
     <>
@@ -33,22 +34,23 @@ const IndexPage = ({ data }: props) => {
                 </p>
               </div>
               <div className="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
-                {data?.getPostsList?.slice(0, 3).map((post) => {
+                {featuredPosts.map((postData) => {
+                  const post = postData.node;
                   return (
                     <BlogCard
                       post={{
-                        fileName: post.sys?.filename || "",
-                        fileRelativePath: post.sys?.filename || "",
+                        fileName: post?.sys?.filename || "",
+                        fileRelativePath: post?.sys?.filename || "",
                         data: {
-                          markdownBody: post.data?._body || "",
+                          markdownBody: "",
                           frontmatter: {
-                            author: post.data?.author?.data?.name || "",
-                            avatar: post.data?.author?.data?.avatar || "",
-                            date: post.data?.date || "",
-                            description: post.data?.description || "",
-                            minRead: post.data?.minRead || "",
-                            tags: post.data?.tags as string[],
-                            title: post.data?.title || "",
+                            author: post?.data?.author?.data?.name || "",
+                            avatar: post?.data?.author?.data?.avatar || "",
+                            date: post?.data?.date || "",
+                            description: post?.data?.description || "",
+                            minRead: post?.data?.minRead || 2,
+                            tags: post?.data?.tags as string[],
+                            title: post?.data?.title || "",
                           },
                         },
                       }}
@@ -73,10 +75,10 @@ export const getStaticProps = async function () {
   const data = await client.request<AllPostsQueryRes>(AllPostsQuery, {
     variables: {},
   });
-  data.getPostsList = data.getPostsList.slice(0, 3);
+
   return {
     props: {
-      data: data,
+      featuredPosts: data.getPostsList.edges?.slice(0, 3),
     },
   };
 };

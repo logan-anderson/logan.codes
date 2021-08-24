@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Author_Document, Posts_Document } from "../.tina/__generated__/types";
+import { Author as AuthorType, Posts } from "../.tina/__generated__/types";
 
 const social: { name: string; href: string; icon: React.FC<any> }[] = [
   //   {
@@ -53,8 +53,8 @@ const social: { name: string; href: string; icon: React.FC<any> }[] = [
   },
 ];
 export const Author: React.FC<{
-  author: Author_Document;
-  post: Posts_Document;
+  author: AuthorType;
+  post: Posts;
 }> = ({ author, post }) => {
   return (
     <div className="flex justify-center">
@@ -67,7 +67,7 @@ export const Author: React.FC<{
               // src="/img/IMG_0882_E.jpg"
               width="40px"
               height="40px"
-              src={author.data?.avatar || ""}
+              src={author?.avatar || ""}
               alt="A picture of logan anderson"
             />
           </a>
@@ -77,16 +77,16 @@ export const Author: React.FC<{
             <Link href="/about">
               <a className="hover:underline">
                 {/* TODO: about about me page and have this link to it */}
-                {author.data?.name || "Logan Anderson"}
+                {author?.name || "Logan Anderson"}
               </a>
             </Link>
           </p>
           <div className="flex text-sm leading-5 text-gray-500 dark:text-gray-400">
-            <time dateTime={post.data?.date || new Date().toDateString()}>
-              {new Date(post.data?.date || "").toDateString()}
+            <time dateTime={post?.date || new Date().toDateString()}>
+              {new Date(post?.date || "").toDateString()}
             </time>
             <span className="mx-1">·</span>
-            <span>{post.data?.minRead || "1"} min read</span>
+            <span>{post?.minRead || "1"} min read</span>
           </div>
         </div>
         <div className="ml-3">

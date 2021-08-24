@@ -1,7 +1,0 @@
----
-label: Iframe
-name: iframe
-fields:
-  - name: url
-    type: text
-    label: url

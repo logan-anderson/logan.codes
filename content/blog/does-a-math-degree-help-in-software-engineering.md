@@ -9,7 +9,6 @@ description: >-
   of software engineering?
 tags:
   - math
-_template: basic
 ---
 
 # Does a Math Degree Help in Software Engineering?

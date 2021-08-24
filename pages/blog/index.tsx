@@ -7,7 +7,7 @@ import { BreadCrumb } from "../../components/BreadCrumb";
 import { Slide } from "react-awesome-reveal";
 import { GetStaticProps } from "next";
 import { AllPostsQuery, AllPostsQueryRes } from "../../graphql-queries";
-import { LocalClient } from "tina-graphql-gateway";
+import { LocalClient } from "tinacms";
 
 const Tags = ({
   tags,
@@ -24,7 +24,6 @@ const Tags = ({
       result.push(item);
     }
   }
-  // const uniqueTags = tags.filter()
   return (
     <>
       <h4 className="dark:text-gray-50">Filter by tags:</h4>
@@ -65,16 +64,16 @@ interface BlogListProps {
 
 const BlogList = ({ data }: BlogListProps) => {
   // sort based on date added
-  data.getPostsList.sort(
+  data.getPostsList.edges?.sort(
     (x, y) =>
-      new Date(y.data?.date || "").getTime() -
-      new Date(x.data?.date || "").getTime()
+      new Date(y?.node?.data?.date || "").getTime() -
+      new Date(x?.node?.data?.date || "").getTime()
   );
   // useCreateBlogPage(posts);
   let alltags: Tag[] = [];
   let tagMap = new Map();
-  data.getPostsList.forEach((doc) => {
-    doc.data?.tags?.forEach((tag) => {
+  data?.getPostsList?.edges?.forEach((doc) => {
+    doc?.node?.data?.tags?.forEach((tag) => {
       if (tag && !tagMap.has(tag)) {
         alltags.push({
           name: tag,
@@ -92,8 +91,8 @@ const BlogList = ({ data }: BlogListProps) => {
         <BreadCrumb links={[{ label: "Blog", href: "/blog" }]} />
         <Tags tags={stateTags} setTags={setStateTags} />
         <Slide direction="up" cascade duration={700} damping={0.1} triggerOnce>
-          {data.getPostsList
-            .filter((post) => {
+          {data.getPostsList?.edges
+            ?.filter((post) => {
               const selectedTags: string[] = stateTags
                 .filter((t) => t.selected)
                 .map((el) => el.name);
@@ -102,26 +101,27 @@ const BlogList = ({ data }: BlogListProps) => {
                 return true;
               }
               return selectedTags.every((currentTag: string) => {
-                return post.data?.tags?.includes(currentTag);
+                return post?.node?.data?.tags?.includes(currentTag);
               });
             })
-            .map((post) => {
+            .map((postData) => {
+              const post = postData?.node;
               return (
                 <BlogCard
-                  key={post.id}
+                  key={post?.id}
                   post={{
-                    fileName: post.sys?.filename || "",
-                    fileRelativePath: post.sys?.filename || "",
+                    fileName: post?.sys?.filename || "",
+                    fileRelativePath: post?.sys?.filename || "",
                     data: {
-                      markdownBody: post.data?._body || "",
+                      markdownBody: "",
                       frontmatter: {
-                        minRead: post.data?.minRead || "",
-                        avatar: post.data?.author?.data?.avatar || "",
-                        author: post.data?.author?.data?.name || "",
-                        date: post.data?.date || "",
-                        description: post.data?.description || "",
-                        tags: post.data?.tags as string[],
-                        title: post.data?.title || "",
+                        minRead: post?.data?.minRead || 3,
+                        avatar: post?.data?.author?.data?.avatar || "",
+                        author: post?.data?.author?.data?.name || "",
+                        date: post?.data?.date || "",
+                        description: post?.data?.description || "",
+                        tags: post?.data?.tags as string[],
+                        title: post?.data?.title || "",
                       },
                     },
                   }}

@@ -1,4 +1,4 @@
-import { useEditState } from "tina-graphql-gateway";
+import { useEditState } from "tinacms/dist/edit-state";
 
 // import Link from 'next/link';
 const AppFooter = () => {

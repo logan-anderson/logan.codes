@@ -4,24 +4,12 @@ import dynamic from "next/dynamic";
 
 import "../styles/index.css";
 import { useGoogleTagManager } from "../hooks/useGoogleTagManager";
-import { EditProvider, useEditState } from "tina-graphql-gateway";
 
-function InnerApp({ Component, pageProps }: AppProps) {
-  const { edit } = useEditState();
-  if (edit) {
-    // lazy load Tina on the client (this never happens on the server)
-    const TinaWrapper = (dynamic(
-      () => import("../components/TinaWrapper")
-    ) as unknown) as React.FC;
-    return (
-      <TinaWrapper {...pageProps}>
-        {(props: any) => <Component {...props} />}
-      </TinaWrapper>
-    );
-  }
-  return <Component {...pageProps} />;
-}
-const App = (props: AppProps) => {
+import { TinaEditProvider } from "tinacms/dist/edit-state";
+const TinaCMS = dynamic(() => import("tinacms"), { ssr: false });
+import React from "react";
+
+const CustomApp = ({ Component, pageProps }: AppProps) => {
   useGoogleTagManager();
   return (
     <>
@@ -35,9 +23,68 @@ const App = (props: AppProps) => {
           href="https://logana.dev/feed.xml"
         />
       </Head>
-      <EditProvider>
-        <InnerApp {...props} />
-      </EditProvider>
+      <Component {...pageProps} />
+    </>
+  );
+};
+
+const NEXT_PUBLIC_TINA_CLIENT_ID = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
+const NEXT_PUBLIC_USE_LOCAL_CLIENT =
+  process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT || 0;
+
+const App = (props: AppProps) => {
+  return (
+    <>
+      <TinaEditProvider
+        showEditButton={false}
+        editMode={
+          <TinaCMS
+            branch="main"
+            clientId={NEXT_PUBLIC_TINA_CLIENT_ID}
+            isLocalClient={Boolean(Number(NEXT_PUBLIC_USE_LOCAL_CLIENT))}
+            cmsCallback={(cms) => {
+              import("react-tinacms-editor").then(({ MarkdownFieldPlugin }) => {
+                cms.plugins.add(MarkdownFieldPlugin);
+              });
+              import("next-tinacms-cloudinary").then((pack) => {
+                cms.media.store = new pack.TinaCloudCloudinaryMediaStore(
+                  cms.api.tina
+                );
+              });
+            }}
+            documentCreatorCallback={{
+              /**
+               * After a new document is created, redirect to its location
+               */
+              onNewDocument: (doc) => {
+                if (doc.collection.slug === "docs") {
+                  return (window.location.href = `/docs/${doc.breadcrumbs.join(
+                    "/"
+                  )}`);
+                }
+                return;
+              },
+              /**
+               * Only allows documents to be created to the `Blog Posts` Collection
+               */
+              filterCollections: (options) => {
+                return options.filter(
+                  (option) =>
+                    option.label === "Blog Posts" ||
+                    option.label === "Page Content"
+                );
+              },
+            }}
+            {...props.pageProps}
+          >
+            {(livePageProps: any) => (
+              <CustomApp {...props} pageProps={livePageProps} />
+            )}
+          </TinaCMS>
+        }
+      >
+        <CustomApp {...props} />
+      </TinaEditProvider>
     </>
   );
 };
