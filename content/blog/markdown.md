@@ -7,7 +7,6 @@ description: Learn more about Markdown and what it is
 tags:
   - markdown
   - code
-_template: basic
 ---
 
 # What is Markdown?

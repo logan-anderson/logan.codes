@@ -1,0 +1,85 @@
+{
+  "DocumentConnection": {
+    "type": "DocumentConnection",
+    "resolveType": "multiCollectionDocumentList",
+    "collections": [
+      "posts",
+      "author"
+    ]
+  },
+  "Node": {
+    "type": "Node",
+    "resolveType": "nodeDocument"
+  },
+  "DocumentNode": {
+    "type": "DocumentNode",
+    "resolveType": "multiCollectionDocument"
+  },
+  "PostsBasicBlocks": {
+    "type": "PostsBasicBlocks",
+    "resolveType": "unionData",
+    "typeMap": {
+      "longFormText": "PostsBasicBlocksLongFormText",
+      "img": "PostsBasicBlocksImg",
+      "iframe": "PostsBasicBlocksIframe"
+    }
+  },
+  "PostsBasicAuthorDocument": {
+    "type": "PostsBasicAuthorDocument",
+    "resolveType": "multiCollectionDocument"
+  },
+  "Posts": {
+    "type": "Posts",
+    "resolveType": "unionData",
+    "typeMap": {
+      "basic": "PostsBasic"
+    }
+  },
+  "PostsDocument": {
+    "type": "PostsDocument",
+    "resolveType": "collectionDocument",
+    "collection": "posts"
+  },
+  "PostsConnection": {
+    "type": "PostsConnection",
+    "resolveType": "collectionDocumentList",
+    "collection": "posts"
+  },
+  "Author": {
+    "type": "Author",
+    "resolveType": "unionData",
+    "typeMap": {
+      "author": "AuthorAuthor"
+    }
+  },
+  "AuthorDocument": {
+    "type": "AuthorDocument",
+    "resolveType": "collectionDocument",
+    "collection": "author"
+  },
+  "AuthorConnection": {
+    "type": "AuthorConnection",
+    "resolveType": "collectionDocumentList",
+    "collection": "author"
+  },
+  "PostsBlocks": {
+    "type": "PostsBlocks",
+    "resolveType": "unionData",
+    "typeMap": {
+      "longFormText": "PostsBlocksLongFormText",
+      "img": "PostsBlocksImg",
+      "iframe": "PostsBlocksIframe"
+    }
+  },
+  "PostsAuthorDocument": {
+    "type": "PostsAuthorDocument",
+    "resolveType": "multiCollectionDocument"
+  },
+  "PostsFeaturedPostsConnection": {
+    "type": "PostsFeaturedPostsConnection",
+    "resolveType": "multiCollectionDocumentList",
+    "collections": [
+      "posts"
+    ]
+  }
+}

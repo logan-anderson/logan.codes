@@ -1,36 +1,65 @@
-import { Posts_Document } from "../.tina/__generated__/types";
+import { PostsDocument } from "../.tina/__generated__/types";
 
 export const getPostQuery = `#graphql
   query getBlogPostQuery($relativePath: String!) {
-    getPostsDocument(relativePath: $relativePath) {
+    getPostsDocument(relativePath: $relativePath){
     id
     sys {
       filename
     }
     data {
-      __typename
-      ... on Basic_Doc_Data {
-        blocks {
-          __typename ...on LongFormText_Data {
-            content
-          }
-          __typename ...on Iframe_Data {
-            url
-          }
-          __typename ... on Img_Data {
-            img
+      title
+      minRead
+      date
+      tags
+      body
+      author {
+        __typename
+        ... on AuthorDocument {
+          data {
+            name
+            avatar
           }
         }
-        minRead
-        date
-        title
-        tags
-        _body
-        author {
-          data {
-            ... on Author_Doc_Data {
-              name
-              avatar
+      }
+      blocks {
+        __typename
+        ... on PostsBlocksLongFormText {
+          content
+        }
+        __typename
+        ... on PostsBlocksIframe {
+          url
+        }
+        __typename
+        ... on PostsBlocksImg {
+          img
+        }
+      }
+      featuredPosts {
+        edges {
+          __typename
+          ... on PostsFeaturedPostsConnectionEdges {
+            node {
+              __typename
+              ... on PostsDocument {
+                id
+                data {
+                  title
+                  minRead
+                  date
+                  description
+                  author {
+                    __typename
+                    ... on AuthorDocument {
+                      data {
+                        name
+                        avatar
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -41,5 +70,5 @@ export const getPostQuery = `#graphql
 `;
 
 export type getPostQueryRes = {
-  getPostsDocument: Posts_Document;
+  getPostsDocument: PostsDocument;
 };

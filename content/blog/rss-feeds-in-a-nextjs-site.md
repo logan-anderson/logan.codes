@@ -7,7 +7,6 @@ tags:
   - code
   - react
   - nextjs
-_template: basic
 date: 'Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)'
 ---
 
