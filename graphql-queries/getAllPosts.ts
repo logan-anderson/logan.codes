@@ -1,4 +1,4 @@
-import { Posts, PostsConnection } from "../.tina/__generated__/types";
+import { PostsConnection } from "../.tina/__generated__/types";
 
 // Query for getting all of the blog posts
 export const AllPostsQuery = `#graphql

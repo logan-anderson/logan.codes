@@ -9,6 +9,15 @@ export default defineSchema({
 
       fields: [
         {
+          name: "body",
+          label: "Main Content",
+          type: "string",
+          isBody: true,
+          ui: {
+            component: "markdown",
+          },
+        },
+        {
           name: "blocks",
           label: "Content Sections",
           type: "object",

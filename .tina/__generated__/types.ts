@@ -176,6 +176,7 @@ export type PostsAuthorDocument = AuthorDocument;
 
 export type Posts = {
   __typename?: 'Posts';
+  body?: Maybe<Scalars['String']>;
   blocks?: Maybe<Array<Maybe<PostsBlocks>>>;
   date?: Maybe<Scalars['String']>;
   minRead?: Maybe<Scalars['Int']>;
@@ -295,6 +296,7 @@ export type PostsBlocksMutation = {
 };
 
 export type PostsMutation = {
+  body?: Maybe<Scalars['String']>;
   blocks?: Maybe<Array<Maybe<PostsBlocksMutation>>>;
   date?: Maybe<Scalars['String']>;
   minRead?: Maybe<Scalars['Int']>;

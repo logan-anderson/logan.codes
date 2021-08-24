@@ -1335,6 +1335,21 @@
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
+            "value": "body"
+          },
+          "arguments": [],
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "String"
+            }
+          }
+        },
+        {
+          "kind": "FieldDefinition",
+          "name": {
+            "kind": "Name",
             "value": "blocks"
           },
           "arguments": [],
@@ -2393,6 +2408,20 @@
         "value": "PostsMutation"
       },
       "fields": [
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "body"
+          },
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "String"
+            }
+          }
+        },
         {
           "kind": "InputValueDefinition",
           "name": {

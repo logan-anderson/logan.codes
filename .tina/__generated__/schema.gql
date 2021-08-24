@@ -93,6 +93,7 @@ union PostsBlocks = PostsBlocksLongFormText | PostsBlocksImg | PostsBlocksIframe
 union PostsAuthorDocument = AuthorDocument
 
 type Posts {
+  body: String
   blocks: [PostsBlocks]
   date: String
   minRead: Int
@@ -178,6 +179,7 @@ input PostsBlocksMutation {
 }
 
 input PostsMutation {
+  body: String
   blocks: [PostsBlocksMutation]
   date: String
   minRead: Int
