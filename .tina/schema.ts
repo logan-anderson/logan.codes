@@ -97,6 +97,13 @@ export default defineSchema({
             component: "tags",
           },
         },
+        {
+          name: "featuredPosts",
+          label: "Featured Posts",
+          type: "reference",
+          list: true,
+          collections: ["posts"],
+        },
       ],
     },
     {

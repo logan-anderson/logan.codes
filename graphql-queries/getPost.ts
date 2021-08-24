@@ -2,7 +2,7 @@ import { PostsDocument } from "../.tina/__generated__/types";
 
 export const getPostQuery = `#graphql
   query getBlogPostQuery($relativePath: String!) {
-    getPostsDocument(relativePath: $relativePath) {
+    getPostsDocument(relativePath: $relativePath){
     id
     sys {
       filename
@@ -14,7 +14,8 @@ export const getPostQuery = `#graphql
       tags
       body
       author {
-        __typename ... on AuthorDocument {
+        __typename
+        ... on AuthorDocument {
           data {
             name
             avatar
@@ -22,16 +23,47 @@ export const getPostQuery = `#graphql
         }
       }
       blocks {
-          __typename ...on  PostsBlocksLongFormText{
-            content
-          }
-          __typename ...on  PostsBlocksIframe{
-            url
-          }
-          __typename ... on  PostsBlocksImg{
-            img
+        __typename
+        ... on PostsBlocksLongFormText {
+          content
+        }
+        __typename
+        ... on PostsBlocksIframe {
+          url
+        }
+        __typename
+        ... on PostsBlocksImg {
+          img
+        }
+      }
+      featuredPosts {
+        edges {
+          __typename
+          ... on PostsFeaturedPostsConnectionEdges {
+            node {
+              __typename
+              ... on PostsDocument {
+                id
+                data {
+                  title
+                  minRead
+                  date
+                  description
+                  author {
+                    __typename
+                    ... on AuthorDocument {
+                      data {
+                        name
+                        avatar
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
+      }
     }
   }
 }

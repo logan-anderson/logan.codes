@@ -74,5 +74,12 @@
   "PostsAuthorDocument": {
     "type": "PostsAuthorDocument",
     "resolveType": "multiCollectionDocument"
+  },
+  "PostsFeaturedPostsConnection": {
+    "type": "PostsFeaturedPostsConnection",
+    "resolveType": "multiCollectionDocumentList",
+    "collections": [
+      "posts"
+    ]
   }
 }

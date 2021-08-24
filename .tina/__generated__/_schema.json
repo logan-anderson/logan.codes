@@ -160,6 +160,19 @@
             "posts",
             "tags"
           ]
+        },
+        {
+          "name": "featuredPosts",
+          "label": "Featured Posts",
+          "type": "reference",
+          "list": true,
+          "collections": [
+            "posts"
+          ],
+          "namespace": [
+            "posts",
+            "featuredPosts"
+          ]
         }
       ],
       "namespace": [

@@ -49,6 +49,9 @@ const BlogPage = ({ data: postData }: PageProps) => {
             })}
             <MarkdownBody source={data?.body || ""} />
             <Comments />
+            {/* {data?.featuredPosts?.edges?.map((edge) => {
+              <div>{JSON.stringify(edge?.node)}</div>;
+            })} */}
           </div>
         </div>
       </div>

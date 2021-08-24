@@ -92,6 +92,19 @@ union PostsBlocks = PostsBlocksLongFormText | PostsBlocksImg | PostsBlocksIframe
 
 union PostsAuthorDocument = AuthorDocument
 
+union PostsFeaturedPostsDocument = PostsDocument
+
+type PostsFeaturedPostsConnectionEdges {
+  cursor: String
+  node: PostsFeaturedPostsDocument
+}
+
+type PostsFeaturedPostsConnection implements Connection {
+  pageInfo: PageInfo
+  totalCount: Int!
+  edges: [PostsFeaturedPostsConnectionEdges]
+}
+
 type Posts {
   body: String
   blocks: [PostsBlocks]
@@ -101,6 +114,7 @@ type Posts {
   author: PostsAuthorDocument
   description: String
   tags: [String]
+  featuredPosts(before: String, after: String, first: Int, last: Int): PostsFeaturedPostsConnection!
 }
 
 type PostsDocument implements Node & Document {
@@ -187,6 +201,7 @@ input PostsMutation {
   author: String
   description: String
   tags: [String]
+  featuredPosts: [String]
 }
 
 input AuthorMutation {
