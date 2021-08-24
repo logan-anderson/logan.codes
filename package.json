@@ -27,7 +27,7 @@
     "@types/classnames": "2.2.10",
     "@types/gsap": "1.20.2",
     "@types/js-yaml": "3.12.4",
-    "@types/styled-components": "5.1.0",
+    "@types/styled-components": "5.1.12",
     "axios": "0.19.2",
     "class-names": "1.0.0",
     "dotenv": "8.2.0",
@@ -53,7 +53,7 @@
     "react-tinacms-inline": "^0.52.3",
     "rss": "1.2.2",
     "slugify": "1.4.0",
-    "styled-components": "5.1.1",
+    "styled-components": "5.3.1",
     "tina-cloud-next": "^0.0.4",
     "tinacms": "^0.55.0"
   },
