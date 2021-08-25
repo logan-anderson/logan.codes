@@ -67,7 +67,7 @@
     "@types/react-syntax-highlighter": "13.5.0",
     "@types/rss": "0.0.28",
     "cross-env": "^7.0.3",
-    "eslint": "^7.29.0",
+    "eslint": "7.32.0",
     "eslint-config-next": "11.0.0",
     "nextjs-sitemap-generator": "1.0.0",
     "postcss-preset-env": "6.7.0",
