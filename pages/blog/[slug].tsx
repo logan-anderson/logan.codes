@@ -11,6 +11,8 @@ import {
   PostsConnection,
   Author as AuthorType,
 } from "../../.tina/__generated__/types";
+import React from "react";
+import BlogCard from "../../components/BlogCard";
 
 interface PageProps {
   data: getPostQueryRes;
@@ -49,9 +51,36 @@ const BlogPage = ({ data: postData }: PageProps) => {
             })}
             <MarkdownBody source={data?.body || ""} />
             <Comments />
-            {/* {data?.featuredPosts?.edges?.map((edge) => {
-              <div>{JSON.stringify(edge?.node)}</div>;
-            })} */}
+          </div>
+          <div className="text-center">
+            <h2 className="text-3xl leading-9 tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-4xl sm:leading-10">
+              Read more
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
+            {data?.featurePosts?.map((edge) => {
+              const post = edge?.post;
+              return (
+                <BlogCard
+                  post={{
+                    fileName: post?.sys?.filename || "",
+                    fileRelativePath: post?.sys?.filename || "",
+                    data: {
+                      markdownBody: "",
+                      frontmatter: {
+                        author: post?.data?.author?.data?.name || "",
+                        avatar: post?.data?.author?.data?.avatar || "",
+                        date: post?.data?.date || "",
+                        description: post?.data?.description || "",
+                        minRead: post?.data?.minRead || 2,
+                        tags: post?.data?.tags as string[],
+                        title: post?.data?.title || "",
+                      },
+                    },
+                  }}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
