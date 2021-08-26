@@ -40,7 +40,7 @@
     "next-pwa": "^5.2.21",
     "next-seo": "4.5.0",
     "next-tinacms-cloudinary": "0.1.4",
-    "postcss": "^8.2.10",
+    "postcss": "8.3.6",
     "prop-types": "15.7.2",
     "raw-loader": "4.0.1",
     "react": "17.0.2",
