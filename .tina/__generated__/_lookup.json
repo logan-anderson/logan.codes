@@ -81,5 +81,21 @@
     "collections": [
       "posts"
     ]
+  },
+  "PostsFeaturePostsAuthorDocument": {
+    "type": "PostsFeaturePostsAuthorDocument",
+    "resolveType": "multiCollectionDocument"
+  },
+  "PostsFeaturePostsPostDocument": {
+    "type": "PostsFeaturePostsPostDocument",
+    "resolveType": "multiCollectionDocument"
+  },
+  "PostsFeaturePostPostDocument": {
+    "type": "PostsFeaturePostPostDocument",
+    "resolveType": "multiCollectionDocument"
+  },
+  "PostsPostDocument": {
+    "type": "PostsPostDocument",
+    "resolveType": "multiCollectionDocument"
   }
 }

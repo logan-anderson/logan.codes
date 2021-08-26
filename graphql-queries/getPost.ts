@@ -36,27 +36,20 @@ export const getPostQuery = `#graphql
           img
         }
       }
-      featuredPosts {
-        edges {
-          __typename
-          ... on PostsFeaturedPostsConnectionEdges {
-            node {
-              __typename
-              ... on PostsDocument {
-                id
-                data {
-                  title
-                  minRead
-                  date
-                  description
-                  author {
-                    __typename
-                    ... on AuthorDocument {
-                      data {
-                        name
-                        avatar
-                      }
-                    }
+      featurePosts {
+        post {
+          __typename ... on PostsDocument {
+            data {
+              date
+              minRead
+              title
+              description
+              author {
+                __typename ... on AuthorDocument {
+                  id
+                  data {
+                    name
+                    avatar
                   }
                 }
               }

@@ -162,16 +162,52 @@
           ]
         },
         {
-          "name": "featuredPosts",
+          "type": "object",
+          "name": "featurePost",
           "label": "Featured Posts",
-          "type": "reference",
-          "list": true,
-          "collections": [
-            "posts"
+          "fields": [
+            {
+              "type": "reference",
+              "label": "Post",
+              "name": "post",
+              "collections": [
+                "posts"
+              ],
+              "namespace": [
+                "posts",
+                "featurePost",
+                "post"
+              ]
+            }
           ],
           "namespace": [
             "posts",
-            "featuredPosts"
+            "featurePost"
+          ]
+        },
+        {
+          "type": "object",
+          "list": true,
+          "name": "featurePosts",
+          "label": "Featured Posts",
+          "fields": [
+            {
+              "type": "reference",
+              "label": "Post",
+              "name": "post",
+              "collections": [
+                "posts"
+              ],
+              "namespace": [
+                "posts",
+                "featurePosts",
+                "post"
+              ]
+            }
+          ],
+          "namespace": [
+            "posts",
+            "featurePosts"
           ]
         }
       ],

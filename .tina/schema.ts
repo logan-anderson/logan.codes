@@ -98,11 +98,31 @@ export default defineSchema({
           },
         },
         {
-          name: "featuredPosts",
+          type: "object",
+          name: "featurePost",
           label: "Featured Posts",
-          type: "reference",
+          fields: [
+            {
+              type: "reference",
+              label: "Post",
+              name: "post",
+              collections: ["posts"],
+            },
+          ],
+        },
+        {
+          type: "object",
           list: true,
-          collections: ["posts"],
+          name: "featurePosts",
+          label: "Featured Posts",
+          fields: [
+            {
+              type: "reference",
+              label: "Post",
+              name: "post",
+              collections: ["posts"],
+            },
+          ],
         },
       ],
     },

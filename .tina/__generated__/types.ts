@@ -174,19 +174,18 @@ export type PostsBlocks = PostsBlocksLongFormText | PostsBlocksImg | PostsBlocks
 
 export type PostsAuthorDocument = AuthorDocument;
 
-export type PostsFeaturedPostsDocument = PostsDocument;
+export type PostsFeaturePostPostDocument = PostsDocument;
 
-export type PostsFeaturedPostsConnectionEdges = {
-  __typename?: 'PostsFeaturedPostsConnectionEdges';
-  cursor?: Maybe<Scalars['String']>;
-  node?: Maybe<PostsFeaturedPostsDocument>;
+export type PostsFeaturePost = {
+  __typename?: 'PostsFeaturePost';
+  post?: Maybe<PostsFeaturePostPostDocument>;
 };
 
-export type PostsFeaturedPostsConnection = Connection & {
-  __typename?: 'PostsFeaturedPostsConnection';
-  pageInfo?: Maybe<PageInfo>;
-  totalCount: Scalars['Int'];
-  edges?: Maybe<Array<Maybe<PostsFeaturedPostsConnectionEdges>>>;
+export type PostsFeaturePostsPostDocument = PostsDocument;
+
+export type PostsFeaturePosts = {
+  __typename?: 'PostsFeaturePosts';
+  post?: Maybe<PostsFeaturePostsPostDocument>;
 };
 
 export type Posts = {
@@ -199,15 +198,8 @@ export type Posts = {
   author?: Maybe<PostsAuthorDocument>;
   description?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  featuredPosts: PostsFeaturedPostsConnection;
-};
-
-
-export type PostsFeaturedPostsArgs = {
-  before?: Maybe<Scalars['String']>;
-  after?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  featurePost?: Maybe<PostsFeaturePost>;
+  featurePosts?: Maybe<Array<Maybe<PostsFeaturePosts>>>;
 };
 
 export type PostsDocument = Node & Document & {
@@ -319,6 +311,14 @@ export type PostsBlocksMutation = {
   iframe?: Maybe<PostsBlocksIframeMutation>;
 };
 
+export type PostsFeaturePostMutation = {
+  post?: Maybe<Scalars['String']>;
+};
+
+export type PostsFeaturePostsMutation = {
+  post?: Maybe<Scalars['String']>;
+};
+
 export type PostsMutation = {
   body?: Maybe<Scalars['String']>;
   blocks?: Maybe<Array<Maybe<PostsBlocksMutation>>>;
@@ -328,7 +328,8 @@ export type PostsMutation = {
   author?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  featuredPosts?: Maybe<Array<Maybe<Scalars['String']>>>;
+  featurePost?: Maybe<PostsFeaturePostMutation>;
+  featurePosts?: Maybe<Array<Maybe<PostsFeaturePostsMutation>>>;
 };
 
 export type AuthorMutation = {

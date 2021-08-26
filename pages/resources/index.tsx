@@ -1,4 +1,3 @@
-// import getLinks from "../../utils/getLinks"
 import Layout from "../../components/layout/Layout";
 import Collapsible from "react-collapsible";
 

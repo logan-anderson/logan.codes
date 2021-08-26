@@ -1326,7 +1326,7 @@
       "kind": "UnionTypeDefinition",
       "name": {
         "kind": "Name",
-        "value": "PostsFeaturedPostsDocument"
+        "value": "PostsFeaturePostPostDocument"
       },
       "directives": [],
       "types": [
@@ -1345,106 +1345,64 @@
       "directives": [],
       "name": {
         "kind": "Name",
-        "value": "PostsFeaturedPostsConnectionEdges"
+        "value": "PostsFeaturePost"
       },
       "fields": [
         {
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
-            "value": "cursor"
+            "value": "post"
           },
           "arguments": [],
           "type": {
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "String"
-            }
-          }
-        },
-        {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "node"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "PostsFeaturedPostsDocument"
+              "value": "PostsFeaturePostPostDocument"
             }
           }
         }
       ]
     },
     {
-      "kind": "ObjectTypeDefinition",
-      "interfaces": [
+      "kind": "UnionTypeDefinition",
+      "name": {
+        "kind": "Name",
+        "value": "PostsFeaturePostsPostDocument"
+      },
+      "directives": [],
+      "types": [
         {
           "kind": "NamedType",
           "name": {
             "kind": "Name",
-            "value": "Connection"
+            "value": "PostsDocument"
           }
         }
-      ],
+      ]
+    },
+    {
+      "kind": "ObjectTypeDefinition",
+      "interfaces": [],
       "directives": [],
       "name": {
         "kind": "Name",
-        "value": "PostsFeaturedPostsConnection"
+        "value": "PostsFeaturePosts"
       },
       "fields": [
         {
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
-            "value": "pageInfo"
+            "value": "post"
           },
           "arguments": [],
           "type": {
             "kind": "NamedType",
             "name": {
               "kind": "Name",
-              "value": "PageInfo"
-            }
-          }
-        },
-        {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalCount"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Int"
-              }
-            }
-          }
-        },
-        {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "edges"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "PostsFeaturedPostsConnectionEdges"
-              }
+              "value": "PostsFeaturePostsPostDocument"
             }
           }
         }
@@ -1589,73 +1547,31 @@
           "kind": "FieldDefinition",
           "name": {
             "kind": "Name",
-            "value": "featuredPosts"
+            "value": "featurePost"
           },
-          "arguments": [
-            {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "before"
-              },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            },
-            {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "after"
-              },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            },
-            {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
-              },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
-              }
-            },
-            {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "last"
-              },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
-              }
-            }
-          ],
+          "arguments": [],
           "type": {
-            "kind": "NonNullType",
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "PostsFeaturePost"
+            }
+          }
+        },
+        {
+          "kind": "FieldDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "featurePosts"
+          },
+          "arguments": [],
+          "type": {
+            "kind": "ListType",
             "type": {
               "kind": "NamedType",
               "name": {
                 "kind": "Name",
-                "value": "PostsFeaturedPostsConnection"
+                "value": "PostsFeaturePosts"
               }
             }
           }
@@ -2608,6 +2524,52 @@
       "kind": "InputObjectTypeDefinition",
       "name": {
         "kind": "Name",
+        "value": "PostsFeaturePostMutation"
+      },
+      "fields": [
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "post"
+          },
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "String"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "kind": "InputObjectTypeDefinition",
+      "name": {
+        "kind": "Name",
+        "value": "PostsFeaturePostsMutation"
+      },
+      "fields": [
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "post"
+          },
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "String"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "kind": "InputObjectTypeDefinition",
+      "name": {
+        "kind": "Name",
         "value": "PostsMutation"
       },
       "fields": [
@@ -2733,7 +2695,21 @@
           "kind": "InputValueDefinition",
           "name": {
             "kind": "Name",
-            "value": "featuredPosts"
+            "value": "featurePost"
+          },
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "PostsFeaturePostMutation"
+            }
+          }
+        },
+        {
+          "kind": "InputValueDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "featurePosts"
           },
           "type": {
             "kind": "ListType",
@@ -2741,7 +2717,7 @@
               "kind": "NamedType",
               "name": {
                 "kind": "Name",
-                "value": "String"
+                "value": "PostsFeaturePostsMutation"
               }
             }
           }
