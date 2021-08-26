@@ -48,7 +48,7 @@
     "rss": "1.2.2",
     "styled-components": "5.1.1",
     "tina-cloud-next": "^0.0.4",
-    "tinacms": "^0.55.0"
+    "tinacms": "0.55.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "10.2.0",
