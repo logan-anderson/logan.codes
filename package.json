@@ -30,7 +30,7 @@
     "@types/styled-components": "5.1.0",
     "axios": "0.21.1",
     "class-names": "1.0.0",
-    "dotenv": "8.2.0",
+    "dotenv": "8.6.0",
     "fast-glob": "3.2.2",
     "final-form": "4.20.0",
     "gray-matter": "4.0.2",
