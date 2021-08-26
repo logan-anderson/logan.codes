@@ -2359,15 +2359,15 @@
     hex-rgb "^4.1.0"
     postcss-selector-parser "^6.0.2"
 
-"@tinacms/cli@^0.55.1":
-  version "0.55.1"
-  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.55.1.tgz#ed6154ba1cfe847ddfd97550c44f0854205ab973"
-  integrity sha512-Ol6Rjz+QnrSVGdr8ZBmqRW8axwLTMeMOXeUkV82RNxh5VKNeIdSYFJHZC04IOh0upc1kM14SaOrukmJVeWNgqw==
+"@tinacms/cli@0.55.2":
+  version "0.55.2"
+  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.55.2.tgz#c3688311f668351e0e94837df82f944cc545ca99"
+  integrity sha512-+2DUilCpSTQoAk7U6/VEGegnXSNm98QBx2HhfE+k4xOuVarqxAv1r4fEJA8WAHMy+2Szmd63fdGhWMFoRaZvwQ==
   dependencies:
     "@graphql-codegen/core" "^1.17.0"
     "@graphql-codegen/typescript" "^1.17.0"
     "@graphql-codegen/typescript-operations" "^1.17.0"
-    "@tinacms/graphql" "0.54.2"
+    "@tinacms/graphql" "0.54.3"
     ajv "^6.12.3"
     altair-express-middleware "4.0.6"
     axios "0.19.0"
@@ -2392,14 +2392,15 @@
     typescript "^4.3.5"
     yup "^0.32.9"
 
-"@tinacms/graphql@0.54.2":
-  version "0.54.2"
-  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-0.54.2.tgz#47317bb4a8367cb17658d782db1dbb4eec303615"
-  integrity sha512-sihEq40sz3T6k5AxuXmogBdOvcgtQqmsAD/M1o4UUsQ8a8WvV2SM/xnbuzA9BZ1SYMGalEkK4LHWVHSCtiQ2NA==
+"@tinacms/graphql@0.54.3":
+  version "0.54.3"
+  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-0.54.3.tgz#6d735fe6a57d69e63b29e8a501cc56ca6f31e3e3"
+  integrity sha512-131JgETQd4nypPQ9RJi96HuXwRbtnO6lWsZLyS0muHD4b7sqhnEOG6kdZVBa/yJQTWbMDGLYvcWHsRoz2L6VPQ==
   dependencies:
     "@octokit/auth-app" "^2.6.0"
     "@octokit/graphql" "^4.5.6"
     "@octokit/rest" "18.0.6"
+    "@types/aws-sdk" "^2.7.0"
     aws-sdk "^2.930.0"
     body-parser "^1.19.0"
     cors "^2.8.5"
@@ -2461,6 +2462,13 @@
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
   integrity sha512-/+CRPXpBDpo2RK9C68N3b2cOvO0Cf5B9aPijHsoDQTHivnGSObdOF2BRQOYjojWTDy6nQvMjmqRXIxH55VjxxA==
+
+"@types/aws-sdk@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@types/aws-sdk/-/aws-sdk-2.7.0.tgz#83588b3d14ebdca1d4ce5e023387577568ce82f3"
+  integrity sha1-g1iLPRTr3KHUzl4CM4dXdWjOgvM=
+  dependencies:
+    aws-sdk "*"
 
 "@types/classnames@2.2.10":
   version "2.2.10"
@@ -3359,6 +3367,21 @@ available-typed-arrays@^1.0.2:
   integrity sha512-XWX3OX8Onv97LMk/ftVyBibpGwY5a8SmuxZPzeOxqmuEqUCOM9ZE+uIaD1VNJ5QnvU2UQusvmKbuM1FR8QWGfQ==
   dependencies:
     array-filter "^1.0.0"
+
+aws-sdk@*:
+  version "2.976.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.976.0.tgz#1e9d0d359698876eaa952c7c6223eac4c354ae2e"
+  integrity sha512-LWVh3nko6yGDfGcDW9nIClaukthkTueq7I/dXVNv4g9kuy2VOl5fVTPMACgTibWINAM29wZCM+gVQSSZu/Veow==
+  dependencies:
+    buffer "4.9.2"
+    events "1.1.1"
+    ieee754 "1.1.13"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.3.2"
+    xml2js "0.4.19"
 
 aws-sdk@^2.930.0:
   version "2.973.0"
