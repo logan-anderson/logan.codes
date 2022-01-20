@@ -1,0 +1,46 @@
+fragment PostsParts on Posts {
+  body
+  blocks {
+    __typename
+    ... on PostsBlocksLongFormText {
+      content
+    }
+    ... on PostsBlocksImg {
+      img
+    }
+    ... on PostsBlocksIframe {
+      url
+    }
+  }
+  date
+  minRead
+  title
+  author {
+    ... on Document {
+      id
+    }
+  }
+  description
+  tags
+  featurePost {
+    __typename
+    post {
+      ... on Document {
+        id
+      }
+    }
+  }
+  featurePosts {
+    __typename
+    post {
+      ... on Document {
+        id
+      }
+    }
+  }
+}
+
+fragment AuthorParts on Author {
+  name
+  avatar
+}
