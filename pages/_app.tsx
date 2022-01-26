@@ -7,7 +7,6 @@ import { useGoogleTagManager } from "../hooks/useGoogleTagManager";
 
 import { TinaEditProvider } from "tinacms/dist/edit-state";
 const TinaCMS = dynamic(() => import("tinacms"), { ssr: false });
-import React from "react";
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   useGoogleTagManager();
@@ -44,6 +43,7 @@ const App = (props: AppProps) => {
             clientId={NEXT_PUBLIC_TINA_CLIENT_ID}
             isLocalClient={Boolean(Number(NEXT_PUBLIC_USE_LOCAL_CLIENT))}
             cmsCallback={(cms) => {
+              cms.flags.set("tina-admin", true);
               import("react-tinacms-editor").then(({ MarkdownFieldPlugin }) => {
                 cms.plugins.add(MarkdownFieldPlugin);
               });

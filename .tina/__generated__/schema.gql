@@ -80,7 +80,7 @@ type Collection {
 union DocumentNode = PostsDocument | AuthorDocument
 
 type PostsBlocksLongFormText {
-  content: String
+  content: JSON
 }
 
 type PostsBlocksImg {
@@ -108,7 +108,7 @@ type PostsFeaturePosts {
 }
 
 type Posts {
-  body: String
+  body: JSON
   blocks: [PostsBlocks]
   date: String
   minRead: Int
@@ -181,7 +181,7 @@ input DocumentMutation {
 }
 
 input PostsBlocksLongFormTextMutation {
-  content: String
+  content: JSON
 }
 
 input PostsBlocksImgMutation {
@@ -207,7 +207,7 @@ input PostsFeaturePostsMutation {
 }
 
 input PostsMutation {
-  body: String
+  body: JSON
   blocks: [PostsBlocksMutation]
   date: String
   minRead: Int

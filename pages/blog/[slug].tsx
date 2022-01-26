@@ -1,7 +1,8 @@
 import { GetStaticProps } from "next";
 import Layout from "../../components/layout/Layout";
 import { BreadCrumb } from "../../components/BreadCrumb";
-import { MarkdownBody, STYLES } from "../../components/Markdown";
+import { components, STYLES } from "../../components/Markdown";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { getPostQuery, getPostQueryRes } from "../../graphql-queries";
 import { BlogHeader } from "../../components/blog";
 import { Author } from "../../components/AuthorDetail";
@@ -43,13 +44,18 @@ const BlogPage = ({ data: postData }: PageProps) => {
                 return <iframe width="100%" src={block.url || ""} />;
               }
               if (block?.__typename === "PostsBlocksLongFormText") {
-                return <MarkdownBody source={block.content || ""} />;
+                return (
+                  <TinaMarkdown
+                    content={block.content}
+                    components={components}
+                  />
+                );
               }
               if (block?.__typename === "PostsBlocksImg") {
                 return <img src={block.img || ""} />;
               }
             })}
-            <MarkdownBody source={data?.body || ""} />
+            <TinaMarkdown content={data?.body} components={components} />
             <Comments />
           </div>
           <div className="text-center">

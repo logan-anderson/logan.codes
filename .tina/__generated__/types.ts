@@ -161,7 +161,7 @@ export type DocumentNode = PostsDocument | AuthorDocument;
 
 export type PostsBlocksLongFormText = {
   __typename?: 'PostsBlocksLongFormText';
-  content?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['JSON']>;
 };
 
 export type PostsBlocksImg = {
@@ -194,7 +194,7 @@ export type PostsFeaturePosts = {
 
 export type Posts = {
   __typename?: 'Posts';
-  body?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['JSON']>;
   blocks?: Maybe<Array<Maybe<PostsBlocks>>>;
   date?: Maybe<Scalars['String']>;
   minRead?: Maybe<Scalars['Int']>;
@@ -320,7 +320,7 @@ export type DocumentMutation = {
 };
 
 export type PostsBlocksLongFormTextMutation = {
-  content?: InputMaybe<Scalars['String']>;
+  content?: InputMaybe<Scalars['JSON']>;
 };
 
 export type PostsBlocksImgMutation = {
@@ -346,7 +346,7 @@ export type PostsFeaturePostsMutation = {
 };
 
 export type PostsMutation = {
-  body?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['JSON']>;
   blocks?: InputMaybe<Array<InputMaybe<PostsBlocksMutation>>>;
   date?: InputMaybe<Scalars['String']>;
   minRead?: InputMaybe<Scalars['Int']>;
@@ -363,7 +363,7 @@ export type AuthorMutation = {
   avatar?: InputMaybe<Scalars['String']>;
 };
 
-export type PostsPartsFragment = { __typename?: 'Posts', body?: string | null | undefined, date?: string | null | undefined, minRead?: number | null | undefined, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, blocks?: Array<{ __typename: 'PostsBlocksLongFormText', content?: string | null | undefined } | { __typename: 'PostsBlocksImg', img?: string | null | undefined } | { __typename: 'PostsBlocksIframe', url?: string | null | undefined } | null | undefined> | null | undefined, author?: { __typename?: 'AuthorDocument', id: string } | null | undefined, featurePost?: { __typename: 'PostsFeaturePost', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined, featurePosts?: Array<{ __typename: 'PostsFeaturePosts', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined> | null | undefined };
+export type PostsPartsFragment = { __typename?: 'Posts', body?: any | null | undefined, date?: string | null | undefined, minRead?: number | null | undefined, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, blocks?: Array<{ __typename: 'PostsBlocksLongFormText', content?: any | null | undefined } | { __typename: 'PostsBlocksImg', img?: string | null | undefined } | { __typename: 'PostsBlocksIframe', url?: string | null | undefined } | null | undefined> | null | undefined, author?: { __typename?: 'AuthorDocument', id: string } | null | undefined, featurePost?: { __typename: 'PostsFeaturePost', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined, featurePosts?: Array<{ __typename: 'PostsFeaturePosts', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined> | null | undefined };
 
 export type AuthorPartsFragment = { __typename?: 'Author', name?: string | null | undefined, avatar?: string | null | undefined };
 
@@ -372,12 +372,12 @@ export type GetPostsDocumentQueryVariables = Exact<{
 }>;
 
 
-export type GetPostsDocumentQuery = { __typename?: 'Query', getPostsDocument: { __typename?: 'PostsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Posts', body?: string | null | undefined, date?: string | null | undefined, minRead?: number | null | undefined, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, blocks?: Array<{ __typename: 'PostsBlocksLongFormText', content?: string | null | undefined } | { __typename: 'PostsBlocksImg', img?: string | null | undefined } | { __typename: 'PostsBlocksIframe', url?: string | null | undefined } | null | undefined> | null | undefined, author?: { __typename?: 'AuthorDocument', id: string } | null | undefined, featurePost?: { __typename: 'PostsFeaturePost', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined, featurePosts?: Array<{ __typename: 'PostsFeaturePosts', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined> | null | undefined } } };
+export type GetPostsDocumentQuery = { __typename?: 'Query', getPostsDocument: { __typename?: 'PostsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Posts', body?: any | null | undefined, date?: string | null | undefined, minRead?: number | null | undefined, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, blocks?: Array<{ __typename: 'PostsBlocksLongFormText', content?: any | null | undefined } | { __typename: 'PostsBlocksImg', img?: string | null | undefined } | { __typename: 'PostsBlocksIframe', url?: string | null | undefined } | null | undefined> | null | undefined, author?: { __typename?: 'AuthorDocument', id: string } | null | undefined, featurePost?: { __typename: 'PostsFeaturePost', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined, featurePosts?: Array<{ __typename: 'PostsFeaturePosts', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined> | null | undefined } } };
 
 export type GetPostsListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPostsListQuery = { __typename?: 'Query', getPostsList: { __typename?: 'PostsConnection', totalCount: number, edges?: Array<{ __typename?: 'PostsConnectionEdges', node?: { __typename?: 'PostsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Posts', body?: string | null | undefined, date?: string | null | undefined, minRead?: number | null | undefined, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, blocks?: Array<{ __typename: 'PostsBlocksLongFormText', content?: string | null | undefined } | { __typename: 'PostsBlocksImg', img?: string | null | undefined } | { __typename: 'PostsBlocksIframe', url?: string | null | undefined } | null | undefined> | null | undefined, author?: { __typename?: 'AuthorDocument', id: string } | null | undefined, featurePost?: { __typename: 'PostsFeaturePost', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined, featurePosts?: Array<{ __typename: 'PostsFeaturePosts', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined> | null | undefined } } | null | undefined } | null | undefined> | null | undefined } };
+export type GetPostsListQuery = { __typename?: 'Query', getPostsList: { __typename?: 'PostsConnection', totalCount: number, edges?: Array<{ __typename?: 'PostsConnectionEdges', node?: { __typename?: 'PostsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Posts', body?: any | null | undefined, date?: string | null | undefined, minRead?: number | null | undefined, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, blocks?: Array<{ __typename: 'PostsBlocksLongFormText', content?: any | null | undefined } | { __typename: 'PostsBlocksImg', img?: string | null | undefined } | { __typename: 'PostsBlocksIframe', url?: string | null | undefined } | null | undefined> | null | undefined, author?: { __typename?: 'AuthorDocument', id: string } | null | undefined, featurePost?: { __typename: 'PostsFeaturePost', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined, featurePosts?: Array<{ __typename: 'PostsFeaturePosts', post?: { __typename?: 'PostsDocument', id: string } | null | undefined } | null | undefined> | null | undefined } } | null | undefined } | null | undefined> | null | undefined } };
 
 export type GetAuthorDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];

@@ -11,11 +11,8 @@ export default defineSchema({
         {
           name: "body",
           label: "Main Content",
-          type: "string",
+          type: "rich-text",
           isBody: true,
-          ui: {
-            component: "markdown",
-          },
         },
         {
           name: "blocks",
@@ -30,7 +27,7 @@ export default defineSchema({
                 {
                   name: "content",
                   label: "Content",
-                  type: "string",
+                  type: "rich-text",
                 },
               ],
             },
@@ -137,7 +134,7 @@ export default defineSchema({
           name: "name",
         },
         {
-          type: "string",
+          type: "image",
           label: "Avatar",
           name: "avatar",
         },
