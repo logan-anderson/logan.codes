@@ -8,29 +8,28 @@ export const STYLES =
   "prose prose-blue prose-lg text-lg max-w-prose mx-auto mb-6 dark:prose-dark";
 
 export const components: Components<any> = {
-  h1: ({ children }) => {
+  h1: (props) => {
     return (
       <h1 className="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 dark:text-gray-50">
-        {children}
+        {props?.children}
       </h1>
     );
   },
-  p: ({ children }) => {
-    return <p className="text-gray-500 mx-auto">{children}</p>;
+  p: (props) => {
+    return <p className="text-gray-500 mx-auto">{props?.children}</p>;
   },
   code_block: (props) => {
-    console.log(props);
     return (
       <SyntaxHighlighter
         style={Theme}
-        language={props.lang}
+        language={props?.lang}
         children={props?.children}
       />
     );
   },
 };
 export const componentsTemp = {
-  heading: ({ children, level }) => {
+  heading: ({ children, level }: any) => {
     if (level === 1) {
       return (
         <h1 className="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 dark:text-gray-50">
@@ -45,10 +44,10 @@ export const componentsTemp = {
       );
     }
   },
-  paragraph: ({ children }) => {
+  paragraph: ({ children }: any) => {
     return <p className="text-gray-500 mx-auto">{children}</p>;
   },
-  code: ({ language, value }) => {
+  code: ({ language, value }: any) => {
     return (
       <SyntaxHighlighter style={Theme} language={language} children={value} />
     );

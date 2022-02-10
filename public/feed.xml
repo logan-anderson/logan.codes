@@ -4,8 +4,26 @@
         <description><![CDATA[Logan's blog]]></description>
         <link>https://logana.dev</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 25 Aug 2021 12:25:26 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 10 Feb 2022 14:23:16 GMT</lastBuildDate>
         <atom:link href="https://logana.dev/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Does a Math Degree Help in Software Engineering?]]></title>
+            <description><![CDATA[As someone who is in their fourth year of a double major in math and computer science I want to answer the question Does a math degree help one in the field of software engineering?]]></description>
+            <link>https://logana.dev/blog/does-a-math-degree-help-in-software-engineering</link>
+            <guid isPermaLink="false">does-a-math-degree-help-in-software-engineering</guid>
+            <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
+            <pubDate>Sat, 24 Oct 2020 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[No title]]></title>
+            <link>https://logana.dev/blog/empty-2</link>
+            <guid isPermaLink="false">empty-2</guid>
+        </item>
+        <item>
+            <title><![CDATA[No title]]></title>
+            <link>https://logana.dev/blog/empty</link>
+            <guid isPermaLink="false">empty</guid>
+        </item>
         <item>
             <title><![CDATA[An accessible intro to Machine Learning]]></title>
             <description><![CDATA[From the very basics, learn what machine learning is in a way that is easy to understand, intuitive, and accessible for all backgrounds. Even if you are a beginner, learn about what is a Machine Learning model, cost function, and gain an intuitive understanding of how a model learns.]]></description>
@@ -21,14 +39,6 @@
             <guid isPermaLink="false">what-is-nextjs</guid>
             <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
             <pubDate>Sat, 07 Nov 2020 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Does a Math Degree Help in Software Engineering?]]></title>
-            <description><![CDATA[As someone who is in their fourth year of a double major in math and computer science I want to answer the question Does a math degree help one in the field of software engineering?]]></description>
-            <link>https://logana.dev/blog/does-a-math-degree-help-in-software-engineering</link>
-            <guid isPermaLink="false">does-a-math-degree-help-in-software-engineering</guid>
-            <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
-            <pubDate>Sat, 24 Oct 2020 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[How to add a new action to a tinaCMS form]]></title>
