@@ -6,6 +6,7 @@ import "../styles/index.css";
 import { useGoogleTagManager } from "../hooks/useGoogleTagManager";
 
 import { TinaEditProvider } from "tinacms/dist/edit-state";
+import ThemeProvider from "../components/layout/ThemeProvider";
 const TinaCMS = dynamic(() => import("tinacms"), { ssr: false });
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
@@ -22,7 +23,9 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
           href="https://logana.dev/feed.xml"
         />
       </Head>
-      <Component {...pageProps} />
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 };

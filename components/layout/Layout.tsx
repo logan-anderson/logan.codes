@@ -5,6 +5,7 @@ import { DefaultSeo } from "next-seo";
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
 import { DarkModeToggleButton } from "../Buttons/DarkModeToggle";
+import { useTheme } from "./ThemeProvider";
 
 type Props = {
   preview: boolean;
@@ -20,9 +21,7 @@ const Layout: React.FunctionComponent<Props> = ({
   navDisable,
 }) => {
   const router = useRouter();
-  const [theme, setTheme] = useState<"dark" | "light">(
-    typeof localStorage === "undefined" ? "light" : localStorage?.theme
-  );
+  const { theme, setTheme } = useTheme();
   const onClick = () => {
     if (theme === "dark") {
       setTheme("light");
@@ -32,21 +31,6 @@ const Layout: React.FunctionComponent<Props> = ({
       localStorage.theme = "dark";
     }
   };
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
 
   return (
     <>
