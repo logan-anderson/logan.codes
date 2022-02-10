@@ -3,7 +3,7 @@ import { defineSchema } from "@tinacms/cli";
 export default defineSchema({
   collections: [
     {
-      label: "Blog Posts",
+      label: "Blog Posts  Test",
       name: "posts",
       path: "content/blog",
 

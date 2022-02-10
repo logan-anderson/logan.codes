@@ -56,7 +56,7 @@ export type Document = {
 
 /** A relay-compliant pagination connection */
 export type Connection = {
-  totalCount: Scalars['Int'];
+  totalCount: Scalars['Float'];
 };
 
 export type Query = {
@@ -93,8 +93,8 @@ export type QueryGetDocumentArgs = {
 export type QueryGetDocumentListArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
 };
 
 
@@ -106,8 +106,8 @@ export type QueryGetPostsDocumentArgs = {
 export type QueryGetPostsListArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
 };
 
 
@@ -119,8 +119,8 @@ export type QueryGetAuthorDocumentArgs = {
 export type QueryGetAuthorListArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
 };
 
 export type DocumentConnectionEdges = {
@@ -132,7 +132,7 @@ export type DocumentConnectionEdges = {
 export type DocumentConnection = Connection & {
   __typename?: 'DocumentConnection';
   pageInfo?: Maybe<PageInfo>;
-  totalCount: Scalars['Int'];
+  totalCount: Scalars['Float'];
   edges?: Maybe<Array<Maybe<DocumentConnectionEdges>>>;
 };
 
@@ -153,8 +153,8 @@ export type Collection = {
 export type CollectionDocumentsArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
 };
 
 export type DocumentNode = PostsDocument | AuthorDocument;
@@ -197,7 +197,7 @@ export type Posts = {
   body?: Maybe<Scalars['JSON']>;
   blocks?: Maybe<Array<Maybe<PostsBlocks>>>;
   date?: Maybe<Scalars['String']>;
-  minRead?: Maybe<Scalars['Int']>;
+  minRead?: Maybe<Scalars['Float']>;
   title?: Maybe<Scalars['String']>;
   author?: Maybe<PostsAuthorDocument>;
   description?: Maybe<Scalars['String']>;
@@ -225,7 +225,7 @@ export type PostsConnectionEdges = {
 export type PostsConnection = Connection & {
   __typename?: 'PostsConnection';
   pageInfo?: Maybe<PageInfo>;
-  totalCount: Scalars['Int'];
+  totalCount: Scalars['Float'];
   edges?: Maybe<Array<Maybe<PostsConnectionEdges>>>;
 };
 
@@ -254,7 +254,7 @@ export type AuthorConnectionEdges = {
 export type AuthorConnection = Connection & {
   __typename?: 'AuthorConnection';
   pageInfo?: Maybe<PageInfo>;
-  totalCount: Scalars['Int'];
+  totalCount: Scalars['Float'];
   edges?: Maybe<Array<Maybe<AuthorConnectionEdges>>>;
 };
 
@@ -349,7 +349,7 @@ export type PostsMutation = {
   body?: InputMaybe<Scalars['JSON']>;
   blocks?: InputMaybe<Array<InputMaybe<PostsBlocksMutation>>>;
   date?: InputMaybe<Scalars['String']>;
-  minRead?: InputMaybe<Scalars['Int']>;
+  minRead?: InputMaybe<Scalars['Float']>;
   title?: InputMaybe<Scalars['String']>;
   author?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;

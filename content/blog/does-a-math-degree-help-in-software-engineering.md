@@ -1,6 +1,6 @@
 ---
-date: '2020-10-24'
-minRead: '4'
+date: '2020-10-24T00:00:00.000Z'
+minRead: 4
 title: Does a Math Degree Help in Software Engineering?
 author: content/authors/logan_anderson.md
 description: >-
@@ -15,9 +15,11 @@ tags:
 
 I am currently in my fourth year of completing a double major in math and computer science at the University of Prince Edward Island. As such, I am in a unique position to comment on my thoughts on whether or not a math degree will help one in software engineering. I have also been working in software development positions both, part-time and full-time, for about two years.
 
+> *This is a quote*
+
 ## What a math degree offers!
 
-In a math degree, you will start by learning calculus, linear algebra, and other algorithmic-based learning. As you progress, most of the math becomes [proof-based](https://en.wikipedia.org/wiki/Mathematical_proof). Generally, you are given a set of axioms (true statements) and using those you have to contract some proof to show some proposition to be true. This forces you to think outside the box as no two problems are the same. You can't just apply an algorithm to solve your problem. Some of these courses are [real analysis](https://en.wikipedia.org/wiki/Real_analysis), [group theory](https://en.wikipedia.org/wiki/Group_theory) and [measure theory](https://en.wikipedia.org/wiki/Measure_(mathematics)).
+In a math degree, you will start by learning calculus, linear algebra, and other algorithmic-based learning. As you progress, most of the math becomes [proof-based](https://en.wikipedia.org/wiki/Mathematical\_proof). Generally, you are given a set of axioms (true statements) and using those you have to contract some proof to show some proposition to be true. This forces you to think outside the box as no two problems are the same. You can't just apply an algorithm to solve your problem. Some of these courses are [real analysis](https://en.wikipedia.org/wiki/Real\_analysis), [group theory](https://en.wikipedia.org/wiki/Group\_theory) and [measure theory](https://en.wikipedia.org/wiki/Measure\_\(mathematics\)).
 
 ## Will you use what you have learned
 

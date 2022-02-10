@@ -38,7 +38,7 @@ interface Document {
 
 """A relay-compliant pagination connection"""
 interface Connection {
-  totalCount: Int!
+  totalCount: Float!
 }
 
 type Query {
@@ -46,12 +46,12 @@ type Query {
   getCollections: [Collection!]!
   node(id: String): Node!
   getDocument(collection: String, relativePath: String): DocumentNode!
-  getDocumentList(before: String, after: String, first: Int, last: Int): DocumentConnection!
+  getDocumentList(before: String, after: String, first: Float, last: Float): DocumentConnection!
   getDocumentFields: JSON!
   getPostsDocument(relativePath: String): PostsDocument!
-  getPostsList(before: String, after: String, first: Int, last: Int): PostsConnection!
+  getPostsList(before: String, after: String, first: Float, last: Float): PostsConnection!
   getAuthorDocument(relativePath: String): AuthorDocument!
-  getAuthorList(before: String, after: String, first: Int, last: Int): AuthorConnection!
+  getAuthorList(before: String, after: String, first: Float, last: Float): AuthorConnection!
 }
 
 type DocumentConnectionEdges {
@@ -61,7 +61,7 @@ type DocumentConnectionEdges {
 
 type DocumentConnection implements Connection {
   pageInfo: PageInfo
-  totalCount: Int!
+  totalCount: Float!
   edges: [DocumentConnectionEdges]
 }
 
@@ -74,7 +74,7 @@ type Collection {
   matches: String
   templates: [JSON]
   fields: [JSON]
-  documents(before: String, after: String, first: Int, last: Int): DocumentConnection!
+  documents(before: String, after: String, first: Float, last: Float): DocumentConnection!
 }
 
 union DocumentNode = PostsDocument | AuthorDocument
@@ -111,7 +111,7 @@ type Posts {
   body: JSON
   blocks: [PostsBlocks]
   date: String
-  minRead: Int
+  minRead: Float
   title: String
   author: PostsAuthorDocument
   description: String
@@ -136,7 +136,7 @@ type PostsConnectionEdges {
 
 type PostsConnection implements Connection {
   pageInfo: PageInfo
-  totalCount: Int!
+  totalCount: Float!
   edges: [PostsConnectionEdges]
 }
 
@@ -161,7 +161,7 @@ type AuthorConnectionEdges {
 
 type AuthorConnection implements Connection {
   pageInfo: PageInfo
-  totalCount: Int!
+  totalCount: Float!
   edges: [AuthorConnectionEdges]
 }
 
@@ -210,7 +210,7 @@ input PostsMutation {
   body: JSON
   blocks: [PostsBlocksMutation]
   date: String
-  minRead: Int
+  minRead: Float
   title: String
   author: String
   description: String
