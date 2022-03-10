@@ -48,11 +48,11 @@
     "rss": "1.2.2",
     "styled-components": "5.1.1",
     "tina-cloud-next": "^0.0.4",
-    "tinacms": "^0.66.3"
+    "tinacms": "^0.0.0-20222901756"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "10.2.0",
-    "@tinacms/cli": "^0.0.0-2022110132642",
+    "@tinacms/cli": "^0.0.0-20222901756",
     "@types/classnames": "2.2.10",
     "@types/gsap": "1.20.2",
     "@types/gtag.js": "0.0.7",

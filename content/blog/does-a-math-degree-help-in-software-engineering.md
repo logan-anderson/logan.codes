@@ -9,6 +9,10 @@ description: >-
   of software engineering?
 tags:
   - math
+featurePost:
+  post: content/blog/does-a-math-degree-help-in-software-engineering.md
+featurePosts:
+  - post: content/blog/markdown.md
 ---
 
 # Does a Math Degree Help in Software Engineering?

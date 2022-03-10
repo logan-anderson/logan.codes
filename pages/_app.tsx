@@ -47,6 +47,7 @@ const App = (props: AppProps) => {
             isLocalClient={Boolean(Number(NEXT_PUBLIC_USE_LOCAL_CLIENT))}
             cmsCallback={(cms) => {
               cms.flags.set("tina-admin", true);
+              cms.flags.set("use-unstable-formify", true);
               import("react-tinacms-editor").then(({ MarkdownFieldPlugin }) => {
                 cms.plugins.add(MarkdownFieldPlugin);
               });
