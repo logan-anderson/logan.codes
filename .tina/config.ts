@@ -13,5 +13,5 @@ export default defineConfig({
     process.env.HEAD ||
     "",
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "",
-  token: "***",
+  token: process.env.NEXT_PUBLIC_TINA_TOKEN || "",
 });
