@@ -113,11 +113,12 @@ type PostFeaturePosts {
 }
 
 type Post implements Node & Document {
+  draft: Boolean
+  title: String
+  date: String
   body: String
   blocks: [PostBlocks]
-  date: String
   minRead: Float
-  title: String
   author: PostAuthor
   description: String
   tags: [String]
@@ -128,8 +129,21 @@ type Post implements Node & Document {
   _values: JSON!
 }
 
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
 input StringFilter {
   startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input DatetimeFilter {
+  after: String
+  before: String
   eq: String
   exists: Boolean
   in: [String]
@@ -158,14 +172,6 @@ input PostBlocksFilter {
   longFormText: PostBlocksLongFormTextFilter
   img: PostBlocksImgFilter
   iframe: PostBlocksIframeFilter
-}
-
-input DatetimeFilter {
-  after: String
-  before: String
-  eq: String
-  exists: Boolean
-  in: [String]
 }
 
 input NumberFilter {
@@ -199,11 +205,12 @@ input PostFeaturePostsFilter {
 }
 
 input PostFilter {
+  draft: BooleanFilter
+  title: StringFilter
+  date: DatetimeFilter
   body: StringFilter
   blocks: PostBlocksFilter
-  date: DatetimeFilter
   minRead: NumberFilter
-  title: StringFilter
   author: PostAuthorFilter
   description: StringFilter
   tags: StringFilter
@@ -289,11 +296,12 @@ input PostFeaturePostsMutation {
 }
 
 input PostMutation {
+  draft: Boolean
+  title: String
+  date: String
   body: String
   blocks: [PostBlocksMutation]
-  date: String
   minRead: Float
-  title: String
   author: String
   description: String
   tags: [String]

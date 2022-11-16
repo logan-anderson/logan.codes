@@ -12,6 +12,7 @@ import type {
   PostAndFeaturePostsQuery,
   Exact,
   Author as AuthorType,
+  PostFilter,
 } from "../../.tina/__generated__/types";
 import { Author } from "../../components/AuthorDetail";
 import { useTina } from "tinacms/dist/react";
@@ -109,7 +110,18 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
 };
 
 export const getStaticPaths = async () => {
-  const postsListData = await client.queries.postConnection();
+  // drafts are available in preview mode or local dev
+  const showDrafts =
+    Boolean(Number(process.env.NEXT_PUBLIC_SHOW_DRAFTS) || 0) ||
+    process.env.VERCEL_ENV === "preview";
+  console.log("showDrafts", showDrafts);
+  let filter: PostFilter = {};
+  if (!showDrafts) {
+    filter = { draft: { eq: false } };
+  }
+  const postsListData = await client.queries.postConnection({
+    filter,
+  });
   return {
     paths: postsListData.data.postConnection?.edges?.map((post) => ({
       params: { slug: post?.node?._sys.filename },

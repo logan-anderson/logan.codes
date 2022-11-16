@@ -2,7 +2,7 @@
   "name": "with-typescript",
   "version": "1.0.0",
   "scripts": {
-    "dev": "tinacms dev -c \"next dev\"",
+    "dev": "NEXT_PUBLIC_LOCAL_DEV=true tinacms dev -c \"next dev\"",
     "build": "tinacms build && yarn build:app",
     "export": "build && next export",
     "build:app": "yarn build:rss && next build",

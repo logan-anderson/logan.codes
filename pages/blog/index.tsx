@@ -132,7 +132,10 @@ const BlogList = ({ data }: { data: PostConnectionQuery }) => {
 };
 
 export const getStaticProps = async () => {
-  const res = await client.queries.postConnection();
+  // could show draft posts if preview is true
+  const res = await client.queries.postConnection({
+    filter: { draft: { eq: false } },
+  });
 
   return {
     props: {
