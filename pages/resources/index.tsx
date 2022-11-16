@@ -10,6 +10,7 @@ const ResourcesPage = () => {
       <div className="md:mx-32">
         {catagories.map((cat: any) => {
           return (
+            // @ts-ignore
             <Collapsible
               key={cat.id}
               trigger={cat.label}

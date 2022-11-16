@@ -1,19 +1,18 @@
 import Layout from "../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
 import { Hero } from "../components/Hero";
-import { AllPostsQuery, AllPostsQueryRes } from "../graphql-queries";
-import { LocalClient } from "tinacms/";
-import { PostsConnectionEdges } from "../.tina/__generated__/types";
+import { client } from "../.tina/__generated__/client";
+import type { PostConnectionEdges } from "../.tina/__generated__/types";
 
 interface props {
-  featuredPosts: PostsConnectionEdges[];
+  featuredPosts: PostConnectionEdges[];
 }
 const IndexPage = ({ featuredPosts }: props) => {
   // sort based on date added
   featuredPosts.sort(
     (x, y) =>
-      new Date(y.node?.data?.date || "").getTime() -
-      new Date(x.node?.data?.date || "").getTime()
+      new Date(y.node?.date || "").getTime() -
+      new Date(x.node?.date || "").getTime()
   );
   return (
     <>
@@ -39,18 +38,18 @@ const IndexPage = ({ featuredPosts }: props) => {
                   return (
                     <BlogCard
                       post={{
-                        fileName: post?.sys?.filename || "",
-                        fileRelativePath: post?.sys?.filename || "",
+                        fileName: post?._sys?.filename || "",
+                        fileRelativePath: post?._sys?.filename || "",
                         data: {
                           markdownBody: "",
                           frontmatter: {
-                            author: post?.data?.author?.data?.name || "",
-                            avatar: post?.data?.author?.data?.avatar || "",
-                            date: post?.data?.date || "",
-                            description: post?.data?.description || "",
-                            minRead: post?.data?.minRead || 2,
-                            tags: post?.data?.tags as string[],
-                            title: post?.data?.title || "",
+                            author: post?.author?.name || "",
+                            avatar: post?.author?.avatar || "",
+                            date: post?.date || "",
+                            description: post?.description || "",
+                            minRead: post?.minRead || 2,
+                            tags: post?.tags as string[],
+                            title: post?.title || "",
                           },
                         },
                       }}
@@ -66,19 +65,16 @@ const IndexPage = ({ featuredPosts }: props) => {
   );
 };
 
-const client = new LocalClient();
 /**
  * Fetch data with getStaticProps based on 'preview' mode
  */
 
 export const getStaticProps = async function () {
-  const data = await client.request<AllPostsQueryRes>(AllPostsQuery, {
-    variables: {},
-  });
+  const res = await client.queries.postConnection();
 
   return {
     props: {
-      featuredPosts: data.getPostsList.edges?.slice(0, 3),
+      featuredPosts: res.data.postConnection.edges?.slice(0, 3),
     },
   };
 };

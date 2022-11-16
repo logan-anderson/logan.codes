@@ -1,0 +1,54 @@
+query postAndFeaturePosts($relativePath: String!) {
+  post(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...PostParts2
+  }
+}
+
+fragment PostParts2 on Post {
+  ...PostParts
+  featurePosts {
+    __typename
+    post {
+      __typename
+      ... on Post {
+        ...PostParts
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+      }
+    }
+  }
+  featurePost {
+    __typename
+    post {
+      __typename
+      ... on Post {
+        ...PostParts
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+      }
+    }
+  }
+}

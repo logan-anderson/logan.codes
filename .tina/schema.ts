@@ -1,13 +1,39 @@
-import { defineSchema } from "@tinacms/cli";
+import { defineSchema } from "tinacms";
 
 export default defineSchema({
   collections: [
     {
       label: "Blog Posts",
-      name: "posts",
+      name: "post",
       path: "content/blog",
-
+      ui: {
+        router: ({ document }) => {
+          return `/blog/${document._sys.filename}`;
+        },
+        defaultItem: {
+          title: "New Post",
+          draft: true,
+        },
+      },
       fields: [
+        {
+          label: "Draft",
+          name: "draft",
+          type: "boolean",
+        },
+        {
+          name: "title",
+          type: "string",
+          label: "Title",
+        },
+        {
+          name: "date",
+          type: "datetime",
+          label: "Date",
+          ui: {
+            dateFormat: "yyyy-MM-DD",
+          },
+        },
         {
           name: "body",
           label: "Main Content",
@@ -59,20 +85,9 @@ export default defineSchema({
           ],
         },
         {
-          name: "date",
-          type: "datetime",
-          label: "Date",
-          dateFormat: "yyyy-MM-DD",
-        },
-        {
           name: "minRead",
           type: "number",
           label: "Min Read",
-        },
-        {
-          name: "title",
-          type: "string",
-          label: "Title",
         },
         {
           name: "author",
@@ -106,7 +121,7 @@ export default defineSchema({
               type: "reference",
               label: "Post",
               name: "post",
-              collections: ["posts"],
+              collections: ["post"],
             },
           ],
         },
@@ -120,7 +135,7 @@ export default defineSchema({
               type: "reference",
               label: "Post",
               name: "post",
-              collections: ["posts"],
+              collections: ["post"],
             },
           ],
         },

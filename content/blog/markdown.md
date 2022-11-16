@@ -1,6 +1,7 @@
 ---
-date: '2020-05-31'
-minRead: '2'
+draft: false
+date: "2020-05-31"
+minRead: "2"
 title: What is Markdown?
 author: content/authors/logan_anderson.md
 description: Learn more about Markdown and what it is
@@ -31,9 +32,13 @@ Example
 
 ```md
 # heading one
+
 ## heading two
+
 ### heading three
+
 ...
+
 ###### heading 6
 ```
 
@@ -49,7 +54,7 @@ This will look like
 
 ###### Heading 6
 
-Lists are also easy just use a "-" or "*" of unordered lists and numbers for an ordered list.
+Lists are also easy just use a "-" or "\*" of unordered lists and numbers for an ordered list.
 
 ```md
 - This
@@ -60,10 +65,10 @@ Lists are also easy just use a "-" or "*" of unordered lists and numbers for an 
 
 would look like
 
-* this
-* is
-* a
-* list
+- this
+- is
+- a
+- list
   and
 
 ```md
@@ -91,15 +96,15 @@ looks like
 But the **Best thing of all** is code syntax highlighting
 just put
 
-```md
+````md
     ```{name of language}
     code goes here
     ```
-```
+````
 
 So for example
 
-```md
+````md
     ```js
     const logan = new Person();
     let age = 20;
@@ -107,15 +112,15 @@ So for example
         age++;
     }
     ```
-```
+````
 
 would look like
 
 ```js
 const logan = new Person();
 let age = 20;
-if( logan.isBirthday() ){
-    age++;
+if (logan.isBirthday()) {
+  age++;
 }
 ```
 
