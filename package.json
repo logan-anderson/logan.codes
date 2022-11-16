@@ -44,7 +44,7 @@
     "react-markdown": "4.3.1",
     "react-syntax-highlighter": "15.4.4",
     "react-tinacms-editor": "^0.51.6",
-    "react-tinacms-inline": "0.52.4",
+    "react-tinacms-inline": "0.54.0",
     "rss": "1.2.2",
     "styled-components": "5.1.1",
     "tinacms": "^1.0.0"
