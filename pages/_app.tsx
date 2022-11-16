@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 
 import "../styles/index.css";
 import { useGoogleTagManager } from "../hooks/useGoogleTagManager";
@@ -18,6 +18,7 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
           href="https://logana.dev/feed.xml"
         />
       </Head>
+      {/* @ts-ignore */}
       <Component {...pageProps} />
     </>
   );
