@@ -1,8 +1,8 @@
-import { useEditState } from "tinacms/dist/edit-state";
+import { useEditState } from "tinacms/dist/react";
 
 // import Link from 'next/link';
 const AppFooter = () => {
-  const { edit, setEdit } = useEditState();
+  const { edit } = useEditState();
   const canEdit = Boolean(Number(process.env.NEXT_PUBLIC_EDIT) || 0);
 
   return (
@@ -15,7 +15,7 @@ const AppFooter = () => {
           <div className="mx-auto lg:mx-0 lg:ml-auto text-black dark:text-white">
             <button
               onClick={() => {
-                setEdit(!edit);
+                window.location.assign(`/admin#/~${window.location.pathname}`);
               }}
             >
               {edit ? "Exit edit mode" : "Edit as Admin"}

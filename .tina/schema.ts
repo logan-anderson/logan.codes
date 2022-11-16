@@ -1,10 +1,10 @@
-import { defineSchema } from "@tinacms/cli";
+import { defineSchema } from "tinacms";
 
 export default defineSchema({
   collections: [
     {
       label: "Blog Posts",
-      name: "posts",
+      name: "post",
       path: "content/blog",
 
       fields: [
@@ -62,7 +62,9 @@ export default defineSchema({
           name: "date",
           type: "datetime",
           label: "Date",
-          dateFormat: "yyyy-MM-DD",
+          ui: {
+            dateFormat: "yyyy-MM-DD",
+          },
         },
         {
           name: "minRead",
@@ -106,7 +108,7 @@ export default defineSchema({
               type: "reference",
               label: "Post",
               name: "post",
-              collections: ["posts"],
+              collections: ["post"],
             },
           ],
         },
@@ -120,7 +122,7 @@ export default defineSchema({
               type: "reference",
               label: "Post",
               name: "post",
-              collections: ["posts"],
+              collections: ["post"],
             },
           ],
         },

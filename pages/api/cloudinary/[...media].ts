@@ -16,7 +16,7 @@ import {
   createMediaHandler,
 } from "next-tinacms-cloudinary/dist/handlers";
 
-import { isAuthorized } from "tina-cloud-next";
+import { isAuthorized } from "@tinacms/auth";
 
 export const config = mediaHandlerConfig;
 
