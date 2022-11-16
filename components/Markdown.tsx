@@ -9,6 +9,7 @@ export const MarkdownBody: React.FC<ReactMarkdown.ReactMarkdownProps> = (
   props
 ) => {
   return (
+    // @ts-ignore
     <ReactMarkdown
       renderers={{
         heading: ({ children, level }) => {
