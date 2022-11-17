@@ -23,7 +23,7 @@ export const components: Components<any> = {
       <SyntaxHighlighter
         style={Theme}
         language={props?.lang}
-        children={props?.children}
+        children={props?.value}
       />
     );
   },

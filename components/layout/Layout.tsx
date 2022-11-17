@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { DefaultSeo } from "next-seo";
 
@@ -41,8 +40,7 @@ const Layout: React.FunctionComponent<Props> = ({
             {
               width: 754,
               alt: "Logan Anderson",
-              url:
-                "https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jpg",
+              url: "https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jpg",
             },
           ],
         }}

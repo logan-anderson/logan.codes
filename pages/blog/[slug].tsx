@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 
 import Layout from "../../components/layout/Layout";
 import { BreadCrumb } from "../../components/BreadCrumb";
-import { components, STYLES } from "../../components/Markdown";
+import { components, MarkdownBody, STYLES } from "../../components/Markdown";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { BlogHeader } from "../../components/blog";
 import { Comments } from "../../components/Cmments";

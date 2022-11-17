@@ -8,7 +8,7 @@ export interface ThemeContextInterface {
 
 const ThemeContext = createContext<ThemeContextInterface>({
   theme: "light",
-  setTheme: (theme: string) => {},
+  setTheme: (_theme: string) => {},
 });
 
 const ThemeProvider: React.FunctionComponent = ({ children }) => {
