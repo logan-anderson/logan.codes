@@ -1,6 +1,7 @@
 ---
-date: '2020-10-24T00:00:00.000Z'
-minRead: 4
+draft: false
+date: "2020-10-24"
+minRead: "4"
 title: Does a Math Degree Help in Software Engineering?
 author: content/authors/logan_anderson.md
 description: >-
@@ -15,15 +16,20 @@ tags:
 
 I am currently in my fourth year of completing a double major in math and computer science at the University of Prince Edward Island. As such, I am in a unique position to comment on my thoughts on whether or not a math degree will help one in software engineering. I have also been working in software development positions both, part-time and full-time, for about two years.
 
-> *This is a quote*
+> _This is a quote_
 
 ## What a math degree offers!
 
-In a math degree, you will start by learning calculus, linear algebra, and other algorithmic-based learning. As you progress, most of the math becomes [proof-based](https://en.wikipedia.org/wiki/Mathematical\_proof). Generally, you are given a set of axioms (true statements) and using those you have to contract some proof to show some proposition to be true. This forces you to think outside the box as no two problems are the same. You can't just apply an algorithm to solve your problem. Some of these courses are [real analysis](https://en.wikipedia.org/wiki/Real\_analysis), [group theory](https://en.wikipedia.org/wiki/Group\_theory) and [measure theory](https://en.wikipedia.org/wiki/Measure\_\(mathematics\)).
+<<<<<<< HEAD
+In a math degree, you will start by learning calculus, linear algebra, and other algorithmic-based learning. As you progress, most of the math becomes [proof-based](https://en.wikipedia.org/wiki/Mathematical_proof). Generally, you are given a set of axioms (true statements) and using those you have to contract some proof to show some proposition to be true. This forces you to think outside the box as no two problems are the same. You can't just apply an algorithm to solve your problem. Some of these courses are [real analysis](https://en.wikipedia.org/wiki/Real_analysis), [group theory](https://en.wikipedia.org/wiki/Group_theory) and [measure theory](<https://en.wikipedia.org/wiki/Measure_(mathematics)>).
+=======
+In a math degree, you will start by learning calculus, linear algebra, and other algorithmic-based learning. As you progress, most of the math becomes [proof-based](https://en.wikipedia.org/wiki/Mathematical_proof). Generally, you are given a set of axioms (true statements) and using those you have to contract some proof to show some proposition to be true. This forces you to think outside the box as no two problems are the same. You can't just apply an algorithm to solve your problem. Some of these courses are [real analysis](https://en.wikipedia.org/wiki/Real_analysis), [group theory](https://en.wikipedia.org/wiki/Group_theory) and [measure theory](<https://en.wikipedia.org/wiki/Measure_(mathematics)>).
+
+> > > > > > > master
 
 ## Will you use what you have learned
 
-If you are going into university and wondering if a math degree will be useful for a future in software engineering,  in terms of practical use, the answer is, probably not. If your goal is to be a general software engineer and write code for web dev or a similar field that you most likely will not use any of the facts or knowledge that a math degree offers. There are some exceptions. If you think you might want a future in machine learning, cryptography, research, programming software bundlers, and the list goes on and on. These are some of the many fields where you will use the knowledge and skills of a math degree in practice. If you are thinking of going into one of these fields, a math degree or possibly a minor will help you out tremendously. I have used many skills I have learned in my math courses as I complete my honours this year in machine learning.
+If you are going into university and wondering if a math degree will be useful for a future in software engineering, in terms of practical use, the answer is, probably not. If your goal is to be a general software engineer and write code for web dev or a similar field that you most likely will not use any of the facts or knowledge that a math degree offers. There are some exceptions. If you think you might want a future in machine learning, cryptography, research, programming software bundlers, and the list goes on and on. These are some of the many fields where you will use the knowledge and skills of a math degree in practice. If you are thinking of going into one of these fields, a math degree or possibly a minor will help you out tremendously. I have used many skills I have learned in my math courses as I complete my honours this year in machine learning.
 
 ## Does it help you work as a software engineer?
 

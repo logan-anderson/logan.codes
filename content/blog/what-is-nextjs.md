@@ -1,12 +1,13 @@
 ---
-date: '2020-11-07'
-minRead: '4'
+draft: false
+date: "2020-11-07"
+minRead: "4"
 title: What is nextjs?
 author: content/authors/logan_anderson.md
 description: >-
   Nextjs is a meta framework for React. Nextjs includes static site generation,
   sever site rendering (ssr), api routes, and many other features. We will
-  explore all these ideas and more in this blog.  
+  explore all these ideas and more in this blog.
 tags:
   - nextjs
   - code
@@ -18,13 +19,13 @@ Next.js (or next or nextjs however you choose to say it) is a popular meta-frame
 
 ![nextjs npm downloads](https://i.imgur.com/YkIYzgy.png "Next cpm downloads")
 
-It has received overwhelming growth since 2020.  Now let's get into some of the features and why someone might use this over traditional client-side React in the browser.
+It has received overwhelming growth since 2020. Now let's get into some of the features and why someone might use this over traditional client-side React in the browser.
 
 _**Note: This blog post is meant for folks who are already familiar with React and JavaScript. If you are not I would suggest you read up on those before tacking Next.js. Further, the goal of this article is not to teach you Next.js but to give one an understanding of what it is.**_
 
 ## Static Site Generation
 
-[Static site generation](https://wsvincent.com/what-is-a-static-site-generator/#:\~:text=Static%20Site%20Generators%20are%20a,into%20static%20files%20for%20deployment.) is when a website is built once and then the raw HTML is served to the user at request time. This is contrary to how React typically runs. Normally, when using a tool like [CRA](https://reactjs.org/docs/create-a-new-react-app.html) or something similar the content of the pages is all encoded in JavaScript. This JavaScript is then sent to the client and must be rendered in the client browsers. Why is this an issue? Two reasons.
+[Static site generation](https://wsvincent.com/what-is-a-static-site-generator/#:~:text=Static%20Site%20Generators%20are%20a,into%20static%20files%20for%20deployment.) is when a website is built once and then the raw HTML is served to the user at request time. This is contrary to how React typically runs. Normally, when using a tool like [CRA](https://reactjs.org/docs/create-a-new-react-app.html) or something similar the content of the pages is all encoded in JavaScript. This JavaScript is then sent to the client and must be rendered in the client browsers. Why is this an issue? Two reasons.
 
 1. Speed
 2. Search engine optimization
@@ -40,19 +41,19 @@ Server-side rendering (SSR) is the same thing as static site generation but inst
 
 ```js
 export async function getStaticProps(context) {
-  const posts = await getPosts()
+  const posts = await getPosts();
   return {
-    props: {posts: posts}, // will be passed to the page component as props
-  }
+    props: { posts: posts }, // will be passed to the page component as props
+  };
 }
 ```
 
 Now in our page React components we can use `posts`.
 
 ```js
-const BlogPage = ({posts})=>{
-// use posts
-}
+const BlogPage = ({ posts }) => {
+  // use posts
+};
 ```
 
 **Note:** this happens server-side at build time. Next.js also code splits all of this code out so it will never be sent to the client. Because of this, we can use secrets (API keys, database passwords, etc) in `getStaticProps` or `getSevereSideProps` and it will remain secret and safe.
@@ -63,9 +64,9 @@ API routes allow one to make an API in their Next.js applications. The API route
 
 ```js
 export default function handler(req, res) {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.json({food: ['pizza', 'rice', 'salad']})
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json");
+  res.json({ food: ["pizza", "rice", "salad"] });
 }
 ```
 

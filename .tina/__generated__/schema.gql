@@ -7,6 +7,7 @@ scalar JSON
 
 type SystemInfo {
   filename: String!
+  title: String
   basename: String!
   breadcrumbs(excludeExtension: Boolean): [String!]!
   path: String!
@@ -30,37 +31,41 @@ interface Node {
 
 """"""
 interface Document {
-  sys: SystemInfo
   id: ID!
-  form: JSON!
-  values: JSON!
+  _sys: SystemInfo
+  _values: JSON!
 }
 
 """A relay-compliant pagination connection"""
 interface Connection {
   totalCount: Float!
+  pageInfo: PageInfo!
 }
 
 type Query {
-  getCollection(collection: String): Collection!
-  getCollections: [Collection!]!
+  getOptimizedQuery(queryString: String!): String
+  collection(collection: String): Collection!
+  collections: [Collection!]!
   node(id: String): Node!
-  getDocument(collection: String, relativePath: String): DocumentNode!
-  getDocumentList(before: String, after: String, first: Float, last: Float): DocumentConnection!
-  getDocumentFields: JSON!
-  getPostsDocument(relativePath: String): PostsDocument!
-  getPostsList(before: String, after: String, first: Float, last: Float): PostsConnection!
-  getAuthorDocument(relativePath: String): AuthorDocument!
-  getAuthorList(before: String, after: String, first: Float, last: Float): AuthorConnection!
+  document(collection: String, relativePath: String): DocumentNode!
+  post(relativePath: String): Post!
+  postConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PostFilter): PostConnection!
+  author(relativePath: String): Author!
+  authorConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AuthorFilter): AuthorConnection!
+}
+
+input DocumentFilter {
+  post: PostFilter
+  author: AuthorFilter
 }
 
 type DocumentConnectionEdges {
-  cursor: String
+  cursor: String!
   node: DocumentNode
 }
 
 type DocumentConnection implements Connection {
-  pageInfo: PageInfo
+  pageInfo: PageInfo!
   totalCount: Float!
   edges: [DocumentConnectionEdges]
 }
@@ -74,93 +79,176 @@ type Collection {
   matches: String
   templates: [JSON]
   fields: [JSON]
-  documents(before: String, after: String, first: Float, last: Float): DocumentConnection!
+  documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter): DocumentConnection!
 }
 
-union DocumentNode = PostsDocument | AuthorDocument
+union DocumentNode = Post | Author
 
-type PostsBlocksLongFormText {
-  content: JSON
+type PostBlocksLongFormText {
+  content: String
 }
 
-type PostsBlocksImg {
+type PostBlocksImg {
   img: String
 }
 
-type PostsBlocksIframe {
+type PostBlocksIframe {
   url: String
 }
 
-union PostsBlocks = PostsBlocksLongFormText | PostsBlocksImg | PostsBlocksIframe
+union PostBlocks = PostBlocksLongFormText | PostBlocksImg | PostBlocksIframe
 
-union PostsAuthorDocument = AuthorDocument
+union PostAuthor = Author
 
-union PostsFeaturePostPostDocument = PostsDocument
+union PostFeaturePostPost = Post
 
-type PostsFeaturePost {
-  post: PostsFeaturePostPostDocument
+type PostFeaturePost {
+  post: PostFeaturePostPost
 }
 
-union PostsFeaturePostsPostDocument = PostsDocument
+union PostFeaturePostsPost = Post
 
-type PostsFeaturePosts {
-  post: PostsFeaturePostsPostDocument
+type PostFeaturePosts {
+  post: PostFeaturePostsPost
 }
 
-type Posts {
-  body: JSON
-  blocks: [PostsBlocks]
-  date: String
-  minRead: Float
+type Post implements Node & Document {
+  draft: Boolean
   title: String
-  author: PostsAuthorDocument
+  date: String
+  body: String
+  blocks: [PostBlocks]
+  minRead: Float
+  author: PostAuthor
   description: String
   tags: [String]
-  featurePost: PostsFeaturePost
-  featurePosts: [PostsFeaturePosts]
-}
-
-type PostsDocument implements Node & Document {
+  featurePost: PostFeaturePost
+  featurePosts: [PostFeaturePosts]
   id: ID!
-  sys: SystemInfo!
-  data: Posts!
-  form: JSON!
-  values: JSON!
-  dataJSON: JSON!
+  _sys: SystemInfo!
+  _values: JSON!
 }
 
-type PostsConnectionEdges {
-  cursor: String
-  node: PostsDocument
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
 }
 
-type PostsConnection implements Connection {
-  pageInfo: PageInfo
+input StringFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input DatetimeFilter {
+  after: String
+  before: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input PostBlocksLongFormTextFilter {
+  content: StringFilter
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input PostBlocksImgFilter {
+  img: ImageFilter
+}
+
+input PostBlocksIframeFilter {
+  url: StringFilter
+}
+
+input PostBlocksFilter {
+  longFormText: PostBlocksLongFormTextFilter
+  img: PostBlocksImgFilter
+  iframe: PostBlocksIframeFilter
+}
+
+input NumberFilter {
+  lt: Float
+  lte: Float
+  gte: Float
+  gt: Float
+  eq: Float
+  exists: Boolean
+  in: [Float]
+}
+
+input PostAuthorFilter {
+  author: AuthorFilter
+}
+
+input PostFeaturePostPostFilter {
+  post: PostFilter
+}
+
+input PostFeaturePostFilter {
+  post: PostFeaturePostPostFilter
+}
+
+input PostFeaturePostsPostFilter {
+  post: PostFilter
+}
+
+input PostFeaturePostsFilter {
+  post: PostFeaturePostsPostFilter
+}
+
+input PostFilter {
+  draft: BooleanFilter
+  title: StringFilter
+  date: DatetimeFilter
+  body: StringFilter
+  blocks: PostBlocksFilter
+  minRead: NumberFilter
+  author: PostAuthorFilter
+  description: StringFilter
+  tags: StringFilter
+  featurePost: PostFeaturePostFilter
+  featurePosts: PostFeaturePostsFilter
+}
+
+type PostConnectionEdges {
+  cursor: String!
+  node: Post
+}
+
+type PostConnection implements Connection {
+  pageInfo: PageInfo!
   totalCount: Float!
-  edges: [PostsConnectionEdges]
+  edges: [PostConnectionEdges]
 }
 
-type Author {
+type Author implements Node & Document {
   name: String
   avatar: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
 }
 
-type AuthorDocument implements Node & Document {
-  id: ID!
-  sys: SystemInfo!
-  data: Author!
-  form: JSON!
-  values: JSON!
-  dataJSON: JSON!
+input AuthorFilter {
+  name: StringFilter
+  avatar: StringFilter
 }
 
 type AuthorConnectionEdges {
-  cursor: String
-  node: AuthorDocument
+  cursor: String!
+  node: Author
 }
 
 type AuthorConnection implements Connection {
-  pageInfo: PageInfo
+  pageInfo: PageInfo!
   totalCount: Float!
   edges: [AuthorConnectionEdges]
 }
@@ -168,55 +256,57 @@ type AuthorConnection implements Connection {
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
-  updatePostsDocument(relativePath: String!, params: PostsMutation!): PostsDocument!
-  createPostsDocument(relativePath: String!, params: PostsMutation!): PostsDocument!
-  updateAuthorDocument(relativePath: String!, params: AuthorMutation!): AuthorDocument!
-  createAuthorDocument(relativePath: String!, params: AuthorMutation!): AuthorDocument!
+  updatePost(relativePath: String!, params: PostMutation!): Post!
+  createPost(relativePath: String!, params: PostMutation!): Post!
+  updateAuthor(relativePath: String!, params: AuthorMutation!): Author!
+  createAuthor(relativePath: String!, params: AuthorMutation!): Author!
 }
 
 input DocumentMutation {
-  posts: PostsMutation
+  post: PostMutation
   author: AuthorMutation
 }
 
-input PostsBlocksLongFormTextMutation {
-  content: JSON
+input PostBlocksLongFormTextMutation {
+  content: String
 }
 
-input PostsBlocksImgMutation {
+input PostBlocksImgMutation {
   img: String
 }
 
-input PostsBlocksIframeMutation {
+input PostBlocksIframeMutation {
   url: String
 }
 
-input PostsBlocksMutation {
-  longFormText: PostsBlocksLongFormTextMutation
-  img: PostsBlocksImgMutation
-  iframe: PostsBlocksIframeMutation
+input PostBlocksMutation {
+  longFormText: PostBlocksLongFormTextMutation
+  img: PostBlocksImgMutation
+  iframe: PostBlocksIframeMutation
 }
 
-input PostsFeaturePostMutation {
+input PostFeaturePostMutation {
   post: String
 }
 
-input PostsFeaturePostsMutation {
+input PostFeaturePostsMutation {
   post: String
 }
 
-input PostsMutation {
-  body: JSON
-  blocks: [PostsBlocksMutation]
-  date: String
-  minRead: Float
+input PostMutation {
+  draft: Boolean
   title: String
+  date: String
+  body: String
+  blocks: [PostBlocksMutation]
+  minRead: Float
   author: String
   description: String
   tags: [String]
-  featurePost: PostsFeaturePostMutation
-  featurePosts: [PostsFeaturePostsMutation]
+  featurePost: PostFeaturePostMutation
+  featurePosts: [PostFeaturePostsMutation]
 }
 
 input AuthorMutation {

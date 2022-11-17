@@ -1,25 +1,32 @@
 import { GetStaticProps } from "next";
+
 import Layout from "../../components/layout/Layout";
 import { BreadCrumb } from "../../components/BreadCrumb";
 import { components, STYLES } from "../../components/Markdown";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { getPostQuery, getPostQueryRes } from "../../graphql-queries";
 import { BlogHeader } from "../../components/blog";
-import { Author } from "../../components/AuthorDetail";
-import { getStaticPropsForTina, staticRequest } from "tinacms";
 import { Comments } from "../../components/Cmments";
-import {
-  PostsConnection,
-  Author as AuthorType,
-} from "../../.tina/__generated__/types";
-import React from "react";
 import BlogCard from "../../components/BlogCard";
 
+import { client } from "../../.tina/__generated__/client";
+import type {
+  PostAndFeaturePostsQuery,
+  Exact,
+  Author as AuthorType,
+  PostFilter,
+} from "../../.tina/__generated__/types";
+import { Author } from "../../components/AuthorDetail";
+import { useTina } from "tinacms/dist/react";
 interface PageProps {
-  data: getPostQueryRes;
+  data: PostAndFeaturePostsQuery;
+  variables: Exact<{
+    relativePath: string;
+  }>;
+  query: string;
 }
-const BlogPage = ({ data: postData }: PageProps) => {
-  const { data } = postData.getPostsDocument;
+const BlogPage = ({ data: postData, query, variables }: PageProps) => {
+  const { data: tinaData } = useTina({ data: postData, query, variables });
+  const data = tinaData.post;
   return (
     <Layout
       title={data?.title || ""}
@@ -34,24 +41,20 @@ const BlogPage = ({ data: postData }: PageProps) => {
           },
         ]}
       />
-      <Author author={data?.author?.data || ({} as AuthorType)} post={data} />
+      {/* @ts-ignore */}
+      <Author author={data?.author || ({} as AuthorType)} post={data} />
       <div className="relative pb-16 overflow-hidden">
         <BlogHeader />
         <div className="relative px-4 sm:px-6 lg:px-8">
           <div className={STYLES}>
             {data?.blocks?.map((block) => {
-              if (block?.__typename === "PostsBlocksIframe") {
+              if (block?.__typename === "PostBlocksIframe") {
                 return <iframe width="100%" src={block.url || ""} />;
               }
-              if (block?.__typename === "PostsBlocksLongFormText") {
-                return (
-                  <TinaMarkdown
-                    content={block.content}
-                    components={components}
-                  />
-                );
+              if (block?.__typename === "PostBlocksLongFormText") {
+                return <MarkdownBody source={block.content || ""} />;
               }
-              if (block?.__typename === "PostsBlocksImg") {
+              if (block?.__typename === "PostBlocksImg") {
                 return <img src={block.img || ""} />;
               }
             })}
@@ -69,18 +72,18 @@ const BlogPage = ({ data: postData }: PageProps) => {
               return (
                 <BlogCard
                   post={{
-                    fileName: post?.sys?.filename || "",
-                    fileRelativePath: post?.sys?.filename || "",
+                    fileName: post?._sys?.filename || "",
+                    fileRelativePath: post?._sys?.filename || "",
                     data: {
                       markdownBody: "",
                       frontmatter: {
-                        author: post?.data?.author?.data?.name || "",
-                        avatar: post?.data?.author?.data?.avatar || "",
-                        date: post?.data?.date || "",
-                        description: post?.data?.description || "",
-                        minRead: post?.data?.minRead || 2,
-                        tags: post?.data?.tags as string[],
-                        title: post?.data?.title || "",
+                        author: post?.author?.name || "",
+                        avatar: post?.author?.avatar || "",
+                        date: post?.date || "",
+                        description: post?.description || "",
+                        minRead: post?.minRead || 2,
+                        tags: post?.tags as string[],
+                        title: post?.title || "",
                       },
                     },
                   }}
@@ -99,12 +102,7 @@ const BlogPage = ({ data: postData }: PageProps) => {
  */
 export const getStaticProps: GetStaticProps = async function ({ params }) {
   const relativePath = (params?.slug as string) + ".md";
-  const tinaProps = await getStaticPropsForTina({
-    query: getPostQuery,
-    variables: {
-      relativePath,
-    },
-  });
+  const tinaProps = await client.queries.postAndFeaturePosts({ relativePath });
   return {
     props: {
       ...tinaProps,
@@ -113,24 +111,21 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
 };
 
 export const getStaticPaths = async () => {
-  const postsListData = (await staticRequest({
-    query: `#graphql
-      {
-         getPostsList{
-          edges {
-            node {
-              sys {
-                filename 
-              }
-            }
-          }
-        }
-      }
-    `,
-  })) as { getPostsList: PostsConnection };
+  // drafts are available in preview mode or local dev
+  const showDrafts =
+    Boolean(Number(process.env.NEXT_PUBLIC_SHOW_DRAFTS) || 0) ||
+    process.env.VERCEL_ENV === "preview";
+  console.log("showDrafts", showDrafts);
+  let filter: PostFilter = {};
+  if (!showDrafts) {
+    filter = { draft: { eq: false } };
+  }
+  const postsListData = await client.queries.postConnection({
+    filter,
+  });
   return {
-    paths: postsListData.getPostsList?.edges?.map((post) => ({
-      params: { slug: post?.node?.sys.filename },
+    paths: postsListData.data.postConnection?.edges?.map((post) => ({
+      params: { slug: post?.node?._sys.filename },
     })),
     fallback: "blocking",
   };

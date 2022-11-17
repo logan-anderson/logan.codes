@@ -1,13 +1,14 @@
+import { Slide } from "react-awesome-reveal";
+
+import { client } from "../../.tina/__generated__/client";
+
 import Layout from "../../components/layout/Layout";
 import BlogCard from "../../components/BlogCard";
 import { Tag } from "../../interfaces";
 import Button from "../../components/Buttons/ToggleButton";
 import { useState } from "react";
 import { BreadCrumb } from "../../components/BreadCrumb";
-import { Slide } from "react-awesome-reveal";
-import { GetStaticProps } from "next";
-import { AllPostsQuery, AllPostsQueryRes } from "../../graphql-queries";
-import { LocalClient } from "tinacms";
+import type { PostConnectionQuery } from "../../.tina/__generated__/types";
 
 const Tags = ({
   tags,
@@ -58,22 +59,18 @@ const Tags = ({
   );
 };
 
-interface BlogListProps {
-  data: AllPostsQueryRes;
-}
-
-const BlogList = ({ data }: BlogListProps) => {
+const BlogList = ({ data }: { data: PostConnectionQuery }) => {
   // sort based on date added
-  data.getPostsList.edges?.sort(
+  data.postConnection.edges?.sort(
     (x, y) =>
-      new Date(y?.node?.data?.date || "").getTime() -
-      new Date(x?.node?.data?.date || "").getTime()
+      new Date(y?.node?.date || "").getTime() -
+      new Date(x?.node?.date || "").getTime()
   );
   // useCreateBlogPage(posts);
   let alltags: Tag[] = [];
   let tagMap = new Map();
-  data?.getPostsList?.edges?.forEach((doc) => {
-    doc?.node?.data?.tags?.forEach((tag) => {
+  data?.postConnection?.edges?.forEach((doc) => {
+    doc?.node?.tags?.forEach((tag) => {
       if (tag && !tagMap.has(tag)) {
         alltags.push({
           name: tag,
@@ -91,7 +88,7 @@ const BlogList = ({ data }: BlogListProps) => {
         <BreadCrumb links={[{ label: "Blog", href: "/blog" }]} />
         <Tags tags={stateTags} setTags={setStateTags} />
         <Slide direction="up" cascade duration={700} damping={0.1} triggerOnce>
-          {data.getPostsList?.edges
+          {data.postConnection?.edges
             ?.filter((post) => {
               const selectedTags: string[] = stateTags
                 .filter((t) => t.selected)
@@ -101,7 +98,7 @@ const BlogList = ({ data }: BlogListProps) => {
                 return true;
               }
               return selectedTags.every((currentTag: string) => {
-                return post?.node?.data?.tags?.includes(currentTag);
+                return post?.node?.tags?.includes(currentTag);
               });
             })
             .map((postData) => {
@@ -110,18 +107,18 @@ const BlogList = ({ data }: BlogListProps) => {
                 <BlogCard
                   key={post?.id}
                   post={{
-                    fileName: post?.sys?.filename || "",
-                    fileRelativePath: post?.sys?.filename || "",
+                    fileName: post?._sys?.filename || "",
+                    fileRelativePath: post?._sys?.filename || "",
                     data: {
                       markdownBody: "",
                       frontmatter: {
-                        minRead: post?.data?.minRead || 3,
-                        avatar: post?.data?.author?.data?.avatar || "",
-                        author: post?.data?.author?.data?.name || "",
-                        date: post?.data?.date || "",
-                        description: post?.data?.description || "",
-                        tags: post?.data?.tags as string[],
-                        title: post?.data?.title || "",
+                        minRead: post?.minRead || 3,
+                        avatar: post?.author?.avatar || "",
+                        author: post?.author?.name || "",
+                        date: post?.date || "",
+                        description: post?.description || "",
+                        tags: post?.tags as string[],
+                        title: post?.title || "",
                       },
                     },
                   }}
@@ -134,16 +131,16 @@ const BlogList = ({ data }: BlogListProps) => {
   );
 };
 
-const client = new LocalClient();
-export const getStaticProps: GetStaticProps = async () => {
-  const blogPosts = await client.request<AllPostsQueryRes>(AllPostsQuery, {
-    variables: {},
+export const getStaticProps = async () => {
+  // could show draft posts if preview is true
+  const res = await client.queries.postConnection({
+    filter: { draft: { eq: false } },
   });
 
   return {
     props: {
-      data: blogPosts,
-      query: AllPostsQuery,
+      data: res.data,
+      query: res.query,
     },
   };
 };
