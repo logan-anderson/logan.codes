@@ -115,7 +115,6 @@ export const getStaticPaths = async () => {
   const showDrafts =
     Boolean(Number(process.env.NEXT_PUBLIC_SHOW_DRAFTS) || 0) ||
     process.env.VERCEL_ENV === "preview";
-  console.log("showDrafts", showDrafts);
   let filter: PostFilter = {};
   if (!showDrafts) {
     filter = { draft: { eq: false } };

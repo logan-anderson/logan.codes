@@ -1,21 +1,26 @@
-fragment PostsParts on Posts {
+fragment PostParts on Post {
+  draft
+  title
+  date
   body
   blocks {
     __typename
-    ... on PostsBlocksLongFormText {
+    ... on PostBlocksLongFormText {
       content
     }
-    ... on PostsBlocksImg {
+    ... on PostBlocksImg {
       img
     }
-    ... on PostsBlocksIframe {
+    ... on PostBlocksIframe {
       url
     }
   }
-  date
   minRead
-  title
   author {
+    ... on Author {
+      name
+      avatar
+    }
     ... on Document {
       id
     }
@@ -25,6 +30,106 @@ fragment PostsParts on Posts {
   featurePost {
     __typename
     post {
+      ... on Post {
+        draft
+        title
+        date
+        body
+        blocks {
+          __typename
+          ... on PostBlocksLongFormText {
+            content
+          }
+          ... on PostBlocksImg {
+            img
+          }
+          ... on PostBlocksIframe {
+            url
+          }
+        }
+        minRead
+        author {
+          ... on Author {
+            name
+            avatar
+          }
+          ... on Document {
+            id
+          }
+        }
+        description
+        tags
+        featurePost {
+          __typename
+          post {
+            ... on Post {
+              draft
+              title
+              date
+              body
+              blocks {
+                __typename
+                ... on PostBlocksLongFormText {
+                  content
+                }
+                ... on PostBlocksImg {
+                  img
+                }
+                ... on PostBlocksIframe {
+                  url
+                }
+              }
+              minRead
+              description
+              tags
+              featurePost {
+                __typename
+              }
+              featurePosts {
+                __typename
+              }
+            }
+            ... on Document {
+              id
+            }
+          }
+        }
+        featurePosts {
+          __typename
+          post {
+            ... on Post {
+              draft
+              title
+              date
+              body
+              blocks {
+                __typename
+                ... on PostBlocksLongFormText {
+                  content
+                }
+                ... on PostBlocksImg {
+                  img
+                }
+                ... on PostBlocksIframe {
+                  url
+                }
+              }
+              minRead
+              description
+              tags
+              featurePost {
+                __typename
+              }
+              featurePosts {
+                __typename
+              }
+            }
+            ... on Document {
+              id
+            }
+          }
+        }
+      }
       ... on Document {
         id
       }
@@ -33,6 +138,106 @@ fragment PostsParts on Posts {
   featurePosts {
     __typename
     post {
+      ... on Post {
+        draft
+        title
+        date
+        body
+        blocks {
+          __typename
+          ... on PostBlocksLongFormText {
+            content
+          }
+          ... on PostBlocksImg {
+            img
+          }
+          ... on PostBlocksIframe {
+            url
+          }
+        }
+        minRead
+        author {
+          ... on Author {
+            name
+            avatar
+          }
+          ... on Document {
+            id
+          }
+        }
+        description
+        tags
+        featurePost {
+          __typename
+          post {
+            ... on Post {
+              draft
+              title
+              date
+              body
+              blocks {
+                __typename
+                ... on PostBlocksLongFormText {
+                  content
+                }
+                ... on PostBlocksImg {
+                  img
+                }
+                ... on PostBlocksIframe {
+                  url
+                }
+              }
+              minRead
+              description
+              tags
+              featurePost {
+                __typename
+              }
+              featurePosts {
+                __typename
+              }
+            }
+            ... on Document {
+              id
+            }
+          }
+        }
+        featurePosts {
+          __typename
+          post {
+            ... on Post {
+              draft
+              title
+              date
+              body
+              blocks {
+                __typename
+                ... on PostBlocksLongFormText {
+                  content
+                }
+                ... on PostBlocksImg {
+                  img
+                }
+                ... on PostBlocksIframe {
+                  url
+                }
+              }
+              minRead
+              description
+              tags
+              featurePost {
+                __typename
+              }
+              featurePosts {
+                __typename
+              }
+            }
+            ... on Document {
+              id
+            }
+          }
+        }
+      }
       ... on Document {
         id
       }

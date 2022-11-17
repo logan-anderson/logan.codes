@@ -85,7 +85,7 @@ type Collection {
 union DocumentNode = Post | Author
 
 type PostBlocksLongFormText {
-  content: String
+  content: JSON
 }
 
 type PostBlocksImg {
@@ -116,7 +116,7 @@ type Post implements Node & Document {
   draft: Boolean
   title: String
   date: String
-  body: String
+  body: JSON
   blocks: [PostBlocks]
   minRead: Float
   author: PostAuthor
@@ -149,8 +149,14 @@ input DatetimeFilter {
   in: [String]
 }
 
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
 input PostBlocksLongFormTextFilter {
-  content: StringFilter
+  content: RichTextFilter
 }
 
 input ImageFilter {
@@ -208,7 +214,7 @@ input PostFilter {
   draft: BooleanFilter
   title: StringFilter
   date: DatetimeFilter
-  body: StringFilter
+  body: RichTextFilter
   blocks: PostBlocksFilter
   minRead: NumberFilter
   author: PostAuthorFilter
@@ -239,7 +245,7 @@ type Author implements Node & Document {
 
 input AuthorFilter {
   name: StringFilter
-  avatar: StringFilter
+  avatar: ImageFilter
 }
 
 type AuthorConnectionEdges {
@@ -270,7 +276,7 @@ input DocumentMutation {
 }
 
 input PostBlocksLongFormTextMutation {
-  content: String
+  content: JSON
 }
 
 input PostBlocksImgMutation {
@@ -299,7 +305,7 @@ input PostMutation {
   draft: Boolean
   title: String
   date: String
-  body: String
+  body: JSON
   blocks: [PostBlocksMutation]
   minRead: Float
   author: String
