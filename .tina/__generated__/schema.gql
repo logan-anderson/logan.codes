@@ -84,27 +84,7 @@ type Collection {
 
 union DocumentNode = Post | Author
 
-type PostBlocksLongFormText {
-  content: String
-}
-
-type PostBlocksImg {
-  img: String
-}
-
-type PostBlocksIframe {
-  url: String
-}
-
-union PostBlocks = PostBlocksLongFormText | PostBlocksImg | PostBlocksIframe
-
 union PostAuthor = Author
-
-union PostFeaturePostPost = Post
-
-type PostFeaturePost {
-  post: PostFeaturePostPost
-}
 
 union PostFeaturePostsPost = Post
 
@@ -114,15 +94,13 @@ type PostFeaturePosts {
 
 type Post implements Node & Document {
   draft: Boolean
-  title: String
+  title: String!
   date: String
-  body: String
-  blocks: [PostBlocks]
+  body: JSON
   minRead: Float
   author: PostAuthor
   description: String
   tags: [String]
-  featurePost: PostFeaturePost
   featurePosts: [PostFeaturePosts]
   id: ID!
   _sys: SystemInfo!
@@ -149,29 +127,14 @@ input DatetimeFilter {
   in: [String]
 }
 
-input PostBlocksLongFormTextFilter {
-  content: StringFilter
-}
-
-input ImageFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
-input PostBlocksImgFilter {
-  img: ImageFilter
-}
-
-input PostBlocksIframeFilter {
+input PostBodyIframeFilter {
   url: StringFilter
+  height: StringFilter
+  width: StringFilter
 }
 
-input PostBlocksFilter {
-  longFormText: PostBlocksLongFormTextFilter
-  img: PostBlocksImgFilter
-  iframe: PostBlocksIframeFilter
+input PostBodyFilter {
+  Iframe: PostBodyIframeFilter
 }
 
 input NumberFilter {
@@ -188,14 +151,6 @@ input PostAuthorFilter {
   author: AuthorFilter
 }
 
-input PostFeaturePostPostFilter {
-  post: PostFilter
-}
-
-input PostFeaturePostFilter {
-  post: PostFeaturePostPostFilter
-}
-
 input PostFeaturePostsPostFilter {
   post: PostFilter
 }
@@ -208,13 +163,11 @@ input PostFilter {
   draft: BooleanFilter
   title: StringFilter
   date: DatetimeFilter
-  body: StringFilter
-  blocks: PostBlocksFilter
+  body: PostBodyFilter
   minRead: NumberFilter
   author: PostAuthorFilter
   description: StringFilter
   tags: StringFilter
-  featurePost: PostFeaturePostFilter
   featurePosts: PostFeaturePostsFilter
 }
 
@@ -269,28 +222,6 @@ input DocumentMutation {
   author: AuthorMutation
 }
 
-input PostBlocksLongFormTextMutation {
-  content: String
-}
-
-input PostBlocksImgMutation {
-  img: String
-}
-
-input PostBlocksIframeMutation {
-  url: String
-}
-
-input PostBlocksMutation {
-  longFormText: PostBlocksLongFormTextMutation
-  img: PostBlocksImgMutation
-  iframe: PostBlocksIframeMutation
-}
-
-input PostFeaturePostMutation {
-  post: String
-}
-
 input PostFeaturePostsMutation {
   post: String
 }
@@ -299,13 +230,11 @@ input PostMutation {
   draft: Boolean
   title: String
   date: String
-  body: String
-  blocks: [PostBlocksMutation]
+  body: JSON
   minRead: Float
   author: String
   description: String
   tags: [String]
-  featurePost: PostFeaturePostMutation
   featurePosts: [PostFeaturePostsMutation]
 }
 
