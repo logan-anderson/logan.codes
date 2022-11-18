@@ -1,15 +1,16 @@
 ---
 draft: false
-minRead: "4"
+minRead: '4'
 title: RSS Feeds in a nextjs site
 author: content/authors/logan_anderson.md
-description: "How to add an RSS feed for blog posts into a nextjs site. Simple and easy. "
+description: 'How to add an RSS feed for blog posts into a nextjs site. Simple and easy. '
 tags:
   - code
   - react
   - nextjs
-date: "Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)"
+date: 'Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)'
 ---
+
 
 # Adding an RSS feed to a nextjs Site
 
