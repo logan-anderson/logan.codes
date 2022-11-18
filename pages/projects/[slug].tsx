@@ -24,13 +24,10 @@ const ProjectPage: React.FC<{ markdown: string; project: Projects }> = ({
           escapeHtml={false}
           skipHtml={false}
           transformImageUri={(src) => {
-            console.log({ src });
             const url = project.url
               .replace("README.md", "")
               .replace("readme.md", "");
-            console.log({ url });
             const test = `${url}${src.slice(2)}`;
-            console.log({ test });
             return test;
           }}
         />
