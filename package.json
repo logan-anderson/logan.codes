@@ -28,7 +28,7 @@
     "fast-glob": "3.2.2",
     "gray-matter": "4.0.2",
     "gsap": "3.7.1",
-    "next": "11.1.0",
+    "next": "12.1.0",
     "next-pwa": "5.3.1",
     "next-seo": "4.5.0",
     "next-tinacms-cloudinary": "^4.0.0",
