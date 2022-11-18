@@ -4,8 +4,22 @@
         <description><![CDATA[Logan's blog]]></description>
         <link>https://logana.dev</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 25 Aug 2021 12:25:26 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 18 Nov 2022 18:28:09 GMT</lastBuildDate>
         <atom:link href="https://logana.dev/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[A new draft post]]></title>
+            <description><![CDATA[a test post]]></description>
+            <link>https://logana.dev/blog/test-post</link>
+            <guid isPermaLink="false">test-post</guid>
+            <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
+            <pubDate>Sat, 03 Dec 2022 05:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[A new post that pull publish soon!]]></title>
+            <link>https://logana.dev/blog/A-new-post-that-pull-publish-soon</link>
+            <guid isPermaLink="false">A-new-post-that-pull-publish-soon</guid>
+            <pubDate>Sat, 19 Nov 2022 05:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[An accessible intro to Machine Learning]]></title>
             <description><![CDATA[From the very basics, learn what machine learning is in a way that is easy to understand, intuitive, and accessible for all backgrounds. Even if you are a beginner, learn about what is a Machine Learning model, cost function, and gain an intuitive understanding of how a model learns.]]></description>
@@ -16,7 +30,7 @@
         </item>
         <item>
             <title><![CDATA[What is nextjs?]]></title>
-            <description><![CDATA[Nextjs is a meta framework for React. Nextjs includes static site generation, sever site rendering (ssr), api routes, and many other features. We will explore all these ideas and more in this blog.  ]]></description>
+            <description><![CDATA[Nextjs is a meta framework for React. Nextjs includes static site generation, sever site rendering (ssr), api routes, and many other features. We will explore all these ideas and more in this blog.]]></description>
             <link>https://logana.dev/blog/what-is-nextjs</link>
             <guid isPermaLink="false">what-is-nextjs</guid>
             <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>

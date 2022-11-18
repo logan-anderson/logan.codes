@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetStaticPathsResult, GetStaticProps } from "next";
 
 import { okaidia as Theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -16,10 +16,11 @@ import type {
   PostAndFeaturePostsQuery,
   Exact,
   Author as AuthorType,
-  PostFilter,
 } from "../../.tina/__generated__/types";
 import { Author } from "../../components/AuthorDetail";
 import { useTina } from "tinacms/dist/react";
+import { getPosts } from "../../utils/getPosts";
+import { useRouter } from "next/router";
 interface PageProps {
   data: PostAndFeaturePostsQuery;
   variables: Exact<{
@@ -28,7 +29,13 @@ interface PageProps {
   query: string;
 }
 const BlogPage = ({ data: postData, query, variables }: PageProps) => {
+  const router = useRouter();
+
   const { data: tinaData } = useTina({ data: postData, query, variables });
+
+  if (router.isFallback) {
+    return <div>Loading</div>;
+  }
   const data = tinaData.post;
   return (
     <Layout
@@ -132,7 +139,15 @@ const BlogPage = ({ data: postData, query, variables }: PageProps) => {
 export const getStaticProps: GetStaticProps = async function ({ params }) {
   const relativePath = (params?.slug as string) + ".md";
   const tinaProps = await client.queries.postAndFeaturePosts({ relativePath });
+
+  const today = new Date();
+  const isDraft =
+    new Date(tinaProps.data.post.date || "") >= today &&
+    tinaProps.data.post.draft;
+
+  const showDrafts = Boolean(process.env.NEXT_PUBLIC_SHOW_DRAFTS || "");
   return {
+    notFound: isDraft && !showDrafts,
     props: {
       ...tinaProps,
     },
@@ -140,24 +155,17 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
 };
 
 export const getStaticPaths = async () => {
-  // drafts are available in preview mode or local dev
-  const showDrafts =
-    Boolean(Number(process.env.NEXT_PUBLIC_SHOW_DRAFTS) || 0) ||
-    process.env.VERCEL_ENV === "preview";
-  console.log("showDrafts", showDrafts);
-  let filter: PostFilter = {};
-  if (!showDrafts) {
-    filter = { draft: { eq: false } };
-  }
-  const postsListData = await client.queries.postConnection({
-    filter,
-  });
-  return {
-    paths: postsListData.data.postConnection?.edges?.map((post) => ({
-      params: { slug: post?.node?._sys.filename },
-    })),
-    fallback: "blocking",
+  const postsListData = await getPosts();
+
+  const res: GetStaticPathsResult<{ slug: string }> = {
+    paths:
+      postsListData.data.postConnection?.edges?.map((post) => ({
+        params: { slug: post?.node?._sys.filename || "" },
+      })) || [],
+    fallback: true,
   };
+
+  return res;
 };
 
 export default BlogPage;

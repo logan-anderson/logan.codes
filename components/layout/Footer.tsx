@@ -3,7 +3,7 @@ import { useEditState } from "tinacms/dist/react";
 // import Link from 'next/link';
 const AppFooter = () => {
   const { edit } = useEditState();
-  const canEdit = Boolean(Number(process.env.NEXT_PUBLIC_EDIT) || 0);
+  const canEdit = Boolean(process.env.NEXT_PUBLIC_SHOW_DRAFTS || "");
 
   return (
     <footer className="flex flex-wrap items-center justify-between p-4">

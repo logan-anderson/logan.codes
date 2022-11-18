@@ -1,6 +1,5 @@
 import { Slide } from "react-awesome-reveal";
-
-import { client } from "../../.tina/__generated__/client";
+import type { GetStaticPropsResult } from "next";
 
 import Layout from "../../components/layout/Layout";
 import BlogCard from "../../components/BlogCard";
@@ -9,6 +8,7 @@ import Button from "../../components/Buttons/ToggleButton";
 import { useState } from "react";
 import { BreadCrumb } from "../../components/BreadCrumb";
 import type { PostConnectionQuery } from "../../.tina/__generated__/types";
+import { getPosts } from "../../utils/getPosts";
 
 const Tags = ({
   tags,
@@ -132,16 +132,14 @@ const BlogList = ({ data }: { data: PostConnectionQuery }) => {
 };
 
 export const getStaticProps = async () => {
-  // could show draft posts if preview is true
-  const res = await client.queries.postConnection({
-    filter: { draft: { eq: false } },
-  });
+  const res = await getPosts();
 
   return {
+    revalidate: 3600,
     props: {
       data: res.data,
       query: res.query,
     },
-  };
+  } as GetStaticPropsResult<{ data: PostConnectionQuery; query: string }>;
 };
 export default BlogList;
