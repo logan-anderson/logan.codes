@@ -88,7 +88,6 @@ const BlogPage = ({ data: postData, query, variables }: PageProps) => {
                 },
               }}
             />
-            {/* <MarkdownBody source={data?.body || ""} /> */}
             <Comments />
           </div>
           <div className="text-center">
