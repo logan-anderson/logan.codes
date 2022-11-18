@@ -1,7 +1,7 @@
 ---
 draft: false
-date: "2020-05-31"
-minRead: "2"
+date: '2020-05-31'
+minRead: '2'
 title: What is Markdown?
 author: content/authors/logan_anderson.md
 description: Learn more about Markdown and what it is
@@ -9,6 +9,7 @@ tags:
   - markdown
   - code
 ---
+
 
 # What is Markdown?
 
