@@ -34,21 +34,4 @@ fragment PostParts2 on Post {
       }
     }
   }
-  featurePost {
-    __typename
-    post {
-      __typename
-      ... on Post {
-        ...PostParts
-        _sys {
-          filename
-          basename
-          breadcrumbs
-          path
-          relativePath
-          extension
-        }
-      }
-    }
-  }
 }

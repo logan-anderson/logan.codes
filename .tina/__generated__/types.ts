@@ -173,31 +173,7 @@ export type CollectionDocumentsArgs = {
 
 export type DocumentNode = Post | Author;
 
-export type PostBlocksLongFormText = {
-  __typename?: 'PostBlocksLongFormText';
-  content?: Maybe<Scalars['String']>;
-};
-
-export type PostBlocksImg = {
-  __typename?: 'PostBlocksImg';
-  img?: Maybe<Scalars['String']>;
-};
-
-export type PostBlocksIframe = {
-  __typename?: 'PostBlocksIframe';
-  url?: Maybe<Scalars['String']>;
-};
-
-export type PostBlocks = PostBlocksLongFormText | PostBlocksImg | PostBlocksIframe;
-
 export type PostAuthor = Author;
-
-export type PostFeaturePostPost = Post;
-
-export type PostFeaturePost = {
-  __typename?: 'PostFeaturePost';
-  post?: Maybe<PostFeaturePostPost>;
-};
 
 export type PostFeaturePostsPost = Post;
 
@@ -209,15 +185,13 @@ export type PostFeaturePosts = {
 export type Post = Node & Document & {
   __typename?: 'Post';
   draft?: Maybe<Scalars['Boolean']>;
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   date?: Maybe<Scalars['String']>;
-  body?: Maybe<Scalars['String']>;
-  blocks?: Maybe<Array<Maybe<PostBlocks>>>;
+  body?: Maybe<Scalars['JSON']>;
   minRead?: Maybe<Scalars['Float']>;
   author?: Maybe<PostAuthor>;
   description?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  featurePost?: Maybe<PostFeaturePost>;
   featurePosts?: Maybe<Array<Maybe<PostFeaturePosts>>>;
   id: Scalars['ID'];
   _sys: SystemInfo;
@@ -244,29 +218,14 @@ export type DatetimeFilter = {
   in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type PostBlocksLongFormTextFilter = {
-  content?: InputMaybe<StringFilter>;
-};
-
-export type ImageFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type PostBlocksImgFilter = {
-  img?: InputMaybe<ImageFilter>;
-};
-
-export type PostBlocksIframeFilter = {
+export type PostBodyIframeFilter = {
   url?: InputMaybe<StringFilter>;
+  height?: InputMaybe<StringFilter>;
+  width?: InputMaybe<StringFilter>;
 };
 
-export type PostBlocksFilter = {
-  longFormText?: InputMaybe<PostBlocksLongFormTextFilter>;
-  img?: InputMaybe<PostBlocksImgFilter>;
-  iframe?: InputMaybe<PostBlocksIframeFilter>;
+export type PostBodyFilter = {
+  Iframe?: InputMaybe<PostBodyIframeFilter>;
 };
 
 export type NumberFilter = {
@@ -283,14 +242,6 @@ export type PostAuthorFilter = {
   author?: InputMaybe<AuthorFilter>;
 };
 
-export type PostFeaturePostPostFilter = {
-  post?: InputMaybe<PostFilter>;
-};
-
-export type PostFeaturePostFilter = {
-  post?: InputMaybe<PostFeaturePostPostFilter>;
-};
-
 export type PostFeaturePostsPostFilter = {
   post?: InputMaybe<PostFilter>;
 };
@@ -303,13 +254,11 @@ export type PostFilter = {
   draft?: InputMaybe<BooleanFilter>;
   title?: InputMaybe<StringFilter>;
   date?: InputMaybe<DatetimeFilter>;
-  body?: InputMaybe<StringFilter>;
-  blocks?: InputMaybe<PostBlocksFilter>;
+  body?: InputMaybe<PostBodyFilter>;
   minRead?: InputMaybe<NumberFilter>;
   author?: InputMaybe<PostAuthorFilter>;
   description?: InputMaybe<StringFilter>;
   tags?: InputMaybe<StringFilter>;
-  featurePost?: InputMaybe<PostFeaturePostFilter>;
   featurePosts?: InputMaybe<PostFeaturePostsFilter>;
 };
 
@@ -421,28 +370,6 @@ export type DocumentMutation = {
   author?: InputMaybe<AuthorMutation>;
 };
 
-export type PostBlocksLongFormTextMutation = {
-  content?: InputMaybe<Scalars['String']>;
-};
-
-export type PostBlocksImgMutation = {
-  img?: InputMaybe<Scalars['String']>;
-};
-
-export type PostBlocksIframeMutation = {
-  url?: InputMaybe<Scalars['String']>;
-};
-
-export type PostBlocksMutation = {
-  longFormText?: InputMaybe<PostBlocksLongFormTextMutation>;
-  img?: InputMaybe<PostBlocksImgMutation>;
-  iframe?: InputMaybe<PostBlocksIframeMutation>;
-};
-
-export type PostFeaturePostMutation = {
-  post?: InputMaybe<Scalars['String']>;
-};
-
 export type PostFeaturePostsMutation = {
   post?: InputMaybe<Scalars['String']>;
 };
@@ -451,13 +378,11 @@ export type PostMutation = {
   draft?: InputMaybe<Scalars['Boolean']>;
   title?: InputMaybe<Scalars['String']>;
   date?: InputMaybe<Scalars['String']>;
-  body?: InputMaybe<Scalars['String']>;
-  blocks?: InputMaybe<Array<InputMaybe<PostBlocksMutation>>>;
+  body?: InputMaybe<Scalars['JSON']>;
   minRead?: InputMaybe<Scalars['Float']>;
   author?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  featurePost?: InputMaybe<PostFeaturePostMutation>;
   featurePosts?: InputMaybe<Array<InputMaybe<PostFeaturePostsMutation>>>;
 };
 
@@ -471,11 +396,11 @@ export type PostAndFeaturePostsQueryVariables = Exact<{
 }>;
 
 
-export type PostAndFeaturePostsQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null> | null } | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null> | null } | null } | null, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } };
+export type PostAndFeaturePostsQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } };
 
-export type PostParts2Fragment = { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null> | null } | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null> | null } | null } | null, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null };
+export type PostParts2Fragment = { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null };
 
-export type PostPartsFragment = { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null> | null };
+export type PostPartsFragment = { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null> | null };
 
 export type AuthorPartsFragment = { __typename?: 'Author', name?: string | null, avatar?: string | null };
 
@@ -484,7 +409,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null> | null } };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null> | null } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
@@ -496,7 +421,7 @@ export type PostConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename?: 'Post', id: string, draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePost?: { __typename: 'PostFeaturePost', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title?: string | null, date?: string | null, body?: string | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, blocks?: Array<{ __typename: 'PostBlocksLongFormText', content?: string | null } | { __typename: 'PostBlocksImg', img?: string | null } | { __typename: 'PostBlocksIframe', url?: string | null } | null> | null, featurePost?: { __typename: 'PostFeaturePost' } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null> | null } | null } | null> | null } };
+export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null> | null } | null } | null> | null } };
 
 export type AuthorQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -523,18 +448,6 @@ export const PostPartsFragmentDoc = gql`
   title
   date
   body
-  blocks {
-    __typename
-    ... on PostBlocksLongFormText {
-      content
-    }
-    ... on PostBlocksImg {
-      img
-    }
-    ... on PostBlocksIframe {
-      url
-    }
-  }
   minRead
   author {
     ... on Author {
@@ -547,114 +460,6 @@ export const PostPartsFragmentDoc = gql`
   }
   description
   tags
-  featurePost {
-    __typename
-    post {
-      ... on Post {
-        draft
-        title
-        date
-        body
-        blocks {
-          __typename
-          ... on PostBlocksLongFormText {
-            content
-          }
-          ... on PostBlocksImg {
-            img
-          }
-          ... on PostBlocksIframe {
-            url
-          }
-        }
-        minRead
-        author {
-          ... on Author {
-            name
-            avatar
-          }
-          ... on Document {
-            id
-          }
-        }
-        description
-        tags
-        featurePost {
-          __typename
-          post {
-            ... on Post {
-              draft
-              title
-              date
-              body
-              blocks {
-                __typename
-                ... on PostBlocksLongFormText {
-                  content
-                }
-                ... on PostBlocksImg {
-                  img
-                }
-                ... on PostBlocksIframe {
-                  url
-                }
-              }
-              minRead
-              description
-              tags
-              featurePost {
-                __typename
-              }
-              featurePosts {
-                __typename
-              }
-            }
-            ... on Document {
-              id
-            }
-          }
-        }
-        featurePosts {
-          __typename
-          post {
-            ... on Post {
-              draft
-              title
-              date
-              body
-              blocks {
-                __typename
-                ... on PostBlocksLongFormText {
-                  content
-                }
-                ... on PostBlocksImg {
-                  img
-                }
-                ... on PostBlocksIframe {
-                  url
-                }
-              }
-              minRead
-              description
-              tags
-              featurePost {
-                __typename
-              }
-              featurePosts {
-                __typename
-              }
-            }
-            ... on Document {
-              id
-            }
-          }
-        }
-      }
-      ... on Document {
-        id
-      }
-    }
-  }
   featurePosts {
     __typename
     post {
@@ -663,18 +468,6 @@ export const PostPartsFragmentDoc = gql`
         title
         date
         body
-        blocks {
-          __typename
-          ... on PostBlocksLongFormText {
-            content
-          }
-          ... on PostBlocksImg {
-            img
-          }
-          ... on PostBlocksIframe {
-            url
-          }
-        }
         minRead
         author {
           ... on Author {
@@ -687,41 +480,6 @@ export const PostPartsFragmentDoc = gql`
         }
         description
         tags
-        featurePost {
-          __typename
-          post {
-            ... on Post {
-              draft
-              title
-              date
-              body
-              blocks {
-                __typename
-                ... on PostBlocksLongFormText {
-                  content
-                }
-                ... on PostBlocksImg {
-                  img
-                }
-                ... on PostBlocksIframe {
-                  url
-                }
-              }
-              minRead
-              description
-              tags
-              featurePost {
-                __typename
-              }
-              featurePosts {
-                __typename
-              }
-            }
-            ... on Document {
-              id
-            }
-          }
-        }
         featurePosts {
           __typename
           post {
@@ -730,24 +488,9 @@ export const PostPartsFragmentDoc = gql`
               title
               date
               body
-              blocks {
-                __typename
-                ... on PostBlocksLongFormText {
-                  content
-                }
-                ... on PostBlocksImg {
-                  img
-                }
-                ... on PostBlocksIframe {
-                  url
-                }
-              }
               minRead
               description
               tags
-              featurePost {
-                __typename
-              }
               featurePosts {
                 __typename
               }
@@ -769,23 +512,6 @@ export const PostParts2FragmentDoc = gql`
     fragment PostParts2 on Post {
   ...PostParts
   featurePosts {
-    __typename
-    post {
-      __typename
-      ... on Post {
-        ...PostParts
-        _sys {
-          filename
-          basename
-          breadcrumbs
-          path
-          relativePath
-          extension
-        }
-      }
-    }
-  }
-  featurePost {
     __typename
     post {
       __typename

@@ -25,6 +25,8 @@ export default defineSchema({
           name: "title",
           type: "string",
           label: "Title",
+          required: true,
+          isTitle: true,
         },
         {
           name: "date",
@@ -37,48 +39,27 @@ export default defineSchema({
         {
           name: "body",
           label: "Main Content",
-          type: "string",
+          type: "rich-text",
           isBody: true,
-          ui: {
-            component: "markdown",
-          },
-        },
-        {
-          name: "blocks",
-          label: "Content Sections",
-          type: "object",
-          list: true,
           templates: [
             {
-              label: "Long form Text",
-              name: "longFormText",
-              fields: [
-                {
-                  name: "content",
-                  label: "Content",
-                  type: "string",
-                },
-              ],
-            },
-            {
-              label: "Image",
-              name: "img",
-              fields: [
-                {
-                  name: "img",
-                  label: "Image",
-                  type: "image",
-                },
-              ],
-            },
-            {
               label: "Iframe",
-              name: "iframe",
+              name: "Iframe",
               fields: [
                 {
                   name: "url",
                   type: "string",
                   label: "url",
+                },
+                {
+                  name: "height",
+                  type: "string",
+                  label: "Height",
+                },
+                {
+                  name: "width",
+                  type: "string",
+                  label: "Width",
                 },
               ],
             },
@@ -114,22 +95,14 @@ export default defineSchema({
         },
         {
           type: "object",
-          name: "featurePost",
-          label: "Featured Posts",
-          fields: [
-            {
-              type: "reference",
-              label: "Post",
-              name: "post",
-              collections: ["post"],
-            },
-          ],
-        },
-        {
-          type: "object",
           list: true,
           name: "featurePosts",
           label: "Featured Posts",
+          ui: {
+            itemProps: (item) => {
+              return { label: item?.post };
+            },
+          },
           fields: [
             {
               type: "reference",

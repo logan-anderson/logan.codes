@@ -1,8 +1,12 @@
 import { GetStaticProps } from "next";
 
+import { okaidia as Theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+
 import Layout from "../../components/layout/Layout";
 import { BreadCrumb } from "../../components/BreadCrumb";
-import { MarkdownBody, STYLES } from "../../components/Markdown";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { STYLES } from "../../components/Markdown";
 import { BlogHeader } from "../../components/blog";
 import { Comments } from "../../components/Cmments";
 import BlogCard from "../../components/BlogCard";
@@ -46,18 +50,44 @@ const BlogPage = ({ data: postData, query, variables }: PageProps) => {
         <BlogHeader />
         <div className="relative px-4 sm:px-6 lg:px-8">
           <div className={STYLES}>
-            {data?.blocks?.map((block) => {
-              if (block?.__typename === "PostBlocksIframe") {
-                return <iframe width="100%" src={block.url || ""} />;
-              }
-              if (block?.__typename === "PostBlocksLongFormText") {
-                return <MarkdownBody source={block.content || ""} />;
-              }
-              if (block?.__typename === "PostBlocksImg") {
-                return <img src={block.img || ""} />;
-              }
-            })}
-            <MarkdownBody source={data?.body || ""} />
+            <TinaMarkdown
+              content={data?.body}
+              components={{
+                h1: (props) => {
+                  return (
+                    <h1 className="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 dark:text-gray-50">
+                      {props?.children}
+                    </h1>
+                  );
+                },
+                p: (props) => {
+                  return (
+                    <p className="text-gray-500 mx-auto">{props?.children}</p>
+                  );
+                },
+                code_block: (props) => {
+                  return (
+                    <SyntaxHighlighter style={Theme} language={props?.lang}>
+                      {props?.value}
+                    </SyntaxHighlighter>
+                  );
+                },
+                // @ts-ignore
+                Iframe: ({
+                  url,
+                  height,
+                  width,
+                }: {
+                  url: string;
+                  width: string;
+                  height: string;
+                }) => {
+                  return (
+                    <iframe width={width} height={height} src={url || ""} />
+                  );
+                },
+              }}
+            />
             <Comments />
           </div>
           <div className="text-center">
