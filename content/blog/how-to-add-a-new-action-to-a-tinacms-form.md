@@ -1,6 +1,6 @@
 ---
 draft: false
-minRead: "3"
+minRead: '3'
 title: How to add a new action to a tinaCMS form
 author: content/authors/logan_anderson.md
 description: >-
@@ -10,8 +10,9 @@ tags:
   - nextjs
   - tinaCMS
   - code
-date: "Mon Jul 13 2020 09:42:46 GMT-0300 (Atlantic Daylight Time)"
+date: 'Mon Jul 13 2020 09:42:46 GMT-0300 (Atlantic Daylight Time)'
 ---
+
 
 # How to make a form action
 
