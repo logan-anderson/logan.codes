@@ -1,7 +1,7 @@
 import { defineConfig } from "tinacms";
 import schema from "./schema";
 
-export default defineConfig({
+const config = defineConfig({
   build: {
     publicFolder: "public",
     outputFolder: "admin",
@@ -15,3 +15,6 @@ export default defineConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "",
   token: process.env.NEXT_PUBLIC_TINA_TOKEN || "",
 });
+
+console.log({ config });
+export default config;
