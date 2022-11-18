@@ -16,7 +16,6 @@ import type {
   PostAndFeaturePostsQuery,
   Exact,
   Author as AuthorType,
-  PostFilter,
 } from "../../.tina/__generated__/types";
 import { Author } from "../../components/AuthorDetail";
 import { useTina } from "tinacms/dist/react";
