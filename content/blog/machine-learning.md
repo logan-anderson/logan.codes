@@ -18,6 +18,7 @@ featurePosts:
   - post: content/blog/what-is-nextjs.md
 ---
 
+
 # What is Machine Learning
 
 > Success in creating AI would be the biggest event in human history. Unfortunately, it might also be the last, unless we learn how to avoid the risks
