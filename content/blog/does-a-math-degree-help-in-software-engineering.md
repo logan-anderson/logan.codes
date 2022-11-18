@@ -1,7 +1,7 @@
 ---
 draft: false
-date: "2020-10-24"
-minRead: "4"
+date: '2020-10-24'
+minRead: '4'
 title: Does a Math Degree Help in Software Engineering?
 author: content/authors/logan_anderson.md
 description: >-
@@ -11,6 +11,7 @@ description: >-
 tags:
   - math
 ---
+
 
 # Does a Math Degree Help in Software Engineering?
 
