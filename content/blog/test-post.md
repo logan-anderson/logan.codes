@@ -14,3 +14,4 @@ featurePosts:
   - post: content/blog/machine-learning.md
 ---
 
+This is a test
