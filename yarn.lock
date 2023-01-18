@@ -2712,10 +2712,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/rss@0.0.28":
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/@types/rss/-/rss-0.0.28.tgz#2780ffec484ca3c69cce63e314efd4ca4454f6c9"
-  integrity sha512-Kymd0BI1tBOSwOwCN5Y8dtlJegTIF+izS8tJETiivJ7qAJGHhnuZjiunXWqBkgv6dg0ZZWyf0kEfMgkr4YWJzg==
+"@types/rss@0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@types/rss/-/rss-0.0.30.tgz#0bee0c2e8bcac4374ce7a760c1f21a532f58c50e"
+  integrity sha512-RnWs98qajbcAZqie6EWYraJ2N+1Q1Wy9KN7HcVPJ//sYJGVjLjvkChZdeQPwf88xAcNUCcLXt6Zz3kiid7s/yw==
 
 "@types/scheduler@*":
   version "0.16.2"
