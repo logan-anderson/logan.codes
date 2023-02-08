@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "10.2.0",
-    "@tinacms/cli": "^1.0.0",
+    "@tinacms/cli": "^1.0.9",
     "@types/classnames": "2.2.10",
     "@types/gsap": "1.20.2",
     "@types/gtag.js": "0.0.7",
