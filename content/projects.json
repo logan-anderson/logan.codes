@@ -8,6 +8,40 @@
       "imgUrl": "https://i.imgur.com/x7eUp15.png"
     },
     {
+      "label": "Disc Golf Club Rating and Scoring Web App",
+      "url": "https://dgscore.live",
+      "excerpt": "TODO:",
+      "slug": "dg-rating-app",
+      "imgUrl": ""
+    },
+    {
+      "label": "Disc Golf Disc API",
+      "url": "https://dgscore.live",
+      "excerpt": "TODO:",
+      "slug": "dg-rating-app",
+      "imgUrl": ""
+    },
+    {
+      "label": "Twitter Bot for New Disc Golf Discs",
+      "url": "https://dgscore.live",
+      "excerpt": "TODO:",
+      "slug": "dg-rating-app",
+      "imgUrl": ""
+    },
+    {
+      "label": "RSS-etsy",
+      "url": "https://dgscore.live",
+      "excerpt": "TODO:",
+      "slug": "dg-rating-app",
+      "imgUrl": ""
+    },
+    {
+      "label": "Number Game",
+      "url": "https://github.com/logan-anderson/number-game",
+      "excerpt": "",
+      "imgUrl": ""
+    },
+    {
       "label": "Full Stack List Management Web App",
       "url": "https://raw.githubusercontent.com/logan-anderson/note-app/develop/README.md",
       "excerpt": "Web app that lets users view, edit and delete notes. It also uses passport to allow users to login, logout and make an account",
