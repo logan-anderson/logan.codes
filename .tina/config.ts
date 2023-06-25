@@ -16,5 +16,4 @@ const config = defineConfig({
   token: process.env.NEXT_PUBLIC_TINA_TOKEN || "",
 });
 
-console.log({ config });
 export default config;

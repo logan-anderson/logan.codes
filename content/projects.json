@@ -1,6 +1,7 @@
 {
   "projects": [
     {
+      "fromGithub": true,
       "label": "This Blog",
       "url": "https://raw.githubusercontent.com/logan-anderson/blog-nextjs-tina-tailwind/master/README.md",
       "excerpt": "This blog was made with React, Nextjs and TinaCMS. It pulls static data from github and local json files at build time.",
@@ -8,40 +9,31 @@
       "imgUrl": "https://i.imgur.com/x7eUp15.png"
     },
     {
+      "fromGithub": false,
       "label": "Disc Golf Club Rating and Scoring Web App",
-      "url": "https://dgscore.live",
-      "excerpt": "TODO:",
+      "excerpt": "A Disc golf scoring system that allows users to login, create a club, add members, and score rounds with a custom rating system that I created. It also has a leaderboard that shows the top rated players in the club along with a history.",
       "slug": "dg-rating-app",
-      "imgUrl": ""
+      "imgUrl": "https://i.imgur.com/MpyYHcG.png",
+      "rawMarkdown": ""
     },
     {
+      "fromGithub": false,
       "label": "Disc Golf Disc API",
-      "url": "https://dgscore.live",
-      "excerpt": "TODO:",
-      "slug": "dg-rating-app",
-      "imgUrl": ""
+      "excerpt": "A simple rest API displays up do date disc golf data, hosted on fly.io and can be accessed though rapidapi",
+      "slug": "dg-api",
+      "imgUrl": "https://i.imgur.com/gCTIctZ.png",
+      "rawMarkdown": ""
     },
     {
+      "fromGithub": false,
       "label": "Twitter Bot for New Disc Golf Discs",
-      "url": "https://dgscore.live",
-      "excerpt": "TODO:",
-      "slug": "dg-rating-app",
-      "imgUrl": ""
+      "excerpt": "A twitter bot that posts when new discs are added to the PDGA site. It uses a custom machine learning model to accurately predict flight characteristics of new discs.",
+      "slug": "dg-twitter-bot",
+      "imgUrl": "https://i.imgur.com/f94evQN.png",
+      "rawMarkdown": ""
     },
     {
-      "label": "RSS-etsy",
-      "url": "https://dgscore.live",
-      "excerpt": "TODO:",
-      "slug": "dg-rating-app",
-      "imgUrl": ""
-    },
-    {
-      "label": "Number Game",
-      "url": "https://github.com/logan-anderson/number-game",
-      "excerpt": "",
-      "imgUrl": ""
-    },
-    {
+      "fromGithub": true,
       "label": "Full Stack List Management Web App",
       "url": "https://raw.githubusercontent.com/logan-anderson/note-app/develop/README.md",
       "excerpt": "Web app that lets users view, edit and delete notes. It also uses passport to allow users to login, logout and make an account",
@@ -49,6 +41,7 @@
       "imgUrl": "https://i.imgur.com/UF0K8ZX.png"
     },
     {
+      "fromGithub": true,
       "label": "Blog for Loretta Anderson",
       "excerpt": "A statically generated blog that uses Sanity, Next.js, React and SSR.",
       "slug": "loretta-blog",
@@ -56,6 +49,7 @@
       "url": "https://raw.githubusercontent.com/logan-anderson/loretta-blog/main/README.md"
     },
     {
+      "fromGithub": true,
       "url": "https://raw.githubusercontent.com/logan-anderson/competitive-programming/master/README.md",
       "excerpt": "A collection of my solutions of competitive programming problems on kattis",
       "label": "Competitive Programming",

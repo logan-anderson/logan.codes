@@ -6,11 +6,13 @@ import Layout from "../../components/layout/Layout";
 import { ProjectCard } from "../../components/ProjectCard";
 
 export interface Projects {
-  url: string;
+  url?: string;
   label: string;
   excerpt: string;
   slug: string;
   imgUrl?: string;
+  fromGithub?: boolean;
+  rawMarkdown?: string;
 }
 const ProjectPage: React.FC<{ projects: Projects[]; preview: boolean }> = (
   props
