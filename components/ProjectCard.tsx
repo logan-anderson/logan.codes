@@ -1,54 +1,35 @@
-import Link from "next/link";
 import React from "react";
 import { Projects } from "../pages/projects";
 
 export const ProjectCard: React.FC<{ project: Projects }> = ({ project }) => {
-  const hasImg = Boolean(project.imgUrl);
   return (
-    <Link href={`/projects/${project.slug}`}>
-      <div className="dark:text-gray-300 px-6 pb-10 transition duration-500 ease-in-out transform  hover:scale-105 hover:underline cursor-pointer color-blue">
-        <div className={`grid ${hasImg && "md:grid-cols-2"} gap-5`}>
-          <div>
-            <h2
-              style={{
-                marginTop: "1rem",
-                marginBottom: "1rem",
-              }}
-              className="dark:text-gray-50"
-            >
-              {project.label}
-            </h2>
-            <div>{project.excerpt}</div>
-          </div>
-          <div>
-            {project.imgUrl && <img src={project.imgUrl} alt="image" />}
-          </div>
+    <div className=" cursor-pointer py-6 dark:text-gray-300 px-6 pb-10 transition duration-500 ease-in-out transform  hover:scale-105">
+      <a
+        href={project.url}
+        className="bg-white dark:bg-gray-700  relative block overflow-hidden rounded-lg border border-gray-100 dark:border-gray-800 p-4 sm:p-6 lg:p-8"
+      >
+        <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r  from-green-300 via-blue-500 to-purple-600 dark:from-blue-600 dark:via-green-600 dark:to-purple-600"></span>
+
+        <div className="sm:flex sm:justify-between sm:gap-4">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-200 sm:text-xl">
+            {project.label}
+          </h2>
+
+          {project.imgUrl && (
+            <img
+              alt={project.label}
+              src={project.imgUrl}
+              className="h-56 rounded-lg object-cover shadow-sm mx-auto"
+            />
+          )}
         </div>
 
-        {/* divider */}
-        <div className="relative">
-          <div
-            className="absolute inset-0 flex items-center"
-            aria-hidden="true"
-          >
-            <div className="w-full border-t border-gray-300"></div>
-          </div>
-          <div className="relative flex justify-center">
-            <span className="px-3 border bg-white dark:bg-gray-900 text-sm text-gray-500 dark:text-gray-300 my-auto">
-              See more{" "}
-              <span
-                className="text-2xl"
-                style={{
-                  display: "inline-block",
-                  verticalAlign: "middle",
-                }}
-              >
-                &#8680;
-              </span>
-            </span>
-          </div>
+        <div className="mt-4">
+          <p className="max-w-[40ch] text-lg text-gray-500 dark:text-gray-300 ">
+            {project.excerpt}
+          </p>
         </div>
-      </div>
-    </Link>
+      </a>
+    </div>
   );
 };

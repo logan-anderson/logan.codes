@@ -19,19 +19,11 @@ const ProjectPage: React.FC<{ projects: Projects[]; preview: boolean }> = (
     <Layout preview={props.preview} title="Projects">
       <div className="max-w-prose mx-auto">
         <BreadCrumb links={[{ label: "Projects", href: "/projects" }]} />
-        <div className="prose prose-blue prose-lg text-lg max-w-prose mx-auto">
-          <Slide
-            cascade
-            direction="up"
-            duration={700}
-            damping={0.1}
-            triggerOnce
-          >
-            {props.projects?.map((item) => (
-              <ProjectCard project={item} />
-            ))}
-          </Slide>
-        </div>
+        <Slide cascade direction="up" duration={700} damping={0.1} triggerOnce>
+          {props.projects?.map((item) => (
+            <ProjectCard key={item.slug} project={item} />
+          ))}
+        </Slide>
       </div>
     </Layout>
   );

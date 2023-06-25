@@ -58,10 +58,10 @@ const BlogCardNew = ({ post }: Props) => {
                 </a>
               </p>
               <div className="flex text-sm leading-5 text-gray-500 dark:text-gray-400">
-                <time dateTime={post.data.frontmatter.date}>
+                {/* <time dateTime={post.data.frontmatter.date}>
                   {new Date(post.data.frontmatter.date).toDateString()}
-                </time>
-                <span className="mx-1">·</span>
+                </time> */}
+                {/* <span className="mx-1">·</span> */}
                 <span>{post.data.frontmatter.minRead} min read</span>
               </div>
             </div>
