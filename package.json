@@ -19,6 +19,7 @@
     "@fortawesome/free-solid-svg-icons": "5.15.4",
     "@fortawesome/react-fontawesome": "0.1.15",
     "@headlessui/react": "0.3.2",
+    "@heroicons/react": "^2.0.18",
     "@tailwindcss/aspect-ratio": "0.2.1",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "0.4.1",
