@@ -44,11 +44,11 @@
     "react-syntax-highlighter": "15.4.4",
     "rss": "1.2.2",
     "styled-components": "5.1.1",
-    "tinacms": "^1.5.11"
+    "tinacms": "^1.5.12"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "10.2.0",
-    "@tinacms/cli": "^1.5.20",
+    "@tinacms/cli": "^1.5.21",
     "@types/classnames": "2.2.10",
     "@types/gsap": "1.20.2",
     "@types/gtag.js": "0.0.7",
