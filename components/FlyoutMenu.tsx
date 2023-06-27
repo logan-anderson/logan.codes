@@ -9,15 +9,16 @@ export interface FlyoutMenuProps {
 
 const FlyoutMenuItem: React.FC<FlyoutMenuProps> = (props) => {
   return (
-    <Link href={props.href}>
-      <a className="-m-3 p-3 block rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition ease-in-out duration-150">
-        <p className="text-base font-medium text-gray-900 dark:text-gray-100">
-          {props.label}
-        </p>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
-          {props.text}
-        </p>
-      </a>
+    <Link
+      href={props.href}
+      className="-m-3 p-3 block rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition ease-in-out duration-150"
+    >
+      <p className="text-base font-medium text-gray-900 dark:text-gray-100">
+        {props.label}
+      </p>
+      <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
+        {props.text}
+      </p>
     </Link>
   );
 };
@@ -36,8 +37,7 @@ const FlyoutMenuItems: FlyoutMenuProps[] = [
   {
     href: "/resources",
     label: "Resources",
-    text:
-      "Resources that I recommend for learning programing and web devolvement",
+    text: "Resources that I recommend for learning programing and web devolvement",
   },
 ];
 

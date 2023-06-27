@@ -11,6 +11,7 @@ type Props = {
   title?: string;
   description?: string;
   navDisable?: boolean;
+  children: React.ReactNode;
 };
 
 const Layout: React.FunctionComponent<Props> = ({
@@ -33,9 +34,6 @@ const Layout: React.FunctionComponent<Props> = ({
     }
   };
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
     if (
       localStorage.theme === "dark" ||
@@ -57,8 +55,7 @@ const Layout: React.FunctionComponent<Props> = ({
             {
               width: 754,
               alt: "Logan Anderson",
-              url:
-                "https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jpg",
+              url: "https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jpg",
             },
           ],
         }}

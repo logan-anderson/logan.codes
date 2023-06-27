@@ -41,12 +41,10 @@ const NavBar = () => {
         <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start">
           <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
             <div className="flex items-center justify-between w-full md:w-auto">
-              <Link href="/">
-                <a aria-label="Home" className="no-underline">
-                  <strong className="text-blue-600 h-8 w-auto sm:h-10 no-underline text-3xl">
-                    {"<Home/>"}
-                  </strong>
-                </a>
+              <Link href="/" aria-label="Home" className="no-underline">
+                <strong className="text-blue-600 h-8 w-auto sm:h-10 no-underline text-3xl">
+                  {"<Home/>"}
+                </strong>
               </Link>
               <div className="mr-2 flex items-center md:hidden">
                 <button
@@ -77,17 +75,19 @@ const NavBar = () => {
           <div className="grid-cols-4 gap-1 hidden md:ml-10 md:grid pr-4">
             <FlyoutMenu className="text-center" />
             <div className="text-center">
-              <Link href="/blog">
-                <a className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out">
-                  Blog Posts
-                </a>
+              <Link
+                href="/blog"
+                className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+              >
+                Blog Posts
               </Link>
             </div>
             <div className="text-center">
-              <Link href="/projects">
-                <a className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out">
-                  My Projects
-                </a>
+              <Link
+                href="/projects"
+                className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+              >
+                Projects
               </Link>
             </div>
             <div className="grid grid-cols-3 gap-3 text-center">
@@ -114,14 +114,12 @@ const NavBar = () => {
 
 const MobileMenuItem = (props: { href: string; title: string }) => {
   return (
-    <Link href={props.href}>
-      <a
-        href="#"
-        className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-50 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-700  focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-        role="menuitem"
-      >
-        {props.title}
-      </a>
+    <Link
+      href={props.href}
+      className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-50 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-700  focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+      role="menuitem"
+    >
+      {props.title}
     </Link>
   );
 };
@@ -154,12 +152,10 @@ export const MobileNav: React.FC<NavProps> = ({
             >
               <div className="px-5 pt-4 flex items-center justify-between">
                 <div>
-                  <Link href="/">
-                    <a aria-label="Home" className="no-underline">
-                      <strong className="text-blue-600 h-8 w-auto sm:h-10 no-underline text-3xl">
-                        {"<Home/>"}
-                      </strong>
-                    </a>
+                  <Link href="/" aria-label="Home" className="no-underline">
+                    <strong className="text-blue-600 h-8 w-auto sm:h-10 no-underline text-3xl">
+                      {"<Home/>"}
+                    </strong>
                   </Link>
                 </div>
                 <div className="-mr-2">
@@ -191,7 +187,7 @@ export const MobileNav: React.FC<NavProps> = ({
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
                 />
                 <MobileMenuItem title="Blog Posts" href="/blog" />
-                <MobileMenuItem title="My Projects" href="/projects" />
+                <MobileMenuItem title="Projects" href="/projects" />
                 <div className="block nowrap px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50  dark:hover:bg-gray-600 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
                   <AppIcon
                     icon={faGithub}

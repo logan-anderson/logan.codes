@@ -18,12 +18,9 @@ const ListItem = ({ text }: { text: string }) => {
             clipRule="evenodd"
           />
         </svg>
-        <a
-          href="#"
-          className="text-sm leading-5 font-medium text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out"
-        >
+        <div className="text-sm leading-5 font-medium text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out">
           {text}
-        </a>
+        </div>
       </div>
     </li>
   );
@@ -31,9 +28,7 @@ const ListItem = ({ text }: { text: string }) => {
 const Item = ({ text, href }: { text: string; href?: string }) => {
   return href ? (
     <Link href={href} as={href}>
-      <a>
-        <ListItem text={text} />
-      </a>
+      <ListItem text={text} />
     </Link>
   ) : (
     <ListItem text={text} />
@@ -51,7 +46,7 @@ export const BreadCrumb = ({
         <Link href={"/"}>
           <li>
             <div>
-              <a href="#" className="text-gray-400 hover:text-gray-500">
+              <div className="text-gray-400 hover:text-gray-500">
                 {/* Heroicon name: home */}
                 <svg
                   className="flex-shrink-0 h-5 w-5 transition duration-150 ease-in-out"
@@ -62,7 +57,7 @@ export const BreadCrumb = ({
                 >
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                 </svg>
-              </a>
+              </div>
               <span className="sr-only">Home</span>
             </div>
           </li>

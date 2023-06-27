@@ -5,10 +5,8 @@ const RESUME_URL =
 
 const ResumePage = () => {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // @ts-ignore
-      window.location = RESUME_URL;
-    }
+    // @ts-ignore
+    window.location = RESUME_URL;
   }, []);
   return (
     <Layout preview={false} title="resume">
