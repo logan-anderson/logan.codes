@@ -6,7 +6,7 @@
       "excerpt": "A simple rest API displays up do date disc golf data, hosted on fly.io and can be accessed though rapidapi",
       "slug": "dg-api",
       "imgUrl": "https://i.imgur.com/gCTIctZ.png",
-      "rawMarkdown": ""
+      "rawMarkdown": "# Disc Golf API\n\nThis API will allow you to search, all the discs that are currently available on the market. It will also be updated when new discs are approved by the PDGA. When new discs are approved by the PDGA, they will be added to this API and when disc golf flight numbers are not available, machine learning is used to predict what they will be.  \n\nBuilt on express, it has rate limiting, cacheing and[ integration with rapidapi](https://rapidapi.com/loganderson55-kQiMtgko_ez/api/disc-golf-discs/). \\\n\\\nYou can see \n"
     },
     {
       "fromGithub": true,

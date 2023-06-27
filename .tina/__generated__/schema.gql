@@ -17,6 +17,11 @@ type SystemInfo {
   collection: Collection!
 }
 
+type Folder {
+  name: String!
+  path: String!
+}
+
 type PageInfo {
   hasPreviousPage: Boolean!
   hasNextPage: Boolean!
@@ -48,6 +53,8 @@ type Query {
   collections: [Collection!]!
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
+  projects(relativePath: String): Projects!
+  projectsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ProjectsFilter): ProjectsConnection!
   post(relativePath: String): Post!
   postConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PostFilter): PostConnection!
   author(relativePath: String): Author!
@@ -55,6 +62,7 @@ type Query {
 }
 
 input DocumentFilter {
+  projects: ProjectsFilter
   post: PostFilter
   author: AuthorFilter
 }
@@ -79,10 +87,70 @@ type Collection {
   matches: String
   templates: [JSON]
   fields: [JSON]
-  documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter): DocumentConnection!
+  documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Post | Author
+union DocumentNode = Projects | Post | Author | Folder
+
+type ProjectsProjects {
+  fromGithub: Boolean
+  label: String
+  excerpt: String
+  slug: String
+  imgUrl: String
+  url: String
+  rawMarkdown: JSON
+}
+
+type Projects implements Node & Document {
+  projects: [ProjectsProjects]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
+input StringFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
+input ProjectsProjectsFilter {
+  fromGithub: BooleanFilter
+  label: StringFilter
+  excerpt: StringFilter
+  slug: StringFilter
+  imgUrl: StringFilter
+  url: StringFilter
+  rawMarkdown: RichTextFilter
+}
+
+input ProjectsFilter {
+  projects: ProjectsProjectsFilter
+}
+
+type ProjectsConnectionEdges {
+  cursor: String!
+  node: Projects
+}
+
+type ProjectsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [ProjectsConnectionEdges]
+}
 
 union PostAuthor = Author
 
@@ -105,18 +173,6 @@ type Post implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
-}
-
-input BooleanFilter {
-  eq: Boolean
-  exists: Boolean
-}
-
-input StringFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
 }
 
 input DatetimeFilter {
@@ -208,18 +264,42 @@ type AuthorConnection implements Connection {
 
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
-  updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  updateProjects(relativePath: String!, params: ProjectsMutation!): Projects!
+  createProjects(relativePath: String!, params: ProjectsMutation!): Projects!
   updatePost(relativePath: String!, params: PostMutation!): Post!
   createPost(relativePath: String!, params: PostMutation!): Post!
   updateAuthor(relativePath: String!, params: AuthorMutation!): Author!
   createAuthor(relativePath: String!, params: AuthorMutation!): Author!
 }
 
-input DocumentMutation {
+input DocumentUpdateMutation {
+  projects: ProjectsMutation
   post: PostMutation
   author: AuthorMutation
+  relativePath: String
+}
+
+input DocumentMutation {
+  projects: ProjectsMutation
+  post: PostMutation
+  author: AuthorMutation
+}
+
+input ProjectsProjectsMutation {
+  fromGithub: Boolean
+  label: String
+  excerpt: String
+  slug: String
+  imgUrl: String
+  url: String
+  rawMarkdown: JSON
+}
+
+input ProjectsMutation {
+  projects: [ProjectsProjectsMutation]
 }
 
 input PostFeaturePostsMutation {
@@ -247,4 +327,3 @@ schema {
   query: Query
   mutation: Mutation
 }
-  

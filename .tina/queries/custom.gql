@@ -21,8 +21,7 @@ fragment PostParts2 on Post {
     __typename
     post {
       __typename
-      ... on Post {
-        ...PostParts
+      ... on Document {
         _sys {
           filename
           basename
@@ -31,6 +30,10 @@ fragment PostParts2 on Post {
           relativePath
           extension
         }
+        id
+      }
+      ... on Post {
+        ...PostParts
       }
     }
   }

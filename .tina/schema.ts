@@ -3,16 +3,47 @@ import { defineSchema } from "tinacms";
 export default defineSchema({
   collections: [
     {
+      name: "projects",
+      label: "Projects",
+      path: "content",
+      format: "json",
+      match: {
+        include: "projects",
+      },
+      fields: [
+        {
+          name: "projects",
+          label: "Projects",
+          type: "object",
+          ui: {
+            itemProps: (item) => {
+              return { label: item?.label };
+            },
+          },
+          list: true,
+          fields: [
+            { name: "fromGithub", label: "From Github", type: "boolean" },
+            { name: "label", label: "Label", type: "string" },
+            { name: "excerpt", label: "Excerpt", type: "string" },
+            { name: "slug", label: "Slug", type: "string" },
+            { name: "imgUrl", label: "Image Url", type: "string" },
+            { name: "url", label: "Url for Github", type: "string" },
+            { name: "rawMarkdown", label: "Raw Markdown", type: "rich-text" },
+          ],
+        },
+      ],
+    },
+    {
       label: "Blog Posts",
       name: "post",
       path: "content/blog",
+      defaultItem: {
+        title: "New Post",
+        draft: true,
+      },
       ui: {
         router: ({ document }) => {
           return `/blog/${document._sys.filename}`;
-        },
-        defaultItem: {
-          title: "New Post",
-          draft: true,
         },
       },
       fields: [
