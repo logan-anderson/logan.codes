@@ -1,5 +1,5 @@
 import { defineSchema } from "tinacms";
-
+// TODO: experience tab
 export default defineSchema({
   collections: [
     {
@@ -9,6 +9,12 @@ export default defineSchema({
       format: "json",
       match: {
         include: "projects",
+      },
+      ui: {
+        allowedActions: {
+          create: false,
+          delete: false,
+        },
       },
       fields: [
         {

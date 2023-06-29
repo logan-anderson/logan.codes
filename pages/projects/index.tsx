@@ -3,6 +3,7 @@ import React from "react";
 import { BreadCrumb } from "../../components/BreadCrumb";
 import Layout from "../../components/layout/Layout";
 import { ProjectCard } from "../../components/ProjectCard";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 export interface Projects {
   url?: string;
@@ -20,13 +21,13 @@ const ProjectPage: React.FC<{ projects: Projects[]; preview: boolean }> = (
     <Layout preview={props.preview} title="Projects">
       <div className="max-w-screen-lg mx-auto">
         <BreadCrumb links={[{ label: "Projects", href: "/projects" }]} />
-        <div className="columns-1 md:columns-2 xl:columns-3 ">
-          {props.projects?.map((item) => (
-            <div className="break-inside-avoid">
+        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+          <Masonry>
+            {props.projects?.map((item) => (
               <ProjectCard key={item.slug} project={item} />
-            </div>
-          ))}
-        </div>
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
       </div>
     </Layout>
   );

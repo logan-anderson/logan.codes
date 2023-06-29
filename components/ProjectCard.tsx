@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const ProjectCard: React.FC<{ project: Projects }> = ({ project }) => {
   return (
-    <div className="cursor-pointer py-6 dark:text-gray-300 px-6 pb-10 transition duration-500 ease-in-out transform hover:scale-105 md:p-2">
+    <div className="cursor-pointer py-6 dark:text-gray-300 px-6 pb-10 transition duration-500 ease-in-out transform hover:scale-105 md:p-3">
       <Link href={`/projects/${project.slug}`}>
         <div className="bg-white dark:bg-gray-700  relative block overflow-hidden rounded-lg border border-gray-100 dark:border-gray-800 p-4">
           <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r  from-green-300 via-blue-500 to-purple-600 dark:from-blue-600 dark:via-green-600 dark:to-purple-600"></span>
