@@ -37,7 +37,7 @@ const NavBar = () => {
   const [showMobile, setShowMobile] = useState(false);
   return (
     <>
-      <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
+      <div className="relative pt-6 px-4 sm:pl-6 sm:pr-0 lg:pl-8 lg:pr-0">
         <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start">
           <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
             <div className="flex items-center justify-between w-full md:w-auto">
@@ -72,7 +72,7 @@ const NavBar = () => {
               </div>
             </div>
           </div>
-          <div className="grid-cols-4 gap-1 hidden md:ml-10 md:grid pr-4">
+          <div className="grid-cols-5 gap-1 hidden md:ml-10 md:grid">
             <FlyoutMenu className="text-center" />
             <div className="text-center">
               <Link
@@ -88,6 +88,14 @@ const NavBar = () => {
                 className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out"
               >
                 Projects
+              </Link>
+            </div>
+            <div className="text-center">
+              <Link
+                href="/experience"
+                className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+              >
+                Experience
               </Link>
             </div>
             <div className="grid grid-cols-3 gap-3 text-center">
@@ -188,6 +196,7 @@ export const MobileNav: React.FC<NavProps> = ({
                 />
                 <MobileMenuItem title="Blog Posts" href="/blog" />
                 <MobileMenuItem title="Projects" href="/projects" />
+                <MobileMenuItem title="Experience" href="/experience" />
                 <div className="block nowrap px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50  dark:hover:bg-gray-600 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
                   <AppIcon
                     icon={faGithub}

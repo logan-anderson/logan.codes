@@ -26,7 +26,7 @@ const FlyoutMenuItem: React.FC<FlyoutMenuProps> = (props) => {
 const FlyoutMenuItems: FlyoutMenuProps[] = [
   {
     href: "/about",
-    label: "About Me",
+    label: "About",
     text: "Learn more about my skills, passions and interests",
   },
   {
@@ -79,7 +79,7 @@ export const FlyoutMenu: React.FC<{
           show ? "text-gray-900 dark:text-gray-300 " : "text-gray-500"
         }`}
       >
-        <span>About Me</span>
+        <span>About</span>
         {/*
   Heroicon name: chevron-down
   Item active: "text-gray-600", Item inactive: "text-gray-400"
