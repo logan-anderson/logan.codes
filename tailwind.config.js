@@ -1,7 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   purge: ["./components/**/*.ts*", "./pages/**/*.ts*"],
   theme: {
     extend: {
@@ -47,8 +47,8 @@ module.exports = {
   variants: {
     extend: {
       typography: ["dark"],
-      fontWeight: ['hover'],
-    }
+      fontWeight: ["hover"],
+    },
   },
   plugins: [
     require("@tailwindcss/forms"),

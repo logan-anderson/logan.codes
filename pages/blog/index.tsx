@@ -87,6 +87,7 @@ const BlogList = ({ data }: { data: PostConnectionQuery }) => {
       <div className="max-w-prose mx-auto">
         <BreadCrumb links={[{ label: "Blog", href: "/blog" }]} />
         <Tags tags={stateTags} setTags={setStateTags} />
+        {/* @ts-ignore */}
         <Slide direction="up" cascade duration={700} damping={0.1} triggerOnce>
           {data.postConnection?.edges
             ?.filter((post) => {
