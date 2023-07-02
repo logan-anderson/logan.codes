@@ -1,8 +1,8 @@
 ---
 draft: false
 title: Achieving Consistent Output from ChatGPT
-date: 2023-07-01T04:00:00.000Z
-minRead: 8
+date: 2023-07-03T04:00:00.000Z
+minRead: 5
 author: content/authors/logan_anderson.md
 tags:
   - chatGPT
@@ -11,6 +11,13 @@ tags:
 featurePosts:
   - post: content/blog/machine-learning.md
   - post: content/blog/does-a-math-degree-help-in-software-engineering.md
+description: >-
+  Discover how to achieve consistent and reliable output from  the ChatGPT API,
+  the advanced language model by OpenAI. Explore the concept of leveraging
+  function calling to ensure predictable responses in JSON format. Learn how
+  function calling allows users to define custom functions and obtain consistent
+  output, enabling easier integration with other systems. Unlock the full
+  potential of ChatGPT and enhance the usability of your applications.
 ---
 
 # Achieving Consistent Output from ChatGPT
@@ -21,29 +28,32 @@ ChatGPT, an advanced language model developed by OpenAI, has revolutionized the 
 
 ## What is "Function Calling"
 
-Function calling is a part of the request to the chatGPT API that allows users to define one or more functions. Instead of the API responding with the output from it (may) respond with arguments to one of the describe function. This is useful for allowing the agent to reach outside its knowledge base or preform actions on behalf of the user but is can also be used to force a responses to be in a JSON format.
+Function calling is a feature of the ChatGPT API that allows users to define one or more functions in their requests. Instead of receiving the direct output from the model, users can specify a function for the API to respond with. This function can be used to format the response in a desired way, perform actions on behalf of the user, or even extend the model's capabilities beyond its built-in knowledge base.
 
 ## Using Function Calling to get a consistent output
 
-When making a request to openAI we can pass one or more functions to the chat completion endpoint. For example let's say we are making a quiz app and we want chatGPT to generate an array of quiz questions. We could use function calling to make sure the output is consistent.
+To address the issue of inconsistent output from GPT API, we can utilize function calling in our API requests. Let's consider an example scenario where we want to build a quiz app and generate a list of quiz questions using GPT API. By leveraging function calling, we can ensure that the generated output is consistent.
+
+Here's an example code snippet in TypeScript that demonstrates how to achieve this:
 
 ```typescript
 import { Configuration, OpenAIApi } from "openai";
 
-// Setup OpenAI client
+// Set up OpenAI client
 const configuration = new Configuration({
-  apiKey: <Your API Key>,
+  apiKey: "<Your API Key>",
 });
 const openai = new OpenAIApi(configuration);
-// Example Message
+
+// Define example message
 const messages = [
   {
-    role: "user" as const,
-    content: "Generate a list of fun and intresting question for a quiz",
+    role: "user",
+    content: "Generate a list of fun and interesting questions for a quiz",
   },
 ];
 
-// Example Function that has aruments of the shape we want to return
+// Define the function to generate quiz questions
 const functions = [
   {
     name: "generateQuiz",
@@ -63,7 +73,7 @@ const functions = [
               },
               answer: {
                 type: "string",
-                description: "The answer of the question",
+                description: "The answer to the question",
               },
             },
           },
@@ -73,22 +83,23 @@ const functions = [
   },
 ];
 
+// Make the API request with function calling
 const res = await openai.createChatCompletion({
-  // We need to use "gpt-3.5-turbo-0613" or gpt-4-061
+  // Use "gpt-3.5-turbo-0613" or "gpt-4-061" models for function calling
   model: "gpt-3.5-turbo-0613",
   functions,
-  // Force the result to be a function call (we could also use function_call: "auto" if we wanted the AI to decide weather or not it wants to generate it)
+  // Force the result to be a function call
   function_call: { name: "generateQuiz" },
   messages,
 });
 
+// Extract the function arguments from the API response and parse them
 const args = res.data.choices[0].message?.function_call?.arguments || "";
 const result = JSON.parse(args);
 console.log(result);
-
 ```
 
-The output of this is the following
+The output of this code snippet will be a consistent array of quiz questions:
 
 ```typescript
 {
@@ -131,13 +142,13 @@ The output of this is the following
 }
 ```
 
-Now we have an output from ChatGPT that we can rely on and know it will always be the same.
+Now, by utilizing function calling, we can rely on the GPT API to consistently generate a list of quiz questions for our app.
 
-A couple of things to note with this approch
+It's important to note a couple of things with this approach:
 
-* Must use use "gpt-3.5-turbo-0613" or "gpt-4-061" models as they have been trained for function calling
-* We are forcing the output from the api to be a function argument by passing function\_call: { name: "generateQuiz" },
-* Function calling was designed so that for so that the AI could respond with arguments to a function that could be called in the users code but in this example we are using to get a consistent output.
+* Function calling requires the use of "gpt-3.5-turbo-0613" or "gpt-4-061" models, as they have been specifically trained to support this feature.
+* In the example code, we force the output from the API to be a function call by passing `function_call: { name: "generateQuiz" }`.
+* Function calling was originally designed to allow the AI agent to respond with arguments to a function that can be called in the user's code. However, in this example, we utilize it primarily to obtain consistent output.
 
 ## Conclusion
 
