@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
@@ -34,6 +35,10 @@ const AppIcon: React.FC<{
 };
 
 const NavBar = () => {
+  const router = useRouter();
+  const blogActive = router.pathname.startsWith("/blog");
+  const projectsActive = router.pathname.startsWith("/projects");
+  const experienceActive = router.pathname.startsWith("/experience");
   const [showMobile, setShowMobile] = useState(false);
   return (
     <>
@@ -42,7 +47,9 @@ const NavBar = () => {
           <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
             <div className="flex items-center justify-between w-full md:w-auto">
               <Link href="/" aria-label="Home" className="no-underline">
-                <strong className="text-blue-600 h-8 w-auto sm:h-10 no-underline text-3xl">
+                <strong
+                  className={`text-blue-600 h-8 w-auto sm:h-10 no-underline text-3xl`}
+                >
                   {"<Home/>"}
                 </strong>
               </Link>
@@ -77,7 +84,9 @@ const NavBar = () => {
             <div className="text-center">
               <Link
                 href="/blog"
-                className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+                className={`font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out ${
+                  blogActive ? "text-gray-900 dark:text-gray-200" : ""
+                }`}
               >
                 Blog Posts
               </Link>
@@ -85,7 +94,9 @@ const NavBar = () => {
             <div className="text-center">
               <Link
                 href="/projects"
-                className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+                className={`font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out  ${
+                  projectsActive ? "text-gray-900 dark:text-gray-200" : ""
+                }`}
               >
                 Projects
               </Link>
@@ -93,7 +104,9 @@ const NavBar = () => {
             <div className="text-center">
               <Link
                 href="/experience"
-                className="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out"
+                className={`font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition duration-150 ease-in-out  ${
+                  experienceActive ? "text-gray-900 dark:text-gray-200" : ""
+                }`}
               >
                 Experience
               </Link>
@@ -120,11 +133,19 @@ const NavBar = () => {
   );
 };
 
-const MobileMenuItem = (props: { href: string; title: string }) => {
+const MobileMenuItem = (props: {
+  href: string;
+  title: string;
+  active: boolean;
+}) => {
   return (
     <Link
       href={props.href}
-      className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-50 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-700  focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+      className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-50 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-700  focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out ${
+        props.active
+          ? "text-gray-900 bg-green-50 dark:bg-gray-700 dark:text-gray-200"
+          : ""
+      }`}
       role="menuitem"
     >
       {props.title}
@@ -136,6 +157,10 @@ export const MobileNav: React.FC<NavProps> = ({
   showMobile,
   setShowMobile,
 }) => {
+  const router = useRouter();
+  const blogActive = router.pathname.startsWith("/blog");
+  const projectsActive = router.pathname.startsWith("/projects");
+  const experienceActive = router.pathname.startsWith("/experience");
   return (
     <Transition
       show={showMobile}
@@ -194,9 +219,21 @@ export const MobileNav: React.FC<NavProps> = ({
                   absolute={false}
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
                 />
-                <MobileMenuItem title="Blog Posts" href="/blog" />
-                <MobileMenuItem title="Projects" href="/projects" />
-                <MobileMenuItem title="Experience" href="/experience" />
+                <MobileMenuItem
+                  title="Blog Posts"
+                  href="/blog"
+                  active={blogActive}
+                />
+                <MobileMenuItem
+                  title="Projects"
+                  href="/projects"
+                  active={projectsActive}
+                />
+                <MobileMenuItem
+                  title="Experience"
+                  href="/experience"
+                  active={experienceActive}
+                />
                 <div className="block nowrap px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50  dark:hover:bg-gray-600 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">
                   <AppIcon
                     icon={faGithub}
