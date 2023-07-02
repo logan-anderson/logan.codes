@@ -24,15 +24,15 @@ description: >-
 
 ## Introduction
 
-ChatGPT, an advanced language model developed by OpenAI, has revolutionized the tech industry. However, one of the challenges that users often face is obtaining consistent and reliable output from the model. Due to its probabilistic nature, ChatGPT can generate varied responses to the same prompts, leading to unpredictability. This output can be hard to parse and use with other systems. To address this issue, we will look at using ["Function calling," ](https://platform.openai.com/docs/guides/gpt/function-calling "Function Calling docs")which enables users to exert greater control over ChatGPT's responses. In this blog post, we will explore the concept of leveraging Function calling to achieve more consistent and reliable output from ChatGPT.
+ChatGPT, an advanced language model developed by OpenAI, has revolutionized the tech industry. However, one of the challenges that users often face is obtaining consistent and reliable output when using the GPT API. Due to its probabilistic nature, ChatGPT can generate varied responses to the same prompts, leading to unpredictability. This output can be hard to parse and use with other systems. To address this issue, we will look at using ["Function calling," ](https://platform.openai.com/docs/guides/gpt/function-calling "Function Calling docs")which enables users to exert greater control over ChatGPT's responses. In this blog post, we will explore the concept of leveraging Function calling to achieve more consistent and reliable output from ChatGPT.
 
 ## What is "Function Calling"
 
-Function calling is a feature of the ChatGPT API that allows users to define one or more functions in their requests. Instead of receiving the direct output from the model, users can specify a function for the API to respond with. This function can be used to format the response in a desired way, perform actions on behalf of the user, or even extend the model's capabilities beyond its built-in knowledge base.
+Function calling is a feature of the ChatGPT API that allows users to define one or more functions in their requests. Instead of receiving the direct output from the model, users can specify a function(s) for the API to see and respond with function arguments. This function can be used to format the response in a desired way, perform actions on behalf of the user, or even extend the model's capabilities beyond its built-in knowledge base.
 
 ## Using Function Calling to get a consistent output
 
-To address the issue of inconsistent output from GPT API, we can utilize function calling in our API requests. Let's consider an example scenario where we want to build a quiz app and generate a list of quiz questions using GPT API. By leveraging function calling, we can ensure that the generated output is consistent.
+To address the issue of inconsistent output from GPT API, we can utilize function calling in our API requests. Let's consider an example scenario where we want to build a quiz app and generate a list of quiz questions using GPT API. Before function, we would have to ask the model to respond in a certain format, and manually parse the output. By leveraging function calling, we can ensure that the generated output is consistent.
 
 Here's an example code snippet in TypeScript that demonstrates how to achieve this:
 
@@ -146,10 +146,16 @@ Now, by utilizing function calling, we can rely on the GPT API to consistently g
 
 It's important to note a couple of things with this approach:
 
-* Function calling requires the use of "gpt-3.5-turbo-0613" or "gpt-4-061" models, as they have been specifically trained to support this feature.
-* In the example code, we force the output from the API to be a function call by passing `function_call: { name: "generateQuiz" }`.
-* Function calling was originally designed to allow the AI agent to respond with arguments to a function that can be called in the user's code. However, in this example, we utilize it primarily to obtain consistent output.
+- Function calling requires the use of "gpt-3.5-turbo-0613" or "gpt-4-061" models, as they have been specifically trained to support this feature.
+- In the example code, we force the output from the API to be a function call by passing `function_call: { name: "generateQuiz" }`.
+- Function calling was originally designed to allow the AI agent to respond with arguments to a function that can be called in the user's code. However, in this example, we utilize it primarily to obtain consistent output.
 
 ## Conclusion
 
 Obtaining consistent output from ChatGPT is crucial for many applications, and function calling provides a powerful solution. By leveraging function calling in the ChatGPT API, users can define custom functions and ensure that the model's responses are consistent and reliable. This enables easier integration with other systems and enhances the overall usability of ChatGPT. Incorporating function calling into your projects will help you unlock the full potential of ChatGPT and create more robust and dependable applications.
+
+## References
+
+- [GPT API Function Docs](https://platform.openai.com/docs/guides/gpt/function-calling)
+- [Blog post announcing functions](https://openai.com/blog/function-calling-and-other-api-updates)
+- [Sentdex Youtube video about function](https://www.youtube.com/watch?v=0lOSvOoF2to&t=851s)
