@@ -81,6 +81,7 @@ var schema_default = defineSchema({
           label: "Main Content",
           type: "rich-text",
           isBody: true,
+          parser: { type: "mdx" },
           templates: [
             {
               label: "Iframe",
