@@ -101,7 +101,7 @@ const Resume = () => {
                 </div>
               </div>
             </div>
-            <div className="absolute top-[-3rem] lg:top-[-3.5rem] -left-12 w-20 lg:w-[13rem] h-40 lg:h-[13rem] bg-blue-400 rounded-full" />
+            <div className="absolute top-[-3rem] lg:top-[-3.5rem] -left-12  lg:w-[13rem] w-40 h-40 lg:h-[13rem] bg-blue-400 rounded-full" />
           </div>
           <div className="grid-3 gap-10 lg:gap-24 items-start mt-12 lg:mt-24">
             {/* Work Experience */}
@@ -152,6 +152,13 @@ const Resume = () => {
                         <li>Vivamus volutpat nunc non quam dapibus</li>
                         <li>Nulla molestie odio odio, ut congue dui</li>
                       </ul> */}
+                      {item.moreInfoLink && (
+                        <div>
+                          <a href={`https://logana.dev/${item.moreInfoLink}`}>
+                            Check out my website for more detail
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
