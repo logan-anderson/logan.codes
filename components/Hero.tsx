@@ -1,4 +1,5 @@
 import { useEffect, createRef } from "react";
+import Link from "next/link";
 import { TextPlugin } from "gsap/dist/TextPlugin";
 import { gsap } from "gsap";
 import profilePic from "../public/img/me.jpeg";
@@ -78,10 +79,25 @@ export const Hero: React.FC = () => {
                 </h2>
                 <p className="my-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                   Hello! My name is Logan. I am a husband, full stack web
-                  developer and Disc golf Enthusiastic. Im passionate Machine
-                  Learning and full stack web development. I love to learn deep
-                  dive into the tools I use and I am always trying to expand my
-                  knowledge base though reading, developing, and coursework.
+                  developer and{" "}
+                  <a
+                    href="https://www.instagram.com/logan_discgolf/"
+                    target="_blank"
+                    className="text-blue-600 hover:underline"
+                  >
+                    Disc golf Enthusiastic
+                  </a>
+                  . Currently working at{" "}
+                  <Link
+                    href="/experience/tinacms"
+                    className="text-blue-600 hover:underline"
+                  >
+                    TinaCMS
+                  </Link>
+                  {", "}I am passionate Machine Learning and full stack web
+                  development. I love to learn deep dive into the tools I use
+                  and I am always trying to expand my knowledge base though
+                  reading, developing, and coursework.
                 </p>
                 <div className="flex justify-center lg:justify-start mt-6 ">
                   <div className="group relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 dark:text-gray-300 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-white/10 dark:hover:ring-white/20">
