@@ -79,6 +79,8 @@ export type Query = {
   collections: Array<Collection>;
   node: Node;
   document: DocumentNode;
+  experience: Experience;
+  experienceConnection: ExperienceConnection;
   projects: Projects;
   projectsConnection: ProjectsConnection;
   post: Post;
@@ -106,6 +108,21 @@ export type QueryNodeArgs = {
 export type QueryDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
   relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryExperienceArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryExperienceConnectionArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<ExperienceFilter>;
 };
 
 
@@ -154,6 +171,7 @@ export type QueryAuthorConnectionArgs = {
 };
 
 export type DocumentFilter = {
+  experience?: InputMaybe<ExperienceFilter>;
   projects?: InputMaybe<ProjectsFilter>;
   post?: InputMaybe<PostFilter>;
   author?: InputMaybe<AuthorFilter>;
@@ -196,7 +214,68 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']>;
 };
 
-export type DocumentNode = Projects | Post | Author | Folder;
+export type DocumentNode = Experience | Projects | Post | Author | Folder;
+
+export type ExperienceExperience = {
+  __typename?: 'ExperienceExperience';
+  title?: Maybe<Scalars['String']>;
+  company?: Maybe<Scalars['String']>;
+  location?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  description_short?: Maybe<Scalars['JSON']>;
+  website?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  description_long?: Maybe<Scalars['JSON']>;
+};
+
+export type Experience = Node & Document & {
+  __typename?: 'Experience';
+  experience?: Maybe<Array<Maybe<ExperienceExperience>>>;
+  id: Scalars['ID'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON'];
+};
+
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ExperienceExperienceFilter = {
+  title?: InputMaybe<StringFilter>;
+  company?: InputMaybe<StringFilter>;
+  location?: InputMaybe<StringFilter>;
+  type?: InputMaybe<StringFilter>;
+  description_short?: InputMaybe<RichTextFilter>;
+  website?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+  description_long?: InputMaybe<RichTextFilter>;
+};
+
+export type ExperienceFilter = {
+  experience?: InputMaybe<ExperienceExperienceFilter>;
+};
+
+export type ExperienceConnectionEdges = {
+  __typename?: 'ExperienceConnectionEdges';
+  cursor: Scalars['String'];
+  node?: Maybe<Experience>;
+};
+
+export type ExperienceConnection = Connection & {
+  __typename?: 'ExperienceConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float'];
+  edges?: Maybe<Array<Maybe<ExperienceConnectionEdges>>>;
+};
 
 export type ProjectsProjects = {
   __typename?: 'ProjectsProjects';
@@ -219,19 +298,6 @@ export type Projects = Node & Document & {
 
 export type BooleanFilter = {
   eq?: InputMaybe<Scalars['Boolean']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type StringFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type RichTextFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
   exists?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -385,6 +451,8 @@ export type Mutation = {
   updateDocument: DocumentNode;
   deleteDocument: DocumentNode;
   createDocument: DocumentNode;
+  updateExperience: Experience;
+  createExperience: Experience;
   updateProjects: Projects;
   createProjects: Projects;
   updatePost: Post;
@@ -418,6 +486,18 @@ export type MutationCreateDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
   relativePath: Scalars['String'];
   params: DocumentMutation;
+};
+
+
+export type MutationUpdateExperienceArgs = {
+  relativePath: Scalars['String'];
+  params: ExperienceMutation;
+};
+
+
+export type MutationCreateExperienceArgs = {
+  relativePath: Scalars['String'];
+  params: ExperienceMutation;
 };
 
 
@@ -457,6 +537,7 @@ export type MutationCreateAuthorArgs = {
 };
 
 export type DocumentUpdateMutation = {
+  experience?: InputMaybe<ExperienceMutation>;
   projects?: InputMaybe<ProjectsMutation>;
   post?: InputMaybe<PostMutation>;
   author?: InputMaybe<AuthorMutation>;
@@ -464,9 +545,25 @@ export type DocumentUpdateMutation = {
 };
 
 export type DocumentMutation = {
+  experience?: InputMaybe<ExperienceMutation>;
   projects?: InputMaybe<ProjectsMutation>;
   post?: InputMaybe<PostMutation>;
   author?: InputMaybe<AuthorMutation>;
+};
+
+export type ExperienceExperienceMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  company?: InputMaybe<Scalars['String']>;
+  location?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
+  description_short?: InputMaybe<Scalars['JSON']>;
+  website?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['String']>;
+  description_long?: InputMaybe<Scalars['JSON']>;
+};
+
+export type ExperienceMutation = {
+  experience?: InputMaybe<Array<InputMaybe<ExperienceExperienceMutation>>>;
 };
 
 export type ProjectsProjectsMutation = {
@@ -513,11 +610,32 @@ export type PostAndFeaturePostsQuery = { __typename?: 'Query', post: { __typenam
 
 export type PostParts2Fragment = { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null };
 
+export type ExperiencePartsFragment = { __typename?: 'Experience', experience?: Array<{ __typename: 'ExperienceExperience', title?: string | null, company?: string | null, location?: string | null, type?: string | null, description_short?: any | null, website?: string | null, icon?: string | null, description_long?: any | null } | null> | null };
+
 export type ProjectsPartsFragment = { __typename?: 'Projects', projects?: Array<{ __typename: 'ProjectsProjects', fromGithub?: boolean | null, label?: string | null, excerpt?: string | null, slug?: string | null, imgUrl?: string | null, url?: string | null, rawMarkdown?: any | null } | null> | null };
 
 export type PostPartsFragment = { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null };
 
 export type AuthorPartsFragment = { __typename?: 'Author', name?: string | null, avatar?: string | null };
+
+export type ExperienceQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type ExperienceQuery = { __typename?: 'Query', experience: { __typename?: 'Experience', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, experience?: Array<{ __typename: 'ExperienceExperience', title?: string | null, company?: string | null, location?: string | null, type?: string | null, description_short?: any | null, website?: string | null, icon?: string | null, description_long?: any | null } | null> | null } };
+
+export type ExperienceConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<ExperienceFilter>;
+}>;
+
+
+export type ExperienceConnectionQuery = { __typename?: 'Query', experienceConnection: { __typename?: 'ExperienceConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ExperienceConnectionEdges', cursor: string, node?: { __typename?: 'Experience', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, experience?: Array<{ __typename: 'ExperienceExperience', title?: string | null, company?: string | null, location?: string | null, type?: string | null, description_short?: any | null, website?: string | null, icon?: string | null, description_long?: any | null } | null> | null } | null } | null> | null } };
 
 export type ProjectsQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -699,6 +817,21 @@ export const PostParts2FragmentDoc = gql`
   }
 }
     ${PostPartsFragmentDoc}`;
+export const ExperiencePartsFragmentDoc = gql`
+    fragment ExperienceParts on Experience {
+  experience {
+    __typename
+    title
+    company
+    location
+    type
+    description_short
+    website
+    icon
+    description_long
+  }
+}
+    `;
 export const ProjectsPartsFragmentDoc = gql`
     fragment ProjectsParts on Projects {
   projects {
@@ -737,6 +870,61 @@ export const PostAndFeaturePostsDocument = gql`
   }
 }
     ${PostParts2FragmentDoc}`;
+export const ExperienceDocument = gql`
+    query experience($relativePath: String!) {
+  experience(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...ExperienceParts
+  }
+}
+    ${ExperiencePartsFragmentDoc}`;
+export const ExperienceConnectionDocument = gql`
+    query experienceConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ExperienceFilter) {
+  experienceConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...ExperienceParts
+      }
+    }
+  }
+}
+    ${ExperiencePartsFragmentDoc}`;
 export const ProjectsDocument = gql`
     query projects($relativePath: String!) {
   projects(relativePath: $relativePath) {
@@ -907,6 +1095,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     return {
       postAndFeaturePosts(variables: PostAndFeaturePostsQueryVariables, options?: C): Promise<{data: PostAndFeaturePostsQuery, variables: PostAndFeaturePostsQueryVariables, query: string}> {
         return requester<{data: PostAndFeaturePostsQuery, variables: PostAndFeaturePostsQueryVariables, query: string}, PostAndFeaturePostsQueryVariables>(PostAndFeaturePostsDocument, variables, options);
+      },
+    experience(variables: ExperienceQueryVariables, options?: C): Promise<{data: ExperienceQuery, variables: ExperienceQueryVariables, query: string}> {
+        return requester<{data: ExperienceQuery, variables: ExperienceQueryVariables, query: string}, ExperienceQueryVariables>(ExperienceDocument, variables, options);
+      },
+    experienceConnection(variables?: ExperienceConnectionQueryVariables, options?: C): Promise<{data: ExperienceConnectionQuery, variables: ExperienceConnectionQueryVariables, query: string}> {
+        return requester<{data: ExperienceConnectionQuery, variables: ExperienceConnectionQueryVariables, query: string}, ExperienceConnectionQueryVariables>(ExperienceConnectionDocument, variables, options);
       },
     projects(variables: ProjectsQueryVariables, options?: C): Promise<{data: ProjectsQuery, variables: ProjectsQueryVariables, query: string}> {
         return requester<{data: ProjectsQuery, variables: ProjectsQueryVariables, query: string}, ProjectsQueryVariables>(ProjectsDocument, variables, options);

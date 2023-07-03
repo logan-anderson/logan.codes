@@ -53,6 +53,8 @@ type Query {
   collections: [Collection!]!
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
+  experience(relativePath: String): Experience!
+  experienceConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ExperienceFilter): ExperienceConnection!
   projects(relativePath: String): Projects!
   projectsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ProjectsFilter): ProjectsConnection!
   post(relativePath: String): Post!
@@ -62,6 +64,7 @@ type Query {
 }
 
 input DocumentFilter {
+  experience: ExperienceFilter
   projects: ProjectsFilter
   post: PostFilter
   author: AuthorFilter
@@ -90,7 +93,64 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Projects | Post | Author | Folder
+union DocumentNode = Experience | Projects | Post | Author | Folder
+
+type ExperienceExperience {
+  title: String
+  company: String
+  location: String
+  type: String
+  description_short: JSON
+  website: String
+  icon: String
+  description_long: JSON
+}
+
+type Experience implements Node & Document {
+  experience: [ExperienceExperience]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input StringFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
+input ExperienceExperienceFilter {
+  title: StringFilter
+  company: StringFilter
+  location: StringFilter
+  type: StringFilter
+  description_short: RichTextFilter
+  website: StringFilter
+  icon: StringFilter
+  description_long: RichTextFilter
+}
+
+input ExperienceFilter {
+  experience: ExperienceExperienceFilter
+}
+
+type ExperienceConnectionEdges {
+  cursor: String!
+  node: Experience
+}
+
+type ExperienceConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [ExperienceConnectionEdges]
+}
 
 type ProjectsProjects {
   fromGithub: Boolean
@@ -111,19 +171,6 @@ type Projects implements Node & Document {
 
 input BooleanFilter {
   eq: Boolean
-  exists: Boolean
-}
-
-input StringFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
-input RichTextFilter {
-  startsWith: String
-  eq: String
   exists: Boolean
 }
 
@@ -267,6 +314,8 @@ type Mutation {
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  updateExperience(relativePath: String!, params: ExperienceMutation!): Experience!
+  createExperience(relativePath: String!, params: ExperienceMutation!): Experience!
   updateProjects(relativePath: String!, params: ProjectsMutation!): Projects!
   createProjects(relativePath: String!, params: ProjectsMutation!): Projects!
   updatePost(relativePath: String!, params: PostMutation!): Post!
@@ -276,6 +325,7 @@ type Mutation {
 }
 
 input DocumentUpdateMutation {
+  experience: ExperienceMutation
   projects: ProjectsMutation
   post: PostMutation
   author: AuthorMutation
@@ -283,9 +333,25 @@ input DocumentUpdateMutation {
 }
 
 input DocumentMutation {
+  experience: ExperienceMutation
   projects: ProjectsMutation
   post: PostMutation
   author: AuthorMutation
+}
+
+input ExperienceExperienceMutation {
+  title: String
+  company: String
+  location: String
+  type: String
+  description_short: JSON
+  website: String
+  icon: String
+  description_long: JSON
+}
+
+input ExperienceMutation {
+  experience: [ExperienceExperienceMutation]
 }
 
 input ProjectsProjectsMutation {
