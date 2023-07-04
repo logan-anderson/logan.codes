@@ -6,6 +6,62 @@ import { defineSchema } from "tinacms";
 var schema_default = defineSchema({
   collections: [
     {
+      name: "experience",
+      label: "Experience",
+      path: "content",
+      format: "json",
+      match: {
+        include: "experience"
+      },
+      ui: {
+        allowedActions: {
+          create: false,
+          delete: false
+        }
+      },
+      fields: [
+        {
+          name: "experience",
+          label: "Experience",
+          type: "object",
+          ui: {
+            itemProps: (item) => {
+              return { label: item?.title };
+            }
+          },
+          list: true,
+          fields: [
+            { name: "title", label: "Title", type: "string" },
+            { name: "company", label: "Company", type: "string" },
+            { name: "location", label: "Location", type: "string" },
+            {
+              name: "type",
+              label: "Type of experience",
+              type: "string",
+              options: ["work", "education"]
+            },
+            {
+              name: "description_short",
+              label: "Description",
+              type: "rich-text"
+            },
+            { name: "website", label: "Website", type: "string" },
+            {
+              name: "icon",
+              label: "Icon",
+              type: "string",
+              options: ["AcademicCapIcon", "CodeBracketIcon"]
+            },
+            {
+              name: "description_long",
+              label: "More detailed description",
+              type: "rich-text"
+            }
+          ]
+        }
+      ]
+    },
+    {
       name: "projects",
       label: "Projects",
       path: "content",
