@@ -1,3 +1,4 @@
+import Layout from "../components/layout/Layout";
 import { css } from "../utils/resumeCss";
 
 const data = {
@@ -8,15 +9,16 @@ const data = {
 import { HISTORY } from "./experience";
 const Resume = () => {
   return (
+    // <Layout preview={false} navDisable={true}>
     <>
-      <style jsx>{css}</style>
-      <main className="bg-white text-gray-800 min-h-screen">
+      {/* <style jsx>{css}</style> */}
+      <main className="min-h-screen leading-6 m-0">
         <div className="py-20 lg:py-24 px-6 mx-auto max-w-7xl">
           <div className="relative">
             <h1>Logan Anderson</h1>
             <div className="relative grid grid-cols-1 lg:grid-cols-4 gap-10 xl:gap-24 z-10">
               <h2>Full Stack Software Engineer</h2>
-              <div className="lg:flex lg:justify-between grid-3 xl:grid-3 lg:col-span-3 gap-4 mt-5 pt-4 border-t-2 border-gray-300">
+              <div className="lg:flex lg:justify-between grid grid-cols-3 xl:grid-cols-3  lg:col-span-3 gap-4 mt-5 pt-4 border-t-2 border-gray-300">
                 <div className="flex items-center">
                   {/* Contact 1 Icon */}
                   <svg
@@ -103,13 +105,13 @@ const Resume = () => {
             </div>
             <div className="absolute top-[-3rem] lg:top-[-3.5rem] -left-12  lg:w-[13rem] w-40 h-40 lg:h-[13rem] bg-blue-400 rounded-full" />
           </div>
-          <div className="grid-3 gap-10 lg:gap-24 items-start mt-12 lg:mt-24">
+          <div className="grid grid-cols-3 gap-10 lg:gap-24 items-start mt-12 lg:mt-24">
             {/* Work Experience */}
             <div className="lg:col-span-2">
               <h3>Work Experience</h3>
               {HISTORY.filter((x) => x.workExperience).map((item, index) => {
                 return (
-                  <div className="grid-3 gap-x-6">
+                  <div className="grid-cols-3 gap-x-6">
                     {/* Work Experience 1 */}
                     <div>
                       {/* Company 1 */}
@@ -211,6 +213,7 @@ const Resume = () => {
       </main>
     </>
   );
+  // </Layout>
 };
 
 export default Resume;
