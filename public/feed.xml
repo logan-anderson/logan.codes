@@ -4,8 +4,16 @@
         <description><![CDATA[Logan's blog]]></description>
         <link>https://logana.dev</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sat, 01 Jul 2023 00:32:50 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 05 Jul 2023 01:03:30 GMT</lastBuildDate>
         <atom:link href="https://logana.dev/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Achieving Consistent Output from ChatGPT]]></title>
+            <description><![CDATA[Discover how to achieve consistent and reliable output from  the ChatGPT API, the advanced language model by OpenAI. Explore the concept of leveraging function calling to ensure predictable responses in JSON format. Learn how function calling allows users to define custom functions and obtain consistent output, enabling easier integration with other systems. Unlock the full potential of ChatGPT and enhance the usability of your applications.]]></description>
+            <link>https://logana.dev/blog/achieving-consistent-output-from-chatgpt</link>
+            <guid isPermaLink="false">achieving-consistent-output-from-chatgpt</guid>
+            <dc:creator><![CDATA[content/authors/logan_anderson.md]]></dc:creator>
+            <pubDate>Mon, 03 Jul 2023 04:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[An accessible intro to Machine Learning]]></title>
             <description><![CDATA[From the very basics, learn what machine learning is in a way that is easy to understand, intuitive, and accessible for all backgrounds. Even if you are a beginner, learn about what is a Machine Learning model, cost function, and gain an intuitive understanding of how a model learns.]]></description>
