@@ -16,11 +16,11 @@ const TinaCMSExperience = () => {
           <h1>My Contributions to TinaCMS</h1>
           <p>
             I have been working full-time at TinaCMS since May 2020. The
-            majority of my work as been on the{" "}
+            majority of my work has been on the{" "}
             <a href="https://github.com/tinacms/tinacms">
               TinaCMS open source repo
             </a>{" "}
-            which is a monorepo that holes a majority of the source code of
+            which is a monorepo that holds a majority of the source code of
             TinaCMS. I have over{" "}
             <a href="https://github.com/tinacms/tinacms/commits?author=logan-anderson">
               1200 commits
@@ -28,18 +28,18 @@ const TinaCMSExperience = () => {
             and I am one of the{" "}
             <a href="https://github.com/tinacms/tinacms/graphs/contributors">
               top contributors to the repo
-            </a>{" "}
+            </a>
             .
           </p>
           <ul>
             <li>
               <a href="https://github.com/tinacms/tinacms/pulls?q=is%3Apr+author%3Alogan-anderson">
-                All Pull requests opened by me
+                All pull requests opened by me
               </a>
             </li>
             <li>
               <a href="https://github.com/tinacms/tinacms/issues?q=is%3Aissue+author%3Alogan-anderson">
-                All Issues opened by me
+                All issues opened by me
               </a>
             </li>
           </ul>
@@ -49,9 +49,9 @@ const TinaCMSExperience = () => {
           </p>
           <h2>Editorial workflow</h2>
           <p>
-            The editorial workflow features allows users to define protected
-            branches, when an editor is on a protected branch, instead of saving
-            there content directly to that branch, they are able to create a new
+            The editorial workflow feature allows a user to define protected
+            branches. When an editor is on a protected branch, instead of saving
+            their content directly to that branch, they are able to create a new
             branch and a draft pull request will automatically be opened for
             them.
           </p>
@@ -75,7 +75,7 @@ const TinaCMSExperience = () => {
               Adding User inputs and async validation to ensure the branch has
               not already been created
             </li>
-            <li>Async Polling to wait for indexing to be complete </li>
+            <li>Async Polling to wait for indexing to be completed </li>
           </ul>
           <h2>Self-Hosting TinaCMS</h2>
           <p>
@@ -85,29 +85,29 @@ const TinaCMSExperience = () => {
             the self hosted feature allows a user to host the data layer in a
             serverless function and store the data in mongoDB. I worked on the
             CLI aspect of this as well as integrating all of the pieces
-            together. See the{" "}
+            together. See this{" "}
             <a href="https://github.com/tinacms/tinacms/discussions/3589">
               Github discussion
             </a>{" "}
-            for a in depth explanation and a video demo. You can also see the{" "}
+            for an in depth explanation and a video demo. You can also see the{" "}
             <a href="https://tina.io/blog/self-hosted-datalayer/">blog post</a>{" "}
             announcing this feature.
           </p>
-          <p>Here is an outline of the teach used to build this feature:</p>
+          <p>Here is an outline of the tech used to build this feature:</p>
           <ul>
             <li>Level DB for storing data</li>
             <li>
               Many-Level for storing data in memory locally and communicating
               over a local server
             </li>
-            <li>ES Build for building the users Data Layer config file.</li>
+            <li>esbuild for building the users Data Layer config file.</li>
           </ul>
           <h2>CLI that Builds a SPA</h2>
           <p>
             Instead of adding TinaCMS UI directly to your site you install a CLI
             that builds a SPA that goes into your public folder. This allows
-            TinaCMS to work with any framework. I worked on a the CLI that
-            builds this SPA. You can see the{" "}
+            TinaCMS to work with any framework. I worked on the CLI that builds
+            this SPA. You can see the{" "}
             <a href="https://tina.io/blog/upgrading-to-iframe/">
               {" "}
               blog post announcing this features{" "}
@@ -129,11 +129,11 @@ const TinaCMSExperience = () => {
             <li>Uses vite plugins to transform TypeScript and React JSX</li>
             <li>
               Uses vite plugins to load svg, css, image files so that we could
-              archive a seamless user experience
+              achieve a seamless user experience
             </li>
             <li>
-              Automatically re-indexes the content and re-build the page when a
-              user changes there config file
+              Automatically re-indexes the content and re-builds the page when a
+              user changes their config file
             </li>
           </ul>
         </main>

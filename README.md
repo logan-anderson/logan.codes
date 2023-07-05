@@ -1,5 +1,6 @@
 # My Blog
-![Lighthouse Accessibility Badge]( ./test_results/lighthouse_accessibility.svg)
+
+![Lighthouse Accessibility Badge](./test_results/lighthouse_accessibility.svg)
 ![Lighthouse Performance Badge](./test_results/lighthouse_performance.svg)
 ![Lighthouse PWA Badge](./test_results/lighthouse_pwa.svg)
 ![Lighthouse SEO Badge](./test_results/lighthouse_seo.svg)
@@ -25,7 +26,7 @@ When build this sets generates an RSS feed by looking at the markdown files it h
 
 ### TinaCMS
 
-If you [are on the site](https://logana.dev) you will notice a button at the bottom of the page that says "See spelling errors? Click here to edit the site". When clicked this button allows one to login with there github, make new branch, and edit the sites content in github (pretty cool). Everything is editable on the site its self so no need to look at a backend CMS. Just simply edit the page inline.
+If you [are on the site](https://logana.dev) you will notice a button at the bottom of the page that says "See spelling errors? Click here to edit the site". When clicked this button allows one to log in with there github, make new branch, and edit the sites content in github (pretty cool). Everything is editable on the site its self so no need to look at a backend CMS. Just simply edit the page inline.
 
 ## Running locally
 
