@@ -51,7 +51,7 @@ const SkillList = ({
     <ul className="flex flex-wrap text-base leading-relaxed -mr-1.6 -mb-1.6">
       {skills.map((skill) => {
         return (
-          <li className="[word-wrap: break-word] my-1 mr-1 flex h-6 items-center justify-between rounded-[16px] bg-gray-200 px-2 py-0 text-sm font-normal normal-case leading-loose text-gray-800 shadow-none transition-[opacity] duration-300 ease-linear hover:!shadow-none  dark:bg-neutral-600 dark:text-neutral-200 print:text-xs print:h-4 print:my-[2px] print:mr-[2px] ">
+          <li className="[word-wrap: break-word] my-1 mr-1 flex h-6 items-center justify-between rounded-[16px] bg-gray-200 px-2 py-0 text-sm font-normal normal-case leading-loose text-gray-800 shadow-none transition-[opacity] duration-300 ease-linear hover:!shadow-none  print:text-xs print:h-4 print:my-[2px] print:mr-[2px] ">
             {skill.url ? (
               <SkillLink label={skill.label} url={skill.url} />
             ) : (
