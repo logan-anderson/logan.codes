@@ -16,6 +16,19 @@ const SectionHeader = ({
   );
 };
 
+const BulletListItem = ({
+  children,
+}: {
+  children: React.ReactNode | React.ReactNode[];
+}) => {
+  return (
+    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+      <Bullet />
+      {children}
+    </li>
+  );
+};
+
 const SkillLink = (props: { label: string; url: string }) => {
   return (
     <a
@@ -138,7 +151,7 @@ const Resume = () => {
             Software engineer
           </h2>
         </header>
-        <section className="mb-3 first:mt-0" id="contact">
+        <section className="mb-3 first:mt-0">
           {/* Contact Items */}
           <ul className="print:flex-row flex flex-wrap flex-col sm:flex-row justify-between gap-1 list-inside pr-7">
             {/* Email */}
@@ -247,18 +260,36 @@ const Resume = () => {
           {/* Grid Items Span 2 Larger */}
           <section className="print:col-span-6 col-span-10 md:col-span-6 mt-8 first:mt-0">
             {/* Profile */}
-            <section className="mt-8 first:mt-0" id="profile">
+            <section className="mt-8 first:mt-0">
               <SectionHeader>PROFILE</SectionHeader>
-              <section className="mb-0 grid grid-cols-2 ">
-                <p className="text-sm text-gray-700 leading-normal flex flex-row">
-                  <Bullet />
-                  <span>4+ years of experience in software development.</span>
-                </p>
+              <section className="mb-0 ">
+                <ul className="text-sm text-gray-700 leading-normal">
+                  <BulletListItem>
+                    4+ years of experience in software development.
+                  </BulletListItem>
+                  <BulletListItem>
+                    Achieved excellence in Machine Learning with Tensorflow,
+                    executing{" "}
+                    <ExternalLink href="https://logana.dev/projects/machine-learning-honours">
+                      {" "}
+                      a year-long Honors Research Project
+                    </ExternalLink>{" "}
+                    showcasing exceptional analytical and problem-solving
+                    skills.
+                  </BulletListItem>
+                  <BulletListItem>
+                    Developed strong skills in TypeScript, Java, and Python
+                    through working at TinaCMS, post-secondary coursework and{" "}
+                    <ExternalLink href="https://logana.dev/projects">
+                      personal projects
+                    </ExternalLink>
+                  </BulletListItem>
+                </ul>
               </section>
             </section>
             {/* End Profile */}
             {/* Experience Section */}
-            <section className="col-span-3 mt-6 first:mt-0" id="experience">
+            <section className="col-span-3 mt-3 first:mt-0">
               <SectionHeader>EXPERIENCE</SectionHeader>
               <div>
                 <section className="mb-4">
@@ -272,40 +303,35 @@ const Resume = () => {
                     </p>
                   </header>
                   <ul>
-                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                      <Bullet />
-                      Created a{" "}
+                    <BulletListItem>
+                      Created a dynamic{" "}
                       <ExternalLink href="https://tina.io/docs/data-fetching/overview/">
                         GraphQL client{" "}
                       </ExternalLink>
                       that queries a user's content
-                    </li>
-                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                      <Bullet />
+                    </BulletListItem>
+                    <BulletListItem>
                       Implemented{" "}
                       <ExternalLink href="https://github.com/tinacms/tinacms/pull/3953">
                         editorial workflow
                       </ExternalLink>{" "}
                       allowing users to save changes to a new branch and create
                       draft pull requests
-                    </li>
-                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                      <Bullet />
+                    </BulletListItem>
+                    <BulletListItem>
                       Collaborated closely with customers to provide
                       troubleshooting support, gain a deep understanding of
                       their issues, and successfully resolve them
-                    </li>
-                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                      <Bullet />
+                    </BulletListItem>
+                    <BulletListItem>
                       Worked on maintaining and implementing features in a
                       complex React Frontend
-                    </li>
-                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                      <Bullet />
+                    </BulletListItem>
+                    <BulletListItem>
                       Implemented and maintained backend features, including
                       data caching, validation, and business logic on AWS using
                       DynamoDB, S3, and Serverless Stack (SST)
-                    </li>
+                    </BulletListItem>
                   </ul>
                 </section>
               </div>
@@ -324,25 +350,22 @@ const Resume = () => {
                     </p>
                   </header>
                   <ul>
-                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                      <Bullet />
+                    <BulletListItem>
                       Utilized <Bold>machine learning techniques</Bold> and AWS
                       to develop a document classification model, that
                       successfully <Bold>classified millions of documents</Bold>
-                    </li>
-                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                      <Bullet />
+                    </BulletListItem>
+                    <BulletListItem>
                       Built a web scraper to extract PDF's from websites using
                       the{" "}
                       <ExternalLink href="https://scrapy.org/">
                         Python library Scrapy
                       </ExternalLink>
-                    </li>
-                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                      <Bullet />
+                    </BulletListItem>
+                    <BulletListItem>
                       Played an integral role in building and fixing bugs on the
                       Vue.js frontend, resulting in a seamless user experience
-                    </li>
+                    </BulletListItem>
                   </ul>
                 </section>
               </div>
@@ -350,29 +373,18 @@ const Resume = () => {
             </section>
             {/* End Experience Section */}
             {/* Volunteer Experience Section */}
-            <section className="col-span-3 mt-6 first:mt-0">
+            {/* <section className="col-span-3 mt-6 first:mt-0">
               <SectionHeader>
                 Volunteer &amp; Professional Development
-              </SectionHeader>
-              {/* Codecademy Chapter Co-Lead */}
-              <section className="mb-4.5">
+              </SectionHeader> */}
+            {/* Codecademy Chapter Co-Lead */}
+            {/* <section className="mb-4.5">
                 <header>
-                  <h3
-                    id="job-title"
-                    className="text-lg font-semibold text-gray-700 leading-snugish"
-                  >
+                  <h3 className="text-lg font-semibold text-gray-700 leading-snugish">
                     TODO:
-                    <span
-                      id="company-name"
-                      className="text-gray-550 font-semibold"
-                    >
-                      COMPANY
-                    </span>
+                    <span className="text-gray-550 font-semibold">COMPANY</span>
                   </h3>
-                  <p
-                    id="work-date-location"
-                    className="leading-normal text-sm text-gray-700 mt-1"
-                  >
+                  <p className="leading-normal text-sm text-gray-700 mt-1">
                     Date Range
                   </p>
                 </header>
@@ -381,19 +393,19 @@ const Resume = () => {
                     lorem
                   </li>
                 </ul>
-              </section>
-              {/* Codecademy Chapter Co-Lead */}
-            </section>
+              </section> */}
+            {/* Codecademy Chapter Co-Lead */}
+            {/* </section> */}
             {/* End of Volunteer Experience Section */}
 
             {/* Experience Section */}
-            <section className="col-span-3 mt-6 first:mt-0" id="experience">
+            {/* <section className="col-span-3 mt-6 first:mt-0">
               <SectionHeader>
                 Professional Certification &amp; Achievements
               </SectionHeader>
-              <h2 className="mb-4 font-bold tracking-widest text-sm text-gray-900"></h2>
-              {/* Work 1 */}
-              <section className="mb-4">
+              <h2 className="mb-4 font-bold tracking-widest text-sm text-gray-900"></h2> */}
+            {/* Work 1 */}
+            {/* <section className="mb-4">
                 <ul>
                   <li className="mt-2.1 ml-1.5 text-sm text-gray-700 leading-normal">
                     FOO
@@ -405,16 +417,16 @@ const Resume = () => {
                     FOO
                   </li>
                 </ul>
-              </section>
-              {/* End Work 1 */}
-            </section>
+              </section> */}
+            {/* End Work 1 */}
+            {/* </section> */}
             {/* End Experience Section */}
           </section>
           {/* End Grid Items Span 2 Larger */}
           {/* Column 2 (Right Side) Smaller */}
           <section className="print:col-span-4 col-span-6 md:col-span-4">
             {/* Education Section */}
-            <section className="col-span-3 mt-8 first:mt-0" id="education">
+            <section className="col-span-3 mt-8 first:mt-0">
               <SectionHeader>EDUCATION</SectionHeader>
               {/* Education 1 */}
               <section className="mb-4.5">
@@ -433,20 +445,15 @@ const Resume = () => {
 
                   <div>
                     <ul>
-                      <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                        <Bullet />
+                      <BulletListItem>
                         Recipient of UPEI Faculty Association Silver Medal (
                         <Bold>Second highest mark</Bold> in all of UPEI for
                         third year)
-                      </li>
-                      <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                        <Bullet />
+                      </BulletListItem>
+                      <BulletListItem>
                         Graduated with a <Bold>4.2 GPA</Bold> (Roughly 93%)
-                      </li>
-                      <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
-                        <Bullet />
-                        Dean’s List (2018-2021)
-                      </li>
+                      </BulletListItem>
+                      <BulletListItem>Dean’s List (2018-2021)</BulletListItem>
                     </ul>
                   </div>
 
@@ -471,10 +478,10 @@ const Resume = () => {
             </section>
             {/* End Education Section */}
             {/* Skills Section */}
-            <section className="col-span-1 mt-8 first:mt-0" id="skills">
+            <section className="col-span-1 mt-3 first:mt-0">
               <SectionHeader>SKILLS</SectionHeader>
               {/* Programming Languages */}
-              <section className="mb-1.5" id="programming-languages">
+              <section className="mb-1.5">
                 <header>
                   <Heading>Programming &amp; Languages</Heading>
                 </header>
@@ -510,7 +517,7 @@ const Resume = () => {
               </section>
               {/* End Programming Languages */}
               {/* Libraries & Frameworks */}
-              <section className="mb-1.5" id="libraries-frameworks">
+              <section className="mb-1.5">
                 <header>
                   <Heading>Libraries &amp; Frameworks</Heading>
                 </header>
@@ -558,7 +565,7 @@ const Resume = () => {
               </section>
               {/* End Libraries & Frameworks */}
               {/* Tools | Platforms | Services */}
-              <section className="mb-1.5" id="tools-services">
+              <section className="mb-1.5">
                 <header>
                   <Heading>Tools</Heading>
                 </header>
@@ -603,7 +610,7 @@ const Resume = () => {
               </section>
               {/* End Tools | Platforms | Services */}
               {/* Related Skills */}
-              {/* <section className="mb-1.5" id="related-skills">
+              {/* <section className="mb-1.5">
                 <header>
                   <h3 className="text-lg font-semibold text-gray-700 leading-snugish">
                     Related Skills
@@ -615,7 +622,7 @@ const Resume = () => {
             </section>
             {/* End Skills Section */}
             {/* Projects Section */}
-            {/* <section className="mt-8 first:mt-0" id="projects"> */}
+            {/* <section className="mt-8 first:mt-0"> */}
             {/* <SectionHeader>TECHNICAL PROJECTS</SectionHeader> */}
             {/* Project 1 */}
             {/* <section className="mb-4.5">
@@ -695,10 +702,7 @@ const Resume = () => {
         {/* end Grid 2 1 */}
         {/* Footer Build Info */}
         <footer className="print:pb-0 pb-5">
-          <section
-            id="resume-info"
-            className="flex flex-row mt-16 print:mt-0"
-          ></section>
+          <section className="flex flex-row mt-16 print:mt-0"></section>
         </footer>
         {/* End Footer Build Info */}
       </div>
