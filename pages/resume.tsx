@@ -1,219 +1,711 @@
-import Layout from "../components/layout/Layout";
-import { css } from "../utils/resumeCss";
+import {
+  EnvelopeIcon,
+  CheckCircleIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/solid";
 
-const data = {
-  email: "loganderson55@gmail.com",
-  github: "https://github.com/logan-anderson",
-  website: "https://logana.dev",
+const SectionHeader = ({
+  children,
+}: {
+  children: string | JSX.Element | JSX.Element[] | string[];
+}) => {
+  return (
+    <h2 className="font-bold tracking-widest text-sm text-gray-800">
+      {children}
+    </h2>
+  );
 };
-import { HISTORY } from "./experience";
+
+const SkillLink = (props: { label: string; url: string }) => {
+  return (
+    <a
+      href={props.url}
+      target="_blank"
+      className="cursor-pointer active:bg-[#cacfd1] hover:underline"
+    >
+      {props.label}
+    </a>
+  );
+};
+
+const SkillList = ({
+  skills,
+}: {
+  skills: { label: string; url?: string }[];
+}) => {
+  return (
+    <ul className="flex flex-wrap text-md leading-relaxed -mr-1.6 -mb-1.6">
+      {skills.map((skill) => {
+        return (
+          <li className="[word-wrap: break-word] my-1 mr-1 flex h-6 items-center justify-between rounded-[16px] bg-gray-200 px-2 py-0 text-sm font-normal normal-case leading-loose text-gray-800 shadow-none transition-[opacity] duration-300 ease-linear hover:!shadow-none  dark:bg-neutral-600 dark:text-neutral-200">
+            {skill.url ? (
+              <SkillLink label={skill.label} url={skill.url} />
+            ) : (
+              skill.label
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+const Bullet = () => {
+  return (
+    <CheckCircleIcon className="select-none text-gray-600 w-5 inline mr-2 mb-auto" />
+  );
+};
+
+const ExternalLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: string | JSX.Element | JSX.Element[] | string[];
+}) => {
+  return (
+    <a href={href} target="_blank" className="text-blue-600 hover:underline">
+      {children}
+    </a>
+  );
+};
+const LinkHeading = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: string | JSX.Element | JSX.Element[] | string[];
+}) => {
+  return (
+    <a href={href} target="_blank" className="hover:underline text-blue-500">
+      <Heading>{children}</Heading>
+    </a>
+  );
+};
+const Heading = ({
+  children,
+}: {
+  children: string | JSX.Element | JSX.Element[] | string[];
+}) => {
+  return (
+    <h3 className="text-lg font-semibold leading-5 my-2 text-blue-500">
+      {children}
+    </h3>
+  );
+};
+
+const Bold = ({
+  children,
+}: {
+  children: string | JSX.Element | JSX.Element[] | string[];
+}) => {
+  return <strong className="font-semibold text-blue-950">{children}</strong>;
+};
+
 const Resume = () => {
   return (
     // <Layout preview={false} navDisable={true}>
-    <>
-      {/* <style jsx>{css}</style> */}
-      <main className="min-h-screen leading-6 m-0">
-        <div className="py-20 lg:py-24 px-6 mx-auto max-w-7xl">
-          <div className="relative">
-            <h1>Logan Anderson</h1>
-            <div className="relative grid grid-cols-1 lg:grid-cols-4 gap-10 xl:gap-24 z-10">
-              <h2>Full Stack Software Engineer</h2>
-              <div className="lg:flex lg:justify-between grid grid-cols-3 xl:grid-cols-3  lg:col-span-3 gap-4 mt-5 pt-4 border-t-2 border-gray-300">
-                <div className="flex items-center">
-                  {/* Contact 1 Icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6 shrink-0"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                    />
-                  </svg>
-                  {/* Contact 1 */}
-                  <div className="ml-3">
-                    <p className="mb-0 font-semibold text-sm">Email</p>
-                    <p className="mb-0">
-                      <a
-                        href={`mailto:${data.email}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {data.email}
-                      </a>
+    <main className="bg-body text-body font-body max-w-5xl mx-auto px-3 sm:px-4">
+      {/* Page */}
+      <div
+        className="
+      p-6
+      mx-auto
+      page
+      print:max-w-letter
+      md:max-w-letter md:h-letter
+      xsm:p-8
+      sm:p-9
+      md:p-16
+      bg-white
+    "
+      >
+        {/* Header */}
+        <header
+          className="
+        flex
+        row-gap-5
+        flex-row flex-wrap
+        items-center
+        mb-5
+        md:mb-2
+        border-b-2 border-opacity-50 border-gray-400
+      "
+        >
+          <h1 className="print:text-6xl lg:text-6xl md:text-5xl mr-auto text-3xl font-semibold text-gray-750 pb-4">
+            Logan Anderson
+          </h1>
+          <h2 className="print:text-3xl text-blue-700 font-sans self-center md:text-3xl text-2xl font-hairline pb-px">
+            Software engineer
+          </h2>
+        </header>
+        <section className="mb-3 first:mt-0" id="contact">
+          {/* Contact Items */}
+          <ul className="print:flex-row flex flex-wrap flex-col sm:flex-row justify-between gap-1 list-inside pr-7">
+            {/* Email */}
+            <li className="mt-1.5 leading-normal text-gray-700 text-md">
+              <a
+                href="mailto:loganderson55@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-900 hover:underline group"
+              >
+                <span>
+                  <EnvelopeIcon className="inline-block mr-1.5 text-blue-900 w-5" />
+                  loganderson55@gmail.com
+                </span>
+              </a>
+            </li>
+            {/* End Email */}
+            <li className="mt-1.5 leading-normal text-gray-700 text-md">
+              <a
+                href="https://goo.gl/maps/qsQ6uWFASdr5S8h57"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-900 hover:underline group"
+              >
+                <span>
+                  <MapPinIcon className="inline-block mr-1.5 text-blue-900 w-5" />
+                  Kitchener, Ontario.
+                </span>
+              </a>
+            </li>
+            {/* LinkedIn */}
+            <li className="mt-1.5 leading-normal text-gray-700 text-md">
+              <a
+                href="https://www.linkedin.com/in/logan-anderson-tech/?originalSubdomain=ca"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-900 hover:underline group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  className="inline-block mr-1.5 fill-blue-900 w-5"
+                >
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+                logan-anderson-tech
+                <span
+                  className="
+                inline-block
+                text-gray-550
+                print:text-black
+                font-normal
+                group-hover:text-gray-700
+                transition
+                duration-100
+                ease-in
+              "
+                >
+                  ↗
+                </span>
+              </a>
+            </li>
+            {/* End LinkedIn */}
+            {/* Github */}
+            <li className="mt-1.5 leading-normal text-gray-700 text-md">
+              <a
+                href="https://www.github.com/logan-anderson"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-900 hover:underline group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  className="inline-block mr-1.5 fill-blue-900 w-5"
+                >
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+                github.com/logan-anderson
+                <span
+                  className="
+                inline-block
+                text-gray-550
+                print:text-black
+                font-normal
+                group-hover:text-gray-700
+                transition
+                duration-100
+                ease-in
+              "
+                >
+                  ↗
+                </span>
+              </a>
+            </li>
+            {/* End Github */}
+          </ul>
+        </section>
+        {/* End Contact / Links */}
+        {/* Grid 2 1 */}
+        <div className="grid grid-cols-10 gap-10">
+          {/* Grid Items Span 2 Larger */}
+          <section className="print:col-span-6 col-span-10 md:col-span-6 mt-8 first:mt-0">
+            {/* Profile */}
+            <section className="mt-8 first:mt-0" id="profile">
+              <SectionHeader>PROFILE</SectionHeader>
+              <section className="mb-0 grid grid-cols-2 ">
+                <p className="text-sm text-gray-700 leading-normal flex flex-row">
+                  <Bullet />
+                  <span>4+ years of experience in software development.</span>
+                </p>
+              </section>
+            </section>
+            {/* End Profile */}
+            {/* Experience Section */}
+            <section className="col-span-3 mt-6 first:mt-0" id="experience">
+              <SectionHeader>EXPERIENCE</SectionHeader>
+              <div>
+                <section className="mb-4">
+                  <header>
+                    <LinkHeading href="https://tina.io">
+                      TinaCMS (Formally Forestry.io)
+                    </LinkHeading>
+
+                    <p className="leading-normal text-sm text-gray-700 mt-1">
+                      April 2020 - Present | Full Stack Software Engineer
                     </p>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  {/* Contact 2 Icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6 shrink-0"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"
-                    />
-                  </svg>
-                  {/* Contact 2 */}
-                  <div className="ml-3">
-                    <p className="mb-0 font-semibold text-sm">GitHub</p>
-                    <p className="mb-0">
-                      <a href={data.github} target="_blank" rel="noreferrer">
-                        {data.github.replace("https://", "")}
-                      </a>
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  {/* Contact 3 Icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6 shrink-0"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6.115 5.19l.319 1.913A6 6 0 008.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 002.288-4.042 1.087 1.087 0 00-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 01-.98-.314l-.295-.295a1.125 1.125 0 010-1.591l.13-.132a1.125 1.125 0 011.3-.21l.603.302a.809.809 0 001.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 001.528-1.732l.146-.292M6.115 5.19A9 9 0 1017.18 4.64M6.115 5.19A8.965 8.965 0 0112 3c1.929 0 3.716.607 5.18 1.64"
-                    />
-                  </svg>
-                  {/* Contact 3 */}
-                  <div className="ml-3">
-                    <p className="mb-0 font-semibold text-sm">Website</p>
-                    <p className="mb-0">
-                      <a href={data.website} target="_blank" rel="noreferrer">
-                        {data.website.replace("https://", "")}
-                      </a>
-                    </p>
-                  </div>
-                </div>
+                  </header>
+                  <ul>
+                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                      <Bullet />
+                      Created a{" "}
+                      <ExternalLink href="https://tina.io/docs/data-fetching/overview/">
+                        GraphQL client{" "}
+                      </ExternalLink>
+                      that queries a user's content
+                    </li>
+                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                      <Bullet />
+                      Implemented{" "}
+                      <ExternalLink href="https://github.com/tinacms/tinacms/pull/3953">
+                        editorial workflow
+                      </ExternalLink>{" "}
+                      allowing users to save changes to a new branch and create
+                      draft pull requests
+                    </li>
+                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                      <Bullet />
+                      Collaborated closely with customers to provide
+                      troubleshooting support, gain a deep understanding of
+                      their issues, and successfully resolve them
+                    </li>
+                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                      <Bullet />
+                      Worked on maintaining and implementing features in a
+                      complex React Frontend
+                    </li>
+                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                      <Bullet />
+                      Implemented and maintained backend features, including
+                      data caching, validation, and business logic on AWS using
+                      DynamoDB, S3, and Serverless Stack (SST)
+                    </li>
+                  </ul>
+                </section>
               </div>
-            </div>
-            <div className="absolute top-[-3rem] lg:top-[-3.5rem] -left-12  lg:w-[13rem] w-40 h-40 lg:h-[13rem] bg-blue-400 rounded-full" />
-          </div>
-          <div className="grid grid-cols-3 gap-10 lg:gap-24 items-start mt-12 lg:mt-24">
-            {/* Work Experience */}
-            <div className="lg:col-span-2">
-              <h3>Work Experience</h3>
-              {HISTORY.filter((x) => x.workExperience).map((item, index) => {
-                return (
-                  <div className="grid-cols-3 gap-x-6">
-                    {/* Work Experience 1 */}
-                    <div>
-                      {/* Company 1 */}
-                      <h4 className="mb-1 lg:mb-4">{item.company}</h4>
-                      <p className="text-sm mb-1">
-                        <a href={item.website} target="_blank" rel="noreferrer">
-                          {item.website?.replace("https://", "") || "Website"}
-                        </a>
-                      </p>
-                      <p className="text-sm">{item.date}</p>
-                    </div>
-                    <div className="lg:col-span-2">
-                      {/* Job Title 1 */}
-                      <h4 className="mb-4">{item.title}</h4>
-                      {/* TODO: maybe description should be rich text */}
-                      {item.description}
-                      {/* <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Integer a imperdiet urna. Praesent eu posuere magna, in
-                        suscipit quam. Here is an example of an
-                        <a
-                          href="https://resumewind.com/"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          external link
-                        </a>
-                        .
-                      </p>
-                      <p>
-                        Mauris ullamcorper neque in ultrices mollis. Sed justo
-                        eros, mollis sed odio id, finibus gravida enim. Aenean
-                        pharetra ante elit, sit amet accumsan felis suscipit
-                        vitae. Vestibulum ante ipsum primis.
-                      </p>
-                      <ul>
-                        <li>
-                          Cras in erat bibendum, rhoncus nisl ac, luctus tortor
-                        </li>
-                        <li>Vivamus volutpat nunc non quam dapibus</li>
-                        <li>Nulla molestie odio odio, ut congue dui</li>
-                      </ul> */}
-                      {item.moreInfoLink && (
-                        <div>
-                          <a href={`https://logana.dev/${item.moreInfoLink}`}>
-                            Check out my website for more detail
-                          </a>
-                        </div>
-                      )}
-                    </div>
+              {/* End Work at TinaCMS */}
+
+              {/* Work at IWave */}
+              <div>
+                <section className="mb-4">
+                  <header>
+                    <LinkHeading href="https://www.iwave.com/">
+                      iWave
+                    </LinkHeading>
+                    <p className="leading-normal text-sm text-gray-700 mt-1">
+                      May 2019 - April 2020 | Data Science Specialist (Machine
+                      Learning)
+                    </p>
+                  </header>
+                  <ul>
+                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                      <Bullet />
+                      Utilized <Bold>machine learning techniques</Bold> and AWS
+                      to develop a document classification model, that
+                      successfully <Bold>classified millions of documents</Bold>
+                    </li>
+                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                      <Bullet />
+                      Built a web scraper to extract PDF's from websites using
+                      the{" "}
+                      <ExternalLink href="https://scrapy.org/">
+                        Python library Scrapy
+                      </ExternalLink>
+                    </li>
+                    <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                      <Bullet />
+                      Played an integral role in building and fixing bugs on the
+                      Vue.js frontend, resulting in a seamless user experience
+                    </li>
+                  </ul>
+                </section>
+              </div>
+              {/* End work at iWave */}
+            </section>
+            {/* End Experience Section */}
+            {/* Volunteer Experience Section */}
+            <section className="col-span-3 mt-6 first:mt-0">
+              <SectionHeader>
+                Volunteer &amp; Professional Development
+              </SectionHeader>
+              {/* Codecademy Chapter Co-Lead */}
+              <section className="mb-4.5">
+                <header>
+                  <h3
+                    id="job-title"
+                    className="text-lg font-semibold text-gray-700 leading-snugish"
+                  >
+                    TODO:
+                    <span
+                      id="company-name"
+                      className="text-gray-550 font-semibold"
+                    >
+                      COMPANY
+                    </span>
+                  </h3>
+                  <p
+                    id="work-date-location"
+                    className="leading-normal text-sm text-gray-700 mt-1"
+                  >
+                    Date Range
+                  </p>
+                </header>
+                <ul>
+                  <li className="mt-2.1 ml-1.5 text-sm text-gray-700 leading-normal">
+                    lorem
+                  </li>
+                </ul>
+              </section>
+              {/* Codecademy Chapter Co-Lead */}
+            </section>
+            {/* End of Volunteer Experience Section */}
+
+            {/* Experience Section */}
+            <section className="col-span-3 mt-6 first:mt-0" id="experience">
+              <SectionHeader>
+                Professional Certification &amp; Achievements
+              </SectionHeader>
+              <h2 className="mb-4 font-bold tracking-widest text-sm text-gray-900"></h2>
+              {/* Work 1 */}
+              <section className="mb-4">
+                <ul>
+                  <li className="mt-2.1 ml-1.5 text-sm text-gray-700 leading-normal">
+                    FOO
+                  </li>
+                  <li className="mt-2.1 ml-1.5 text-sm text-gray-700 leading-normal">
+                    FOO
+                  </li>
+                  <li className="mt-2.1 ml-1.5 text-sm text-gray-700 leading-normal">
+                    FOO
+                  </li>
+                </ul>
+              </section>
+              {/* End Work 1 */}
+            </section>
+            {/* End Experience Section */}
+          </section>
+          {/* End Grid Items Span 2 Larger */}
+          {/* Column 2 (Right Side) Smaller */}
+          <section className="print:col-span-4 col-span-6 md:col-span-4">
+            {/* Education Section */}
+            <section className="col-span-3 mt-8 first:mt-0" id="education">
+              <SectionHeader>EDUCATION</SectionHeader>
+              {/* Education 1 */}
+              <section className="mb-4.5">
+                <header>
+                  <LinkHeading href="https://www.upei.ca">
+                    University of Prince Edward Island
+                  </LinkHeading>
+                  <p className="leading-normal text-sm text-gray-650">
+                    Charlottetown, PEI
+                  </p>
+                </header>
+                <div className="mt-2.1 text-sm text-gray-800 leading-normal">
+                  <Bold>
+                    Bachelor’s of Science in Computer Science and Math (Honors)
+                  </Bold>
+
+                  <div>
+                    <ul>
+                      <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                        <Bullet />
+                        Recipient of UPEI Faculty Association Silver Medal (
+                        <Bold>Second highest mark</Bold> in all of UPEI for
+                        third year)
+                      </li>
+                      <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                        <Bullet />
+                        Graduated with a <Bold>4.2 GPA</Bold> (Roughly 93%)
+                      </li>
+                      <li className="mt-2.1 ml-1.5 text-md text-gray-700 leading-normal">
+                        <Bullet />
+                        Dean’s List (2018-2021)
+                      </li>
+                    </ul>
                   </div>
-                );
-              })}
-            </div>
-            <div>
-              {/* Profile */}
-              <h3>Profile</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                semper sapien ligula, vestibulum eleifend erat pellentesque
-                quis. Suspendisse potenti. Mauris et malesuada nisl, eu tempus
-                nisi.
-              </p>
-              {/* Skills */}
-              <h3 className="mt-12 lg:mt-16">Skills</h3>
-              {/* Skills 1 */}
-              <h4>Programming Languages</h4>
-              <ul>
-                <li>JavaScript</li>
-                <li>TypeScript</li>
-                <li>Python</li>
-                <li>PHP</li>
-              </ul>
-              {/* Skills 2 */}
-              <h4 className="mt-8">Libraries &amp; Frameworks</h4>
-              <ul>
-                <li>React.js</li>
-                <li>Vue.js</li>
-                <li>Next.js</li>
-                <li>Gatsby.js</li>
-              </ul>
-              {/* Education */}
-              <h3 className="mt-12 lg:mt-16">Education</h3>
-              <h4 className="mb-1">University of Prince Edward Island</h4>
-              <p className="mb-1">
-                Bachelor of Science in Computer Science and Math (Honours)
-              </p>
-              {/* References */}
-              {/* <h3 className="mt-12 lg:mt-16">References</h3> */}
-              {/* Reference 1 */}
-              {/* <h4 className="mb-1">Reference Name 1</h4> */}
-              {/* <p>Reference Title 1</p> */}
-              {/* Reference 2 */}
-              {/* <h4 className="mt-8 mb-1">Reference Name 2</h4> */}
-              {/* <p className="mb-1">Reference Title 2</p> */}
-            </div>
-          </div>
+
+                  {/* | */}
+                  {/* Dean’s List */}
+                </div>
+              </section>
+              {/* End Education 1 */}
+              {/* Education 2 */}
+              {/* <section class="mb-4.5">
+          <header>
+            <h3 class="text-lg font-semibold text-gray-700 leading-snugish">Greenfield Community College</h3>
+            <p class="leading-normal text-sm text-gray-650">Greenfield, MA</p>
+          </header>
+          <p class="mt-2.1 text-sm text-gray-800 leading-normal">Associate's of Liberal Arts | Cum Laude</p>
+          <p class="mt-0.5 text-xs text-gray-600 leading-normal">
+            Academic tutor of mathematics and sciences Honorary Phi Theta Kappa Honor Society member
+            Honors-to-Honors Scholarship
+          </p>
+        </section> */}
+              {/* End Education 2 */}
+            </section>
+            {/* End Education Section */}
+            {/* Skills Section */}
+            <section className="col-span-1 mt-8 first:mt-0" id="skills">
+              <SectionHeader>SKILLS</SectionHeader>
+              {/* Programming Languages */}
+              <section className="mb-1.5" id="programming-languages">
+                <header>
+                  <Heading>Programming &amp; Languages</Heading>
+                </header>
+                <div className="my-2.5 last:pb-1.5">
+                  <SkillList
+                    skills={[
+                      {
+                        label: "Typescript",
+                        url: "https://www.typescriptlang.org/",
+                      },
+                      {
+                        label: "Node.js",
+                        url: "https://nodejs.org/",
+                      },
+                      {
+                        label: "Python",
+                        url: "https://www.python.org/",
+                      },
+                      {
+                        label: "Java",
+                        url: "https://www.java.com/",
+                      },
+                      {
+                        label: "Go",
+                        url: "https://golang.org/",
+                      },
+                      {
+                        label: "HTML/CSS",
+                      },
+                    ]}
+                  />
+                </div>
+              </section>
+              {/* End Programming Languages */}
+              {/* Libraries & Frameworks */}
+              <section className="mb-1.5" id="libraries-frameworks">
+                <header>
+                  <Heading>Libraries &amp; Frameworks</Heading>
+                </header>
+                <div className="my-2 last:pb-1">
+                  <SkillList
+                    skills={[
+                      { label: "React", url: "https://reactjs.org/" },
+                      { label: "Next.js", url: "https://nextjs.org/" },
+                      {
+                        label: "Tensorflow",
+                        url: "https://www.tensorflow.org/",
+                      },
+                      { label: "Express/Koa", url: "https://expressjs.com/" },
+                      {
+                        label: "AWS serverless / SST",
+                        url: "https://sst.dev/",
+                      },
+                      {
+                        label: "Vue.js",
+                        url: "https://vuejs.org/",
+                      },
+                      {
+                        label: "Tailwind CSS",
+                        url: "https://tailwindcss.com/",
+                      },
+                      {
+                        label: "Cypress",
+                        url: "https://www.cypress.io/",
+                      },
+                      {
+                        label: "Jest",
+                        url: "https://jestjs.io/",
+                      },
+                      {
+                        label: "Vite",
+                        url: "https://vitejs.dev/",
+                      },
+                      {
+                        label: "Django",
+                        url: "https://www.djangoproject.com/",
+                      },
+                    ]}
+                  />
+                </div>
+              </section>
+              {/* End Libraries & Frameworks */}
+              {/* Tools | Platforms | Services */}
+              <section className="mb-1.5" id="tools-services">
+                <header>
+                  <Heading>Tools</Heading>
+                </header>
+                <div className="my-2.5 last:pb-1.5">
+                  <SkillList
+                    skills={[
+                      {
+                        label: "AWS",
+                        url: "https://aws.amazon.com/",
+                      },
+                      {
+                        label: "Git / Github",
+                        url: "https://github.com",
+                      },
+                      {
+                        label: "Firebase",
+                        url: "https://firebase.google.com/",
+                      },
+                      {
+                        label: "DynamoDB",
+                        url: "https://aws.amazon.com/dynamodb/",
+                      },
+                      {
+                        label: "PostgreSQL",
+                        url: "https://www.postgresql.org/",
+                      },
+                      {
+                        label: "Vercel",
+                        url: "https://vercel.com/",
+                      },
+                      {
+                        label: "Docker",
+                        url: "https://www.docker.com/",
+                      },
+                      {
+                        label: "Linux",
+                        url: "https://www.linux.org/",
+                      },
+                    ]}
+                  />
+                </div>
+              </section>
+              {/* End Tools | Platforms | Services */}
+              {/* Related Skills */}
+              {/* <section className="mb-1.5" id="related-skills">
+                <header>
+                  <h3 className="text-lg font-semibold text-gray-700 leading-snugish">
+                    Related Skills
+                  </h3>
+                </header>
+                <div className="my-2.5 last:pb-1.5"></div>
+              </section> */}
+              {/* End Related Skills */}
+            </section>
+            {/* End Skills Section */}
+            {/* Projects Section */}
+            {/* <section className="mt-8 first:mt-0" id="projects"> */}
+            {/* <SectionHeader>TECHNICAL PROJECTS</SectionHeader> */}
+            {/* Project 1 */}
+            {/* <section className="mb-4.5">
+                <header>
+                  <h3 className="text-sm font-semibold tex t-gray-700 leading-snugish">
+                    <a
+                      href="https://www.t-mobile.com/support/new-to-tmobile"
+                      className="group"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      T-Mobile New Customer Onboarding
+                      <span
+                        className="
+                      inline-block
+                      text-gray-550
+                      print:text-black
+                      font-normal
+                      group-hover:text-gray-700
+                      transition
+                      duration-100
+                      ease-in
+                    "
+                      >
+                        ↗
+                      </span>
+                    </a>
+                  </h3>
+                  <p className="leading-normal text-sm text-gray-650">
+                    Stack: Javascript, Vue.js, Laravel
+                  </p>
+                  <p className="leading-normal text-sm text-gray-650">
+                    <i>Finished</i>
+                  </p>
+                </header>
+                <div className="mt-2.1 text-xs text-gray-700 leading-normal">
+                  <p>
+                    <span className="font-semibold">Description:</span>
+                    T-Mobile onboarding experience for new customers and Sprint
+                    customers after merger.
+                  </p>
+                  <p>
+                    <span className="font-semibold">Market Need:</span>
+                    Large churn from Sprint customers migrating to T-Mobile.
+                  </p>
+                  <p>
+                    <span className="font-semibold">Solves:</span>
+                    Integrates the T-Mobile Un-Carrier campaign, showcases
+                    benefits, and educates customers
+                  </p>
+                  <span className="font-semibold">Features: </span>
+                  <br />
+                  <ul className="list-inside">
+                    <li className="ml-1.5">
+                      <span className="-ml-1.5 select-none text-gray-600">
+                        ›
+                      </span>
+                      Users can set up online account to manage T-Mobile account
+                      &amp; see of the benefits they recieve with T-Mobile
+                      service.
+                    </li>
+                    <li className="ml-1.5">
+                      <span className="-ml-1.5 select-none text-gray-600">
+                        ›
+                      </span>
+                      Helps transition customers migrating from Sprint.
+                    </li>
+                  </ul>
+                </div>
+              </section> */}
+            {/* End Project 1 */}
+            {/* </section> */}
+            {/* End Projects Section */}
+          </section>
+          {/* End Column 2 Smaller */}
         </div>
-      </main>
-    </>
+        {/* end Grid 2 1 */}
+        {/* Footer Build Info */}
+        <footer className="print:pb-0 pb-5">
+          <section
+            id="resume-info"
+            className="flex flex-row mt-16 print:mt-0"
+          ></section>
+        </footer>
+        {/* End Footer Build Info */}
+      </div>
+      {/* end Page */}
+    </main>
+    // </Layout>
   );
-  // </Layout>
 };
 
 export default Resume;
