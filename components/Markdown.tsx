@@ -12,6 +12,7 @@ export const MarkdownBody: React.FC<ReactMarkdown.ReactMarkdownProps> = (
     // @ts-ignore
     <ReactMarkdown
       renderers={{
+        // @ts-ignore
         heading: ({ children, level }) => {
           if (level === 1) {
             return (
@@ -27,9 +28,16 @@ export const MarkdownBody: React.FC<ReactMarkdown.ReactMarkdownProps> = (
             );
           }
         },
+        // @ts-ignore
         paragraph: ({ children }) => {
-          return <p className="text-gray-500 mx-auto">{children}</p>;
+          return (
+            <p className="text-gray-500 dark:text-gray-300 mx-auto">
+              {children}
+            </p>
+          );
         },
+
+        // @ts-ignore
         code: ({ language, value }) => {
           return (
             <SyntaxHighlighter

@@ -1,4 +1,5 @@
 import { useEditState } from "tinacms/dist/react";
+import Link from "next/link";
 
 // import Link from 'next/link';
 const AppFooter = () => {
@@ -8,7 +9,10 @@ const AppFooter = () => {
   return (
     <footer className="flex flex-wrap items-center justify-between p-4">
       <div className="w-full lg:w-auto lg:mr-6 mb-4 lg:mb-0 text-center dark:text-gray-50">
-        &copy; Logan
+        &copy; Logan |{" "}
+        <Link href={"/resume"} className="hover:underline">
+          Resume
+        </Link>
       </div>
       {canEdit && (
         <div className="flex flex-col lg:flex-row items-center w-full lg:w-auto">

@@ -42,6 +42,12 @@ export type SystemInfoBreadcrumbsArgs = {
   excludeExtension?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type Folder = {
+  __typename?: 'Folder';
+  name: Scalars['String'];
+  path: Scalars['String'];
+};
+
 export type PageInfo = {
   __typename?: 'PageInfo';
   hasPreviousPage: Scalars['Boolean'];
@@ -73,6 +79,10 @@ export type Query = {
   collections: Array<Collection>;
   node: Node;
   document: DocumentNode;
+  experience: Experience;
+  experienceConnection: ExperienceConnection;
+  projects: Projects;
+  projectsConnection: ProjectsConnection;
   post: Post;
   postConnection: PostConnection;
   author: Author;
@@ -98,6 +108,36 @@ export type QueryNodeArgs = {
 export type QueryDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
   relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryExperienceArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryExperienceConnectionArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<ExperienceFilter>;
+};
+
+
+export type QueryProjectsArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryProjectsConnectionArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<ProjectsFilter>;
 };
 
 
@@ -131,6 +171,8 @@ export type QueryAuthorConnectionArgs = {
 };
 
 export type DocumentFilter = {
+  experience?: InputMaybe<ExperienceFilter>;
+  projects?: InputMaybe<ProjectsFilter>;
   post?: InputMaybe<PostFilter>;
   author?: InputMaybe<AuthorFilter>;
 };
@@ -169,9 +211,122 @@ export type CollectionDocumentsArgs = {
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
   filter?: InputMaybe<DocumentFilter>;
+  folder?: InputMaybe<Scalars['String']>;
 };
 
-export type DocumentNode = Post | Author;
+export type DocumentNode = Experience | Projects | Post | Author | Folder;
+
+export type ExperienceExperience = {
+  __typename?: 'ExperienceExperience';
+  title?: Maybe<Scalars['String']>;
+  company?: Maybe<Scalars['String']>;
+  location?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  description_short?: Maybe<Scalars['JSON']>;
+  website?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  description_long?: Maybe<Scalars['JSON']>;
+};
+
+export type Experience = Node & Document & {
+  __typename?: 'Experience';
+  experience?: Maybe<Array<Maybe<ExperienceExperience>>>;
+  id: Scalars['ID'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON'];
+};
+
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ExperienceExperienceFilter = {
+  title?: InputMaybe<StringFilter>;
+  company?: InputMaybe<StringFilter>;
+  location?: InputMaybe<StringFilter>;
+  type?: InputMaybe<StringFilter>;
+  description_short?: InputMaybe<RichTextFilter>;
+  website?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+  description_long?: InputMaybe<RichTextFilter>;
+};
+
+export type ExperienceFilter = {
+  experience?: InputMaybe<ExperienceExperienceFilter>;
+};
+
+export type ExperienceConnectionEdges = {
+  __typename?: 'ExperienceConnectionEdges';
+  cursor: Scalars['String'];
+  node?: Maybe<Experience>;
+};
+
+export type ExperienceConnection = Connection & {
+  __typename?: 'ExperienceConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float'];
+  edges?: Maybe<Array<Maybe<ExperienceConnectionEdges>>>;
+};
+
+export type ProjectsProjects = {
+  __typename?: 'ProjectsProjects';
+  fromGithub?: Maybe<Scalars['Boolean']>;
+  label?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  imgUrl?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  rawMarkdown?: Maybe<Scalars['JSON']>;
+};
+
+export type Projects = Node & Document & {
+  __typename?: 'Projects';
+  projects?: Maybe<Array<Maybe<ProjectsProjects>>>;
+  id: Scalars['ID'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON'];
+};
+
+export type BooleanFilter = {
+  eq?: InputMaybe<Scalars['Boolean']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ProjectsProjectsFilter = {
+  fromGithub?: InputMaybe<BooleanFilter>;
+  label?: InputMaybe<StringFilter>;
+  excerpt?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<StringFilter>;
+  imgUrl?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+  rawMarkdown?: InputMaybe<RichTextFilter>;
+};
+
+export type ProjectsFilter = {
+  projects?: InputMaybe<ProjectsProjectsFilter>;
+};
+
+export type ProjectsConnectionEdges = {
+  __typename?: 'ProjectsConnectionEdges';
+  cursor: Scalars['String'];
+  node?: Maybe<Projects>;
+};
+
+export type ProjectsConnection = Connection & {
+  __typename?: 'ProjectsConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float'];
+  edges?: Maybe<Array<Maybe<ProjectsConnectionEdges>>>;
+};
 
 export type PostAuthor = Author;
 
@@ -196,18 +351,6 @@ export type Post = Node & Document & {
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
-};
-
-export type BooleanFilter = {
-  eq?: InputMaybe<Scalars['Boolean']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type StringFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type DatetimeFilter = {
@@ -308,6 +451,10 @@ export type Mutation = {
   updateDocument: DocumentNode;
   deleteDocument: DocumentNode;
   createDocument: DocumentNode;
+  updateExperience: Experience;
+  createExperience: Experience;
+  updateProjects: Projects;
+  createProjects: Projects;
   updatePost: Post;
   createPost: Post;
   updateAuthor: Author;
@@ -325,7 +472,7 @@ export type MutationAddPendingDocumentArgs = {
 export type MutationUpdateDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
   relativePath: Scalars['String'];
-  params: DocumentMutation;
+  params: DocumentUpdateMutation;
 };
 
 
@@ -339,6 +486,30 @@ export type MutationCreateDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
   relativePath: Scalars['String'];
   params: DocumentMutation;
+};
+
+
+export type MutationUpdateExperienceArgs = {
+  relativePath: Scalars['String'];
+  params: ExperienceMutation;
+};
+
+
+export type MutationCreateExperienceArgs = {
+  relativePath: Scalars['String'];
+  params: ExperienceMutation;
+};
+
+
+export type MutationUpdateProjectsArgs = {
+  relativePath: Scalars['String'];
+  params: ProjectsMutation;
+};
+
+
+export type MutationCreateProjectsArgs = {
+  relativePath: Scalars['String'];
+  params: ProjectsMutation;
 };
 
 
@@ -365,9 +536,48 @@ export type MutationCreateAuthorArgs = {
   params: AuthorMutation;
 };
 
-export type DocumentMutation = {
+export type DocumentUpdateMutation = {
+  experience?: InputMaybe<ExperienceMutation>;
+  projects?: InputMaybe<ProjectsMutation>;
   post?: InputMaybe<PostMutation>;
   author?: InputMaybe<AuthorMutation>;
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+export type DocumentMutation = {
+  experience?: InputMaybe<ExperienceMutation>;
+  projects?: InputMaybe<ProjectsMutation>;
+  post?: InputMaybe<PostMutation>;
+  author?: InputMaybe<AuthorMutation>;
+};
+
+export type ExperienceExperienceMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  company?: InputMaybe<Scalars['String']>;
+  location?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
+  description_short?: InputMaybe<Scalars['JSON']>;
+  website?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['String']>;
+  description_long?: InputMaybe<Scalars['JSON']>;
+};
+
+export type ExperienceMutation = {
+  experience?: InputMaybe<Array<InputMaybe<ExperienceExperienceMutation>>>;
+};
+
+export type ProjectsProjectsMutation = {
+  fromGithub?: InputMaybe<Scalars['Boolean']>;
+  label?: InputMaybe<Scalars['String']>;
+  excerpt?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
+  imgUrl?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+  rawMarkdown?: InputMaybe<Scalars['JSON']>;
+};
+
+export type ProjectsMutation = {
+  projects?: InputMaybe<Array<InputMaybe<ProjectsProjectsMutation>>>;
 };
 
 export type PostFeaturePostsMutation = {
@@ -396,20 +606,62 @@ export type PostAndFeaturePostsQueryVariables = Exact<{
 }>;
 
 
-export type PostAndFeaturePostsQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } };
+export type PostAndFeaturePostsQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } };
 
-export type PostParts2Fragment = { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null } | null } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null };
+export type PostParts2Fragment = { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null } | null> | null } | null } | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null };
 
-export type PostPartsFragment = { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null> | null };
+export type ExperiencePartsFragment = { __typename?: 'Experience', experience?: Array<{ __typename: 'ExperienceExperience', title?: string | null, company?: string | null, location?: string | null, type?: string | null, description_short?: any | null, website?: string | null, icon?: string | null, description_long?: any | null } | null> | null };
+
+export type ProjectsPartsFragment = { __typename?: 'Projects', projects?: Array<{ __typename: 'ProjectsProjects', fromGithub?: boolean | null, label?: string | null, excerpt?: string | null, slug?: string | null, imgUrl?: string | null, url?: string | null, rawMarkdown?: any | null } | null> | null };
+
+export type PostPartsFragment = { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null };
 
 export type AuthorPartsFragment = { __typename?: 'Author', name?: string | null, avatar?: string | null };
+
+export type ExperienceQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type ExperienceQuery = { __typename?: 'Query', experience: { __typename?: 'Experience', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, experience?: Array<{ __typename: 'ExperienceExperience', title?: string | null, company?: string | null, location?: string | null, type?: string | null, description_short?: any | null, website?: string | null, icon?: string | null, description_long?: any | null } | null> | null } };
+
+export type ExperienceConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<ExperienceFilter>;
+}>;
+
+
+export type ExperienceConnectionQuery = { __typename?: 'Query', experienceConnection: { __typename?: 'ExperienceConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ExperienceConnectionEdges', cursor: string, node?: { __typename?: 'Experience', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, experience?: Array<{ __typename: 'ExperienceExperience', title?: string | null, company?: string | null, location?: string | null, type?: string | null, description_short?: any | null, website?: string | null, icon?: string | null, description_long?: any | null } | null> | null } | null } | null> | null } };
+
+export type ProjectsQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'Projects', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, projects?: Array<{ __typename: 'ProjectsProjects', fromGithub?: boolean | null, label?: string | null, excerpt?: string | null, slug?: string | null, imgUrl?: string | null, url?: string | null, rawMarkdown?: any | null } | null> | null } };
+
+export type ProjectsConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<ProjectsFilter>;
+}>;
+
+
+export type ProjectsConnectionQuery = { __typename?: 'Query', projectsConnection: { __typename?: 'ProjectsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ProjectsConnectionEdges', cursor: string, node?: { __typename?: 'Projects', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, projects?: Array<{ __typename: 'ProjectsProjects', fromGithub?: boolean | null, label?: string | null, excerpt?: string | null, slug?: string | null, imgUrl?: string | null, url?: string | null, rawMarkdown?: any | null } | null> | null } | null } | null> | null } };
 
 export type PostQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null> | null } };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type PostConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
@@ -421,7 +673,7 @@ export type PostConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null } | null } | null> | null } | null } | null> | null } | null } | null> | null } };
+export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null } | null> | null } };
 
 export type AuthorQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -455,6 +707,14 @@ export const PostPartsFragmentDoc = gql`
       avatar
     }
     ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
       id
     }
   }
@@ -475,6 +735,14 @@ export const PostPartsFragmentDoc = gql`
             avatar
           }
           ... on Document {
+            _sys {
+              filename
+              basename
+              breadcrumbs
+              path
+              relativePath
+              extension
+            }
             id
           }
         }
@@ -496,12 +764,28 @@ export const PostPartsFragmentDoc = gql`
               }
             }
             ... on Document {
+              _sys {
+                filename
+                basename
+                breadcrumbs
+                path
+                relativePath
+                extension
+              }
               id
             }
           }
         }
       }
       ... on Document {
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
         id
       }
     }
@@ -515,8 +799,7 @@ export const PostParts2FragmentDoc = gql`
     __typename
     post {
       __typename
-      ... on Post {
-        ...PostParts
+      ... on Document {
         _sys {
           filename
           basename
@@ -525,11 +808,44 @@ export const PostParts2FragmentDoc = gql`
           relativePath
           extension
         }
+        id
+      }
+      ... on Post {
+        ...PostParts
       }
     }
   }
 }
     ${PostPartsFragmentDoc}`;
+export const ExperiencePartsFragmentDoc = gql`
+    fragment ExperienceParts on Experience {
+  experience {
+    __typename
+    title
+    company
+    location
+    type
+    description_short
+    website
+    icon
+    description_long
+  }
+}
+    `;
+export const ProjectsPartsFragmentDoc = gql`
+    fragment ProjectsParts on Projects {
+  projects {
+    __typename
+    fromGithub
+    label
+    excerpt
+    slug
+    imgUrl
+    url
+    rawMarkdown
+  }
+}
+    `;
 export const AuthorPartsFragmentDoc = gql`
     fragment AuthorParts on Author {
   name
@@ -554,6 +870,116 @@ export const PostAndFeaturePostsDocument = gql`
   }
 }
     ${PostParts2FragmentDoc}`;
+export const ExperienceDocument = gql`
+    query experience($relativePath: String!) {
+  experience(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...ExperienceParts
+  }
+}
+    ${ExperiencePartsFragmentDoc}`;
+export const ExperienceConnectionDocument = gql`
+    query experienceConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ExperienceFilter) {
+  experienceConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...ExperienceParts
+      }
+    }
+  }
+}
+    ${ExperiencePartsFragmentDoc}`;
+export const ProjectsDocument = gql`
+    query projects($relativePath: String!) {
+  projects(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...ProjectsParts
+  }
+}
+    ${ProjectsPartsFragmentDoc}`;
+export const ProjectsConnectionDocument = gql`
+    query projectsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ProjectsFilter) {
+  projectsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...ProjectsParts
+      }
+    }
+  }
+}
+    ${ProjectsPartsFragmentDoc}`;
 export const PostDocument = gql`
     query post($relativePath: String!) {
   post(relativePath: $relativePath) {
@@ -669,6 +1095,18 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     return {
       postAndFeaturePosts(variables: PostAndFeaturePostsQueryVariables, options?: C): Promise<{data: PostAndFeaturePostsQuery, variables: PostAndFeaturePostsQueryVariables, query: string}> {
         return requester<{data: PostAndFeaturePostsQuery, variables: PostAndFeaturePostsQueryVariables, query: string}, PostAndFeaturePostsQueryVariables>(PostAndFeaturePostsDocument, variables, options);
+      },
+    experience(variables: ExperienceQueryVariables, options?: C): Promise<{data: ExperienceQuery, variables: ExperienceQueryVariables, query: string}> {
+        return requester<{data: ExperienceQuery, variables: ExperienceQueryVariables, query: string}, ExperienceQueryVariables>(ExperienceDocument, variables, options);
+      },
+    experienceConnection(variables?: ExperienceConnectionQueryVariables, options?: C): Promise<{data: ExperienceConnectionQuery, variables: ExperienceConnectionQueryVariables, query: string}> {
+        return requester<{data: ExperienceConnectionQuery, variables: ExperienceConnectionQueryVariables, query: string}, ExperienceConnectionQueryVariables>(ExperienceConnectionDocument, variables, options);
+      },
+    projects(variables: ProjectsQueryVariables, options?: C): Promise<{data: ProjectsQuery, variables: ProjectsQueryVariables, query: string}> {
+        return requester<{data: ProjectsQuery, variables: ProjectsQueryVariables, query: string}, ProjectsQueryVariables>(ProjectsDocument, variables, options);
+      },
+    projectsConnection(variables?: ProjectsConnectionQueryVariables, options?: C): Promise<{data: ProjectsConnectionQuery, variables: ProjectsConnectionQueryVariables, query: string}> {
+        return requester<{data: ProjectsConnectionQuery, variables: ProjectsConnectionQueryVariables, query: string}, ProjectsConnectionQueryVariables>(ProjectsConnectionDocument, variables, options);
       },
     post(variables: PostQueryVariables, options?: C): Promise<{data: PostQuery, variables: PostQueryVariables, query: string}> {
         return requester<{data: PostQuery, variables: PostQueryVariables, query: string}, PostQueryVariables>(PostDocument, variables, options);

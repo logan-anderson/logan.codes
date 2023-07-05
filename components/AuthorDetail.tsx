@@ -74,11 +74,9 @@ export const Author: React.FC<{
         </div>
         <div className="ml-3">
           <p className="text-sm leading-5 font-medium text-gray-900 dark:text-gray-300">
-            <Link href="/about">
-              <a className="hover:underline">
-                {/* TODO: about about me page and have this link to it */}
-                {author?.name || "Logan Anderson"}
-              </a>
+            <Link href="/about" className="hover:underline">
+              {/* TODO: about about me page and have this link to it */}
+              {author?.name || "Logan Anderson"}
             </Link>
           </p>
           <div className="flex text-sm leading-5 text-gray-500 dark:text-gray-400">

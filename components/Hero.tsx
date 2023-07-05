@@ -1,4 +1,5 @@
 import { useEffect, createRef } from "react";
+import Link from "next/link";
 import { TextPlugin } from "gsap/dist/TextPlugin";
 import { gsap } from "gsap";
 import profilePic from "../public/img/me.jpeg";
@@ -77,27 +78,39 @@ export const Hero: React.FC = () => {
                   </span>
                 </h2>
                 <p className="my-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Hello! My name is Logan. I am a web developer and student
-                  completing a double major in Computer Science and Math. Im
-                  passionate about computer science and learning. My main
-                  interests include full-stack development, machine learning,
-                  Linux, and competitive programming. I love to learn and am
-                  always trying to expand my knowledge base though reading,
-                  developing, and coursework.
-                </p>
-                <div className="flex justify-center lg:justify-start">
-                  <button
-                    type="button"
-                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-2xl shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  I am a husband, full stack web developer and{" "}
+                  <a
+                    href="https://www.instagram.com/logan_discgolf/"
+                    target="_blank"
+                    className="text-blue-600 hover:underline"
                   >
+                    disc golf enthusiast
+                  </a>
+                  . I currently work at{" "}
+                  <Link
+                    href="/experience/tinacms"
+                    className="text-blue-600 hover:underline"
+                  >
+                    TinaCMS
+                  </Link>
+                  {". "}I am passionate about machine learning and full stack
+                  web development. I love to learn by diving deep into the tools
+                  I use. I am always trying to expand my knowledge base through
+                  reading, developing, and coursework.
+                </p>
+                <div className="flex justify-center lg:justify-start mt-6 ">
+                  <div className="group relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 dark:text-gray-300 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-white/10 dark:hover:ring-white/20">
+                    If you ❤️ work I have done consider{" "}
                     <a
                       href="https://buymeacoffee.com/logana"
                       target="_blank"
                       rel="noreferrer"
+                      className="whitespace-nowrap font-semibold text-blue-600 group-hover:underline"
                     >
-                      Buy me a Coffee
+                      <span className="absolute inset-0" aria-hidden="true" />
+                      Buying me a coffee <span aria-hidden="true">&rarr;</span>
                     </a>
-                  </button>
+                  </div>
                 </div>
               </div>
             </main>

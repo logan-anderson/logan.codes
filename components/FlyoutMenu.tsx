@@ -9,15 +9,16 @@ export interface FlyoutMenuProps {
 
 const FlyoutMenuItem: React.FC<FlyoutMenuProps> = (props) => {
   return (
-    <Link href={props.href}>
-      <a className="-m-3 p-3 block rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition ease-in-out duration-150">
-        <p className="text-base font-medium text-gray-900 dark:text-gray-100">
-          {props.label}
-        </p>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
-          {props.text}
-        </p>
-      </a>
+    <Link
+      href={props.href}
+      className="-m-3 p-3 block rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition ease-in-out duration-150"
+    >
+      <p className="text-base font-medium text-gray-900 dark:text-gray-100">
+        {props.label}
+      </p>
+      <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
+        {props.text}
+      </p>
     </Link>
   );
 };
@@ -25,7 +26,7 @@ const FlyoutMenuItem: React.FC<FlyoutMenuProps> = (props) => {
 const FlyoutMenuItems: FlyoutMenuProps[] = [
   {
     href: "/about",
-    label: "About Me",
+    label: "About",
     text: "Learn more about my skills, passions and interests",
   },
   {
@@ -36,8 +37,7 @@ const FlyoutMenuItems: FlyoutMenuProps[] = [
   {
     href: "/resources",
     label: "Resources",
-    text:
-      "Resources that I recommend for learning programing and web devolvement",
+    text: "Resources that I recommend for learning programing and web devolvement",
   },
 ];
 
@@ -79,7 +79,7 @@ export const FlyoutMenu: React.FC<{
           show ? "text-gray-900 dark:text-gray-300 " : "text-gray-500"
         }`}
       >
-        <span>About Me</span>
+        <span>About</span>
         {/*
   Heroicon name: chevron-down
   Item active: "text-gray-600", Item inactive: "text-gray-400"

@@ -8,10 +8,11 @@ interface PropTypes {
 
 const NavItem = (props: PropTypes) => {
   return (
-    <Link href={props.link}>
-      <a className="inline-block ml-3 text-blue-900 hover:text-blue-700 no-label my-auto">
-        {props.name || props.children}
-      </a>
+    <Link
+      href={props.link}
+      className="inline-block ml-3 text-blue-900 hover:text-blue-700 no-label my-auto"
+    >
+      {props.name || props.children}
     </Link>
   );
 };

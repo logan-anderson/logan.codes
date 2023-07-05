@@ -69,7 +69,9 @@ const BlogPage = ({ data: postData, query, variables }: PageProps) => {
                 },
                 p: (props) => {
                   return (
-                    <p className="text-gray-500 mx-auto">{props?.children}</p>
+                    <p className="text-gray-500  dark:text-gray-300 mx-auto">
+                      {props?.children}
+                    </p>
                   );
                 },
                 code_block: (props) => {

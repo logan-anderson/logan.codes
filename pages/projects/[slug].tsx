@@ -24,9 +24,9 @@ const ProjectPage: React.FC<{ markdown: string; project: Projects }> = ({
           escapeHtml={false}
           skipHtml={false}
           transformImageUri={(src) => {
-            const url = project.url
-              .replace("README.md", "")
-              .replace("readme.md", "");
+            const url =
+              project?.url?.replace("README.md", "").replace("readme.md", "") ||
+              "";
             const test = `${url}${src.slice(2)}`;
             return test;
           }}
@@ -41,7 +41,10 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   if (!project) {
     throw new Error(`url ${project} not in config`);
   }
-  const markdown = await (await fetch(project.url)).text();
+  const markdown =
+    project.url && project.fromGithub
+      ? await (await fetch(project.url)).text()
+      : project.rawMarkdown || "";
   return {
     props: {
       project,

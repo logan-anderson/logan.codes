@@ -11,15 +11,43 @@ type Props = {
   title?: string;
   description?: string;
   navDisable?: boolean;
+  children: React.ReactNode;
 };
+export const SEO = ({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) => {
+  const router = useRouter();
 
+  return (
+    <DefaultSeo
+      openGraph={{
+        url: "https://logana.dev" + router.asPath,
+        images: [
+          {
+            width: 754,
+            alt: "Logan Anderson",
+            url: "https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jpg",
+          },
+        ],
+      }}
+      title={`${title} | Logan`}
+      description={
+        description ||
+        "A simple blog about coding, technology, and coffee by Logan Anderson. Read about the latest in web development, machine learning and other tech topics."
+      }
+    />
+  );
+};
 const Layout: React.FunctionComponent<Props> = ({
   children,
   title,
   description,
   navDisable,
 }) => {
-  const router = useRouter();
   const [theme, setTheme] = useState<"dark" | "light">(
     typeof localStorage === "undefined" ? "light" : localStorage?.theme
   );
@@ -33,9 +61,6 @@ const Layout: React.FunctionComponent<Props> = ({
     }
   };
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
     if (
       localStorage.theme === "dark" ||
@@ -50,24 +75,7 @@ const Layout: React.FunctionComponent<Props> = ({
 
   return (
     <>
-      <DefaultSeo
-        openGraph={{
-          url: "https://logana.dev" + router.asPath,
-          images: [
-            {
-              width: 754,
-              alt: "Logan Anderson",
-              url:
-                "https://res.cloudinary.com/dvy3mawsb/image/upload/c_scale,f_auto,o_100,q_58,r_0,w_754/v1620171151/IMG_3988_iqa2nf.jpg",
-            },
-          ],
-        }}
-        title={`${title} | Logan`}
-        description={
-          description ||
-          "A simple blog about coding, technology, and coffee by Logan Anderson. Read about the latest in web development, machine learning and other tech topics."
-        }
-      />
+      <SEO title={title || "Logan Anderson"} description={description || ""} />
       <div
         style={{
           display: "flex",
