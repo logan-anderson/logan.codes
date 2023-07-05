@@ -78,25 +78,24 @@ export const Hero: React.FC = () => {
                   </span>
                 </h2>
                 <p className="my-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Hello! My name is Logan. I am a husband, full stack web
-                  developer and{" "}
+                  I am a husband, full stack web developer and{" "}
                   <a
                     href="https://www.instagram.com/logan_discgolf/"
                     target="_blank"
                     className="text-blue-600 hover:underline"
                   >
-                    Disc golf Enthusiastic
+                    disc golf enthusiast
                   </a>
-                  . Currently working at{" "}
+                  . I currently work at{" "}
                   <Link
                     href="/experience/tinacms"
                     className="text-blue-600 hover:underline"
                   >
                     TinaCMS
                   </Link>
-                  {", "}I am passionate Machine Learning and full stack web
-                  development. I love to learn deep dive into the tools I use
-                  and I am always trying to expand my knowledge base though
+                  {". "}I am passionate about machine learning and full stack
+                  web development. I love to learn by diving deep into the tools
+                  I use. I am always trying to expand my knowledge base through
                   reading, developing, and coursework.
                 </p>
                 <div className="flex justify-center lg:justify-start mt-6 ">
