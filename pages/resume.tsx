@@ -654,7 +654,7 @@ const Resume = () => {
                 {/* Personal Projects */}
                 <section className="mb-1.5">
                   <header>
-                    <SectionHeader>Projects</SectionHeader>
+                    <SectionHeader>PROJECTS</SectionHeader>
                   </header>
                   <section className="mb-4 my-2.5 print:mb-1 last:pb-1.5 print:last:pb-0.5">
                     <header>
