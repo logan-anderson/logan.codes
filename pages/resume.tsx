@@ -304,7 +304,7 @@ const Resume = () => {
                       executing{" "}
                       <ExternalLink href="https://logana.dev/projects/machine-learning-honours">
                         {" "}
-                        a year-long Honors Research Project
+                        a year-long Honours Research Project
                       </ExternalLink>{" "}
                       showcasing exceptional analytical and problem-solving
                       skills.
@@ -353,7 +353,7 @@ const Resume = () => {
                       <BulletListItem>
                         Collaborated closely with customers to provide
                         troubleshooting support, gain a deep understanding of
-                        their issues, and successfully resolve them
+                        their questions, and successfully resolve them
                       </BulletListItem>
                       <BulletListItem>
                         Worked on maintaining and implementing features in a
@@ -367,7 +367,7 @@ const Resume = () => {
                     </ul>
                     <p className="text-xs">
                       For a more detailed list of my contributions,{" "}
-                      <ExternalLink href="https//logana.dev/experience/tinacms">
+                      <ExternalLink href="https://logana.dev/experience/tinacms">
                         check out my website
                       </ExternalLink>
                       .
@@ -481,8 +481,8 @@ const Resume = () => {
                   </header>
                   <div className="mt-2.1 text-sm text-gray-800 leading-normal">
                     <Bold>
-                      Bachelor’s of Science in Computer Science and Math
-                      (Honors)
+                      Bachelor of Science, Major Computer Science and
+                      Mathematics (Honours)
                     </Bold>
 
                     <div>
@@ -693,7 +693,7 @@ const Resume = () => {
                     </ul>
                   </section>
                   <p className="text-xs">
-                    <ExternalLink href="https//logana.dev/projects">
+                    <ExternalLink href="https://logana.dev/projects">
                       Check out my website
                     </ExternalLink>{" "}
                     for a full list of projects.
