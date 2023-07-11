@@ -85,7 +85,7 @@ const functions = [
 
 // Make the API request with function calling
 const res = await openai.createChatCompletion({
-  // Use "gpt-3.5-turbo-0613" or "gpt-4-061" models for function calling
+  // Use "gpt-3.5-turbo-0613" or "gpt-4-0613" models for function calling
   model: "gpt-3.5-turbo-0613",
   functions,
   // Force the result to be a function call
@@ -146,7 +146,7 @@ Now, by utilizing function calling, we can rely on the GPT API to consistently g
 
 It's important to note a couple of things with this approach:
 
-* Function calling requires the use of "gpt-3.5-turbo-0613" or "gpt-4-061" models, as they have been specifically trained to support this feature.
+* Function calling requires the use of "gpt-3.5-turbo-0613" or "gpt-4-0613" models, as they have been specifically trained to support this feature.
 * In the example code, we force the output from the API to be a function call by passing `function_call: { name: "generateQuiz" }`.
 * Function calling was originally designed to allow the AI agent to respond with arguments to a function that can be called in the user's code. However, in this example, we utilize it primarily to obtain consistent output.
 
