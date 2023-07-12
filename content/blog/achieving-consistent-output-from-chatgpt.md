@@ -7,6 +7,7 @@ author: content/authors/logan_anderson.md
 tags:
   - chatGPT
   - ML
+  - AI
   - code
 featurePosts:
   - post: content/blog/machine-learning.md
@@ -146,9 +147,9 @@ Now, by utilizing function calling, we can rely on the GPT API to consistently g
 
 It's important to note a couple of things with this approach:
 
-* Function calling requires the use of "gpt-3.5-turbo-0613" or "gpt-4-0613" models, as they have been specifically trained to support this feature.
-* In the example code, we force the output from the API to be a function call by passing `function_call: { name: "generateQuiz" }`.
-* Function calling was originally designed to allow the AI agent to respond with arguments to a function that can be called in the user's code. However, in this example, we utilize it primarily to obtain consistent output.
+- Function calling requires the use of "gpt-3.5-turbo-0613" or "gpt-4-0613" models, as they have been specifically trained to support this feature.
+- In the example code, we force the output from the API to be a function call by passing `function_call: { name: "generateQuiz" }`.
+- Function calling was originally designed to allow the AI agent to respond with arguments to a function that can be called in the user's code. However, in this example, we utilize it primarily to obtain consistent output.
 
 ## Conclusion
 
@@ -156,6 +157,6 @@ Obtaining consistent output from ChatGPT is crucial for many applications, and f
 
 ## References
 
-* [GPT API Function Docs](https://platform.openai.com/docs/guides/gpt/function-calling)
-* [Blog post announcing functions](https://openai.com/blog/function-calling-and-other-api-updates)
-* [Sentdex Youtube video about function](https://www.youtube.com/watch?v=0lOSvOoF2to\&t=851s)
+- [GPT API Function Docs](https://platform.openai.com/docs/guides/gpt/function-calling)
+- [Blog post announcing functions](https://openai.com/blog/function-calling-and-other-api-updates)
+- [Sentdex Youtube video about function](https://www.youtube.com/watch?v=0lOSvOoF2to&t=851s)
