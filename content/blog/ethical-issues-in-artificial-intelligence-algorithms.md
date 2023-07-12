@@ -1,34 +1,43 @@
 ---
 title: Ethical Issues in Artificial Intelligence Algorithms
 draft: false
-date: "2023-7-13"
-minRead: "17"
+date: 2023-07-13T04:00:00.000Z
+minRead: 18
 author: content/authors/logan_anderson.md
-description: ""
+description: >-
+  This post discusses the ethical issues related to AI algorithms. It covers
+  concerns such as bias, transparency, and accountability. This post provides
+  examples of these issues, including biased hiring algorithms at Amazon and
+  biased risk assessment algorithms in the Canadian correctional system. It
+  emphasizes the need for awareness and decision-making processes to address
+  these ethical concerns in AI algorithms.
 tags:
   - ML
   - AI
   - ethics
+featurePosts:
+  - post: content/blog/achieving-consistent-output-from-chatgpt.md
+  - post: content/blog/does-a-math-degree-help-in-software-engineering.md
 ---
 
 # Ethical Issues in Artificial Intelligence Algorithms
 
 ## Table Of Contents
 
-- [Ethical Issues in Artificial Intelligence Algorithms](#ethical-issues-in-artificial-intelligence-algorithms)
-  - [Introduction](#introduction)
-  - [Description of the issue](#description-of-the-issue)
-  - [Major challenges and impact](#major-challenges-and-impact)
-    - [Bias](#bias)
-    - [Transparency](#transparency)
-    - [Accountability](#accountability)
-    - [Hiring algorithms](#hiring-algorithms)
-    - [Example: Amazon](#example--amazon)
-    - [Example: Ewert vs Canada](#example--ewert-vs-canada)
-    - [Example: Uber](#example--uber)
-  - [Solutions](#solutions)
-  - [Conclusion](#conclusion)
-  - [References](#references)
+* [Ethical Issues in Artificial Intelligence Algorithms](#ethical-issues-in-artificial-intelligence-algorithms)
+  * [Introduction](#introduction)
+  * [Description of the issue](#description-of-the-issue)
+  * [Major challenges and impact](#major-challenges-and-impact)
+    * [Bias](#bias)
+    * [Transparency](#transparency)
+    * [Accountability](#accountability)
+    * [Hiring algorithms](#hiring-algorithms)
+    * [Example: Amazon](#example--amazon)
+    * [Example: Ewert vs Canada](#example--ewert-vs-canada)
+    * [Example: Uber](#example--uber)
+  * [Solutions](#solutions)
+  * [Conclusion](#conclusion)
+  * [References](#references)
 
 ## Introduction
 
@@ -141,38 +150,22 @@ Overall, AI as many amazing uses but we shouldn’t not brush over the ethical i
 
 ## References
 
-- Bostrom, Nick and Eliezer Yudkowsky. “Ethics in Machine Learning and Other Domain-Specific AI Algorithms.” (2013).
-- Siau, Keng & Wang, Weiyu. (2018). Ethical and Moral Issues with AI.
-
-- Wakabayashi, Daisuke. “Self-Driving Uber Car Kills Pedestrian in Arizona, Where Robots Roam.” The New York Times, The New York Times, 19 Mar. 2018, www.nytimes.com/2018/03/19/technology/uber-driverless-fatality.html.
-
-- McFarland, Matt. “Uber Self-Driving Car Operator Charged in Pedestrian Death.” CNN, Cable News Network, 18 Sept. 2020, www.cnn.com/2020/09/18/cars/uber-vasquez-charged/index.html.
-
-- Dastin, Jeffrey. “Amazon Scraps Secret AI Recruiting Tool That Showed Bias against Women.” Reuters, Thomson Reuters, 10 Oct. 2018, www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G.
-
-- Bogen, Miranda. “All the Ways Hiring Algorithms Can Introduce Bias.” Harvard Business Review, 15 Oct. 2019, hbr.org/2019/05/all-the-ways-hiring-algorithms-can-introduce-bias.
-
-- Martin, K. Ethical Implications and Accountability of Algorithms. J Bus Ethics 160, 835–850 (2019). https://doi.org/10.1007/s10551-018-3921-3
-
-- Ali, Muhammad, et al. "Discrimination through optimization: How Facebook's ad delivery can lead to skewed outcomes." arXiv preprint arXiv:1904.02095 (2019).
-
-- Qing Rao and Jelena Frtunikj. 2018. Deep learning for self-driving cars: chances and challenges. In Proceedings of the 1st International Workshop on Software Engineering for AI in Autonomous Systems (SEFAIS '18). Association for Computing Machinery, New York, NY, USA, 35–38. DOI:https://doi.org/10.1145/3194085.3194087
-
-- Burt, Andrew. “The AI Transparency Paradox.” Harvard Business Review, 13 Dec. 2019, hbr.org/2019/12/the-ai-transparency-paradox.
+* Bostrom, Nick and Eliezer Yudkowsky. “Ethics in Machine Learning and Other Domain-Specific AI Algorithms.” (2013).
+* Siau, Keng & Wang, Weiyu. (2018). Ethical and Moral Issues with AI.
+* Wakabayashi, Daisuke. “Self-Driving Uber Car Kills Pedestrian in Arizona, Where Robots Roam.” The New York Times, The New York Times, 19 Mar. 2018, www.nytimes.com/2018/03/19/technology/uber-driverless-fatality.html.
+* McFarland, Matt. “Uber Self-Driving Car Operator Charged in Pedestrian Death.” CNN, Cable News Network, 18 Sept. 2020, www.cnn.com/2020/09/18/cars/uber-vasquez-charged/index.html.
+* Dastin, Jeffrey. “Amazon Scraps Secret AI Recruiting Tool That Showed Bias against Women.” Reuters, Thomson Reuters, 10 Oct. 2018, www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G.
+* Bogen, Miranda. “All the Ways Hiring Algorithms Can Introduce Bias.” Harvard Business Review, 15 Oct. 2019, hbr.org/2019/05/all-the-ways-hiring-algorithms-can-introduce-bias.
+* Martin, K. Ethical Implications and Accountability of Algorithms. J Bus Ethics 160, 835–850 (2019). https://doi.org/10.1007/s10551-018-3921-3
+* Ali, Muhammad, et al. "Discrimination through optimization: How Facebook's ad delivery can lead to skewed outcomes." arXiv preprint arXiv:1904.02095 (2019).
+* Qing Rao and Jelena Frtunikj. 2018. Deep learning for self-driving cars: chances and challenges. In Proceedings of the 1st International Workshop on Software Engineering for AI in Autonomous Systems (SEFAIS '18). Association for Computing Machinery, New York, NY, USA, 35–38. DOI\:https://doi.org/10.1145/3194085.3194087
+* Burt, Andrew. “The AI Transparency Paradox.” Harvard Business Review, 13 Dec. 2019, hbr.org/2019/12/the-ai-transparency-paradox.
   Larsson, Stefan and Fredrik Heintz. "Transparency in artificial intelligence". Internet Policy Review 9.2 (2020). Web. 8 Nov. 2020.
-
-- “Ethics Guidelines for Trustworthy AI.” Shaping Europe's Digital Future - European Commission, 9 July 2020, ec.europa.eu/digital-single-market/en/news/ethics-guidelines-trustworthy-ai.
-
-- Gutierrez, Daniel. “AI Black Box Horror Stories – When Transparency Was Needed More than Ever.” Open Data Science - Your News Source for AI, Machine Learning & More, 26 Dec. 2019, opendatascience.com/ai-black-box-horror-stories-when-transparency-was-needed-more-than-ever/.
-
-- Stotler, Laura. “AI in Healthcare: Who's to Blame When Things Go Wrong.” Future of Work News, 13 Mar. 2020, www.futureofworknews.com/topics/futureofwork/articles/444789-ai-healthcare-whos-blame-when-things-go-wrong.htm.
-
-- Thompson, Kirsten. “Use of AI Algorithm Triggers Lawsuit and Countersuit.” Dentons Data, 9 June 2020, www.dentonsdata.com/use-of-ai-algorithm-triggers-lawsuit-and-countersuit/.
-
-- Beardsworth, Thomas. “Who to Sue When a Robot Loses Your Fortune.” BloombergQuint, 7 May 2019, www.bloombergquint.com/technology/who-to-sue-when-a-robot-loses-your-fortune.
-
-- Derek B. Johnson. Mar 30, 2020. “Court: Algorithmic Bias Research Doesn't Count as Hacking.” FCW, fcw.com/articles/2020/03/30/algo-research-cfaa-ruling.aspx.
-
-- Amy Matychuk, “Eighteen Years of Inmate Litigation Culminates with Some Success in the SCC’s Ewert v Canada” (26 June, 2018), online: ABlawg, http://ablawg.ca/wp-content/uploads/2018/06/Blog_AM_EwertSCC.pdf.
-
-- Beatson, Jesse. “Ewert v Canada: Improving Prison Processes for Indigenous Peoples?” TheCourt.ca, 30 Oct. 2018,
+* “Ethics Guidelines for Trustworthy AI.” Shaping Europe's Digital Future - European Commission, 9 July 2020, ec.europa.eu/digital-single-market/en/news/ethics-guidelines-trustworthy-ai.
+* Gutierrez, Daniel. “AI Black Box Horror Stories – When Transparency Was Needed More than Ever.” Open Data Science - Your News Source for AI, Machine Learning & More, 26 Dec. 2019, opendatascience.com/ai-black-box-horror-stories-when-transparency-was-needed-more-than-ever/.
+* Stotler, Laura. “AI in Healthcare: Who's to Blame When Things Go Wrong.” Future of Work News, 13 Mar. 2020, www.futureofworknews.com/topics/futureofwork/articles/444789-ai-healthcare-whos-blame-when-things-go-wrong.htm.
+* Thompson, Kirsten. “Use of AI Algorithm Triggers Lawsuit and Countersuit.” Dentons Data, 9 June 2020, www.dentonsdata.com/use-of-ai-algorithm-triggers-lawsuit-and-countersuit/.
+* Beardsworth, Thomas. “Who to Sue When a Robot Loses Your Fortune.” BloombergQuint, 7 May 2019, www.bloombergquint.com/technology/who-to-sue-when-a-robot-loses-your-fortune.
+* Derek B. Johnson. Mar 30, 2020. “Court: Algorithmic Bias Research Doesn't Count as Hacking.” FCW, fcw.com/articles/2020/03/30/algo-research-cfaa-ruling.aspx.
+* Amy Matychuk, “Eighteen Years of Inmate Litigation Culminates with Some Success in the SCC’s Ewert v Canada” (26 June, 2018), online: ABlawg, http://ablawg.ca/wp-content/uploads/2018/06/Blog\_AM\_EwertSCC.pdf.
+* Beatson, Jesse. “Ewert v Canada: Improving Prison Processes for Indigenous Peoples?” TheCourt.ca, 30 Oct. 2018,
