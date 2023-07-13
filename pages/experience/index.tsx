@@ -2,6 +2,7 @@ import {
   CodeBracketIcon,
   AcademicCapIcon,
   ArrowRightIcon,
+  CalculatorIcon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
@@ -34,6 +35,16 @@ export const HISTORY: {
     moreInfoLink: "/experience/tinacms",
   },
   {
+    title: "Data Science Specialist (Machine Learning)",
+    company: "iWave",
+    date: "May 2019 - April 2020",
+    description:
+      "Utilized machine learning techniques and AWS to develop a document classification model, and successfully classified millions of documents by building a web scraper to extract data from specified websites",
+    icon: CalculatorIcon,
+    workExperience: true,
+    website: "https://iwave.com",
+  },
+  {
     title: "Lab / Tutorial Instructor",
     company: "University of Prince Edward Island | Part Time",
     date: "Sept 2020-April 2021",
@@ -41,26 +52,6 @@ export const HISTORY: {
       "I created engaging and informative Python practice problems, delivered them to students, and provided thoughtful and thorough explanations in response to their questions",
     icon: AcademicCapIcon,
     workExperience: false,
-  },
-  {
-    title: "Web Developer",
-    company: "iWave | Part Time",
-    date: "Sept 2019 - April 2020",
-    description:
-      "Played an integral role in building and fixing bugs on the Vue.js frontend, resulting in a seamless user experience",
-    icon: CodeBracketIcon,
-    workExperience: true,
-    website: "https://iwave.com",
-  },
-  {
-    title: "Data Science Specialist (Machine Learning)",
-    company: "iWave | Fulltime (Co op)",
-    date: "May 2019 - Aug 2019",
-    description:
-      "Utilized machine learning techniques and AWS to develop a document classification model, and successfully classified millions of documents by building a web scraper to extract data from specified websites",
-    icon: CodeBracketIcon,
-    workExperience: true,
-    website: "https://iwave.com",
   },
   {
     title: "Bachelor of Science in Computer Science (Honours)",
