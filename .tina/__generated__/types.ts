@@ -12,69 +12,71 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
   /** References another document, used as a foreign key */
-  Reference: any;
-  JSON: any;
+  Reference: { input: any; output: any; }
+  JSON: { input: any; output: any; }
 };
 
 export type SystemInfo = {
   __typename?: 'SystemInfo';
-  filename: Scalars['String'];
-  title?: Maybe<Scalars['String']>;
-  basename: Scalars['String'];
-  breadcrumbs: Array<Scalars['String']>;
-  path: Scalars['String'];
-  relativePath: Scalars['String'];
-  extension: Scalars['String'];
-  template: Scalars['String'];
+  filename: Scalars['String']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  basename: Scalars['String']['output'];
+  breadcrumbs: Array<Scalars['String']['output']>;
+  path: Scalars['String']['output'];
+  relativePath: Scalars['String']['output'];
+  extension: Scalars['String']['output'];
+  template: Scalars['String']['output'];
   collection: Collection;
 };
 
 
 export type SystemInfoBreadcrumbsArgs = {
-  excludeExtension?: InputMaybe<Scalars['Boolean']>;
+  excludeExtension?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type Folder = {
   __typename?: 'Folder';
-  name: Scalars['String'];
-  path: Scalars['String'];
+  name: Scalars['String']['output'];
+  path: Scalars['String']['output'];
 };
 
 export type PageInfo = {
   __typename?: 'PageInfo';
-  hasPreviousPage: Scalars['Boolean'];
-  hasNextPage: Scalars['Boolean'];
-  startCursor: Scalars['String'];
-  endCursor: Scalars['String'];
+  hasPreviousPage: Scalars['Boolean']['output'];
+  hasNextPage: Scalars['Boolean']['output'];
+  startCursor: Scalars['String']['output'];
+  endCursor: Scalars['String']['output'];
 };
 
 export type Node = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
 };
 
 export type Document = {
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   _sys?: Maybe<SystemInfo>;
-  _values: Scalars['JSON'];
+  _values: Scalars['JSON']['output'];
 };
 
 /** A relay-compliant pagination connection */
 export type Connection = {
-  totalCount: Scalars['Float'];
+  totalCount: Scalars['Float']['output'];
   pageInfo: PageInfo;
 };
 
 export type Query = {
   __typename?: 'Query';
-  getOptimizedQuery?: Maybe<Scalars['String']>;
+  getOptimizedQuery?: Maybe<Scalars['String']['output']>;
   collection: Collection;
   collections: Array<Collection>;
   node: Node;
@@ -91,82 +93,82 @@ export type Query = {
 
 
 export type QueryGetOptimizedQueryArgs = {
-  queryString: Scalars['String'];
+  queryString: Scalars['String']['input'];
 };
 
 
 export type QueryCollectionArgs = {
-  collection?: InputMaybe<Scalars['String']>;
+  collection?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryNodeArgs = {
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryDocumentArgs = {
-  collection?: InputMaybe<Scalars['String']>;
-  relativePath?: InputMaybe<Scalars['String']>;
+  collection?: InputMaybe<Scalars['String']['input']>;
+  relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryExperienceArgs = {
-  relativePath?: InputMaybe<Scalars['String']>;
+  relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryExperienceConnectionArgs = {
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<ExperienceFilter>;
 };
 
 
 export type QueryProjectsArgs = {
-  relativePath?: InputMaybe<Scalars['String']>;
+  relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryProjectsConnectionArgs = {
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<ProjectsFilter>;
 };
 
 
 export type QueryPostArgs = {
-  relativePath?: InputMaybe<Scalars['String']>;
+  relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryPostConnectionArgs = {
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<PostFilter>;
 };
 
 
 export type QueryAuthorArgs = {
-  relativePath?: InputMaybe<Scalars['String']>;
+  relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryAuthorConnectionArgs = {
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<AuthorFilter>;
 };
 
@@ -179,74 +181,74 @@ export type DocumentFilter = {
 
 export type DocumentConnectionEdges = {
   __typename?: 'DocumentConnectionEdges';
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   node?: Maybe<DocumentNode>;
 };
 
 export type DocumentConnection = Connection & {
   __typename?: 'DocumentConnection';
   pageInfo: PageInfo;
-  totalCount: Scalars['Float'];
+  totalCount: Scalars['Float']['output'];
   edges?: Maybe<Array<Maybe<DocumentConnectionEdges>>>;
 };
 
 export type Collection = {
   __typename?: 'Collection';
-  name: Scalars['String'];
-  slug: Scalars['String'];
-  label?: Maybe<Scalars['String']>;
-  path: Scalars['String'];
-  format?: Maybe<Scalars['String']>;
-  matches?: Maybe<Scalars['String']>;
-  templates?: Maybe<Array<Maybe<Scalars['JSON']>>>;
-  fields?: Maybe<Array<Maybe<Scalars['JSON']>>>;
+  name: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  label?: Maybe<Scalars['String']['output']>;
+  path: Scalars['String']['output'];
+  format?: Maybe<Scalars['String']['output']>;
+  matches?: Maybe<Scalars['String']['output']>;
+  templates?: Maybe<Array<Maybe<Scalars['JSON']['output']>>>;
+  fields?: Maybe<Array<Maybe<Scalars['JSON']['output']>>>;
   documents: DocumentConnection;
 };
 
 
 export type CollectionDocumentsArgs = {
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<DocumentFilter>;
-  folder?: InputMaybe<Scalars['String']>;
+  folder?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentNode = Experience | Projects | Post | Author | Folder;
 
 export type ExperienceExperience = {
   __typename?: 'ExperienceExperience';
-  title?: Maybe<Scalars['String']>;
-  company?: Maybe<Scalars['String']>;
-  location?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  description_short?: Maybe<Scalars['JSON']>;
-  website?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
-  description_long?: Maybe<Scalars['JSON']>;
+  title?: Maybe<Scalars['String']['output']>;
+  company?: Maybe<Scalars['String']['output']>;
+  location?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+  description_short?: Maybe<Scalars['JSON']['output']>;
+  website?: Maybe<Scalars['String']['output']>;
+  icon?: Maybe<Scalars['String']['output']>;
+  description_long?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type Experience = Node & Document & {
   __typename?: 'Experience';
   experience?: Maybe<Array<Maybe<ExperienceExperience>>>;
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   _sys: SystemInfo;
-  _values: Scalars['JSON'];
+  _values: Scalars['JSON']['output'];
 };
 
 export type StringFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type RichTextFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ExperienceExperienceFilter = {
@@ -266,39 +268,39 @@ export type ExperienceFilter = {
 
 export type ExperienceConnectionEdges = {
   __typename?: 'ExperienceConnectionEdges';
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   node?: Maybe<Experience>;
 };
 
 export type ExperienceConnection = Connection & {
   __typename?: 'ExperienceConnection';
   pageInfo: PageInfo;
-  totalCount: Scalars['Float'];
+  totalCount: Scalars['Float']['output'];
   edges?: Maybe<Array<Maybe<ExperienceConnectionEdges>>>;
 };
 
 export type ProjectsProjects = {
   __typename?: 'ProjectsProjects';
-  fromGithub?: Maybe<Scalars['Boolean']>;
-  label?: Maybe<Scalars['String']>;
-  excerpt?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
-  imgUrl?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
-  rawMarkdown?: Maybe<Scalars['JSON']>;
+  fromGithub?: Maybe<Scalars['Boolean']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  excerpt?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  imgUrl?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+  rawMarkdown?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type Projects = Node & Document & {
   __typename?: 'Projects';
   projects?: Maybe<Array<Maybe<ProjectsProjects>>>;
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   _sys: SystemInfo;
-  _values: Scalars['JSON'];
+  _values: Scalars['JSON']['output'];
 };
 
 export type BooleanFilter = {
-  eq?: InputMaybe<Scalars['Boolean']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ProjectsProjectsFilter = {
@@ -317,14 +319,14 @@ export type ProjectsFilter = {
 
 export type ProjectsConnectionEdges = {
   __typename?: 'ProjectsConnectionEdges';
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   node?: Maybe<Projects>;
 };
 
 export type ProjectsConnection = Connection & {
   __typename?: 'ProjectsConnection';
   pageInfo: PageInfo;
-  totalCount: Scalars['Float'];
+  totalCount: Scalars['Float']['output'];
   edges?: Maybe<Array<Maybe<ProjectsConnectionEdges>>>;
 };
 
@@ -339,26 +341,26 @@ export type PostFeaturePosts = {
 
 export type Post = Node & Document & {
   __typename?: 'Post';
-  draft?: Maybe<Scalars['Boolean']>;
-  title: Scalars['String'];
-  date?: Maybe<Scalars['String']>;
-  body?: Maybe<Scalars['JSON']>;
-  minRead?: Maybe<Scalars['Float']>;
+  draft?: Maybe<Scalars['Boolean']['output']>;
+  title: Scalars['String']['output'];
+  date?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  minRead?: Maybe<Scalars['Float']['output']>;
   author?: Maybe<PostAuthor>;
-  description?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   featurePosts?: Maybe<Array<Maybe<PostFeaturePosts>>>;
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   _sys: SystemInfo;
-  _values: Scalars['JSON'];
+  _values: Scalars['JSON']['output'];
 };
 
 export type DatetimeFilter = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type PostBodyIframeFilter = {
@@ -372,13 +374,13 @@ export type PostBodyFilter = {
 };
 
 export type NumberFilter = {
-  lt?: InputMaybe<Scalars['Float']>;
-  lte?: InputMaybe<Scalars['Float']>;
-  gte?: InputMaybe<Scalars['Float']>;
-  gt?: InputMaybe<Scalars['Float']>;
-  eq?: InputMaybe<Scalars['Float']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
 };
 
 export type PostAuthorFilter = {
@@ -407,24 +409,24 @@ export type PostFilter = {
 
 export type PostConnectionEdges = {
   __typename?: 'PostConnectionEdges';
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   node?: Maybe<Post>;
 };
 
 export type PostConnection = Connection & {
   __typename?: 'PostConnection';
   pageInfo: PageInfo;
-  totalCount: Scalars['Float'];
+  totalCount: Scalars['Float']['output'];
   edges?: Maybe<Array<Maybe<PostConnectionEdges>>>;
 };
 
 export type Author = Node & Document & {
   __typename?: 'Author';
-  name?: Maybe<Scalars['String']>;
-  avatar?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']['output']>;
+  avatar?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
   _sys: SystemInfo;
-  _values: Scalars['JSON'];
+  _values: Scalars['JSON']['output'];
 };
 
 export type AuthorFilter = {
@@ -434,14 +436,14 @@ export type AuthorFilter = {
 
 export type AuthorConnectionEdges = {
   __typename?: 'AuthorConnectionEdges';
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   node?: Maybe<Author>;
 };
 
 export type AuthorConnection = Connection & {
   __typename?: 'AuthorConnection';
   pageInfo: PageInfo;
-  totalCount: Scalars['Float'];
+  totalCount: Scalars['Float']['output'];
   edges?: Maybe<Array<Maybe<AuthorConnectionEdges>>>;
 };
 
@@ -463,76 +465,76 @@ export type Mutation = {
 
 
 export type MutationAddPendingDocumentArgs = {
-  collection: Scalars['String'];
-  relativePath: Scalars['String'];
-  template?: InputMaybe<Scalars['String']>;
+  collection: Scalars['String']['input'];
+  relativePath: Scalars['String']['input'];
+  template?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type MutationUpdateDocumentArgs = {
-  collection?: InputMaybe<Scalars['String']>;
-  relativePath: Scalars['String'];
+  collection?: InputMaybe<Scalars['String']['input']>;
+  relativePath: Scalars['String']['input'];
   params: DocumentUpdateMutation;
 };
 
 
 export type MutationDeleteDocumentArgs = {
-  collection?: InputMaybe<Scalars['String']>;
-  relativePath: Scalars['String'];
+  collection?: InputMaybe<Scalars['String']['input']>;
+  relativePath: Scalars['String']['input'];
 };
 
 
 export type MutationCreateDocumentArgs = {
-  collection?: InputMaybe<Scalars['String']>;
-  relativePath: Scalars['String'];
+  collection?: InputMaybe<Scalars['String']['input']>;
+  relativePath: Scalars['String']['input'];
   params: DocumentMutation;
 };
 
 
 export type MutationUpdateExperienceArgs = {
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
   params: ExperienceMutation;
 };
 
 
 export type MutationCreateExperienceArgs = {
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
   params: ExperienceMutation;
 };
 
 
 export type MutationUpdateProjectsArgs = {
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
   params: ProjectsMutation;
 };
 
 
 export type MutationCreateProjectsArgs = {
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
   params: ProjectsMutation;
 };
 
 
 export type MutationUpdatePostArgs = {
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
   params: PostMutation;
 };
 
 
 export type MutationCreatePostArgs = {
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
   params: PostMutation;
 };
 
 
 export type MutationUpdateAuthorArgs = {
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
   params: AuthorMutation;
 };
 
 
 export type MutationCreateAuthorArgs = {
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
   params: AuthorMutation;
 };
 
@@ -541,7 +543,7 @@ export type DocumentUpdateMutation = {
   projects?: InputMaybe<ProjectsMutation>;
   post?: InputMaybe<PostMutation>;
   author?: InputMaybe<AuthorMutation>;
-  relativePath?: InputMaybe<Scalars['String']>;
+  relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
@@ -552,14 +554,14 @@ export type DocumentMutation = {
 };
 
 export type ExperienceExperienceMutation = {
-  title?: InputMaybe<Scalars['String']>;
-  company?: InputMaybe<Scalars['String']>;
-  location?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
-  description_short?: InputMaybe<Scalars['JSON']>;
-  website?: InputMaybe<Scalars['String']>;
-  icon?: InputMaybe<Scalars['String']>;
-  description_long?: InputMaybe<Scalars['JSON']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  company?: InputMaybe<Scalars['String']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+  description_short?: InputMaybe<Scalars['JSON']['input']>;
+  website?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  description_long?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type ExperienceMutation = {
@@ -567,13 +569,13 @@ export type ExperienceMutation = {
 };
 
 export type ProjectsProjectsMutation = {
-  fromGithub?: InputMaybe<Scalars['Boolean']>;
-  label?: InputMaybe<Scalars['String']>;
-  excerpt?: InputMaybe<Scalars['String']>;
-  slug?: InputMaybe<Scalars['String']>;
-  imgUrl?: InputMaybe<Scalars['String']>;
-  url?: InputMaybe<Scalars['String']>;
-  rawMarkdown?: InputMaybe<Scalars['JSON']>;
+  fromGithub?: InputMaybe<Scalars['Boolean']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  excerpt?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  imgUrl?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  rawMarkdown?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type ProjectsMutation = {
@@ -581,28 +583,28 @@ export type ProjectsMutation = {
 };
 
 export type PostFeaturePostsMutation = {
-  post?: InputMaybe<Scalars['String']>;
+  post?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PostMutation = {
-  draft?: InputMaybe<Scalars['Boolean']>;
-  title?: InputMaybe<Scalars['String']>;
-  date?: InputMaybe<Scalars['String']>;
-  body?: InputMaybe<Scalars['JSON']>;
-  minRead?: InputMaybe<Scalars['Float']>;
-  author?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
-  tags?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+  minRead?: InputMaybe<Scalars['Float']['input']>;
+  author?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   featurePosts?: InputMaybe<Array<InputMaybe<PostFeaturePostsMutation>>>;
 };
 
 export type AuthorMutation = {
-  name?: InputMaybe<Scalars['String']>;
-  avatar?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  avatar?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PostAndFeaturePostsQueryVariables = Exact<{
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
 }>;
 
 
@@ -619,18 +621,18 @@ export type PostPartsFragment = { __typename?: 'Post', draft?: boolean | null, t
 export type AuthorPartsFragment = { __typename?: 'Author', name?: string | null, avatar?: string | null };
 
 export type ExperienceQueryVariables = Exact<{
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
 }>;
 
 
 export type ExperienceQuery = { __typename?: 'Query', experience: { __typename?: 'Experience', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, experience?: Array<{ __typename: 'ExperienceExperience', title?: string | null, company?: string | null, location?: string | null, type?: string | null, description_short?: any | null, website?: string | null, icon?: string | null, description_long?: any | null } | null> | null } };
 
 export type ExperienceConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<ExperienceFilter>;
 }>;
 
@@ -638,18 +640,18 @@ export type ExperienceConnectionQueryVariables = Exact<{
 export type ExperienceConnectionQuery = { __typename?: 'Query', experienceConnection: { __typename?: 'ExperienceConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ExperienceConnectionEdges', cursor: string, node?: { __typename?: 'Experience', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, experience?: Array<{ __typename: 'ExperienceExperience', title?: string | null, company?: string | null, location?: string | null, type?: string | null, description_short?: any | null, website?: string | null, icon?: string | null, description_long?: any | null } | null> | null } | null } | null> | null } };
 
 export type ProjectsQueryVariables = Exact<{
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
 }>;
 
 
 export type ProjectsQuery = { __typename?: 'Query', projects: { __typename?: 'Projects', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, projects?: Array<{ __typename: 'ProjectsProjects', fromGithub?: boolean | null, label?: string | null, excerpt?: string | null, slug?: string | null, imgUrl?: string | null, url?: string | null, rawMarkdown?: any | null } | null> | null } };
 
 export type ProjectsConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<ProjectsFilter>;
 }>;
 
@@ -657,18 +659,18 @@ export type ProjectsConnectionQueryVariables = Exact<{
 export type ProjectsConnectionQuery = { __typename?: 'Query', projectsConnection: { __typename?: 'ProjectsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ProjectsConnectionEdges', cursor: string, node?: { __typename?: 'Projects', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, projects?: Array<{ __typename: 'ProjectsProjects', fromGithub?: boolean | null, label?: string | null, excerpt?: string | null, slug?: string | null, imgUrl?: string | null, url?: string | null, rawMarkdown?: any | null } | null> | null } | null } | null> | null } };
 
 export type PostQueryVariables = Exact<{
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
 }>;
 
 
 export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type PostConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<PostFilter>;
 }>;
 
@@ -676,18 +678,18 @@ export type PostConnectionQueryVariables = Exact<{
 export type PostConnectionQuery = { __typename?: 'Query', postConnection: { __typename?: 'PostConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PostConnectionEdges', cursor: string, node?: { __typename?: 'Post', id: string, draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, author?: { __typename?: 'Author', name?: string | null, avatar?: string | null, id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, featurePosts?: Array<{ __typename: 'PostFeaturePosts', post?: { __typename?: 'Post', draft?: boolean | null, title: string, date?: string | null, body?: any | null, minRead?: number | null, description?: string | null, tags?: Array<string | null> | null, id: string, featurePosts?: Array<{ __typename: 'PostFeaturePosts' } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null } | null> | null } };
 
 export type AuthorQueryVariables = Exact<{
-  relativePath: Scalars['String'];
+  relativePath: Scalars['String']['input'];
 }>;
 
 
 export type AuthorQuery = { __typename?: 'Query', author: { __typename?: 'Author', id: string, name?: string | null, avatar?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type AuthorConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-  sort?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<AuthorFilter>;
 }>;
 
