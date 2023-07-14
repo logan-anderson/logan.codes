@@ -78,7 +78,8 @@ export const Hero: React.FC = () => {
                   </span>
                 </h2>
                 <p className="my-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  I am a husband, full stack web developer and{" "}
+                  I am a dedicated husband, a skilled full stack web developer,
+                  and a{" "}
                   <a
                     href="https://www.instagram.com/logan_discgolf/"
                     target="_blank"
@@ -92,11 +93,22 @@ export const Hero: React.FC = () => {
                     className="text-blue-600 hover:underline"
                   >
                     TinaCMS
+                  </Link>{" "}
+                  as a{" "}
+                  <Link
+                    href={"/experience/tinacms"}
+                    className="text-blue-600 hover:underline"
+                  >
+                    full stack software engineer
                   </Link>
-                  {". "}I am passionate about machine learning and full stack
-                  web development. I love to learn by diving deep into the tools
-                  I use. I am always trying to expand my knowledge base through
-                  reading, developing, and coursework.
+                  . I am passionate about{" "}
+                  <Link
+                    href="/blog?tags=ml"
+                    className="text-blue-600 hover:underline"
+                  >
+                    machine learning
+                  </Link>{" "}
+                  and full stack web development.
                 </p>
                 <div className="flex justify-center lg:justify-start mt-6 ">
                   <div className="group relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 dark:text-gray-300 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-white/10 dark:hover:ring-white/20">

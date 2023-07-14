@@ -5,10 +5,11 @@ import Layout from "../../components/layout/Layout";
 import BlogCard from "../../components/BlogCard";
 import { Tag } from "../../interfaces";
 import Button from "../../components/Buttons/ToggleButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BreadCrumb } from "../../components/BreadCrumb";
 import type { PostConnectionQuery } from "../../.tina/__generated__/types";
 import { getPosts } from "../../utils/getPosts";
+import { useRouter } from "next/router";
 
 const Tags = ({
   tags,
@@ -81,6 +82,31 @@ const BlogList = ({ data }: { data: PostConnectionQuery }) => {
     });
   });
   let [stateTags, setStateTags] = useState<Tag[]>(alltags);
+
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof router.query?.tags === "string") {
+      const tags = router.query?.tags
+        .split(",")
+        .map((tag) => tag.trim().toLocaleLowerCase());
+
+      setStateTags((prev) => {
+        return prev.map((tag) => {
+          if (tags?.includes(tag.name.toLocaleLowerCase())) {
+            return {
+              name: tag.name,
+              selected: true,
+            };
+          } else {
+            return {
+              name: tag.name,
+              selected: false,
+            };
+          }
+        });
+      });
+    }
+  }, [router.query?.tags]);
 
   return (
     <Layout title="Blog" preview={false}>
