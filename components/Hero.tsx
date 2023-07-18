@@ -22,6 +22,13 @@ export const Hero: React.FC = () => {
 
       // words
       const masterTL = gsap.timeline({ repeat: -1 });
+
+      const tlBack = gsap.timeline();
+      tlBack.to(container, words[0].length * 0.1, {
+        text: "",
+      });
+      masterTL.add(tlBack);
+
       words.forEach((word) => {
         const animationLen = word.length * 0.2;
         let tl = gsap.timeline();
@@ -68,7 +75,9 @@ export const Hero: React.FC = () => {
                           // @ts-ignore
                           if (div) container = div;
                         }}
-                      />
+                      >
+                        Coding
+                      </span>
                       <span
                         ref={(span) => {
                           // @ts-ignore
