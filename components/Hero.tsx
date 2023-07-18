@@ -1,48 +1,17 @@
-import { useEffect, createRef } from "react";
 import Link from "next/link";
-import profilePic from "../public/img/me.jpeg";
-import NavBar from "./layout/Navbar";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import { HeroTypingText } from "./HeroTypeing";
+
+import NavBar from "./layout/Navbar";
+import profilePic from "../public/img/me.jpeg";
+
+const HeroTyping = dynamic(() => import("./HeroTypingLazy"), {
+  ssr: false,
+  loading: () => <HeroTypingText />,
+});
 
 export const Hero: React.FC = () => {
-  const words = ["Coding", "Coffee", "Math", "Frontend dev", "Backend dev"];
-  let container = createRef<HTMLSpanElement>();
-  let cursor = createRef<HTMLSpanElement>();
-  useEffect(() => {
-    const run = async () => {
-      const { gsap } = await import("gsap");
-      const { TextPlugin } = await import("gsap/dist/TextPlugin");
-      gsap.killTweensOf({});
-      gsap.registerPlugin(TextPlugin);
-      gsap.to(cursor, 0.7, {
-        opacity: 0,
-        ease: "power2.inOut",
-        repeat: -1,
-      });
-
-      // words
-      const masterTL = gsap.timeline({ repeat: -1 });
-
-      const tlBack = gsap.timeline();
-      tlBack.to(container, words[0].length * 0.1, {
-        text: "",
-      });
-      masterTL.add(tlBack);
-
-      words.forEach((word) => {
-        const animationLen = word.length * 0.2;
-        let tl = gsap.timeline();
-        tl.to(container, animationLen, {
-          text: word,
-          repeat: 1,
-          yoyo: true,
-          repeatDelay: 1.2,
-        });
-        masterTL.add(tl);
-      });
-    };
-    run();
-  }, []);
   return (
     <>
       <div className="relative bg-white dark:bg-gray-900 overflow-hidden">
@@ -69,24 +38,7 @@ export const Hero: React.FC = () => {
                     }
                   >
                     I enjoy {"  "}
-                    <span className="text-blue-600">
-                      <span
-                        ref={(div) => {
-                          // @ts-ignore
-                          if (div) container = div;
-                        }}
-                      >
-                        Coding
-                      </span>
-                      <span
-                        ref={(span) => {
-                          // @ts-ignore
-                          if (span) cursor = span;
-                        }}
-                      >
-                        _
-                      </span>
-                    </span>
+                    <HeroTyping />
                   </span>
                 </h2>
                 <p className="my-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
