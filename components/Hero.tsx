@@ -132,8 +132,8 @@ export const Hero: React.FC = () => {
           <div className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full z-40">
             <Image
               src={profilePic}
-              alt="A picture of logan anderson"
-              placeholder="blur"
+              alt="A picture of Logan Anderson"
+              placeholder="empty"
             />
           </div>
         </div>

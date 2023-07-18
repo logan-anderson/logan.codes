@@ -174,7 +174,7 @@ const Resume = () => {
               {/* Website */}
               <li className="mt-1 leading-normal text-gray-700 text-sm">
                 <a
-                  href="https://logana.dev"
+                  href="https://logan.codes"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-blue-900 hover:underline group"
@@ -196,7 +196,7 @@ const Resume = () => {
                         data-v-957e193a=""
                       ></path>
                     </svg>
-                    Logana.dev
+                    logan.codes
                   </span>
                 </a>
               </li>
@@ -302,7 +302,7 @@ const Resume = () => {
                     <BulletListItem>
                       Achieved excellence in Machine Learning with Tensorflow,
                       executing{" "}
-                      <ExternalLink href="https://logana.dev/projects/machine-learning-honours">
+                      <ExternalLink href="https://logan.codes/projects/machine-learning-honours">
                         {" "}
                         a year-long Honours Research Project
                       </ExternalLink>{" "}
@@ -312,7 +312,7 @@ const Resume = () => {
                     <BulletListItem>
                       Developed strong skills in TypeScript, Java, and Python
                       through working at TinaCMS, post-secondary coursework and{" "}
-                      <ExternalLink href="https://logana.dev/projects">
+                      <ExternalLink href="https://logan.codes/projects">
                         personal projects
                       </ExternalLink>
                     </BulletListItem>
@@ -367,7 +367,7 @@ const Resume = () => {
                     </ul>
                     <p className="text-xs">
                       For a more detailed list of my contributions,{" "}
-                      <ExternalLink href="https://logana.dev/experience/tinacms">
+                      <ExternalLink href="https://logan.codes/experience/tinacms">
                         check out my website
                       </ExternalLink>
                       .
@@ -658,7 +658,7 @@ const Resume = () => {
                   </header>
                   <section className="mb-4 my-2.5 print:mb-1 last:pb-1.5 print:last:pb-0.5">
                     <header>
-                      <LinkHeading href="https://logana.dev/projects/machine-learning-honours">
+                      <LinkHeading href="https://logan.codes/projects/machine-learning-honours">
                         Machine Learning Honours Project
                       </LinkHeading>
                     </header>
@@ -674,7 +674,7 @@ const Resume = () => {
                   </section>
                   <section className="mb-4 my-2.5 print:my-0.5 last:pb-1.5">
                     <header>
-                      <LinkHeading href="https://logana.dev/projects/dg-rating-app">
+                      <LinkHeading href="https://logan.codes/projects/dg-rating-app">
                         Disc Golf Online Rating System
                       </LinkHeading>
                     </header>
@@ -693,7 +693,7 @@ const Resume = () => {
                     </ul>
                   </section>
                   <p className="text-xs">
-                    <ExternalLink href="https://logana.dev/projects">
+                    <ExternalLink href="https://logan.codes/projects">
                       Check out my website
                     </ExternalLink>{" "}
                     for a full list of projects.

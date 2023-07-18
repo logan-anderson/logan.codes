@@ -11,7 +11,7 @@
     "start": "next start",
     "type-check": "tsc",
     "lint": "next lint",
-    "lighthouse": "docker run --rm -v $PWD/test_results:/home/chrome/reports emazzotta/lighthouse-badges /bin/sh -c \"lighthouse-badges --urls https:logana.dev\""
+    "lighthouse": "docker run --rm -v $PWD/test_results:/home/chrome/reports emazzotta/lighthouse-badges /bin/sh -c \"lighthouse-badges --urls https:logan.codes\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.36",

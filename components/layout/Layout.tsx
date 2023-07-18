@@ -25,7 +25,7 @@ export const SEO = ({
   return (
     <DefaultSeo
       openGraph={{
-        url: "https://logana.dev" + router.asPath,
+        url: "https://logan.codes" + router.asPath,
         images: [
           {
             width: 754,

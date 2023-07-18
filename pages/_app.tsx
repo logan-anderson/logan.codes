@@ -15,7 +15,7 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
           rel="alternate"
           type="application/rss+xml"
           title="RSS for blog posts"
-          href="https://logana.dev/feed.xml"
+          href="https://logan.codes/feed.xml"
         />
       </Head>
       {/* @ts-ignore */}
