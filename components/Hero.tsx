@@ -133,7 +133,8 @@ export const Hero: React.FC = () => {
             <Image
               src={profilePic}
               alt="A picture of Logan Anderson"
-              placeholder="empty"
+              placeholder="blur"
+              loading="eager"
             />
           </div>
         </div>
