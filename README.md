@@ -5,14 +5,14 @@
 ![Lighthouse PWA Badge](./test_results/lighthouse_pwa.svg)
 ![Lighthouse SEO Badge](./test_results/lighthouse_seo.svg)
 
-This is my personal blog, you can check out the live [version here](https://logana.dev). I write about web development, math and anything I find interesting. You can also check out my personal projects and see that I am currently working on.
+This is my personal blog, you can check out the live [version here](https://logan.codes). I write about web development, math and anything I find interesting. You can also check out my personal projects and see that I am currently working on.
 
 ## Tech Stack
 
 - [React](https://reactjs.org/)
 - [NextJS](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [Markdown](https://logana.dev/blog/markdown)
+- [Markdown](https://logan.codes/blog/markdown)
 
 ## Features
 
@@ -26,7 +26,7 @@ When build this sets generates an RSS feed by looking at the markdown files it h
 
 ### TinaCMS
 
-If you [are on the site](https://logana.dev) you will notice a button at the bottom of the page that says "See spelling errors? Click here to edit the site". When clicked this button allows one to log in with there github, make new branch, and edit the sites content in github (pretty cool). Everything is editable on the site its self so no need to look at a backend CMS. Just simply edit the page inline.
+If you [are on the site](https://logan.codes) you will notice a button at the bottom of the page that says "See spelling errors? Click here to edit the site". When clicked this button allows one to log in with there github, make new branch, and edit the sites content in github (pretty cool). Everything is editable on the site its self so no need to look at a backend CMS. Just simply edit the page inline.
 
 ## Running locally
 

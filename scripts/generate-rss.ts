@@ -51,15 +51,15 @@ function generate() {
   const previewItems = getPostsSync();
   const feed = new RSS({
     title: "Logan's blog",
-    site_url: "https://logana.dev",
-    feed_url: "https://logana.dev/feed.xml",
+    site_url: "https://logan.codes",
+    feed_url: "https://logan.codes/feed.xml",
   });
 
   previewItems.sort(dateSortDesc).map((post: Post) => {
     feed.item({
       title: post.data.frontmatter.title,
       guid: post.fileName,
-      url: `https://logana.dev/blog/${post.fileName}`,
+      url: `https://logan.codes/blog/${post.fileName}`,
       date: post.data.frontmatter.date,
       description: post.data.frontmatter.description,
       author: post.data.frontmatter.author,

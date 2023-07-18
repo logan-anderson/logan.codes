@@ -1,20 +1,19 @@
 ---
 draft: false
-minRead: '4'
+minRead: "4"
 title: RSS Feeds in a nextjs site
 author: content/authors/logan_anderson.md
-description: 'How to add an RSS feed for blog posts into a nextjs site. Simple and easy. '
+description: "How to add an RSS feed for blog posts into a nextjs site. Simple and easy. "
 tags:
   - code
   - react
   - nextjs
-date: 'Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)'
+date: "Sat Jun 13 2020 13:51:25 GMT-0300 (Atlantic Daylight Time)"
 ---
-
 
 # Adding an RSS feed to a nextjs Site
 
-Recently, I took on the task of adding an **RSS feed to a nextjs site** (this site). After searching around Google for a solution I quickly realized that all the solutions were outdated or not in dept. Frustrated, I noted that [nextjs.org](https://logana.dev) has an RSS feed so I looked around there code to see how they dogfood nextjs and more importantly how they added an RSS feed. I am posting my finding here to document them and to save others the Saturday morning I spent doing this.
+Recently, I took on the task of adding an **RSS feed to a nextjs site** (this site). After searching around Google for a solution I quickly realized that all the solutions were outdated or not in dept. Frustrated, I noted that [nextjs.org](https://logan.codes) has an RSS feed so I looked around there code to see how they dogfood nextjs and more importantly how they added an RSS feed. I am posting my finding here to document them and to save others the Saturday morning I spent doing this.
 
 ## The process
 
@@ -41,15 +40,15 @@ function generate() {
   const previewItems = getPostsSync();
   const feed = new RSS({
     title: "Logan's blog",
-    site_url: "https://logana.dev",
-    feed_url: "https://logana.dev/feed.xml",
+    site_url: "https://logan.codes",
+    feed_url: "https://logan.codes/feed.xml",
   });
 
   previewItems.sort(dateSortDesc).map((post: Post) => {
     feed.item({
       title: post.data.frontmatter.title,
       guid: post.fileName,
-      url: `https://logana.dev/blog/${post.fileName}`,
+      url: `https://logan.codes/blog/${post.fileName}`,
       date: post.data.frontmatter.date,
       description: post.data.frontmatter.description,
       author: post.data.frontmatter.author,
