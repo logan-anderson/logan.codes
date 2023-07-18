@@ -1,7 +1,5 @@
 import { useEffect, createRef } from "react";
 import Link from "next/link";
-import { TextPlugin } from "gsap/dist/TextPlugin";
-import { gsap } from "gsap";
 import profilePic from "../public/img/me.jpeg";
 import NavBar from "./layout/Navbar";
 import Image from "next/image";
@@ -11,27 +9,32 @@ export const Hero: React.FC = () => {
   let container = createRef<HTMLSpanElement>();
   let cursor = createRef<HTMLSpanElement>();
   useEffect(() => {
-    gsap.killTweensOf({});
-    gsap.registerPlugin(TextPlugin);
-    gsap.to(cursor, 0.7, {
-      opacity: 0,
-      ease: "power2.inOut",
-      repeat: -1,
-    });
-
-    // words
-    const masterTL = gsap.timeline({ repeat: -1 });
-    words.forEach((word) => {
-      const animationLen = word.length * 0.2;
-      let tl = gsap.timeline();
-      tl.to(container, animationLen, {
-        text: word,
-        repeat: 1,
-        yoyo: true,
-        repeatDelay: 1.2,
+    const run = async () => {
+      const { gsap } = await import("gsap");
+      const { TextPlugin } = await import("gsap/dist/TextPlugin");
+      gsap.killTweensOf({});
+      gsap.registerPlugin(TextPlugin);
+      gsap.to(cursor, 0.7, {
+        opacity: 0,
+        ease: "power2.inOut",
+        repeat: -1,
       });
-      masterTL.add(tl);
-    });
+
+      // words
+      const masterTL = gsap.timeline({ repeat: -1 });
+      words.forEach((word) => {
+        const animationLen = word.length * 0.2;
+        let tl = gsap.timeline();
+        tl.to(container, animationLen, {
+          text: word,
+          repeat: 1,
+          yoyo: true,
+          repeatDelay: 1.2,
+        });
+        masterTL.add(tl);
+      });
+    };
+    run();
   }, []);
   return (
     <>
