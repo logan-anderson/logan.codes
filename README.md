@@ -42,7 +42,7 @@ Build the site
 yarn build
 ```
 
-Server the sie
+Start the local server
 
 ```
 yarn start
