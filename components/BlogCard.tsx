@@ -9,7 +9,7 @@ interface Props {
 
 const BlogCardNew = ({ post }: Props) => {
   return (
-    <Link href="/blog/[slug]" as={`/blog/${post.fileName}`}>
+    <Link href={`/blog/${post.fileName}`}>
       <div className="flex flex-col rounded-lg shadow-lg overflow-hidden mb-3 transition duration-500 ease-in-out transform  hover:scale-105 cursor-pointer">
         <div className="flex-1 bg-white dark:bg-gray-700 p-6 flex flex-col justify-between">
           <div className="flex-1">
