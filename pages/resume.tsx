@@ -23,8 +23,8 @@ const BulletListItem = ({
   children: React.ReactNode | React.ReactNode[];
 }) => {
   return (
-    <li className="mt-2.1 ml-1.5 text-base text-gray-700 leading-normal">
-      <Bullet />
+    <li className="mt-2.1 ml-4 text-base text-gray-700 leading-normal list-disc">
+      {/* <Bullet /> */}
       {children}
     </li>
   );
@@ -101,7 +101,7 @@ const Heading = ({
   children: string | JSX.Element | JSX.Element[] | string[];
 }) => {
   return (
-    <h3 className="text-lg font-semibold leading-5 my-2 print:my-05 text-blue-500">
+    <h3 className="text-lg font-semibold leading-5 my-2 print:my-05 text-blue-500 print:text-lg/5">
       {children}
     </h3>
   );
@@ -119,7 +119,7 @@ const Resume = () => {
   return (
     <>
       <SEO title="Resume" description="Logan anderson's resume" />
-      <main className="bg-body text-body font-body max-w-5xl mx-auto px-3 sm:px-4">
+      <main className="bg-body text-base text-gray-700 font-body max-w-5xl mx-auto px-3 sm:px-4">
         {/* Page */}
         <div
           className="
@@ -297,7 +297,7 @@ const Resume = () => {
                 <section className="mb-0 ">
                   <ul className="text-sm text-gray-700 leading-normal">
                     <BulletListItem>
-                      4+ years of experience in software development.
+                      4+ years of experience in software development
                     </BulletListItem>
                     <BulletListItem>
                       Achieved excellence in Machine Learning with Tensorflow,
@@ -326,49 +326,45 @@ const Resume = () => {
                 <div>
                   <section className="mb-4 print:mb-1">
                     <header>
-                      <LinkHeading href="https://tina.io">
-                        TinaCMS (Formally Forestry.io)
-                      </LinkHeading>
-
+                      <LinkHeading href="https://tina.io">TinaCMS</LinkHeading>
                       <p className="leading-normal text-sm text-gray-700 mt-1">
                         April 2020 - Present | Full Stack Software Engineer
                       </p>
                     </header>
                     <ul>
                       <BulletListItem>
-                        Created a dynamic{" "}
-                        <ExternalLink href="https://tina.io/docs/data-fetching/overview/">
-                          GraphQL client{" "}
-                        </ExternalLink>
-                        that queries a user's content
+                        Lead Developer and maintainer of TinaCMS, an open source
+                        headless CMS that commits content directly to Git.
                       </BulletListItem>
                       <BulletListItem>
-                        Implemented{" "}
+                        Developed Tina's core Typescript{" "}
+                        <ExternalLink href="https://tina.io/docs/data-fetching/overview/">
+                          client{" "}
+                        </ExternalLink>
+                        that is generated based on a user's schema
+                      </BulletListItem>
+                      <BulletListItem>
+                        Designed and implemented an{" "}
                         <ExternalLink href="https://github.com/tinacms/tinacms/pull/3953">
                           editorial workflow
                         </ExternalLink>{" "}
-                        allowing users to save changes to a new branch and
-                        create draft pull requests
+                        which was crucial to the procurement of many enterprise
+                        customers such as{" "}
+                        <ExternalLink href="https://www.smashingmagazine.com/">
+                          Smashing Magazine
+                        </ExternalLink>
                       </BulletListItem>
                       <BulletListItem>
-                        Collaborated closely with customers to provide
-                        troubleshooting support, gain a deep understanding of
-                        their questions, and successfully resolve them
-                      </BulletListItem>
-                      <BulletListItem>
-                        Worked on maintaining and implementing features in a
-                        complex React Frontend
-                      </BulletListItem>
-                      <BulletListItem>
-                        Implemented and maintained backend features, including
-                        data caching, validation, and business logic on AWS
-                        using DynamoDB, S3, and Serverless Stack (SST)
+                        Implemented backend features such as data caching,
+                        validation, and business logic on AWS using DynamoDB,
+                        S3, and Serverless Stack (SST) on a high traffic
+                        application with an uptime of over 99.99%
                       </BulletListItem>
                     </ul>
                     <p className="text-xs">
-                      For a more detailed list of my contributions,{" "}
+                      For a more detailed list of contributions, please{" "}
                       <ExternalLink href="https://logan.codes/experience/tinacms">
-                        check out my website
+                        check the website
                       </ExternalLink>
                       .
                     </p>
@@ -390,22 +386,24 @@ const Resume = () => {
                     </header>
                     <ul>
                       <BulletListItem>
-                        Utilized <Bold>machine learning techniques</Bold> and
-                        AWS to develop a document classification model, that
-                        successfully{" "}
-                        <Bold>classified millions of documents</Bold>
+                        Applied machine learning methods such as XGBoost and
+                        leveraged AWS infrastructure to create a document
+                        classification model that effectively categorized
+                        millions of documents.
                       </BulletListItem>
                       <BulletListItem>
-                        Built a web scraper to extract PDF's from websites using
-                        the{" "}
+                        Used the{" "}
                         <ExternalLink href="https://scrapy.org/">
                           Python library Scrapy
-                        </ExternalLink>
+                        </ExternalLink>{" "}
+                        to construct a web scraping tool that systematically
+                        processed tens of millions of web pages, extracting PDF
+                        files.
                       </BulletListItem>
                       <BulletListItem>
                         Played an integral role in building and fixing bugs on
                         the Vue.js frontend, resulting in a seamless user
-                        experience
+                        experience on both mobile and desktop
                       </BulletListItem>
                     </ul>
                   </section>
@@ -467,7 +465,7 @@ const Resume = () => {
             {/* Column 2 (Right Side) Smaller */}
             <section className="print:col-span-4 col-span-6 md:col-span-4">
               {/* Education Section */}
-              <section className="col-span-3 mt-8  print:mt-1 first:mt-0">
+              <section className="col-span-3 mt-8 print:mt-1 first:mt-0">
                 <SectionHeader>EDUCATION</SectionHeader>
                 {/* Education 1 */}
                 <section className="mb-4 print:mb-1">
@@ -475,13 +473,13 @@ const Resume = () => {
                     <LinkHeading href="https://www.upei.ca">
                       University of Prince Edward Island
                     </LinkHeading>
-                    <p className="leading-normal text-sm text-gray-650">
+                    {/* <p className="leading-normal text-sm text-gray-650">
                       Charlottetown, PEI
-                    </p>
+                    </p> */}
                   </header>
                   <div className="mt-2.1 text-sm text-gray-800 leading-normal">
                     <Bold>
-                      Bachelor of Science, Major Computer Science and
+                      Bachelor of Science, Double Major, Computer Science and
                       Mathematics (Honours)
                     </Bold>
 
@@ -493,7 +491,7 @@ const Resume = () => {
                           third year)
                         </BulletListItem>
                         <BulletListItem>
-                          Graduated with a <Bold>4.2 GPA</Bold> (Roughly 93%)
+                          Graduated with a <Bold>4.2/4.3 GPA</Bold>
                         </BulletListItem>
                         <BulletListItem>Dean’s List (2018-2021)</BulletListItem>
                       </ul>
@@ -520,8 +518,22 @@ const Resume = () => {
               </section>
               {/* End Education Section */}
               {/* Skills Section */}
-              <section className="col-span-1 mt-3 first:mt-0">
+              <section className="col-span-1">
                 <SectionHeader>SKILLS</SectionHeader>
+                <section className="mb-1.5 print:mb-0.5">
+                  <header>
+                    <Heading>Core Skills</Heading>
+                    <ol className="grid grid-cols-2 gap-x-5 ml-4 list-disc">
+                      <li>Machine Learning</li>
+                      <li>Serverless Tech</li>
+                      <li>React SSR</li>
+                      <li>Full Stack design</li>
+                      <li>Technical Writing</li>
+                      <li>Public Speaking</li>
+                    </ol>
+                  </header>
+                </section>
+
                 {/* Programming Languages */}
                 <section className="mb-1.5 print:mb-0.5">
                   <header>
@@ -607,11 +619,11 @@ const Resume = () => {
                 </section>
                 {/* End Libraries & Frameworks */}
                 {/* Tools | Platforms | Services */}
-                <section className="mb-1.5 print:mb-0.5">
-                  <header>
+                {/* <section className="mb-1.5 print:mb-0.5"> */}
+                {/* <header>
                     <Heading>Tools</Heading>
-                  </header>
-                  <div className="my-2.5 print:my-0.5 last:pb-1.5">
+                  </header> */}
+                {/* <div className="my-2.5 print:my-0.5 last:pb-1.5">
                     <SkillList
                       skills={[
                         {
@@ -648,8 +660,8 @@ const Resume = () => {
                         },
                       ]}
                     />
-                  </div>
-                </section>
+                  </div> */}
+                {/* </section> */}
                 {/* End Tools | Platforms | Services */}
                 {/* Personal Projects */}
                 <section className="mb-1.5">
@@ -662,41 +674,42 @@ const Resume = () => {
                         Machine Learning Honours Project
                       </LinkHeading>
                     </header>
-                    <ul>
-                      <BulletListItem>
-                        Used{" "}
-                        <ExternalLink href="https://www.tensorflow.org/">
-                          Tensorflow
-                        </ExternalLink>{" "}
-                        to create ML models with the goal of parameter reduction
-                      </BulletListItem>
-                    </ul>
+                    {/* <ul> */}
+                    {/* <BulletListItem> */}
+                    Used VPNN to reduce the number of parameters in CNN by 20%
+                    for image classification gaining a foundational
+                    understanding of machine learning, neural networks and{" "}
+                    <ExternalLink href="https://www.tensorflow.org/">
+                      Tensorflow
+                    </ExternalLink>{" "}
+                    {/* </BulletListItem> */}
+                    {/* </ul> */}
                   </section>
-                  <section className="mb-4 my-2.5 print:my-0.5 last:pb-1.5">
+                  <section className="mb-4 my-2.5 print:my-0 last:pb-1.5">
                     <header>
                       <LinkHeading href="https://logan.codes/projects/dg-rating-app">
                         Disc Golf Online Rating System
                       </LinkHeading>
                     </header>
-                    <ul>
-                      <BulletListItem>
-                        This{" "}
-                        <ExternalLink href="https://dgscore.live">
-                          online rating system
-                        </ExternalLink>{" "}
-                        uses{" "}
-                        <ExternalLink href="https://en.wikipedia.org/wiki/Approximate_Bayesian_computation#:~:text=Approximate%20Bayesian%20computation%20(ABC)%20constitutes,posterior%20distributions%20of%20model%20parameters.">
-                          Bayesian approximation
-                        </ExternalLink>{" "}
-                        to generate leader-boards for recorded disc golf rounds.
-                      </BulletListItem>
-                    </ul>
+                    {/* <ul> */}
+                    {/* <BulletListItem> */}
+                    Create and deployed an{" "}
+                    <ExternalLink href="https://dgscore.live">
+                      online rating system
+                    </ExternalLink>
+                    , used by to clubs, that{" "}
+                    <ExternalLink href="https://en.wikipedia.org/wiki/Approximate_Bayesian_computation#:~:text=Approximate%20Bayesian%20computation%20(ABC)%20constitutes,posterior%20distributions%20of%20model%20parameters.">
+                      Bayesian approximation
+                    </ExternalLink>{" "}
+                    to generate leader-boards for recorded disc golf rounds.
+                    {/* </BulletListItem> */}
+                    {/* </ul> */}
                   </section>
                   <p className="text-xs">
+                    A complete list of projects can be found on{" "}
                     <ExternalLink href="https://logan.codes/projects">
-                      Check out my website
+                      logan.codes
                     </ExternalLink>{" "}
-                    for a full list of projects.
                   </p>
                 </section>
                 {/* End of Personal Projects */}
