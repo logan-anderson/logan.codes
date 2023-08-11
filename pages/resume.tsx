@@ -341,7 +341,9 @@ const Resume = () => {
                         <ExternalLink href="https://tina.io/docs/data-fetching/overview/">
                           client{" "}
                         </ExternalLink>
-                        that is generated based on a user's schema
+                        that is generated based on a user's schema which
+                        increased usage of TinaCMS by over 300% in the following
+                        months
                       </BulletListItem>
                       <BulletListItem>
                         Designed and implemented an{" "}
@@ -491,8 +493,9 @@ const Resume = () => {
                           third year)
                         </BulletListItem>
                         <BulletListItem>
-                          Graduated with a <Bold>4.2/4.3 GPA</Bold>
+                          Graduated with a <Bold>4.23/4.3 GPA</Bold>
                         </BulletListItem>
+                        <BulletListItem>First Class Standing</BulletListItem>
                         <BulletListItem>Dean’s List (2018-2021)</BulletListItem>
                       </ul>
                     </div>
