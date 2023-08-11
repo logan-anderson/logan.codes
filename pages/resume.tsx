@@ -362,13 +362,17 @@ const Resume = () => {
                         S3, and Serverless Stack (SST) on a high traffic
                         application with an uptime of over 99.99%
                       </BulletListItem>
+                      <BulletListItem>
+                        Created a migration tool that transformed a Forestry
+                        schema into a Tina config, successfully migrating
+                        thousands of users and increased MRR
+                      </BulletListItem>
                     </ul>
                     <p className="text-xs">
                       For a more detailed list of contributions, please{" "}
                       <ExternalLink href="https://logan.codes/experience/tinacms">
-                        check the website
+                        visit logan.codes
                       </ExternalLink>
-                      .
                     </p>
                   </section>
                 </div>
@@ -530,7 +534,7 @@ const Resume = () => {
                       <li>Machine Learning</li>
                       <li>Serverless Tech</li>
                       <li>React SSR</li>
-                      <li>Full Stack design</li>
+                      <li>Full Stack Design</li>
                       <li>Technical Writing</li>
                       <li>Public Speaking</li>
                     </ol>
