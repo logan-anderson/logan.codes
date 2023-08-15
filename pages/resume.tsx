@@ -290,27 +290,28 @@ const Resume = () => {
               {/* Profile */}
               <section className="mt-8  print:mt-1 first:mt-0">
                 <SectionHeader>PROFILE</SectionHeader>
-                <section className="mb-0 ">
+                <section className="mb-0 text-sm">
+                  <p className="text-base">
+                    Software engineer with 4+ years of experience, specializing
+                    in machine learning, TypeScript, React, and Python. Core
+                    Contributor of TinaCMS, driving its growth and enterprise
+                    adoption.
+                  </p>
                   <ul className="text-sm text-gray-700 leading-normal">
                     <BulletListItem>
-                      4+ years of experience in software development
+                      <Bold>Machine Learning:</Bold> Executed year-long Honours
+                      Project using TensorFlow, reducing CNN parameters by 20%
+                      for image classification.
                     </BulletListItem>
                     <BulletListItem>
-                      Achieved excellence in Machine Learning with Tensorflow,
-                      executing{" "}
-                      <ExternalLink href="https://logan.codes/projects/machine-learning-honours">
-                        {" "}
-                        a year-long Honours Research Project
-                      </ExternalLink>{" "}
-                      showcasing exceptional analytical and problem-solving
-                      skills.
+                      <Bold>Technical Versatility:</Bold> Proficient in
+                      TypeScript, Java, and Python. Developed backend features
+                      on AWS for high-traffic applications.
                     </BulletListItem>
                     <BulletListItem>
-                      Developed strong skills in TypeScript, Java, and Python
-                      through working at TinaCMS, post-secondary coursework and{" "}
-                      <ExternalLink href="https://logan.codes/projects">
-                        personal projects
-                      </ExternalLink>
+                      <Bold>Leadership:</Bold> Led teams, designed editorial
+                      workflow for enterprise customers, and developed document
+                      classification model.
                     </BulletListItem>
                   </ul>
                 </section>
