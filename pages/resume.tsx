@@ -1,8 +1,4 @@
-import {
-  EnvelopeIcon,
-  CheckCircleIcon,
-  MapPinIcon,
-} from "@heroicons/react/24/solid";
+import { EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import { SEO } from "../components/layout/Layout";
 
 const SectionHeader = ({
@@ -63,11 +59,11 @@ const SkillList = ({
     </ul>
   );
 };
-const Bullet = () => {
-  return (
-    <CheckCircleIcon className="select-none text-gray-600 w-5 inline mr-2 mb-auto" />
-  );
-};
+// const Bullet = () => {
+//   return (
+//     <CheckCircleIcon className="select-none text-gray-600 w-5 inline mr-2 mb-auto" />
+//   );
+// };
 
 const ExternalLink = ({
   href,
