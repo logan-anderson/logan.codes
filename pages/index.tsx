@@ -70,7 +70,11 @@ const IndexPage = ({ featuredPosts }: props) => {
  */
 
 export const getStaticProps = async function () {
-  const res = await client.queries.postConnection();
+  const res = await client.queries.postConnection({
+    filter: {
+      draft: { eq: false },
+    },
+  });
 
   return {
     props: {
