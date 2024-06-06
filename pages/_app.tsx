@@ -1,5 +1,6 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
+import { ThemeProvider } from "next-themes";
 
 import "../styles/index.css";
 import { useGoogleTagManager } from "../hooks/useGoogleTagManager";
@@ -18,8 +19,10 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
           href="https://logan.codes/feed.xml"
         />
       </Head>
-      {/* @ts-ignore */}
-      <Component {...pageProps} />
+      <ThemeProvider attribute="class">
+        {/* @ts-ignore */}
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 };

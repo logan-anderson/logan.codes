@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { DefaultSeo } from "next-seo";
 
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
 import { DarkModeToggleButton } from "../Buttons/DarkModeToggle";
+import { useTheme } from "next-themes";
 
 type Props = {
   preview: boolean;
@@ -48,31 +48,15 @@ const Layout: React.FunctionComponent<Props> = ({
   description,
   navDisable,
 }) => {
-  const [theme, setTheme] = useState<"dark" | "light">(
-    typeof localStorage === "undefined" ? "light" : localStorage?.theme
-  );
+  const { setTheme, resolvedTheme } = useTheme();
+
   const onClick = () => {
-    if (theme === "dark") {
+    if (resolvedTheme === "dark") {
       setTheme("light");
-      localStorage.theme = "light";
     } else {
       setTheme("dark");
-      localStorage.theme = "dark";
     }
   };
-  useEffect(() => {
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
-
   return (
     <>
       <SEO title={title || "Logan Anderson"} description={description || ""} />
@@ -101,7 +85,10 @@ const Layout: React.FunctionComponent<Props> = ({
           <AppFooter />
         </div>
       </div>
-      <DarkModeToggleButton onClick={onClick} checked={theme === "dark"} />
+      <DarkModeToggleButton
+        onClick={onClick}
+        checked={resolvedTheme === "dark"}
+      />
     </>
   );
 };
