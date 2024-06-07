@@ -13,8 +13,8 @@ description: >-
   Learn more about bridging the gap and streamlining your AI-powered
   applications.
 tags:
-  - ml
-  - ai
+  - ML
+  - AI
 ---
 
 > Don't want to read the post? Check out the video below!
