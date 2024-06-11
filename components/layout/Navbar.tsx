@@ -118,7 +118,7 @@ const NavBar = () => {
               />
               <AppIcon
                 icon={faTwitter}
-                link="https://twitter.com/logan_anders0n"
+                link="https://twitter.com/logan_codes"
               />
               <AppIcon
                 icon={faLinkedin}
@@ -241,7 +241,7 @@ export const MobileNav: React.FC<NavProps> = ({
                   />
                   <AppIcon
                     icon={faTwitter}
-                    link="https://twitter.com/logan_anders0n"
+                    link="https://twitter.com/logan_codes"
                   />
                   <AppIcon
                     icon={faLinkedin}
