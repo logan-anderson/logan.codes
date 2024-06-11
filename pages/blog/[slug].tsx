@@ -95,6 +95,13 @@ const BlogPage = ({ data: postData, query, variables }: PageProps) => {
                     <iframe width={width} height={height} src={url || ""} />
                   );
                 },
+                html: (props) => {
+                  return (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: props?.value || "" }}
+                    />
+                  );
+                },
               }}
             />
             <Comments />

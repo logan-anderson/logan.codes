@@ -314,6 +314,7 @@ type Mutation {
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  createFolder(collection: String, relativePath: String!): DocumentNode!
   updateExperience(relativePath: String!, params: ExperienceMutation!): Experience!
   createExperience(relativePath: String!, params: ExperienceMutation!): Experience!
   updateProjects(relativePath: String!, params: ProjectsMutation!): Projects!
