@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Author as AuthorType, Post } from "../.tina/__generated__/types";
+import { Author as AuthorType, Post } from "../tina/__generated__/types";
 
 const social: { name: string; href: string; icon: React.FC<any> }[] = [
   //   {

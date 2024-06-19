@@ -1,6 +1,9 @@
+// tina/config.ts
+import { defineConfig } from "tinacms";
+
+// tina/schema.ts
 import { defineSchema } from "tinacms";
-// TODO: experience tab
-export default defineSchema({
+var schema_default = defineSchema({
   collections: [
     {
       name: "experience",
@@ -8,13 +11,13 @@ export default defineSchema({
       path: "content",
       format: "json",
       match: {
-        include: "experience",
+        include: "experience"
       },
       ui: {
         allowedActions: {
           create: false,
-          delete: false,
-        },
+          delete: false
+        }
       },
       fields: [
         {
@@ -24,7 +27,7 @@ export default defineSchema({
           ui: {
             itemProps: (item) => {
               return { label: item?.title };
-            },
+            }
           },
           list: true,
           fields: [
@@ -35,28 +38,28 @@ export default defineSchema({
               name: "type",
               label: "Type of experience",
               type: "string",
-              options: ["work", "education"],
+              options: ["work", "education"]
             },
             {
               name: "description_short",
               label: "Description",
-              type: "rich-text",
+              type: "rich-text"
             },
             { name: "website", label: "Website", type: "string" },
             {
               name: "icon",
               label: "Icon",
               type: "string",
-              options: ["AcademicCapIcon", "CodeBracketIcon"],
+              options: ["AcademicCapIcon", "CodeBracketIcon"]
             },
             {
               name: "description_long",
               label: "More detailed description",
-              type: "rich-text",
-            },
-          ],
-        },
-      ],
+              type: "rich-text"
+            }
+          ]
+        }
+      ]
     },
     {
       name: "projects",
@@ -64,13 +67,13 @@ export default defineSchema({
       path: "content",
       format: "json",
       match: {
-        include: "projects",
+        include: "projects"
       },
       ui: {
         allowedActions: {
           create: false,
-          delete: false,
-        },
+          delete: false
+        }
       },
       fields: [
         {
@@ -80,7 +83,7 @@ export default defineSchema({
           ui: {
             itemProps: (item) => {
               return { label: item?.label };
-            },
+            }
           },
           list: true,
           fields: [
@@ -90,10 +93,10 @@ export default defineSchema({
             { name: "slug", label: "Slug", type: "string" },
             { name: "imgUrl", label: "Image Url", type: "string" },
             { name: "url", label: "Url for Github", type: "string" },
-            { name: "rawMarkdown", label: "Raw Markdown", type: "rich-text" },
-          ],
-        },
-      ],
+            { name: "rawMarkdown", label: "Raw Markdown", type: "rich-text" }
+          ]
+        }
+      ]
     },
     {
       label: "Blog Posts",
@@ -101,33 +104,33 @@ export default defineSchema({
       path: "content/blog",
       defaultItem: {
         title: "New Post",
-        draft: true,
+        draft: true
       },
       ui: {
         router: ({ document }) => {
           return `/blog/${document._sys.filename}`;
-        },
+        }
       },
       fields: [
         {
           label: "Draft",
           name: "draft",
-          type: "boolean",
+          type: "boolean"
         },
         {
           name: "title",
           type: "string",
           label: "Title",
           required: true,
-          isTitle: true,
+          isTitle: true
         },
         {
           name: "date",
           type: "datetime",
           label: "Date",
           ui: {
-            dateFormat: "yyyy-MM-DD",
-          },
+            dateFormat: "yyyy-MM-DD"
+          }
         },
         {
           name: "body",
@@ -143,40 +146,40 @@ export default defineSchema({
                 {
                   name: "url",
                   type: "string",
-                  label: "url",
+                  label: "url"
                 },
                 {
                   name: "height",
                   type: "string",
-                  label: "Height",
+                  label: "Height"
                 },
                 {
                   name: "width",
                   type: "string",
-                  label: "Width",
-                },
-              ],
-            },
-          ],
+                  label: "Width"
+                }
+              ]
+            }
+          ]
         },
         {
           name: "minRead",
           type: "number",
-          label: "Min Read",
+          label: "Min Read"
         },
         {
           name: "author",
           type: "reference",
           label: "Author",
-          collections: ["author"],
+          collections: ["author"]
         },
         {
           name: "description",
           type: "string",
           label: "Description",
           ui: {
-            component: "textarea",
-          },
+            component: "textarea"
+          }
         },
         {
           name: "tags",
@@ -184,8 +187,8 @@ export default defineSchema({
           list: true,
           label: "Tags",
           ui: {
-            component: "tags",
-          },
+            component: "tags"
+          }
         },
         {
           type: "object",
@@ -195,18 +198,18 @@ export default defineSchema({
           ui: {
             itemProps: (item) => {
               return { label: item?.post };
-            },
+            }
           },
           fields: [
             {
               type: "reference",
               label: "Post",
               name: "post",
-              collections: ["post"],
-            },
-          ],
-        },
-      ],
+              collections: ["post"]
+            }
+          ]
+        }
+      ]
     },
     {
       label: "Authors",
@@ -216,14 +219,30 @@ export default defineSchema({
         {
           type: "string",
           label: "Name",
-          name: "name",
+          name: "name"
         },
         {
           type: "string",
           label: "Avatar",
-          name: "avatar",
-        },
-      ],
-    },
-  ],
+          name: "avatar"
+        }
+      ]
+    }
+  ]
 });
+
+// tina/config.ts
+var config = defineConfig({
+  build: {
+    publicFolder: "public",
+    outputFolder: "admin"
+  },
+  schema: schema_default,
+  branch: process.env.NEXT_PUBLIC_TINA_BRANCH || process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || process.env.HEAD || "",
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "",
+  token: process.env.NEXT_PUBLIC_TINA_TOKEN || ""
+});
+var config_default = config;
+export {
+  config_default as default
+};
