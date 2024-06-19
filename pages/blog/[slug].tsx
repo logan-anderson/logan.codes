@@ -11,12 +11,12 @@ import { BlogHeader } from "../../components/blog";
 import { Comments } from "../../components/Cmments";
 import BlogCard from "../../components/BlogCard";
 
-import { client } from "../../.tina/__generated__/client";
+import { client } from "../../tina/__generated__/client";
 import type {
   PostAndFeaturePostsQuery,
   Exact,
   Author as AuthorType,
-} from "../../.tina/__generated__/types";
+} from "../../tina/__generated__/types";
 import { Author } from "../../components/AuthorDetail";
 import { useTina } from "tinacms/dist/react";
 import { getPosts } from "../../utils/getPosts";

@@ -7,7 +7,7 @@ import { Tag } from "../../interfaces";
 import Button from "../../components/Buttons/ToggleButton";
 import { useEffect, useState } from "react";
 import { BreadCrumb } from "../../components/BreadCrumb";
-import type { PostConnectionQuery } from "../../.tina/__generated__/types";
+import type { PostConnectionQuery } from "../../tina/__generated__/types";
 import { getPosts } from "../../utils/getPosts";
 import { useRouter } from "next/router";
 

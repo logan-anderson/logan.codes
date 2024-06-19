@@ -1,0 +1,136 @@
+fragment ExperienceParts on Experience {
+  __typename
+  experience {
+    __typename
+    title
+    company
+    location
+    type
+    description_short
+    website
+    icon
+    description_long
+  }
+}
+
+fragment ProjectsParts on Projects {
+  __typename
+  projects {
+    __typename
+    fromGithub
+    label
+    excerpt
+    slug
+    imgUrl
+    url
+    rawMarkdown
+  }
+}
+
+fragment PostParts on Post {
+  __typename
+  draft
+  title
+  date
+  body
+  minRead
+  author {
+    ... on Author {
+      __typename
+      name
+      avatar
+    }
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+  }
+  description
+  tags
+  featurePosts {
+    __typename
+    post {
+      ... on Post {
+        __typename
+        draft
+        title
+        date
+        body
+        minRead
+        author {
+          ... on Author {
+            __typename
+            name
+            avatar
+          }
+          ... on Document {
+            _sys {
+              filename
+              basename
+              breadcrumbs
+              path
+              relativePath
+              extension
+            }
+            id
+          }
+        }
+        description
+        tags
+        featurePosts {
+          __typename
+          post {
+            ... on Post {
+              __typename
+              draft
+              title
+              date
+              body
+              minRead
+              description
+              tags
+              featurePosts {
+                __typename
+              }
+            }
+            ... on Document {
+              _sys {
+                filename
+                basename
+                breadcrumbs
+                path
+                relativePath
+                extension
+              }
+              id
+            }
+          }
+        }
+      }
+      ... on Document {
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        id
+      }
+    }
+  }
+}
+
+fragment AuthorParts on Author {
+  __typename
+  name
+  avatar
+}
