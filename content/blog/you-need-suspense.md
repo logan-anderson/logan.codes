@@ -1,8 +1,8 @@
 ---
 draft: true
 title: You Need Suspense in Your Next.js App
-date: 2024-06-05T03:00:00.000Z
-minRead: 5
+date: 2024-06-18T03:00:00.000Z
+minRead: 2
 author: content/authors/logan_anderson.md
 description: >-
   Next.js has evolved from a static rendering React framework to a dynamic
@@ -20,11 +20,13 @@ featurePosts:
 
 ## You Need Suspense in Your Next.js App
 
-Next.js is a great framework, I have been using it since it was mostly known for static rending react applications. It has since involve into a dynamic full stack framework.
+<img src="/img/suspense-cover-photo.png" alt="Loading spinner image" class="w-1/2 mx-auto" />
 
-One thing I love about Next.js is the the page.ts and loading.ts files that make it easy to use server components and show a loading state while I you wait for the data. While this is great, most of the time your page is made up of both **static** and **dynamic** data.
+Next.js is a great framework that I've been using since it was primarily known for static rendering of React applications. Over time, it has evolved into a dynamic full-stack framework.
 
-Lets look at a pretty common example of a dashboard page;
+One feature I always liked about Next.js (and maybe don't love anymore) is the use of `page.ts` and `loading.ts` files. These make it easy to implement server components and display a loading state while waiting for data to load. However, most of the time, your page comprises both **static** and **dynamic** data.
+
+Let's look at a common example of a dashboard page:
 
 ```tsx
 // app/dashboard/users/page.tsx
@@ -48,15 +50,15 @@ import { Spinner } from "@ui/components/ui/spinner";
 export default Spinner;
 ```
 
-This is great and next.js will automatically show a loading spinner while the data is being fetched.
+In this example, Next.js will automatically show a loading spinner while the data is being fetched.
 
 <video autoplay loop muted="true">
   <source src="/img/loading_spinner_nextjs.mov" type="video/mp4" />
 </video>
 
-At the same time this is now so great because we can only see a loading spinner, when there is a lot of static content on the page we could show the user.
+While this setup is functional, it only displays a loading spinner, missing an opportunity to show static content on the page.
 
-This is where suspense comes in. With suspense we can show the static content while the dynamic content is being fetched.
+This is where React Suspense comes into play. With Suspense, we can display static content while dynamic content is being fetched, enhancing the user experience.
 
 ```tsx
 // app/dashboard/users/page.tsx
@@ -74,7 +76,7 @@ const Users = async () => {
 const Dashboard = () => {
   return (
     <UserView>
-      <Suspense fallback={<Loading users={[]} />}>
+      <Suspense fallback={<Spinner />}>
         <Users />
       </Suspense>
     </UserView>
@@ -83,10 +85,10 @@ const Dashboard = () => {
 export default Dashboard;
 ```
 
-Now, we can get a lot more context while the data is being fetched from the server. This impoves the user experience and makes the page feel a lot faster.
+Now, we can provide much more context while the data is being fetched from the server, improving the user experience and making the page feel faster.
 
 <video autoplay loop muted="true">
   <source src="/img/loading_spinner_suspense_nextjs.mov" type="video/mp4" />
 </video>
 
-If you're not already using Suspense in your Next.js app, I highly recommend giving it a try. You won't be disappointed!
+If you're not already using Suspense in your Next.js app, I highly recommend giving it a try. It significantly enhances the user experience by making your pages feel faster and more responsive.
