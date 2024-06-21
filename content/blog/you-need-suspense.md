@@ -28,12 +28,20 @@ One feature I always liked about Next.js (and maybe don't love anymore) is the u
 
 Let's look at a common example of a dashboard page:
 
+Couple of things to note in this example:
+
+- The `Dashboard` component is a **server component** that fetches data from the server using `getUsers`.
+- The `UserTable` component is a **client component** that displays the data fetched by the `Dashboard` component.
+- The `Spinner` displays a loading spinner while the data is being fetched.
+
 ```tsx
 // app/dashboard/users/page.tsx
 import { getUsers } from "~/db";
 
 const Dashboard = async () => {
+  // Load the users from the database
   const users = await getUsers();
+  // Render the table with the users
   return (
     <UserView>
       <UserTable users={users} />
@@ -50,15 +58,80 @@ import { Spinner } from "@ui/components/ui/spinner";
 export default Spinner;
 ```
 
-In this example, Next.js will automatically show a loading spinner while the data is being fetched.
+In this example, Next.js will automatically show a loading spinner while the data is being fetched frm the server.
 
-<video autoplay loop muted="true">
+<video autoplay loop muted controls>
   <source src="/img/loading_spinner_nextjs.mov" type="video/mp4" />
 </video>
 
-While this setup is functional, it only displays a loading spinner, missing an opportunity to show static content on the page.
+While this setup is functional, it only displays a loading spinner, missing an opportunity to show static content on the page and leaving the user with no context of what's happening.
 
-This is where React Suspense comes into play. With Suspense, we can display static content while dynamic content is being fetched, enhancing the user experience.
+### Naive Solution: Show static content in your loading state
+
+One we can improve this is by duplicating our entire page in our `loading.ts` file.
+
+```tsx
+// app/dashboard/users/loading.tsx
+import { Spinner } from "@ui/components/ui/spinner";
+
+const LoadingState = () => {
+  return (
+    <UserView>
+      <Spinner />
+    </UserView>
+  );
+};
+export default LoadingState;
+```
+
+<video autoplay loop muted controls>
+  <source src="/img/loading_spinner_suspense_nextjs.mov" type="video/mp4" />
+</video>
+
+This approach works, but it's not ideal. We're duplicating our page, which can lead to inconsistencies. In our example our page was very simple, but in most "Real World" applications this is almost never the case. Imagine having to duplicate your changes every time you make a change to your `page.tsx` file? Sounds like a nightmare.
+
+### Naive Solution 2: Use `layout.ts`
+
+You might be thinking, "Dude, this is why they added **`layout.ts` files to Next.js.**". And your right, this could work. Lets create a `layout.ts` file and move our `UserView` component into it.
+
+```tsx
+// app/dashboard/users/page.tsx
+import { getUsers } from "~/db";
+
+const Dashboard = async () => {
+  // Load the users from the database
+  const users = await getUsers();
+  // Render the table with the users
+  return <UserTable users={users} />;
+};
+export default Dashboard;
+```
+
+```tsx
+// app/dashboard/users/loading.tsx
+import { Spinner } from "@ui/components/ui/spinner";
+
+export default Spinner;
+```
+
+```tsx
+// app/dashboard/users/layout.tsx
+
+const UserLayout = ({ children }) => {
+  return <UserView>{children}</UserView>;
+};
+export default UserLayout;
+```
+
+Again this but but what if we want to add a user detail page (`/app/dashboard/users/[id].tsx`) to our dashboard and we don't want to wrap it in the `UserView` component? We could use [route groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups) but that gets messy fast.
+
+The bigger issue comes when we want do add more content to our user view page. Maybe we want to add a section for "Most viewed products" before the table. We cant multiple children in a layout file.
+
+The matter of the fact is there is almost always static content that should not live in a layout but also does not need to wait for the data to load.
+
+### A better Solution: Use React Suspense
+
+This is where React Suspense comes into play. With Suspense, we can display static content while dynamic content is being fetched (server side), enhancing the user experience. Let's refactor our example to use Suspense.
 
 ```tsx
 // app/dashboard/users/page.tsx
@@ -87,7 +160,7 @@ export default Dashboard;
 
 Now, we can provide much more context while the data is being fetched from the server, improving the user experience and making the page feel faster.
 
-<video autoplay loop muted="true">
+<video autoplay loop muted controls>
   <source src="/img/loading_spinner_suspense_nextjs.mov" type="video/mp4" />
 </video>
 
