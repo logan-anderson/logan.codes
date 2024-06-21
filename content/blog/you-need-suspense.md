@@ -68,7 +68,7 @@ While this setup is functional, it only displays a loading spinner, missing an o
 
 ### Naive Solution: Show static content in your loading state
 
-One we can improve this is by duplicating our entire page in our `loading.ts` file.
+One way we can improve this is by **duplicating our entire page** in our `loading.ts` file.
 
 ```tsx
 // app/dashboard/users/loading.tsx
@@ -123,9 +123,9 @@ const UserLayout = ({ children }) => {
 export default UserLayout;
 ```
 
-Again this but but what if we want to add a user detail page (`/app/dashboard/users/[id].tsx`) to our dashboard and we don't want to wrap it in the `UserView` component? We could use [route groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups) but that gets messy fast.
+Again, this achieves the result we want. Issues will come up later when we want to add a "user detail" page (`/app/dashboard/users/[id].tsx`) to our dashboard and we don't want to wrap it in the `UserView` component (from `layout.ts`)? We could use [route groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups) but that gets messy fast and is not a great solution for this problem.
 
-The bigger issue comes when we want do add more content to our user view page. Maybe we want to add a section for "Most viewed products" before the table. We cant multiple children in a layout file.
+The bigger issue comes when we want to add more dynamic content to our user view page. Maybe we want to add a section above the `<UserView />` for "Most viewed products". Since we cant have "multiple children" in a layout this would be impossible.
 
 The matter of the fact is there is almost always static content that should not live in a layout but also does not need to wait for the data to load.
 
@@ -163,5 +163,43 @@ Now, we can provide much more context while the data is being fetched from the s
 <video autoplay loop muted controls>
   <source src="/img/loading_spinner_suspense_nextjs.mov" type="video/mp4" />
 </video>
+
+If we look at our example from before where we wanted to add a "Most viewed products" section before the table, we can now do that without any issues.
+
+```tsx
+// app/dashboard/users/page.tsx
+import { Suspense } from "react";
+import { Spinner } from "@ui/components/ui/spinner";
+
+import { getUsers, getProducts } from "~/db";
+
+// This is a server component
+const Users = async () => {
+  const users = await getUsers();
+  return <UserTable users={users} />;
+};
+
+// This is a server component
+const MostViewedProducts = async () => {
+  const products = await getProducts();
+  return <ProductTable products={products} />;
+};
+
+const Dashboard = () => {
+  return (
+    <UserView>
+      <Suspense fallback={<Spinner />}>
+        <Users />
+      </Suspense>
+      <Suspense fallback={<Spinner />}>
+        <Users />
+      </Suspense>
+    </UserView>
+  );
+};
+export default Dashboard;
+```
+
+We can even have separate loading states for each component. This is a huge improvement over the naive solutions we discussed earlier.
 
 If you're not already using Suspense in your Next.js app, I highly recommend giving it a try. It significantly enhances the user experience by making your pages feel faster and more responsive.
