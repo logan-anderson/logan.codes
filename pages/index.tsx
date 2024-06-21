@@ -74,11 +74,13 @@ export const getStaticProps = async function () {
     filter: {
       draft: { eq: false },
     },
+    last: 3,
+    sort: "date",
   });
 
   return {
     props: {
-      featuredPosts: res.data.postConnection.edges?.slice(0, 3),
+      featuredPosts: res.data.postConnection.edges,
     },
   };
 };

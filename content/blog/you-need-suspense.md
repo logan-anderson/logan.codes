@@ -1,8 +1,8 @@
 ---
-draft: true
+draft: false
 title: You Need Suspense in Your Next.js App
-date: 2024-06-18T03:00:00.000Z
-minRead: 2
+date: 2024-06-21T03:00:00.000Z
+minRead: 6
 author: content/authors/logan_anderson.md
 description: >-
   Next.js has evolved from a static rendering React framework to a dynamic
@@ -30,9 +30,9 @@ Let's look at a common example of a dashboard page:
 
 Couple of things to note in this example:
 
-- The `Dashboard` component is a **server component** that fetches data from the server using `getUsers`.
-- The `UserTable` component is a **client component** that displays the data fetched by the `Dashboard` component.
-- The `Spinner` displays a loading spinner while the data is being fetched.
+* The `Dashboard` component is a **server component** that fetches data from the server using `getUsers`.
+* The `UserTable` component is a **client component** that displays the data fetched by the `Dashboard` component.
+* The `Spinner` displays a loading spinner while the data is being fetched.
 
 ```tsx
 // app/dashboard/users/page.tsx
