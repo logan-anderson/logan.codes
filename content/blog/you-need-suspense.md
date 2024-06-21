@@ -28,11 +28,11 @@ One feature I always liked about Next.js (and maybe don't love anymore) is the u
 
 Let's look at a common example of a dashboard page:
 
-Couple of things to note in this example:
+A couple of things to note in this example:
 
-* The `Dashboard` component is a **server component** that fetches data from the server using `getUsers`.
-* The `UserTable` component is a **client component** that displays the data fetched by the `Dashboard` component.
-* The `Spinner` displays a loading spinner while the data is being fetched.
+- The `Dashboard` component is a **server component** that fetches data from the server using `getUsers`.
+- The `UserTable` component is a **client component** that displays the data fetched by the `Dashboard` component.
+- The `Spinner` displays a loading spinner while the data is being fetched.
 
 ```tsx
 // app/dashboard/users/page.tsx
@@ -58,7 +58,7 @@ import { Spinner } from "@ui/components/ui/spinner";
 export default Spinner;
 ```
 
-In this example, Next.js will automatically show a loading spinner while the data is being fetched frm the server.
+In this example, Next.js will automatically show a loading spinner while the data is being fetched from the server.
 
 <video autoplay loop muted controls>
   <source src="/img/loading_spinner_nextjs.mov" type="video/mp4" />
@@ -92,7 +92,7 @@ This approach works, but it's not ideal. We're duplicating our page, which can l
 
 ### Naive Solution 2: Use `layout.ts`
 
-You might be thinking, "Dude, this is why they added **`layout.ts` files to Next.js.**". And your right, this could work. Lets create a `layout.ts` file and move our `UserView` component into it.
+You might be thinking, "Dude, this is why they added **`layout.ts` files to Next.js.**". And you're right, this could work. Let's create a `layout.ts` file and move our `UserView` component into it.
 
 ```tsx
 // app/dashboard/users/page.tsx
@@ -158,7 +158,7 @@ const Dashboard = () => {
 export default Dashboard;
 ```
 
-Now, we can provide much more context while the data is being fetched from the server, improving the user experience and making the page feel faster.
+Now, we can provide much more context while the data is being fetched from the server, improving the user experience and making the page feel faster and more responsive
 
 <video autoplay loop muted controls>
   <source src="/img/loading_spinner_suspense_nextjs.mov" type="video/mp4" />
