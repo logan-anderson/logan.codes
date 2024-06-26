@@ -37,7 +37,6 @@
     "next-tinacms-cloudinary": "^4.0.0",
     "postcss": "^8.4.24",
     "posthog-js": "^1.141.3",
-    "raw-loader": "4.0.1",
     "react": "^18.2.0",
     "react-awesome-reveal": "3.8.1",
     "react-collapsible": "2.8.0",
@@ -46,7 +45,6 @@
     "react-responsive-masonry": "^2.1.7",
     "react-syntax-highlighter": "15.4.4",
     "rss": "1.2.2",
-    "styled-components": "5.1.1",
     "tinacms": "^1.6.4"
   },
   "devDependencies": {
