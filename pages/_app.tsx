@@ -1,12 +1,24 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
+import posthog from "posthog-js";
+import { PostHogProvider } from "posthog-js/react";
 
 import "../styles/index.css";
-import { useGoogleTagManager } from "../hooks/useGoogleTagManager";
+
+if (typeof window !== "undefined") {
+  // checks that we are client-side
+  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+    api_host:
+      process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+    person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
+    loaded: (posthog) => {
+      if (process.env.NODE_ENV === "development") posthog.debug(); // debug mode in development
+    },
+  });
+}
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
-  useGoogleTagManager();
   return (
     <>
       <Head>
@@ -19,10 +31,11 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
           href="https://logan.codes/feed.xml"
         />
       </Head>
-      <ThemeProvider attribute="class">
-        {/* @ts-ignore */}
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <PostHogProvider client={posthog}>
+        <ThemeProvider attribute="class">
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </PostHogProvider>
     </>
   );
 };
