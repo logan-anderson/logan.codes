@@ -1,12 +1,15 @@
 ---
 draft: true
-date: "2024-07-06"
-minRead: 2
 title: Tips for writing Truly Beautiful React Code
+date: 2024-07-22T03:00:00.000Z
+minRead: 6
 author: content/authors/logan_anderson.md
 description: Learn how to write beautiful React code
 tags:
   - react
+featurePosts:
+  - post: content/blog/you-need-suspense.md
+  - post: content/blog/what-is-nextjs.md
 ---
 
 # Tips for writing "Truly Beautiful" React Code
@@ -161,7 +164,7 @@ This also has the added benefited of being able to reuse the hook in other compo
 
 ## Don't use `renderSomething` methods
 
-Often I see components with methods like `renderSomething` or `renderSomethingElse`. I am not sure why folks do this, my guess is it comes from the class component days where it was common to have multiple render_something methods on a class. We have functional components now, so there is no need for renderMethods. Render methods are just bad functional components. React gives us functional components so lets use them how they are meant to be used.
+Often I see components with methods like `renderSomething` or `renderSomethingElse`. I am not sure why folks do this, my guess is it comes from the class component days where it was common to have multiple render\_something methods on a class. We have functional components now, so there is no need for renderMethods. Render methods are just bad functional components. React gives us functional components so lets use them how they are meant to be used.
 
 Example of a render method
 
