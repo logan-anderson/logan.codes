@@ -1,6 +1,6 @@
 ---
 draft: true
-title: Tips for writing Truly Beautiful React Code
+title: Tips for Writing Truly Beautiful React Code
 date: 2024-07-22T03:00:00.000Z
 minRead: 6
 author: content/authors/logan_anderson.md
@@ -18,15 +18,15 @@ featurePosts:
 
 > Note: This article represents my own thoughts and opinions and is not representative of my employer's views.
 
-I started working at stripe 6 months ago and dove into a massive React codebase. When you have thousands of developers over 10+ years contributing to a codebase, things can get messy. I have seen some truly beautiful React code and some truly "Not so beautiful" React code. In this article, I will share some tips for writing "truly beautiful" and (possibly more import) some common pitfalls to avoid.
+I started working at Stripe 6 months ago and dove into a massive React codebase. When you have thousands of developers over 10+ years contributing to a codebase, things can get messy. I have seen some truly beautiful React code and some truly "not so beautiful" React code. In this article, I will share some tips for writing "truly beautiful" and (possibly more import) some common pitfalls to avoid.
 
-The goal of this article help you write more **readable** and **maintainable** React code so that future developers (including yourself) can easily understand and modify the code at a later date. Its hard to understand the impact of writing "bad" code in the moment but it can have a huge impact on the future of the codebase.
+The goal of this article is to help you write more **readable** and **maintainable** React code so that future developers (including yourself) can easily understand and modify the code at a later date. Its hard to understand the impact of writing "bad" code in the moment but it can have a huge impact on the future of the codebase.
 
-I before I get into the list its worth noting that this for every suggestion there will be a time and place that it makes sense to ignore (I have broken all of these myself at some point). These are not meant to be rules they are guidelines and should raise a flag in your mind when your breaking them.
+I before I get into the list its worth noting that for every suggestion there will be a time and place that it makes sense to ignore (I have broken all of these myself at some point). These are not meant to be rules they are guidelines and should raise a flag in your mind when you are breaking them.
 
 ## Limit the number of props used by a component
 
-When lots of props are passed to a component, it makes it hard to comprehend what the component it supposed to do. This also makes the component harder to test and maintain. If your passing more then 8ish props to a component, you should consider refactoring into multiple components. If your passing the same props into many components, you should consider using React context.
+When lots of props are passed to a component, it makes it hard to comprehend what the component is supposed to do. This also makes the component harder to test and maintain. If you are passing more than 8(ish) props to a component, you should consider refactoring into multiple components. If you are passing the same props into many components, you should consider using React context.
 
 ## Use React context (try and avoid prop drilling)
 
@@ -84,7 +84,7 @@ const MyComponent = () => {
 };
 ```
 
-Some times you will need to break out the early return into a separate component.
+Sometimes you will need to break out the early return into a separate component.
 
 ```tsx
 const Inner = () => {
@@ -109,7 +109,7 @@ As the number of states grow the early return path becomes more readable and mai
 
 ## Make custom hooks
 
-Often I see a bunch of hooks at the at the start of a React component. While at surface level this seems fine as the number of hooks grows the component becomes harder to read and understand.
+Often I see a bunch of hooks at the start of a React component. While at surface level this seems fine, as the number of hooks grows the component becomes harder to read and understand.
 
 For example this is a pretty common pattern
 
@@ -164,7 +164,7 @@ This also has the added benefited of being able to reuse the hook in other compo
 
 ## Don't use `renderSomething` methods
 
-Often I see components with methods like `renderSomething` or `renderSomethingElse`. I am not sure why folks do this, my guess is it comes from the class component days where it was common to have multiple render\_something methods on a class. We have functional components now, so there is no need for renderMethods. Render methods are just bad functional components. React gives us functional components so lets use them how they are meant to be used.
+Often I see components with methods like `renderSomething` or `renderSomethingElse`. I am not sure why folks do this, my guess is it comes from the class component days where it was common to have multiple render_something methods on a class. We have functional components now, so there is no need for renderMethods. Render methods are just bad functional components. React gives us functional components so lets use them how they are meant to be used.
 
 Example of a render method
 
