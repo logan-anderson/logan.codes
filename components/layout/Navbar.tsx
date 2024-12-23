@@ -124,7 +124,9 @@ const NavBar = () => {
           </div>
         </nav>
       </div>
+      {/* <div className="absolute top-0 left-0"> */}
       <MobileNav setShowMobile={setShowMobile} showMobile={showMobile} />
+      {/* </div> */}
     </>
   );
 };
@@ -159,6 +161,7 @@ export const MobileNav: React.FC<NavProps> = ({
   const experienceActive = router.pathname.startsWith("/experience");
   return (
     <Transition
+      className="fixed top-0 left-0 z-30 origin-top-right w-full"
       show={showMobile}
       enter="duration-150 ease-out"
       enterFrom="opacity-0 scale-95"
@@ -168,10 +171,7 @@ export const MobileNav: React.FC<NavProps> = ({
       leaveTo="opacity-0 scale-95"
     >
       {(ref) => (
-        <div
-          ref={ref}
-          className="fixed top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-30"
-        >
+        <div ref={ref} className="p-2 transition transform md:hidden">
           <div className="rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-gray-800 divide-y divide-gray-100 dark:divide-gray-700">
             <div className="px-5 pt-4 flex items-center justify-between">
               <Link href="/" aria-label="Home" className="no-underline">
