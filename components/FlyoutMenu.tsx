@@ -37,11 +37,11 @@ const FlyoutMenuItems: FlyoutMenuProps[] = [
   {
     href: "/resources",
     label: "Resources",
-    text: "Resources that I recommend for learning programing and web devolvement",
+    text: "Resources that I recommend for learning programming and web development",
   },
 ];
 
-export const FlyoutMenu: React.FC<{
+export const AboutFlyout: React.FC<{
   className?: string;
   absolute?: boolean;
 }> = ({ className, absolute = true }) => {
@@ -75,8 +75,10 @@ export const FlyoutMenu: React.FC<{
           setShow(!show);
         }}
         type="button"
-        className={`group bg-white dark:bg-gray-900 rounded-md text-gray-500 inline-flex items-center text-base font-medium hover:text-gray-900 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-          show ? "text-gray-900 dark:text-gray-300 " : "text-gray-500"
+        className={`group rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
+          show
+            ? "text-gray-900 dark:text-gray-300"
+            : "text-gray-700 dark:text-gray-200"
         }`}
       >
         <span>About</span>
@@ -85,8 +87,12 @@ export const FlyoutMenu: React.FC<{
   Item active: "text-gray-600", Item inactive: "text-gray-400"
       */}
         <svg
-          className={`ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500 dark:hover:text-gray-300${
-            show ? "text-gray-600 dark:text-gray-300" : "text-gray-400"
+          className={`ml-2 h-5 w-5 transform transition-transform duration-150 ${
+            show ? "rotate-180" : ""
+          } ${
+            show
+              ? "text-gray-600 dark:text-gray-300"
+              : "text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300"
           }`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
