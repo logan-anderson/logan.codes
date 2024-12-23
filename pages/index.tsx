@@ -1,23 +1,31 @@
+import React from "react";
 import Layout from "../components/layout/Layout";
 import BlogCard from "../components/BlogCard";
 import { Hero } from "../components/Hero";
 import { client } from "../tina/__generated__/client";
 import type { PostConnectionEdges } from "../tina/__generated__/types";
 import Link from "next/link";
+import { NextPage } from "next";
 
-interface props {
+interface Props {
   featuredPosts: PostConnectionEdges[];
 }
-const IndexPage = ({ featuredPosts }: props) => {
-  // sort based on date added
-  featuredPosts.sort(
-    (x, y) =>
-      new Date(y.node?.date || "").getTime() -
-      new Date(x.node?.date || "").getTime()
+
+const IndexPage: NextPage<Props> = ({ featuredPosts }) => {
+  // Sort featured posts without mutating props
+  const sortedFeaturedPosts = React.useMemo(
+    () =>
+      [...featuredPosts].sort(
+        (a, b) =>
+          new Date(b.node?.date || "").getTime() -
+          new Date(a.node?.date || "").getTime()
+      ),
+    [featuredPosts]
   );
+
   return (
     <>
-      <Layout title="Home" preview={false} navDisable={true}>
+      <Layout title="Home" preview={false} navDisable>
         <Hero />
         <section className="py-16">
           <div className="relative bg-gray-50 dark:bg-gray-800 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8 rounded-3xl">
@@ -31,7 +39,7 @@ const IndexPage = ({ featuredPosts }: props) => {
                 </p>
               </div>
               <div className="mt-12 max-w-lg mx-auto grid gap-8 lg:grid-cols-3 lg:max-w-none">
-                {featuredPosts.map((postData) => {
+                {sortedFeaturedPosts.map((postData) => {
                   const post = postData.node;
                   return (
                     <BlogCard

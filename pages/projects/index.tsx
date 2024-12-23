@@ -19,15 +19,29 @@ const ProjectPage: React.FC<{ projects: Projects[]; preview: boolean }> = (
 ) => {
   return (
     <Layout preview={props.preview} title="Projects">
-      <div className="max-w-screen-lg mx-auto">
-        <BreadCrumb links={[{ label: "Projects", href: "/projects" }]} />
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-          <Masonry>
-            {props.projects?.map((item) => (
-              <ProjectCard key={item.slug} project={item} />
-            ))}
-          </Masonry>
-        </ResponsiveMasonry>
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+            Projects
+          </h1>
+          <BreadCrumb links={[{ label: "Projects", href: "/projects" }]} />
+          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+            A collection of my work and experiments in web development, machine
+            learning, and more.
+          </p>
+        </div>
+
+        <div className="mt-16">
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{ 350: 1, 750: 2, 1200: 3 }}
+          >
+            <Masonry gutter="1rem">
+              {props.projects?.map((item) => (
+                <ProjectCard key={item.slug} project={item} />
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
+        </div>
       </div>
     </Layout>
   );
