@@ -104,7 +104,7 @@ const NavBar = () => {
           <div className="flex items-center md:hidden">
             <button
               type="button"
-              className="rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:bg-gray-100 focus:text-gray-500 dark:focus:bg-gray-800 dark:focus:text-gray-200"
               onClick={() => setShowMobile(true)}
             >
               <svg
