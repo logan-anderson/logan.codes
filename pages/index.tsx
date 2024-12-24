@@ -1,8 +1,8 @@
 import React from "react";
-import Layout from "../components/layout/Layout";
-import BlogCard from "../components/BlogCard";
-import { Hero } from "../components/Hero";
-import { client } from "../tina/__generated__/client";
+import Layout from "~/components/layout/Layout";
+import BlogCard from "~/components/BlogCard";
+import { Hero } from "~/components/Hero";
+import { client } from "~/tina/__generated__/client";
 import type { PostConnectionEdges } from "../tina/__generated__/types";
 import Link from "next/link";
 import { NextPage } from "next";

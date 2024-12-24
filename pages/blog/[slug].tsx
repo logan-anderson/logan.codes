@@ -3,21 +3,21 @@ import { GetStaticPathsResult, GetStaticProps } from "next";
 import { okaidia as Theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
-import Layout from "../../components/layout/Layout";
-import { BreadCrumb } from "../../components/BreadCrumb";
+import Layout from "~/components/layout/Layout";
+import { BreadCrumb } from "~/components/BreadCrumb";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { STYLES } from "../../components/Markdown";
-import { BlogHeader } from "../../components/blog";
-import { Comments } from "../../components/Cmments";
-import BlogCard from "../../components/BlogCard";
+import { STYLES } from "~/components/Markdown";
+import { BlogHeader } from "~/components/blog";
+import { Comments } from "~/components/Cmments";
+import BlogCard from "~/components/BlogCard";
 
-import { client } from "../../tina/__generated__/client";
+import { client } from "~/tina/__generated__/client";
 import type {
   PostAndFeaturePostsQuery,
   Exact,
   Author as AuthorType,
 } from "../../tina/__generated__/types";
-import { Author } from "../../components/AuthorDetail";
+import { Author } from "~/components/AuthorDetail";
 import { useTina } from "tinacms/dist/react";
 import { getPosts } from "../../utils/getPosts";
 import { useRouter } from "next/router";

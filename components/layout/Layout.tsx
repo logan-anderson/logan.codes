@@ -3,7 +3,7 @@ import { DefaultSeo } from "next-seo";
 
 import Navbar from "./Navbar";
 import AppFooter from "./Footer";
-import { DarkModeToggleButton } from "../Buttons/DarkModeToggle";
+import { DarkModeToggleButton } from "~/components/Buttons/DarkModeToggle";
 import { useTheme } from "next-themes";
 
 type Props = {

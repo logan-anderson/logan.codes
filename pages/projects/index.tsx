@@ -1,8 +1,8 @@
 import { GetStaticProps } from "next";
 import React from "react";
-import { BreadCrumb } from "../../components/BreadCrumb";
-import Layout from "../../components/layout/Layout";
-import { ProjectCard } from "../../components/ProjectCard";
+import { BreadCrumb } from "~/components/BreadCrumb";
+import Layout from "~/components/layout/Layout";
+import { ProjectCard } from "~/components/ProjectCard";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 export interface Projects {

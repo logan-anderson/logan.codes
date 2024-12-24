@@ -1,5 +1,5 @@
 import React from "react";
-import { Projects } from "../pages/projects";
+import { Projects } from "~/pages/projects";
 import Link from "next/link";
 
 export const ProjectCard: React.FC<{ project: Projects }> = ({ project }) => {

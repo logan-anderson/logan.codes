@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { HeroTypingText } from "./HeroTypeing";
+import { HeroTypingText } from "~/components/HeroTypeing";
 
-import NavBar from "./layout/Navbar";
-import profilePic from "../public/img/me.jpeg";
+import NavBar from "~/components/layout/Navbar";
+import profilePic from "~/public/img/me.jpeg";
 
 const HeroTyping = dynamic(() => import("./HeroTypingLazy"), {
   ssr: false,
