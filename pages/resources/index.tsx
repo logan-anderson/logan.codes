@@ -1,9 +1,24 @@
 import Layout from "~/components/layout/Layout";
 import Collapsible from "react-collapsible";
 
-const catagories = require("../../content/resources.json").catagories;
+import categoriesData from "../../content/resources.json";
+
+interface Entry {
+  id: string;
+  label: string;
+  link: string;
+}
+
+interface Category {
+  id: string;
+  label: string;
+  entries: Entry[];
+}
+
+const categories: Category[] = categoriesData.categories;
+
 const ResourcesPage = () => {
-  // get all the catagories
+  // get all the categories
 
   return (
     <Layout preview={false} title="Resources">
@@ -13,7 +28,7 @@ const ResourcesPage = () => {
         </h1>
 
         <div className="space-y-4">
-          {catagories.map((cat: any) => (
+          {categories.map((cat) => (
             <Collapsible
               key={cat.id}
               trigger={cat.label}
@@ -25,7 +40,7 @@ const ResourcesPage = () => {
             >
               <div className="p-6 bg-white dark:bg-gray-900 rounded-b-lg">
                 <ul className="space-y-3">
-                  {cat.entries.map((ent: any) => (
+                  {cat.entries.map((ent) => (
                     <li key={ent.id}>
                       <a
                         href={ent.link}
