@@ -2,7 +2,12 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   darkMode: "class",
-  purge: ["./components/**/*.ts*", "./pages/**/*.ts*", "content/**/*.md"],
+  purge: [
+    "./components/**/*.ts*",
+    "./pages/**/*.ts*",
+    "content/**/*.md",
+    "data/**/*.{ts,tsx}",
+  ],
   theme: {
     extend: {
       typography(theme) {
