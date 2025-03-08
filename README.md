@@ -33,17 +33,17 @@ If you [are on the site](https://logan.codes) you will notice a button at the bo
 Dev Mode
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 Build the site
 
 ```bash
-yarn build
+pnpm build
 ```
 
 Start the local server
 
 ```
-yarn start
+pnpm start
 ```

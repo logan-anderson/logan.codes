@@ -40,6 +40,7 @@ export const MarkdownBody: React.FC<ReactMarkdown.ReactMarkdownProps> = (
         // @ts-ignore
         code: ({ language, value }) => {
           return (
+            // @ts-ignore
             <SyntaxHighlighter
               style={Theme}
               language={language}

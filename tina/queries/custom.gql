@@ -15,6 +15,38 @@ query postAndFeaturePosts($relativePath: String!) {
   }
 }
 
+query postForListPage($filter: PostFilter) {
+  postConnection(filter: $filter) {
+    edges {
+      node {
+        draft
+        title
+        date
+        description
+        tags
+
+        author {
+          ... on Author {
+            name
+            avatar
+            id
+          }
+        }
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+        }
+      }
+    }
+  }
+}
+
 fragment PostParts2 on Post {
   ...PostParts
   featurePosts {

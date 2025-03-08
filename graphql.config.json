@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "tina": {
+      "schema": [
+        "tina/__generated__/schema.gql",
+        "tina/__generated__/**/*.gql"
+      ],
+      "documents": [
+        "tina/__generated__/**/*.{graphql,gql}",
+        "tina/queries/**/*.{graphql,gql}"
+      ]
+    }
+  }
+}

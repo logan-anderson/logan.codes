@@ -60,6 +60,7 @@ const BlogPage = ({ data: postData, query, variables }: PageProps) => {
             <TinaMarkdown
               content={data?.body}
               components={{
+                // @ts-ignore
                 h1: (props) => {
                   return (
                     <h1 className="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 dark:text-gray-50">
@@ -67,6 +68,7 @@ const BlogPage = ({ data: postData, query, variables }: PageProps) => {
                     </h1>
                   );
                 },
+                // @ts-ignore
                 p: (props) => {
                   return (
                     <p className="text-gray-500  dark:text-gray-300 mx-auto">
@@ -74,8 +76,10 @@ const BlogPage = ({ data: postData, query, variables }: PageProps) => {
                     </p>
                   );
                 },
+                // @ts-ignore
                 code_block: (props) => {
                   return (
+                    // @ts-ignore
                     <SyntaxHighlighter style={Theme} language={props?.lang}>
                       {props?.value}
                     </SyntaxHighlighter>
@@ -95,6 +99,7 @@ const BlogPage = ({ data: postData, query, variables }: PageProps) => {
                     <iframe width={width} height={height} src={url || ""} />
                   );
                 },
+                // @ts-ignore
                 html: (props) => {
                   return (
                     <div

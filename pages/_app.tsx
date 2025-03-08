@@ -6,7 +6,7 @@ import { PostHogProvider } from "posthog-js/react";
 
 import "../styles/index.css";
 
-if (typeof window !== "undefined") {
+if (typeof window !== "undefined" && process.env.NODE_ENV === "production") {
   // checks that we are client-side
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
     api_host:
