@@ -3,7 +3,6 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { HeroTypingText } from "~/components/HeroTypeing";
 
-import NavBar from "~/components/layout/Navbar";
 import profilePic from "~/public/img/me.jpeg";
 
 const HeroTyping = dynamic(() => import("./HeroTypingLazy"), {
@@ -24,7 +23,13 @@ export const Hero: React.FC = () => {
           >
             <polygon points="50,0 100,0 50,100 0,100" />
           </svg>
-          <NavBar />
+
+          <div
+            className="relative py-4 px-4 sm:px-6 lg:px-8 dark:border-gray-800"
+            aria-hidden="true"
+          >
+            {/* Spacer for consistent layout */}
+          </div>
 
           <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
             <div className="text-center lg:text-left">
