@@ -1,11 +1,14 @@
 import {
-  mediaHandlerConfig,
-  createMediaHandler,
+  createMediaHandler
 } from "next-tinacms-cloudinary/dist/handlers";
 
 import { isAuthorized } from "@tinacms/auth";
 
-export const config = mediaHandlerConfig;
+export const config = {
+  api: {
+    bodyParser: false
+  }
+};
 
 // TODO: make this route secure
 export default createMediaHandler({

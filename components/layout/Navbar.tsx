@@ -9,6 +9,7 @@ import {
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
 import { AboutFlyout } from "~/components/FlyoutMenu";
+// import BlobButton from "../Buttons/HamburgerButton";
 
 export interface NavProps {
   showMobile: boolean;
@@ -49,6 +50,7 @@ const NavBar = () => {
               {"<Home/>"}
             </strong>
           </Link>
+          {/* <BlobButton>Hi</BlobButton> */}
 
           <div className="hidden md:flex md:items-center">
             <div className="flex items-center gap-8">

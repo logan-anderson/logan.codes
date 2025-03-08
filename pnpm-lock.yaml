@@ -90,8 +90,8 @@ importers:
         specifier: 4.3.1
         version: 4.3.1(react@19.0.0)
       react-syntax-highlighter:
-        specifier: 15.4.4
-        version: 15.4.4(react@19.0.0)
+        specifier: 15.6.1
+        version: 15.6.1(react@19.0.0)
       rss:
         specifier: 1.2.2
         version: 1.2.2
@@ -4767,6 +4767,9 @@ packages:
   highlight.js@10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
 
+  highlightjs-vue@1.0.0:
+    resolution: {integrity: sha512-PDEfEF102G23vHmPhLyPboFCD+BkMGu+GuJe2d9/eH4FsCwvgBpnc9n0pGE+ffKdph38s6foEZiEjdgHdzp+IA==}
+
   history@5.3.0:
     resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
 
@@ -6703,8 +6706,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-syntax-highlighter@15.4.4:
-    resolution: {integrity: sha512-PsOFHNTzkb3OroXdoR897eKN5EZ6grht1iM+f1lJSq7/L0YVnkJaNVwC3wEUYPOAmeyl5xyer1DjL6MrumO6Zw==}
+  react-syntax-highlighter@15.6.1:
+    resolution: {integrity: sha512-OqJ2/vL7lEeV5zTJyG7kmARppUjiB9h9udl4qHQjjgEos66z00Ia0OckwYfRxCSFrW8RJIBnsBwQsHZbVPspqg==}
     peerDependencies:
       react: '>= 0.14.0'
 
@@ -14939,6 +14942,8 @@ snapshots:
 
   highlight.js@10.7.3: {}
 
+  highlightjs-vue@1.0.0: {}
+
   history@5.3.0:
     dependencies:
       '@babel/runtime': 7.26.9
@@ -17533,10 +17538,11 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.0.10
 
-  react-syntax-highlighter@15.4.4(react@19.0.0):
+  react-syntax-highlighter@15.6.1(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.26.9
       highlight.js: 10.7.3
+      highlightjs-vue: 1.0.0
       lowlight: 1.20.0
       prismjs: 1.29.0
       react: 19.0.0

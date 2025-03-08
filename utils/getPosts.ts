@@ -12,7 +12,7 @@ export const getPosts = async () => {
     filter = { draft: { eq: false }, date: { before: today } };
   }
 
-  const res = await client.queries.postConnection({
+  const res = await client.queries.postForListPage({
     filter,
   });
   return res;

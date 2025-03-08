@@ -1,0 +1,238 @@
+/* components/Buttons/HamburgerButton.css */
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+
+.container {
+  filter: url("#goo");
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+  width: 200px;
+}
+
+.button {
+  position: absolute;
+  white-space: nowrap;
+  background: #c853f8;
+  padding: 12px 40px;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  font-family: "Oswald", Arial, sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  animation: cubic-bezier(0.64, 0.57, 0.67, 1.53) 0.5s;
+}
+
+.button:hover {
+  background-color: #c03ff7;
+  transition: 0.25s ease;
+}
+
+/* Animation keyframes */
+@keyframes blob-left-top {
+  0% {
+    transform: scale(1.3, 0.9) rotate(-90deg) translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1) translate(-30px, -30px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.4) translate(-80px, -80px);
+    opacity: 0;
+  }
+}
+
+@keyframes blob-right-bottom {
+  0% {
+    transform: scale(1.3, 0.9) rotate(-90deg) translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.8) translate(40px, 40px);
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7) translate(50px, 50px);
+  }
+}
+
+@keyframes splash-1 {
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(25px, -45px);
+  }
+}
+
+@keyframes splash-2 {
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-55px, -30px);
+  }
+}
+
+@keyframes splash-3 {
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(5px, 40px);
+  }
+}
+
+@keyframes splash-4 {
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(30px, -5px);
+  }
+}
+
+@keyframes splash-5 {
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(20px, 5px);
+  }
+}
+
+@keyframes button-grow {
+  0% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+  25% {
+    transform: scale(1.02) translate(-50%, -50%);
+  }
+  50% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+  75% {
+    transform: scale(1.01) translate(-50%, -50%);
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
+.blob {
+  position: absolute;
+  background: #c03ff7;
+  border-radius: 50% 40%;
+  height: 20px;
+  width: 20px;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation: cubic-bezier(0.2, 0, 1, 0.3) 0.5s;
+}
+
+.blob .splash {
+  content: "";
+  position: absolute;
+  background-color: #c03ff7;
+  border-radius: 50%;
+  height: 4px;
+  width: 4px;
+  top: -10px;
+  left: 6px;
+  opacity: 0;
+  z-index: 2;
+  animation: all cubic-bezier(0.8, 0, 1, 0.3) 0.5s;
+}
+
+.blob .splash:nth-child(2) {
+  height: 3px;
+  width: 3px;
+  top: 4px;
+  left: -8px;
+}
+
+.blob:nth-child(2) {
+  right: 0;
+  bottom: 0;
+  top: auto;
+  left: auto;
+}
+
+.blob:nth-child(2) .splash {
+  top: 30px;
+  left: 20px;
+}
+
+.blob:nth-child(2) .splash:nth-child(2) {
+  top: 5px;
+  left: 40px;
+}
+
+.blob:nth-child(2) .splash:nth-child(3) {
+  top: 10px;
+  left: 30px;
+}
+
+.blob:nth-child(2).animated {
+  animation-name: blob-right-bottom;
+}
+
+.blob:nth-child(2).animated .splash:nth-child(1).animated {
+  animation-name: splash-3;
+}
+
+.blob:nth-child(2).animated .splash:nth-child(2).animated {
+  animation-name: splash-4;
+}
+
+.blob:nth-child(2).animated .splash:nth-child(3).animated {
+  animation-name: splash-5;
+}
+
+.blob:nth-child(1).animated {
+  animation-name: blob-left-top;
+}
+
+.blob:nth-child(1).animated .splash:nth-child(1).animated {
+  animation-name: splash-1;
+}
+
+.blob:nth-child(1).animated .splash:nth-child(2).animated {
+  animation-name: splash-2;
+}
+
+.button.animated {
+  animation-name: button-grow;
+}
