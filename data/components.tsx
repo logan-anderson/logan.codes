@@ -81,5 +81,10 @@ export const Heading: React.FC<PropsWithChildren> = ({ children }) => {
 export const Bold: React.FC<{
   children: string | JSX.Element | JSX.Element[] | string[];
 }> = ({ children }) => {
-  return <strong className="font-semibold text-blue-950"> {children} </strong>;
+  return (
+    <strong className="font-semibold text-blue-950 dark:text-blue-500">
+      {" "}
+      {children}{" "}
+    </strong>
+  );
 };

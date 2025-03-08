@@ -6,6 +6,7 @@ import { client } from "~/tina/__generated__/client";
 import type { PostConnectionEdges } from "../tina/__generated__/types";
 import Link from "next/link";
 import { NextPage } from "next";
+import { ExperienceCards } from "~/components/ui/experience-cards";
 
 interface Props {
   featuredPosts: PostConnectionEdges[];
@@ -27,6 +28,12 @@ const IndexPage: NextPage<Props> = ({ featuredPosts }) => {
     <>
       <Layout title="Home" preview={false}>
         <Hero />
+        <section>
+          <h2 className="text-center text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-12">
+            Experience
+          </h2>
+          <ExperienceCards />
+        </section>
         <section className="py-16">
           <div className="relative bg-gray-50 dark:bg-gray-800 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8 rounded-3xl">
             <div className="relative max-w-7xl mx-auto">

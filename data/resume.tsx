@@ -38,10 +38,10 @@ interface Experience {
     } & React.RefAttributes<SVGSVGElement>
   >;
 }
-interface WorkExperience extends Experience {
+export interface WorkExperience extends Experience {
   company: string;
 }
-interface Education extends Experience {
+export interface Education extends Experience {
   degree: string;
 }
 
