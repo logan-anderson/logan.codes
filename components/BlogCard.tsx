@@ -19,7 +19,7 @@ const BlogCardNew = ({ post }: Props) => {
               </h3>
               <div className="text-sm leading-5 font-medium text-blue-600">
                 {post?.data?.frontmatter?.tags?.map((tag, i) => (
-                  <div className="hover:underline">
+                  <div className="hover:underline" key={tag}>
                     {/* TODO: make tag links go to /blog with the tag selected */}
                     {tag}
                     {i == post.data.frontmatter.tags.length - 1 ? " " : ", "}
