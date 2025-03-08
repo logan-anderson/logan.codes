@@ -24,7 +24,7 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
     "@tailwindcss/ui": "0.6.2",
-    "@tinacms/auth": "^1.0.0",
+    "@tinacms/auth": "^1.0.11",
     "classnames": "^2.3.2",
     "dotenv": "8.6.0",
     "fast-glob": "3.2.2",
@@ -33,7 +33,7 @@
     "next": "^15.2.1",
     "next-seo": "4.5.0",
     "next-themes": "^0.3.0",
-    "next-tinacms-cloudinary": "^4.0.0",
+    "next-tinacms-cloudinary": "^13.0.2",
     "postcss": "^8.4.24",
     "posthog-js": "^1.141.3",
     "react": "^19.0.0",
@@ -43,11 +43,11 @@
     "react-markdown": "4.3.1",
     "react-syntax-highlighter": "15.4.4",
     "rss": "1.2.2",
-    "tinacms": "^1.6.4"
+    "tinacms": "^2.7.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "10.2.0",
-    "@tinacms/cli": "^1.5.46",
+    "@tinacms/cli": "^1.9.2",
     "@types/classnames": "2.2.10",
     "@types/gsap": "1.20.2",
     "@types/js-yaml": "3.12.4",
