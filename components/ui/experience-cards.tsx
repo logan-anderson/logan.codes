@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { cn } from "~/lib/utils";
 import { RESUME_INFO, WorkExperience } from "~/data/resume";
 import Link from "next/link";
+import Image from "next/image";
 
 export const Card = React.memo(
   ({
@@ -20,21 +21,41 @@ export const Card = React.memo(
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "rounded-lg shadow-lg overflow-hidden h-60 md:h-96 w-full transition duration-500 ease-in-out transform hover:scale-105",
+        "rounded-lg shadow-lg overflow-hidden h-60 md:h-96 w-full transition duration-500 ease-in-out transform hover:scale-105 relative",
         hovered !== null &&
           hovered !== index &&
           "blur-sm scale-[0.98] opacity-70"
       )}
     >
+      {/* Background image - only visible when not hovered */}
+      {experience.img && (
+        <div
+          className={cn(
+            "absolute inset-0 w-full h-full transition-opacity duration-300",
+            hovered === index ? "opacity-0" : "opacity-100"
+          )}
+        >
+          <Image
+            src={experience.img}
+            alt={`${experience.company} background`}
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
+
       {/* Default view - job title and company */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-white dark:bg-gray-700">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-200 text-center mb-2">
+      <div
+        className="absolute inset-0 flex flex-col p-6 transition-opacity duration-300 justify-start items-start"
+        style={{ backgroundColor: experience.img ? "transparent" : "" }}
+      >
+        <h3 className="text-xl font-extrabold text-gray-900  mb-2">
           {experience.company}
         </h3>
-        <div className="text-lg font-medium text-blue-600 text-center">
+        <div className="text-lg font-semibold text-gray-800 ">
           {experience.title}
         </div>
-        <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+        <div className="text-sm font-medium text-gray-800">
           {experience.dates}
         </div>
       </div>
@@ -129,8 +150,8 @@ export function ExperienceCards() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <div className="relative max-w-7xl mx-auto">
-      <div className="mt-12 max-w-lg mx-auto grid gap-8  lg:grid-cols-3 md:max-w-none">
+    <div className="relative  mx-auto">
+      <div className="mt-12 mx-auto grid gap-8 lg:grid-cols-3">
         {RESUME_INFO.experience
           .filter((experience) => !experience.hideFromResume)
           .map((experience, index) => (

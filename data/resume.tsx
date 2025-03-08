@@ -40,6 +40,7 @@ interface Experience {
 }
 export interface WorkExperience extends Experience {
   company: string;
+  img?: string;
 }
 export interface Education extends Experience {
   degree: string;
@@ -148,6 +149,7 @@ const EXPERIENCE: WorkExperience[] = [
       new Date().getMonth() - 1
     } mos`,
     moreInfoLink: "/experience/stripe",
+    img: "/img/stripe.png",
     Icon: CodeBracketIcon,
     bullets: [
       {
@@ -175,6 +177,7 @@ const EXPERIENCE: WorkExperience[] = [
     dates: "Apr 2020 - Dec 2023 · 3 yrs 9 mos",
     moreInfoLink: "/experience/tinacms",
     Icon: CodeBracketIcon,
+    img: "/img/tina.jpeg",
     bullets: [
       {
         content: ` Lead Developer and maintainer of TinaCMS, an open source headless CMS that commits content directly to Git.`,
@@ -219,9 +222,10 @@ const EXPERIENCE: WorkExperience[] = [
   {
     company: "iWave",
     url: "https://www.iwave.com/",
-    title: "Data Science Specialist (Machine Learning)",
+    title: "Machine Learning Engineer",
     dates: "May 2019 - April 2020 · 1 yr",
     Icon: CalculatorIcon,
+    img: "/img/iwave.png",
     bullets: [
       {
         content: (
