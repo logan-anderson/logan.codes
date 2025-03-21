@@ -33,7 +33,7 @@
     "gray-matter": "4.0.2",
     "gsap": "3.7.1",
     "lucide-react": "^0.479.0",
-    "next": "^15.2.1",
+    "next": "^15.2.3",
     "next-seo": "4.5.0",
     "next-themes": "^0.3.0",
     "next-tinacms-cloudinary": "^13.0.2",
