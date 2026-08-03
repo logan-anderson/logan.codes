@@ -145,7 +145,7 @@ const EXPERIENCE: WorkExperience[] = [
     url: "https://stripe.com",
     title: "Software Engineer",
     dates: `Jan 2024 - Present · ${new Date().getFullYear() - 2024} yrs ${
-      new Date().getMonth() - 1
+      new Date().getMonth() + 1
     } mos`,
     moreInfoLink: "/experience/stripe",
     img: "/img/stripe.png",
