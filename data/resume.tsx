@@ -154,19 +154,19 @@ const EXPERIENCE: WorkExperience[] = [
     bullets: [
       {
         content:
-          "Rebuilt Connect Platform Onboarding to enhance UX and improve unified accounts integration, resulting in 30% higher conversion rates and reduced onboarding time",
+          "Eng lead for Agentic Commerce for Platforms—built the end-to-end Dashboard onboarding experience, launched in private preview at Sessions, authored the public integration guide on docs.stripe.com, and supported early platform deployments (including Wix)",
       },
       {
         content:
-          "Implemented comprehensive observability for Stripe's high-traffic accounts APIs (3000+ requests/hour), enabling rapid identification and resolution of critical Connect integration issues",
+          "Eng lead for Dashboard Account Create—cut average connected-account creation time by 66%, reduced 400 errors by 60%, and increased platforms creating an account in the first 3 days from 28% to 38%",
       },
       {
         content:
-          "Refactored the Connect dashboard UI to integrate with V2 Accounts architecture, successfully leading cross-functional collaboration across multiple teams to deliver this critical initiative ahead of schedule, improving system cohesion and user experience",
+          "Removed OAuth as the default for Standard Dashboard account creation, reducing accounts created in suboptimal shapes by ~84%",
       },
       {
         content:
-          "Redesigned and rebuilt high-traffic account creation dashboard (3000+ daily users) to integrate with Unified Accounts system, improving user experience and system consistency",
+          "Rebuilt Connect Platform Onboarding for Unified Accounts (majority of frontend PRs during the project), increasing conversion by 28%",
       },
     ],
   },
