@@ -77,8 +77,8 @@ const CONTACT_INFO: Contact[] = [
     isExternal: true,
   },
   {
-    label: "Kitchener, ON",
-    url: "https://goo.gl/maps/qsQ6uWFASdr5S8h57",
+    label: "Stratford, PEI",
+    url: "https://maps.app.goo.gl/LgpJgc66PSrhxk1C6",
     icon: <MapPinIcon className="inline-block mr-1.5 text-blue-900 w-5" />,
     isExternal: false,
   },
@@ -117,25 +117,24 @@ const CONTACT_INFO: Contact[] = [
 ];
 
 const PROFILE: Profile = {
-  summary: `Software engineer with 4+ years of experience, specializing
-    in machine learning, TypeScript, React, and Python. Core
-    Contributor of TinaCMS, driving its growth and enterprise
-    adoption.`,
+  summary: `Software engineer with 6+ years of experience, specializing
+    in TypeScript, React, and full-stack product engineering. Building
+    Connect integrations at Stripe.`,
   bullets: [
     {
-      label: "Machine Learning:",
+      label: "Connect / Full Stack:",
       content:
-        "Executed year-long Honours Project using TensorFlow, reducing CNN parameters by 20% for image classification.",
+        "Engineering lead for Agentic Commerce for Platforms and Dashboard Account Create, shipping Connect product used by major platforms.",
     },
     {
       label: "Technical Versatility:",
       content:
-        "Proficient in TypeScript, Java, and Python. Developed backend features on AWS for high-traffic applications.",
+        "Proficient in TypeScript, React, and Python. Built high-traffic Connect product surfaces spanning frontend, backend, and partner integrations.",
     },
     {
-      label: "Leadership:",
+      label: "Platform partnerships:",
       content:
-        "Led teams, designed editorial workflow for enterprise customers, and developed document classification model.",
+        "Worked directly with large platforms including Wix, WooCommerce, and BigCommerce on Connect integrations and Agentic Commerce.",
     },
   ],
 };
@@ -153,20 +152,28 @@ const EXPERIENCE: WorkExperience[] = [
     Icon: CodeBracketIcon,
     bullets: [
       {
-        content:
-          "Rebuilt Connect Platform Onboarding to enhance UX and improve unified accounts integration, resulting in 30% higher conversion rates and reduced onboarding time",
+        content: (
+          <>
+            Engineering lead for Agentic Commerce for Platforms—led a team of
+            five to launch private preview at{" "}
+            <ExternalLink href="https://stripe.com/blog/agentic-commerce-suite">
+              Sessions
+            </ExternalLink>
+            , and worked directly with large platforms including Wix
+          </>
+        ),
       },
       {
         content:
-          "Implemented comprehensive observability for Stripe's high-traffic accounts APIs (3000+ requests/hour), enabling rapid identification and resolution of critical Connect integration issues",
+          "Engineering lead for Dashboard Account Create—cut average connected-account creation time by 66%, reduced 400 errors by 60%, and increased platforms creating an account in the first 3 days from 28% to 38%",
       },
       {
         content:
-          "Refactored the Connect dashboard UI to integrate with V2 Accounts architecture, successfully leading cross-functional collaboration across multiple teams to deliver this critical initiative ahead of schedule, improving system cohesion and user experience",
+          "Removed OAuth as the default for Standard Dashboard account creation, reducing accounts created in suboptimal shapes by ~84%",
       },
       {
         content:
-          "Redesigned and rebuilt high-traffic account creation dashboard (3000+ daily users) to integrate with Unified Accounts system, improving user experience and system consistency",
+          "Rebuilt Connect Platform Onboarding for Unified Accounts (majority of frontend PRs during the project), increasing conversion by 28%",
       },
     ],
   },
@@ -213,10 +220,10 @@ const EXPERIENCE: WorkExperience[] = [
         content:
           "Implemented backend features such as data caching, validation, and business logic on AWS using DynamoDB, S3, and Serverless Stack (SST) on a high traffic application with an uptime of over 99.99%",
       },
-      {
-        content:
-          "Created a migration tool that transformed a Forestry schema into a Tina config, successfully migrating thousands of users and increased MRR",
-      },
+      // {
+      //   content:
+      //     "Created a migration tool that transformed a Forestry schema into a Tina config, successfully migrating thousands of users and increased MRR",
+      // },
     ],
   },
   {
