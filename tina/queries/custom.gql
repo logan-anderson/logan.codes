@@ -24,7 +24,41 @@ query postForListPage($filter: PostFilter) {
         date
         description
         tags
+        minRead
 
+        author {
+          ... on Author {
+            name
+            avatar
+            id
+          }
+        }
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+        }
+      }
+    }
+  }
+}
+
+query homepagePosts($filter: PostFilter, $last: Float, $sort: String) {
+  postConnection(filter: $filter, last: $last, sort: $sort) {
+    edges {
+      node {
+        draft
+        title
+        date
+        description
+        tags
+        minRead
+        homepageFeatured
         author {
           ... on Author {
             name

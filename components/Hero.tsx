@@ -41,7 +41,7 @@ export const Hero: React.FC = () => {
               </h1>
 
               <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 sm:text-2xl max-w-2xl leading-relaxed">
-                I am a dedicated husband, skilled full stack web developer at{" "}
+                I'm a full-stack engineer at{" "}
                 <Link
                   href="https://stripe.com/"
                   className="text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
@@ -50,31 +50,49 @@ export const Hero: React.FC = () => {
                 >
                   Stripe
                 </Link>
-                , and a{" "}
+                , a{" "}
                 <a
                   href="https://www.instagram.com/logan_discgolf/"
                   target="_blank"
+                  rel="noreferrer"
                   className="text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
                 >
                   disc golf enthusiast
                 </a>
-                .
+                , and I'm building{" "}
+                <a
+                  href="https://www.thefairwayai.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
+                >
+                  The Fairway
+                </a>{" "}
+                — PDGA rules AI with citations.
               </p>
 
-              <div className="mt-10 flex gap-4 justify-center lg:justify-start">
-                <Link
-                  href="/blog"
-                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
-                >
-                  Read My Blog
-                </Link>
+              <div className="mt-10 flex flex-col items-center lg:items-start gap-4">
+                <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                  <Link
+                    href="/blog"
+                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
+                  >
+                    Read a post
+                  </Link>
+                  <Link
+                    href="/projects"
+                    className="inline-flex items-center px-6 py-3 border border-gray-200 dark:border-gray-700 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                  >
+                    See projects
+                  </Link>
+                </div>
                 <a
                   href="https://buymeacoffee.com/logana"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center px-6 py-3 border border-gray-200 dark:border-gray-700 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                  className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:underline transition-colors duration-200"
                 >
-                  Buy Me a Coffee ☕️
+                  Buy me a coffee ☕️
                 </a>
               </div>
             </div>

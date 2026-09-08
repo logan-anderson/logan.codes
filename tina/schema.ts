@@ -89,6 +89,12 @@ export default defineSchema({
             { name: "slug", label: "Slug", type: "string" },
             { name: "imgUrl", label: "Image Url", type: "string" },
             { name: "url", label: "Url for Github", type: "string" },
+            {
+              name: "featuredOnHome",
+              label: "Feature on homepage",
+              type: "boolean",
+            },
+            { name: "website", label: "Live site URL", type: "string" },
             { name: "rawMarkdown", label: "Raw Markdown", type: "rich-text" },
           ],
         },
@@ -111,6 +117,11 @@ export default defineSchema({
         {
           label: "Draft",
           name: "draft",
+          type: "boolean",
+        },
+        {
+          label: "Pin on homepage",
+          name: "homepageFeatured",
           type: "boolean",
         },
         {
