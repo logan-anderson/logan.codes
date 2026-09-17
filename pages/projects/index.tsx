@@ -12,6 +12,8 @@ export interface Projects {
   imgUrl?: string;
   fromGithub?: boolean;
   rawMarkdown?: string;
+  featuredOnHome?: boolean;
+  website?: string;
 }
 const ProjectPage: React.FC<{ projects: Projects[]; preview: boolean }> = (
   props

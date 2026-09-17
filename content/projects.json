@@ -2,6 +2,15 @@
   "projects": [
     {
       "fromGithub": false,
+      "label": "The Fairway",
+      "excerpt": "PDGA rules AI Chat + Search with citations. What I'm building now.",
+      "slug": "the-fairway",
+      "website": "https://www.thefairwayai.com/",
+      "featuredOnHome": true,
+      "rawMarkdown": "# The Fairway\n\nI'm building [The Fairway](https://www.thefairwayai.com/) — PDGA rules AI Chat + Search with citations.\n\nAsk a question and get an answer grounded in the PDGA rulebook, with the source rules cited so you can check the AI. Search finds the relevant rules; chat helps you understand them.\n\nCurrently in public beta.\n\n## Links\n\n* Live site: [thefairwayai.com](https://www.thefairwayai.com/)\n"
+    },
+    {
+      "fromGithub": false,
       "label": "Machine Learning honours project",
       "excerpt": "In the last year of studies, I completed a Honours project. In this project I explored rebuilding an existing Neural Network to use less parameters on image datasets while keeping the same accuracy. ",
       "slug": "machine-learning-honours",
