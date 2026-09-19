@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -6,8 +6,9 @@ import {
   useReducedMotion,
 } from "motion/react";
 
-// Scripted replays of the three ways I tried to make Jev "talk". The picks
-// are real outputs from testing, the animation just slows each call down.
+// Scripted replays of the three ways I tried to make Jev "talk". Each Jev call
+// returns a probability for every option, and the loop takes the top one.
+// The probabilities here are illustrative, not recorded from real calls.
 
 export type JevStageName = "letters" | "words" | "categories";
 
@@ -15,12 +16,14 @@ interface Option {
   key: string;
   // What Jev sees for this option (a candidate reply, or a category description)
   detail: string;
+  probability: number;
 }
 
 interface Step {
   label: string;
   options: Option[];
   hiddenCount: number;
+  hiddenProbability: number;
   pick: string;
   // Category picks don't add anything to the reply
   addsToken: boolean;
@@ -41,105 +44,134 @@ const WORD_QUESTION = "Which candidate is the best reply so far?";
 const quote = (s: string) => JSON.stringify(s);
 const join = (reply: string, token: string, joiner: string) =>
   reply ? `${reply}${joiner}${token}` : token;
-const stopOption = (reply: string): Option => ({
-  key: "stop",
-  detail: `${quote(reply)} (finished)`,
-});
+const stopDetail = (reply: string) => `${quote(reply)} (finished)`;
 
-const letterStep = (reply: string, pick: string): Step => {
-  const letters = ["a", "b", "e", "h", "i", "l", "o", "q", "s", "y"];
+// Gives every visible option a probability. `top` sets the interesting ones,
+// the rest of the visible options split a small slice of what's left, and the
+// hidden options get the remainder.
+const buildStep = (
+  label: string,
+  options: { key: string; detail: string }[],
+  hiddenCount: number,
+  top: Record<string, number>,
+  addsToken: boolean
+): Step => {
+  const rest = options.filter((o) => !(o.key in top));
+  const remaining = 1 - Object.values(top).reduce((a, b) => a + b, 0);
+  const visibleShare = hiddenCount > 0 ? remaining * 0.35 : remaining;
+  const weights = rest.map((_, i) => 1 + ((i * 7) % 5) / 4);
+  const totalWeight = weights.reduce((a, b) => a + b, 0) || 1;
+  const withProbs = options.map((o) => ({
+    ...o,
+    probability:
+      o.key in top
+        ? top[o.key]
+        : (visibleShare * weights[rest.indexOf(o)]) / totalWeight,
+  }));
+  const pick = Object.entries(top).sort((a, b) => b[1] - a[1])[0][0];
   return {
-    label: WORD_QUESTION,
-    options: [
-      ...letters.map((l) => ({ key: l, detail: quote(reply + l) })),
-      { key: "space", detail: quote(`${reply} `) },
-      stopOption(reply),
-    ],
-    hiddenCount: 26 - letters.length,
+    label,
+    options: withProbs,
+    hiddenCount,
+    hiddenProbability: hiddenCount > 0 ? remaining - visibleShare : 0,
     pick,
-    addsToken: pick !== "stop",
+    addsToken: addsToken && pick !== "stop",
   };
 };
 
-const SMALL_WORDS = ["I", "you", "hi", "hello", "am", "is", "good", "thanks", "what", "the"];
-const wordStep = (reply: string, pick: string): Step => ({
-  label: WORD_QUESTION,
-  options: [
-    ...SMALL_WORDS.map((w) => ({ key: w, detail: quote(join(reply, w, " ")) })),
-    stopOption(reply),
-  ],
-  hiddenCount: 167 - SMALL_WORDS.length,
-  pick,
-  addsToken: pick !== "stop",
-});
+const LETTERS = ["a", "e", "h", "i", "l", "o", "s", "y"];
+const letterStep = (reply: string, top: Record<string, number>) =>
+  buildStep(
+    WORD_QUESTION,
+    [
+      ...LETTERS.map((l) => ({ key: l, detail: quote(reply + l) })),
+      { key: "space", detail: quote(`${reply} `) },
+      { key: "stop", detail: stopDetail(reply) },
+    ],
+    26 - LETTERS.length,
+    top,
+    true
+  );
+
+const SMALL_WORDS = ["I", "you", "hi", "hello", "am", "is", "good", "thanks", "what"];
+const wordStep = (reply: string, top: Record<string, number>) =>
+  buildStep(
+    WORD_QUESTION,
+    [
+      ...SMALL_WORDS.map((w) => ({ key: w, detail: quote(join(reply, w, " ")) })),
+      { key: "stop", detail: stopDetail(reply) },
+    ],
+    167 - SMALL_WORDS.length,
+    top,
+    true
+  );
 
 const CATEGORIES: Record<string, { description: string; sample: string[]; size: number }> = {
   pronouns: {
     description: "pronouns for people and things (I, you, they, someone...)",
-    sample: ["I", "me", "you", "we", "they", "it", "someone"],
+    sample: ["I", "you", "we", "they", "it"],
     size: 43,
   },
   greetings_reactions: {
     description: "greetings, thanks, apologies and short reactions (hello, thanks, wow...)",
-    sample: ["hello", "hi", "hey", "thanks", "sorry", "yes", "wow"],
+    sample: ["hello", "hi", "hey", "thanks", "sorry", "wow"],
     size: 40,
   },
   question_words: {
     description: "question words (what, why, how, when, where, who, which...)",
-    sample: ["what", "why", "how"],
+    sample: [],
     size: 14,
   },
   connectors: {
     description: "words that join ideas (and, but, so, because, if, then...)",
-    sample: ["and", "or", "but", "so", "because", "if", "then"],
+    sample: ["and", "or", "but", "so", "because"],
     size: 31,
   },
   positive_adjectives: {
     description: "positive describing words (good, great, happy, helpful, easy...)",
-    sample: ["good", "great", "nice", "happy", "fine", "perfect", "calm"],
+    sample: ["good", "great", "nice", "happy", "fine"],
     size: 61,
   },
   feelings: {
     description: "names for emotions and moods (happiness, fear, stress, joy...)",
     sample: [],
-    size: 0,
-  },
-  food_daily_life: {
-    description: "food, drink and daily routine (breakfast, coffee, eat, sleep, cook...)",
-    sample: [],
-    size: 0,
+    size: 30,
   },
   names: {
     description: "names of people and AI models (Jev, Claude, Emma, Liam, ChatGPT...)",
     sample: [],
-    size: 0,
+    size: 110,
   },
 };
 const TOTAL_CATEGORIES = 34;
 
-const categoryStep = (reply: string, pick: string): Step => {
+const categoryStep = (reply: string, top: Record<string, number>) => {
   const keys = Object.keys(CATEGORIES);
-  return {
-    label: "Call 1 of 2: what kind of word comes next?",
-    options: [
+  return buildStep(
+    "Call 1 of 2: what kind of word comes next?",
+    [
       ...keys.map((k) => ({ key: k, detail: quote(CATEGORIES[k].description) })),
-      stopOption(reply),
+      { key: "stop", detail: stopDetail(reply) },
     ],
-    hiddenCount: TOTAL_CATEGORIES - keys.length,
-    pick,
-    addsToken: false,
-  };
+    TOTAL_CATEGORIES - keys.length,
+    top,
+    false
+  );
 };
 
-const wordInCategoryStep = (reply: string, category: string, pick: string): Step => {
+const wordInCategoryStep = (
+  reply: string,
+  category: string,
+  top: Record<string, number>
+) => {
   const { sample, size } = CATEGORIES[category];
-  return {
-    label: `Call 2 of 2: pick a word from ${category}`,
-    options: sample.map((w) => ({ key: w, detail: quote(join(reply, w, " ")) })),
-    hiddenCount: size - sample.length,
-    pick,
-    addsToken: true,
-  };
+  return buildStep(
+    `Call 2 of 2: pick a word from ${category}`,
+    sample.map((w) => ({ key: w, detail: quote(join(reply, w, " ")) })),
+    size - sample.length,
+    top,
+    true
+  );
 };
 
 const SCRIPTS: Record<JevStageName, Script> = {
@@ -148,70 +180,63 @@ const SCRIPTS: Record<JevStageName, Script> = {
     userMessage: USER_MESSAGE,
     joiner: "",
     steps: [
-      letterStep("", "h"),
-      letterStep("h", "e"),
-      letterStep("he", "l"),
-      letterStep("hel", "l"),
-      letterStep("hell", "o"),
-      letterStep("hello", "stop"),
+      letterStep("", { h: 0.14, a: 0.12, i: 0.08, s: 0.06 }),
+      letterStep("h", { e: 0.17, i: 0.15, a: 0.1, o: 0.08 }),
+      letterStep("he", { l: 0.16, y: 0.14, space: 0.1, stop: 0.08 }),
+      letterStep("hel", { l: 0.19, o: 0.11, stop: 0.1, space: 0.08 }),
+      letterStep("hell", { o: 0.24, stop: 0.13, space: 0.09, a: 0.05 }),
+      letterStep("hello", { stop: 0.31, space: 0.18, o: 0.06, s: 0.05 }),
     ],
     caption:
-      "Six Jev calls for one word, and every candidate is one character away from the others. Most of them are gibberish.",
+      "Six Jev calls for one word. Every candidate is one character away from the others, so the probabilities are spread thin and the top pick barely wins.",
   },
   words: {
     title: "Words",
     userMessage: USER_MESSAGE,
     joiner: " ",
     steps: [
-      wordStep("", "I"),
-      wordStep("I", "am"),
-      wordStep("I am", "good"),
-      wordStep("I am good", "stop"),
+      wordStep("", { I: 0.34, hi: 0.22, hello: 0.15, thanks: 0.08 }),
+      wordStep("I", { am: 0.46, good: 0.12, stop: 0.06, is: 0.04 }),
+      wordStep("I am", { good: 0.51, stop: 0.12, thanks: 0.09, you: 0.03 }),
+      wordStep("I am good", { stop: 0.58, thanks: 0.09, you: 0.06, what: 0.05 }),
     ],
     caption:
-      "Every candidate is a real word, so Jev is comparing replies that actually mean different things. One call per word.",
+      "Every candidate is a real word, so the candidates actually mean different things and Jev can be much more confident. One call per word.",
   },
   categories: {
     title: "Categories",
     userMessage: USER_MESSAGE,
     joiner: " ",
     steps: [
-      categoryStep("", "greetings_reactions"),
-      wordInCategoryStep("", "greetings_reactions", "hi"),
-      categoryStep("hi", "greetings_reactions"),
-      wordInCategoryStep("hi", "greetings_reactions", "thanks"),
-      categoryStep("hi thanks", "positive_adjectives"),
-      wordInCategoryStep("hi thanks", "positive_adjectives", "fine"),
-      categoryStep("hi thanks fine", "connectors"),
-      wordInCategoryStep("hi thanks fine", "connectors", "and"),
-      categoryStep("hi thanks fine and", "pronouns"),
-      wordInCategoryStep("hi thanks fine and", "pronouns", "you"),
-      categoryStep("hi thanks fine and you", "stop"),
+      categoryStep("", { greetings_reactions: 0.48, pronouns: 0.21, question_words: 0.07 }),
+      wordInCategoryStep("", "greetings_reactions", { hi: 0.38, hello: 0.27, hey: 0.14 }),
+      categoryStep("hi", { greetings_reactions: 0.31, pronouns: 0.24, question_words: 0.13, stop: 0.09 }),
+      wordInCategoryStep("hi", "greetings_reactions", { thanks: 0.33, hello: 0.12, wow: 0.05 }),
+      categoryStep("hi thanks", { positive_adjectives: 0.29, pronouns: 0.18, stop: 0.14, connectors: 0.11 }),
+      wordInCategoryStep("hi thanks", "positive_adjectives", { fine: 0.36, good: 0.31, great: 0.12 }),
+      categoryStep("hi thanks fine", { connectors: 0.34, stop: 0.27, pronouns: 0.1, question_words: 0.06 }),
+      wordInCategoryStep("hi thanks fine", "connectors", { and: 0.57, but: 0.09, so: 0.08 }),
+      categoryStep("hi thanks fine and", { pronouns: 0.52, question_words: 0.12, stop: 0.05 }),
+      wordInCategoryStep("hi thanks fine and", "pronouns", { you: 0.62, I: 0.06, we: 0.04 }),
+      categoryStep("hi thanks fine and you", { stop: 0.44, question_words: 0.16, pronouns: 0.1, connectors: 0.08 }),
     ],
     caption:
       "~1,700 words split into 34 categories. Jev picks a category first, then a word from it, so no single call sees more than ~110 options.",
   },
 };
 
-type Phase = "scan" | "pick" | "commit" | "done";
+type Phase = "score" | "pick" | "commit" | "done";
 
 // Timings in ms
-const SCAN_TICK = 140;
-const SCAN_TICKS = 9;
-const PICK_HOLD = 700;
+const SCORE_HOLD = 1300;
+const PICK_HOLD = 900;
 const COMMIT_HOLD = 600;
 const DONE_HOLD = 3200;
 
-// A deterministic "wandering" highlight that ends on the picked option
-const scanPath = (count: number, pickIdx: number, seed: number) => {
-  const path: number[] = [];
-  let n = seed * 7 + 3;
-  for (let i = 0; i < SCAN_TICKS - 1; i++) {
-    n = (n * 31 + 17) % 97;
-    path.push(n % count);
-  }
-  path.push(pickIdx);
-  return path;
+const formatPercent = (p: number) => {
+  const pct = p * 100;
+  if (pct < 1) return "<1%";
+  return `${Math.round(pct)}%`;
 };
 
 // Tokens that were added by each step, so the newest one can be animated in
@@ -233,71 +258,65 @@ export const JevStage: React.FC<{ stage?: JevStageName }> = ({ stage = "words" }
   const reduceMotion = useReducedMotion();
 
   const [stepIdx, setStepIdx] = useState(0);
-  const [phase, setPhase] = useState<Phase>("scan");
-  const [tick, setTick] = useState(0);
+  const [phase, setPhase] = useState<Phase>("score");
   const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
   const running = inView && !paused;
 
   const step = script.steps[Math.min(stepIdx, script.steps.length - 1)];
-  const pickIdx = step.options.findIndex((o) => o.key === step.pick);
-  const path = useMemo(
-    () => scanPath(step.options.length, pickIdx, stepIdx),
-    [step, pickIdx, stepIdx]
-  );
 
   useEffect(() => {
     if (!running) return;
     let delay: number;
     let next: () => void;
 
-    if (phase === "scan") {
-      if (reduceMotion || tick >= path.length - 1) {
-        delay = reduceMotion ? 900 : SCAN_TICK;
-        next = () => setPhase("pick");
-      } else {
-        delay = SCAN_TICK;
-        next = () => setTick((t) => t + 1);
-      }
+    if (phase === "score") {
+      delay = SCORE_HOLD;
+      next = () => setPhase("pick");
     } else if (phase === "pick") {
       delay = PICK_HOLD;
       next = () => setPhase("commit");
     } else if (phase === "commit") {
       delay = COMMIT_HOLD;
       next = () => {
-        setTick(0);
         if (stepIdx + 1 >= script.steps.length) {
           setStepIdx(script.steps.length);
           setPhase("done");
         } else {
           setStepIdx((i) => i + 1);
-          setPhase("scan");
+          setPhase("score");
         }
       };
     } else {
       delay = DONE_HOLD;
       next = () => {
         setStepIdx(0);
-        setTick(0);
-        setPhase("scan");
+        setPhase("score");
       };
     }
 
     const id = window.setTimeout(next, delay);
     return () => window.clearTimeout(id);
-  }, [running, phase, tick, stepIdx, path, reduceMotion, script.steps.length]);
+  }, [running, phase, stepIdx, script.steps.length]);
 
   const restart = () => {
     setStepIdx(0);
-    setTick(0);
-    setPhase("scan");
+    setPhase("score");
     setPaused(false);
   };
 
   const committed = phase === "commit" || phase === "done";
   const tokens = buildTokens(script, committed ? Math.min(stepIdx + 1, script.steps.length) : stepIdx);
   const isDone = phase === "done";
-  const highlighted = phase === "scan" ? path[Math.min(tick, path.length - 1)] : pickIdx;
+  const showPick = phase === "pick" || phase === "commit";
   const callCount = Math.min(stepIdx + 1, script.steps.length);
+  // Sorted like a bar chart, so the option the loop takes is always on top
+  const sortedOptions = [...step.options].sort((a, b) => b.probability - a.probability);
+  const maxProbability = sortedOptions[0].probability;
+  const keyWidth = `${Math.max(...step.options.map((o) => o.key.length)) + 1}ch`;
+  const focused =
+    step.options.find((o) => o.key === hovered) ||
+    (showPick ? step.options.find((o) => o.key === step.pick) : undefined);
 
   return (
     <div
@@ -384,7 +403,7 @@ export const JevStage: React.FC<{ stage?: JevStageName }> = ({ stage = "words" }
         </div>
       </div>
 
-      {/* Options for the current Jev call */}
+      {/* Probabilities Jev returned for the current call */}
       <div className="px-4 pb-4 pt-5">
         <AnimatePresence mode="wait" initial={false}>
           {isDone ? (
@@ -405,41 +424,68 @@ export const JevStage: React.FC<{ stage?: JevStageName }> = ({ stage = "words" }
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                {step.label}
+              <div className="mb-2 flex items-baseline justify-between gap-2 text-xs">
+                <span className="font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  {step.label}
+                </span>
+                <span className="shrink-0 text-gray-400 dark:text-gray-500">probability</span>
               </div>
-              <div className="flex flex-wrap gap-1.5">
-                {step.options.map((option, i) => {
-                  const active = i === highlighted;
-                  const picked = active && phase !== "scan";
+              <div className="space-y-0.5">
+                {sortedOptions.map((option, i) => {
+                  const picked = showPick && option.key === step.pick;
+                  const width = (option.probability / maxProbability) * 100;
                   return (
-                    <motion.div
+                    <div
                       key={option.key}
-                      initial={reduceMotion ? false : { opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: picked ? 1.08 : 1 }}
-                      transition={{ delay: reduceMotion ? 0 : i * 0.015, duration: 0.2 }}
-                      className={`rounded-md border px-2 py-1 font-mono text-xs transition-colors duration-100 ${
+                      onMouseEnter={() => setHovered(option.key)}
+                      onMouseLeave={() => setHovered(null)}
+                      className={`flex items-center gap-2 rounded px-1.5 py-1 font-mono text-xs transition-colors ${
                         picked
-                          ? "border-blue-600 bg-blue-600 text-white"
-                          : active
-                          ? "border-blue-400 bg-blue-50 text-blue-900 dark:border-blue-500 dark:bg-blue-900/40 dark:text-blue-100"
-                          : "border-gray-200 bg-gray-50 text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                          ? "bg-blue-50 text-blue-900 dark:bg-blue-900/40 dark:text-blue-100"
+                          : hovered === option.key
+                          ? "bg-gray-100 dark:bg-gray-800"
+                          : "text-gray-700 dark:text-gray-300"
                       }`}
                     >
-                      {option.key}
-                    </motion.div>
+                      <span
+                        style={{ width: keyWidth }}
+                        className={`max-w-[45%] shrink-0 truncate ${picked ? "font-semibold" : ""}`}
+                      >
+                        {option.key}
+                      </span>
+                      <span className="relative h-2 flex-1 rounded bg-gray-100 dark:bg-gray-800">
+                        <motion.span
+                          className={`absolute inset-y-0 left-0 rounded ${
+                            picked ? "bg-blue-600 dark:bg-blue-500" : "bg-blue-300 dark:bg-blue-800"
+                          }`}
+                          initial={reduceMotion ? false : { width: "0%" }}
+                          animate={{ width: `${width}%` }}
+                          transition={{ duration: 0.8, delay: reduceMotion ? 0 : 0.1 + i * 0.03, ease: "easeOut" }}
+                        />
+                      </span>
+                      <span className="w-9 shrink-0 text-right tabular-nums text-gray-500 dark:text-gray-400">
+                        {formatPercent(option.probability)}
+                      </span>
+                    </div>
                   );
                 })}
-                {step.hiddenCount > 0 && (
-                  <div className="px-1 py-1 text-xs text-gray-400 dark:text-gray-500">
-                    +{step.hiddenCount} more
-                  </div>
-                )}
               </div>
+              {step.hiddenCount > 0 && (
+                <div className="mt-1 px-1.5 text-xs text-gray-400 dark:text-gray-500">
+                  +{step.hiddenCount} more options sharing {formatPercent(step.hiddenProbability)}
+                </div>
+              )}
               <div className="mt-3 min-h-[2.5rem] rounded-md bg-gray-50 px-3 py-2 font-mono text-xs text-gray-600 dark:bg-gray-800/60 dark:text-gray-300">
-                <span className="text-gray-400 dark:text-gray-500">what Jev sees → </span>
-                <span className="font-semibold">{step.options[highlighted]?.key}</span>:{" "}
-                {step.options[highlighted]?.detail}
+                {focused ? (
+                  <>
+                    <span className="text-gray-400 dark:text-gray-500">what Jev sees → </span>
+                    <span className="font-semibold">{focused.key}</span>: {focused.detail}
+                  </>
+                ) : (
+                  <span className="text-gray-400 dark:text-gray-500">
+                    Jev scores every option at once, then the loop takes the highest…
+                  </span>
+                )}
               </div>
             </motion.div>
           )}

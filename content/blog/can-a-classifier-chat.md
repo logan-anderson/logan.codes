@@ -29,7 +29,7 @@ So naturally I wanted to see if it could hold a conversation.
 This is the crazy idea. What if the choices are **the next letter**?
 
 - Options: `a`–`z`, `space`, and `stop`
-- Pick a letter, add it to the reply, ask Jev again
+- Jev returns a probability for every option. Take the most likely letter, add it to the reply, and ask Jev again
 - Loop until Jev picks `stop` (or the reply hits a 100 character cap)
 
 Here's what a reply looks like, slowed down so you can see each Jev call:
