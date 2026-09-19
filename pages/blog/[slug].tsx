@@ -8,6 +8,7 @@ import { BreadCrumb } from "~/components/BreadCrumb";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { STYLES } from "~/components/Markdown";
 import { BlogHeader } from "~/components/blog";
+import { JevStage, type JevStageName } from "~/components/blog/JevStage";
 import { Comments } from "~/components/Cmments";
 import BlogCard from "~/components/BlogCard";
 
@@ -98,6 +99,10 @@ const BlogPage = ({ data: postData, query, variables }: PageProps) => {
                   return (
                     <iframe width={width} height={height} src={url || ""} />
                   );
+                },
+                // @ts-ignore
+                JevStage: ({ stage }: { stage: JevStageName }) => {
+                  return <JevStage stage={stage} />;
                 },
                 // @ts-ignore
                 html: (props) => {

@@ -33,6 +33,7 @@
     "gray-matter": "4.0.2",
     "gsap": "3.7.1",
     "lucide-react": "^0.479.0",
+    "motion": "^13.4.0",
     "next": "15.2.8",
     "next-seo": "4.5.0",
     "next-themes": "^0.3.0",
