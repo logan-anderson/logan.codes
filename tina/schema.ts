@@ -167,6 +167,18 @@ export default defineSchema({
                 },
               ],
             },
+            {
+              label: "Jev Stage Animation",
+              name: "JevStage",
+              fields: [
+                {
+                  name: "stage",
+                  type: "string",
+                  label: "Stage",
+                  options: ["letters", "words", "categories"],
+                },
+              ],
+            },
           ],
         },
         {
