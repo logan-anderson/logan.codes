@@ -177,7 +177,7 @@ const wordInCategoryStep = (
 const SCRIPTS: Record<JevStageName, Script> = {
   letters: {
     title: "Letters",
-    userMessage: USER_MESSAGE,
+    userMessage: "hello",
     joiner: "",
     steps: [
       letterStep("", { h: 0.14, a: 0.12, i: 0.08, s: 0.06 }),
